@@ -8,12 +8,12 @@ import viteConfig from './vite.config'
 import { transformHead } from './transformHead'
 
 const Guide = [
-  { text: 'Get Started', link: '/guide/' },
-  { text: 'Best Practice', link: '/guide/best-practice' },
-  { text: 'Configurations', link: '/guide/config' },
-  { text: 'Components', link: '/guide/components' },
-  { text: 'Contributing', link: '/contributing' },
-  { text: 'Guidelines', link: '/guidelines' },
+  { text: '开始使用', link: '/guide/' },
+  { text: '最佳实践', link: '/guide/best-practice' },
+  { text: '配置', link: '/guide/config' },
+  { text: '组件', link: '/guide/components' },
+  { text: '贡献', link: '/contributing' },
+  { text: '参考指南', link: '/guidelines' },
 ]
 
 const CoreCategories = coreCategoryNames.map(c => ({
@@ -32,32 +32,32 @@ const AddonCategories = [
 ]
 
 const Links = [
-  { text: 'Add-ons', link: '/add-ons' },
-  { text: 'Ecosystem', link: '/ecosystem' },
-  { text: 'Export Size', link: '/export-size' },
-  { text: 'Recent Updated', link: '/functions.html#sort=updated' },
-  { text: 'Why no translations?', link: '/why-no-translations' },
+  { text: '附加组件', link: '/add-ons' },
+  { text: '生态系统', link: '/ecosystem' },
+  { text: '导出体积', link: '/export-size' },
+  { text: '最近更新', link: '/functions.html#sort=updated' },
+  { text: '为什么没有翻译？', link: '/why-no-translations' },
 ]
 
 const Learn = [
-  { text: 'Premium Video Course', link: 'https://vueschool.io/courses/vueuse-for-everyone?friend=vueuse' },
-  { text: 'Official Vue Certification', link: 'https://certification.vuejs.org/?utm_source=vueuse&utm_medium=website&utm_campaign=affiliate&utm_content=guide&banner_type=text&friend=VUEUSE' },
+  { text: '高级视频课程', link: 'https://vueschool.io/courses/vueuse-for-everyone?friend=vueuse' },
+  { text: '官方 Vue 认证', link: 'https://certification.vuejs.org/?utm_source=vueuse&utm_medium=website&utm_campaign=affiliate&utm_content=guide&banner_type=text&friend=VUEUSE' },
 ]
 
 const DefaultSideBar = [
-  { text: 'Guide', items: Guide },
-  { text: 'Core Functions', items: CoreCategories },
-  { text: 'Add-ons', items: AddonCategories },
-  { text: 'Learn', items: Learn },
-  { text: 'Links', items: Links },
+  { text: '指南', items: Guide },
+  { text: '核心功能', items: CoreCategories },
+  { text: '附加组件', items: AddonCategories },
+  { text: '学习', items: Learn },
+  { text: '链接', items: Links },
 ]
 
 const FunctionsSideBar = getFunctionsSideBar()
 
 export default withPwa(defineConfig({
-  title: 'VueUse',
-  description: 'Collection of essential Vue Composition Utilities',
-  lang: 'en-US',
+  title: 'VueUse 中文文档',
+  description: '基于 Vue 的组合式函数工具库',
+  lang: 'zh-CN',
   ignoreDeadLinks: true,
 
   markdown: {
@@ -73,8 +73,8 @@ export default withPwa(defineConfig({
   themeConfig: {
     logo: '/favicon.svg',
     editLink: {
-      pattern: 'https://github.com/vueuse/vueuse/tree/main/packages/:path',
-      text: 'Suggest changes to this page',
+      pattern: 'https://github.com/ikxin/vueuse-docs-cn/tree/main/packages/:path',
+      text: '对这个页面做出修改建议',
     },
 
     footer: {
@@ -82,10 +82,71 @@ export default withPwa(defineConfig({
       copyright: 'Copyright © 2020-PRESENT Anthony Fu and VueUse contributors',
     },
 
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
+    },
+    outline: {
+      label: '页面导航',
+    },
+
+    lastUpdated: {
+      text: '最后更新于',
+      formatOptions: {
+        dateStyle: 'short',
+        timeStyle: 'medium',
+      },
+    },
+    langMenuLabel: '多语言',
+    returnToTopLabel: '回到顶部',
+    sidebarMenuLabel: '菜单',
+    darkModeSwitchLabel: '主题',
+    lightModeSwitchTitle: '切换到浅色模式',
+    darkModeSwitchTitle: '切换到深色模式',
+
     algolia: {
       appId: 'NBQWY48OOR',
       apiKey: 'c5fd82eb1100c2110c1690e0756d8ba5',
       indexName: 'vueuse',
+      placeholder: '搜索文档',
+      translations: {
+        button: {
+          buttonText: '搜索文档',
+          buttonAriaLabel: '搜索文档',
+        },
+        modal: {
+          searchBox: {
+            resetButtonTitle: '清除查询条件',
+            resetButtonAriaLabel: '清除查询条件',
+            cancelButtonText: '取消',
+            cancelButtonAriaLabel: '取消',
+          },
+          startScreen: {
+            recentSearchesTitle: '搜索历史',
+            noRecentSearchesText: '没有搜索历史',
+            saveRecentSearchButtonTitle: '保存至搜索历史',
+            removeRecentSearchButtonTitle: '从搜索历史中移除',
+            favoriteSearchesTitle: '收藏',
+            removeFavoriteSearchButtonTitle: '从收藏中移除',
+          },
+          errorScreen: {
+            titleText: '无法获取结果',
+            helpText: '你可能需要检查你的网络连接',
+          },
+          footer: {
+            selectText: '选择',
+            navigateText: '切换',
+            closeText: '关闭',
+            searchByText: '搜索提供者',
+          },
+          noResultsScreen: {
+            noResultsText: '无法找到相关结果',
+            suggestedQueryText: '你可以尝试查询',
+            reportMissingResultsText: '你认为该查询应该有结果？',
+            reportMissingResultsLinkText: '点击反馈',
+          },
+        },
+      },
     },
 
     socialLinks: [
@@ -96,41 +157,46 @@ export default withPwa(defineConfig({
 
     nav: [
       {
-        text: 'Guide',
+        text: '指南',
         items: [
-          { text: 'Guide', items: Guide },
-          { text: 'Learn', items: Learn },
-          { text: 'Links', items: Links },
+          { text: '指南', items: Guide },
+          { text: '学习', items: Learn },
+          { text: '链接', items: Links },
         ],
       },
       {
-        text: 'Functions',
+        text: '功能',
         items: [
           {
             text: '',
             items: [
-              { text: 'All Functions', link: '/functions#' },
-              { text: 'Recent Updated', link: '/functions#sort=updated' },
+              { text: '所有功能', link: '/functions#' },
+              { text: '最近更新', link: '/functions#sort=updated' },
             ],
           },
-          { text: 'Core', items: CoreCategories },
-          { text: 'Add-ons', items: AddonCategories },
+          { text: '核心功能', items: CoreCategories },
+          { text: '附加组件', items: AddonCategories },
         ],
       },
       {
-        text: 'Add-ons',
+        text: '附加组件',
         link: '/add-ons',
       },
       {
-        text: 'Playground',
+        text: '在线演示',
         link: 'https://play.vueuse.org',
+      },
+      {
+        text: '英文文档',
+        link: 'https://vueuse.org',
+        target: '_self',
       },
       {
         text: currentVersion,
         items: [
           {
             items: [
-              { text: 'Release Notes', link: 'https://github.com/vueuse/vueuse/releases' },
+              { text: '发行说明', link: 'https://github.com/vueuse/vueuse/releases' },
             ],
           },
           {
@@ -173,8 +239,8 @@ export default withPwa(defineConfig({
     ['link', { rel: 'icon', href: '/favicon.ico', sizes: '48x48' }],
     ['link', { rel: 'icon', href: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Anthony Fu' }],
-    ['meta', { property: 'og:title', content: 'VueUse' }],
-    ['meta', { property: 'og:description', content: 'Collection of essential Vue Composition Utilities' }],
+    ['meta', { property: 'og:title', content: 'VueUse 中文文档' }],
+    ['meta', { property: 'og:description', content: '基于 Vue 的组合式函数工具库' }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:creator', content: '@antfu7' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
@@ -196,12 +262,12 @@ export default withPwa(defineConfig({
     injectRegister: 'inline',
     manifest: {
       id: '/',
-      name: 'VueUse',
-      short_name: 'VueUse',
-      description: 'Collection of Essential Vue Composition Utilities',
+      name: 'VueUse 中文文档',
+      short_name: 'VueUse 中文文档',
+      description: '基于 Vue 的组合式函数工具库',
       theme_color: '#ffffff',
       start_url: '/',
-      lang: 'en-US',
+      lang: 'zh-CN',
       dir: 'ltr',
       orientation: 'natural',
       display: 'standalone',
