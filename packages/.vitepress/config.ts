@@ -239,6 +239,8 @@ export default withPwa(defineConfig({
     },
   },
   head: [
+    ['meta', { name: 'google-site-verification', content: 'VBwBQl3_D3dH_ZKxwIjrAX_zoF0zSyiAJZiIs09HklY' }],
+    ['meta', { name: 'baidu-site-verification', content: 'codeva-aPUGvrjCaL' }],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['link', { rel: 'icon', href: '/favicon.ico', sizes: '48x48' }],
     ['link', { rel: 'icon', href: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' }],
