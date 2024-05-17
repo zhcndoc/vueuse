@@ -70,6 +70,10 @@ export default withPwa(defineConfig({
     ],
   },
 
+  sitemap: {
+    hostname: 'https://vueuse.zhcndoc.com',
+  },
+
   themeConfig: {
     logo: '/favicon.svg',
     editLink: {
