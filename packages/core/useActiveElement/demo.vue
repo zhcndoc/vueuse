@@ -10,7 +10,7 @@ const key = computed(() => activeElement.value?.dataset?.id || 'null')
   <note
     class="mb-3"
   >
-    Select the inputs below to see the changes
+    选择下面的 input 查看当前激活的元素
   </note>
   <div
     class="
@@ -29,7 +29,7 @@ const key = computed(() => activeElement.value?.dataset?.id || 'null')
     >
   </div>
   <div class="mt-2">
-    Current Active Element:
+    当前激活的元素:
     <span class="text-primary">{{ key }}</span>
   </div>
 </template>
