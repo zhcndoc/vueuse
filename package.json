@@ -8,7 +8,7 @@
   "author": "Anthony Fu<https://github.com/antfu>",
   "license": "MIT",
   "scripts": {
-    "zhlint-fix": "zhlint 'packages/core/**/*.md' --fix",
+    "zhlint-fix": "zhlint 'packages/**/*.md' --fix",
     "build": "nr update && esno scripts/build-run.ts",
     "build:redirects": "esno scripts/redirects.ts",
     "build:rollup": "NODE_OPTIONS=\"--max-old-space-size=6144\" rollup --config=rollup.config.ts --configPlugin=rollup-plugin-esbuild",

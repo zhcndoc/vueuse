@@ -62,7 +62,7 @@ export const packages: PackageManifest[] = [
   {
     name: 'router',
     display: 'Router',
-    description: 'Utilities for vue-router',
+    description: 'vue-router 的实用工具',
     addon: true,
     external: [
       'vue-router',
@@ -74,7 +74,7 @@ export const packages: PackageManifest[] = [
   {
     name: 'integrations',
     display: 'Integrations',
-    description: 'Integration wrappers for utility libraries',
+    description: '实用程序库的集成包装器',
     addon: true,
     submodules: true,
     external: [
@@ -113,7 +113,7 @@ export const packages: PackageManifest[] = [
   {
     name: 'rxjs',
     display: 'RxJS',
-    description: 'Enables RxJS reactive functions in Vue',
+    description: '在 Vue 中启用 RxJS 反应函数',
     addon: true,
     external: [
       'rxjs',
@@ -127,7 +127,7 @@ export const packages: PackageManifest[] = [
   {
     name: 'firebase',
     display: 'Firebase',
-    description: 'Enables realtime bindings for Firebase',
+    description: '启用 Firebase 的实时绑定功能',
     addon: true,
     submodules: true,
     external: [
@@ -146,7 +146,7 @@ export const packages: PackageManifest[] = [
   {
     name: 'electron',
     display: 'Electron',
-    description: 'Electron renderer process modules for VueUse',
+    description: 'VueUse 的 Electron 渲染器进程模块',
     author: 'Archer Gu<https://github.com/ArcherGu>',
     addon: true,
     external: [

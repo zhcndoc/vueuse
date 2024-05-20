@@ -1,7 +1,7 @@
 {
   "name": "@vueuse/rxjs",
   "version": "10.9.0",
-  "description": "Enables RxJS reactive functions in Vue",
+  "description": "在 Vue 中启用 RxJS 反应函数",
   "author": "Anthony Fu <https://github.com/antfu>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/antfu",
