@@ -109,34 +109,34 @@ export async function getFunctionMarkdown(pkg: string, name: string) {
     const code = `\`\`\`typescript\n${types.trim()}\n\`\`\``
     typingSection = types.length > 1000
       ? `
-## Type Declarations
+## 类型声明
 
 <details>
-<summary op50 italic cursor-pointer select-none>Show Type Declarations</summary>
+<summary op50 italic cursor-pointer select-none>显示类型声明</summary>
 
 ${code}
 
 </details>
 `
-      : `\n## Type Declarations\n\n${code}`
+      : `\n## 类型声明\n\n${code}`
   }
 
   const links = ([
-    ['Source', `${URL}/index.ts`],
-    demoPath ? ['Demo', `${URL}/${demoPath}`] : undefined,
-    ['Docs', `${URL}/index.md`],
+    ['源码', `${URL}/index.ts`],
+    demoPath ? ['演示', `${URL}/${demoPath}`] : undefined,
+    ['文档', `${URL}/index.md`],
   ])
     .filter(i => i)
     .map(i => `[${i![0]}](${i![1]})`).join(' • ')
 
-  const sourceSection = `## Source\n\n${links}\n`
+  const sourceSection = `## 源码\n\n${links}\n`
   const ContributorsSection = `
-## Contributors
+## 贡献者
 
 <Contributors fn="${name}" />
   `
   const changelogSection = `
-## Changelog
+## 更新日志
 
 <Changelog fn="${name}" />
 `
@@ -168,10 +168,10 @@ const Demo = defineAsyncComponent(() => import('./${demoPath}'))
 import Demo from \'./${demoPath}\'
 </script>
 
-## Demo
+## 示例
 
 <DemoContainer>
-<p class="demo-source-link"><a href="${URL}/${demoPath}" target="_blank">source</a></p>
+<p class="demo-source-link"><a href="${URL}/${demoPath}" target="_blank">源码</a></p>
 <Demo/>
 </DemoContainer>
 `

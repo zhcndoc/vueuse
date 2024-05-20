@@ -24,7 +24,7 @@ const commits = computed(() => {
 </script>
 
 <template>
-  <em v-if="!commits.length" opacity="70">No recent changes</em>
+  <em v-if="!commits.length" opacity="70">没有最近的更新日志</em>
 
   <div class="grid grid-cols-[30px_auto] -ml-1 gap-1.5 children:my-auto">
     <template v-for="(commit, idx) of commits" :key="commit.hash">

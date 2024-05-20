@@ -74,7 +74,7 @@ function toggleSort(method: string) {
 <template>
   <div class="grid grid-cols-[80px_auto] gap-y-2 mt-10">
     <div opacity="80" text="sm">
-      Core
+      核心
     </div>
     <div flex="~ wrap" gap="2" m="b-2">
       <button
@@ -88,7 +88,7 @@ function toggleSort(method: string) {
       </button>
     </div>
     <div opacity="80" text="sm">
-      Add-ons
+      附加组件
     </div>
     <div flex="~ wrap" gap="2" m="b-2">
       <button
@@ -102,11 +102,11 @@ function toggleSort(method: string) {
       </button>
     </div>
     <div opacity="80" text="sm">
-      Sort by
+      排序方式
     </div>
     <div flex="~ wrap" gap="2" m="b-2">
       <button v-if="search" class="select-button active">
-        Search
+        搜索
       </button>
       <button
         v-for="method of sortMethods"
@@ -122,30 +122,30 @@ function toggleSort(method: string) {
       </button>
     </div>
     <div opacity="80" text="sm">
-      Filters
+      筛选
     </div>
     <div flex="~ gap-4">
       <label class="checkbox">
         <input v-model="hasComponent" type="checkbox">
-        <span>Has Component</span>
+        <span>包含组件</span>
       </label>
       <label class="checkbox">
         <input v-model="hasDirective" type="checkbox">
-        <span>Has Directive</span>
+        <span>包含指令</span>
       </label>
     </div>
   </div>
   <div h="1px" bg="$vp-c-divider" m="t-4" />
   <div flex="~" class="children:my-auto" p="2">
     <i i-carbon-search m="r-2" opacity="50" />
-    <input v-model="search" class="w-full" type="text" role="search" placeholder="Search...">
+    <input v-model="search" class="w-full" type="text" role="search" placeholder="搜索...">
   </div>
   <div h="1px" bg="$vp-c-divider" m="b-4" />
   <div flex="~ col gap-3" class="relative" p="t-5">
     <div v-if="hasFilters" class="transition mb-2 opacity-60 absolute -top-3 right-0 z-10">
       <button class="select-button flex gap-1 items-center !px-2 !py-1" @click="resetFilters()">
         <i i-carbon-filter-remove />
-        Clear Filters
+        清除筛选
       </button>
     </div>
     <template v-for="(fn, idx) of result" :key="fn.name">
@@ -161,11 +161,11 @@ function toggleSort(method: string) {
     </template>
     <div v-if="!result.length" text-center pt-6>
       <div m2 op50>
-        No result matched
+        没有匹配的结果
       </div>
       <button class="select-button flex-inline gap-1 items-center !px-2 !py-1" @click="resetFilters()">
         <i i-carbon-filter-remove />
-        Clear Filters
+        清除筛选
       </button>
     </div>
   </div>

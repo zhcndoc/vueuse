@@ -74,6 +74,18 @@ export default withPwa(defineConfig({
     hostname: 'https://vueuse.zhcndoc.com',
   },
 
+  locales: {
+    root: {
+      label: '简体中文',
+      lang: 'zh',
+    },
+    en: {
+      label: 'English',
+      lang: 'en',
+      link: 'https://vueuse.org/',
+    },
+  },
+
   themeConfig: {
     logo: '/favicon.svg',
     editLink: {
@@ -109,8 +121,8 @@ export default withPwa(defineConfig({
     darkModeSwitchTitle: '切换到深色模式',
 
     algolia: {
-      appId: 'NBQWY48OOR',
-      apiKey: 'c5fd82eb1100c2110c1690e0756d8ba5',
+      appId: 'CKHV0WM0DB',
+      apiKey: '332839eda3f7c90fc9f340fb49381670',
       indexName: 'vueuse',
       placeholder: '搜索文档',
       translations: {
@@ -189,11 +201,6 @@ export default withPwa(defineConfig({
       {
         text: '在线演示',
         link: 'https://play.vueuse.org',
-      },
-      {
-        text: '英文文档',
-        link: 'https://vueuse.org',
-        target: '_self',
       },
       {
         text: currentVersion,
