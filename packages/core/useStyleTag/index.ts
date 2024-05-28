@@ -4,6 +4,7 @@ import { tryOnMounted, tryOnScopeDispose } from '@vueuse/shared'
 import type { MaybeRef } from '@vueuse/shared'
 import type { ConfigurableDocument } from '../_configurable'
 import { defaultDocument } from '../_configurable'
+
 export interface UseStyleTagOptions extends ConfigurableDocument {
   /**
    * 要应用的样式的媒体查询
