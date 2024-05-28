@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/electron",
-  "version": "10.9.0",
+  "version": "10.10.0",
   "description": "VueUse 的 Electron 渲染器进程模块",
   "author": "Archer Gu<https://github.com/ArcherGu>",
   "license": "MIT",
