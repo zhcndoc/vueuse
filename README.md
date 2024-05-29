@@ -122,3 +122,7 @@ And thanks to [all the contributors on GitHub](https://github.com/vueuse/vueuse/
 ## 📄 License
 
 [MIT License](https://github.com/vueuse/vueuse/blob/main/LICENSE) © 2019-PRESENT [Anthony Fu](https://github.com/antfu)
+
+## Deploy
+
+[![Deployed on Zeabur](https://zeabur.com/deployed-on-zeabur-dark.svg)](https://zeabur.com?referralCode=ikxin&utm_source=ikxin)
