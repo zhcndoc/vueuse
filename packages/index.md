@@ -1,6 +1,7 @@
 ---
 layout: home
 sidebar: false
+titleTemplate: ':title - 基于 Vue 的组合式函数工具库'
 
 hero:
   name: VueUse
@@ -53,4 +54,4 @@ features:
     icon: 🔌
 ---
 
-<Home />
+<!-- <Home /> -->
