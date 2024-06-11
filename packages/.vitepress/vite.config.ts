@@ -14,7 +14,7 @@ import { Contributors } from './plugins/contributors'
 
 const require = createRequire(import.meta.url)
 const [changeLog, contributions] = await Promise.all([
-  getChangeLog(process.env.CI ? 1000 : 100),
+  getChangeLog(process.env.CI ? 1000 : 1000),
   getFunctionContributors(),
 ])
 
