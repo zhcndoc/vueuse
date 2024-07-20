@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/integrations",
-  "version": "11.0.0-beta.1",
+  "version": "11.0.0-beta.2",
   "description": "实用程序库的集成包装器",
   "author": "Anthony Fu <https://github.com/antfu>",
   "license": "MIT",

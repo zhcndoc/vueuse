@@ -28,6 +28,11 @@ export interface UseWebSocketOptions {
     message?: string | ArrayBuffer | Blob
 
     /**
+     * 心跳的响应消息，如果未定义，将使用该消息
+     */
+    responseMessage?: string | ArrayBuffer | Blob
+
+    /**
      * 间隔时间，毫秒为单位
      *
      * @default 1000
@@ -250,8 +255,9 @@ export function useWebSocket<Data = any>(
         resetHeartbeat()
         const {
           message = DEFAULT_PING_MESSAGE,
+          responseMessage = message,
         } = resolveNestedOptions(options.heartbeat)
-        if (e.data === message)
+        if (e.data === responseMessage)
           return
       }
 
