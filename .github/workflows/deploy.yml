@@ -25,7 +25,7 @@ jobs:
           pnpm -w run docs:build
           cd packages/.vitepress/dist && zip -rq ../../../build.zip .
 
-      - name: Upload to Zeabur
+      - name: Deploy to Zeabur
         env:
           PROJECT_ID: 66739d4d820ee0109ea8d472
           SERVICE_ID: 66739ded820ee0109ea8d48f
@@ -37,3 +37,14 @@ jobs:
             --header "Authorization: Bearer ${{ env.API_TOKEN }}" \
             --form "code=@build.zip" \
             --form "environment=${{ env.ENVIRONMENT_ID }}"
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_KEY }}
+          REMOTE_USER: ${{ secrets.SERVER_USER }}
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_PORT: ${{ secrets.SERVER_PORT }}
+          SOURCE: "packages/.vitepress/dist/"
+          ARGS: "-avzr --delete"
+          TARGET: "/www/web/vueuse/"
