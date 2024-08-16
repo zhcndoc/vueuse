@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/rxjs",
-  "version": "11.0.0-beta.2",
+  "version": "11.0.0",
   "description": "在 Vue 中启用 RxJS 反应函数",
   "author": "Anthony Fu <https://github.com/antfu>",
   "license": "MIT",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@vueuse/shared": "workspace:*",
-    "vue-demi": ">=0.14.8"
+    "vue-demi": ">=0.14.10"
   },
   "devDependencies": {
     "rxjs": "^6.6.7"
