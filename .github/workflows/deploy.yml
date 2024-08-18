@@ -30,9 +30,9 @@ jobs:
 
       - name: Deploy to Zeabur
         env:
-          PROJECT_ID: 66739d4d820ee0109ea8d472
-          SERVICE_ID: 66739ded820ee0109ea8d48f
-          ENVIRONMENT_ID: 66739d4db749b5d1f1c96e80
+          PROJECT_ID: 66c211434b036528feae97f9
+          SERVICE_ID: 66c211ff2256cb52c64b71a0
+          ENVIRONMENT_ID: 66c21143812c32a5722b56ea
           API_TOKEN: ${{ secrets.ZEABUR_TOKEN }}
         run: |
           curl --request POST \
@@ -49,5 +49,5 @@ jobs:
           REMOTE_HOST: ${{ secrets.SERVER_HOST }}
           REMOTE_PORT: ${{ secrets.SERVER_PORT }}
           SOURCE: "packages/.vitepress/dist/"
-          ARGS: "-avzr --delete"
+          ARGS: "-azr --delete"
           TARGET: "/www/web/vueuse/"
