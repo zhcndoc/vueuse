@@ -91,15 +91,12 @@ export default withPwa(defineConfig({
     logo: '/favicon.svg',
 
     footer: {
-      message: `
-        <a style="text-decoration: none;" rel="nofollow" target="__blank" href="https://zeabur.com?referralCode=ikxin&amp;utm_source=ikxin">Deployed on Zeabur</a>
-        <a style="text-decoration: none; margin-left: 8px;" rel="nofollow" target="__blank" href="https://beian.miit.gov.cn">沪ICP备2024070610号-3</a>
-      `,
-      copyright: 'Copyright © 2020-2024 Anthony Fu',
+      message: `<a target="_blank" href="https://www.zhcndoc.com?ref=vueuse">简中文档</a>`,
+      copyright: '<a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn">沪ICP备2024070610号-3</a>',
     },
 
     editLink: {
-      text: '在 GitHub 上查看此页面',
+      text: '在 GitHub 上编辑此页面',
       pattern: 'https://github.com/zhcndoc/vueuse/tree/main/packages/:path',
     },
     docFooter: {
@@ -123,48 +120,23 @@ export default withPwa(defineConfig({
     lightModeSwitchTitle: '切换到浅色模式',
     darkModeSwitchTitle: '切换到深色模式',
 
-    algolia: {
-      appId: 'CKHV0WM0DB',
-      apiKey: '332839eda3f7c90fc9f340fb49381670',
-      indexName: 'vueuse',
-      locales: {
-        root: {
-          placeholder: '搜索文档',
-          translations: {
-            button: {
-              buttonText: '搜索文档',
-              buttonAriaLabel: '搜索文档',
-            },
-            modal: {
-              searchBox: {
-                resetButtonTitle: '清除查询条件',
-                resetButtonAriaLabel: '清除查询条件',
-                cancelButtonText: '取消',
-                cancelButtonAriaLabel: '取消',
+    search: {
+      provider: 'local',
+      options: {
+        locales: {
+          root: {
+            translations: {
+              button: {
+                buttonText: '搜索文档',
+                buttonAriaLabel: '搜索文档',
               },
-              startScreen: {
-                recentSearchesTitle: '搜索历史',
-                noRecentSearchesText: '没有搜索历史',
-                saveRecentSearchButtonTitle: '保存至搜索历史',
-                removeRecentSearchButtonTitle: '从搜索历史中移除',
-                favoriteSearchesTitle: '收藏',
-                removeFavoriteSearchButtonTitle: '从收藏中移除',
-              },
-              errorScreen: {
-                titleText: '无法获取结果',
-                helpText: '你可能需要检查你的网络连接',
-              },
-              footer: {
-                selectText: '选择',
-                navigateText: '切换',
-                closeText: '关闭',
-                searchByText: '搜索提供者',
-              },
-              noResultsScreen: {
+              modal: {
                 noResultsText: '无法找到相关结果',
-                suggestedQueryText: '你可以尝试查询',
-                reportMissingResultsText: '你认为该查询应该有结果？',
-                reportMissingResultsLinkText: '点击反馈',
+                resetButtonTitle: '清除查询条件',
+                footer: {
+                  selectText: '选择',
+                  navigateText: '切换',
+                },
               },
             },
           },
@@ -173,7 +145,7 @@ export default withPwa(defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vueuse/vueuse' },
+      { icon: 'github', link: 'https://github.com/zhcndoc/vueuse' },
     ],
 
     nav: [
@@ -259,6 +231,21 @@ export default withPwa(defineConfig({
         'src': 'https://analytics.ikxin.com/script.js',
         'data-website-id': 'f0e90b0d-e086-4fdc-b173-de4857b71900',
       },
+    ],
+    [
+      'script',
+      {
+        async: '',
+        src: 'https://www.googletagmanager.com/gtag/js?id=G-HYH4TH7PWM',
+      },
+    ],
+    [
+      'script',
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HYH4TH7PWM');`,
     ],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['link', { rel: 'icon', href: '/favicon.ico', sizes: '48x48' }],
