@@ -1,5 +1,5 @@
-import type { Fn } from '@vueuse/shared'
-import { isIOS, noop } from '@vueuse/shared'
+import type { Fn, MaybeRefOrGetter } from '@vueuse/shared'
+import { isIOS, noop, toValue } from '@vueuse/shared'
 import type { MaybeElementRef } from '../unrefElement'
 import { unrefElement } from '../unrefElement'
 import { useEventListener } from '../useEventListener'
@@ -10,7 +10,7 @@ export interface OnClickOutsideOptions extends ConfigurableWindow {
   /**
    * 不应触发事件的元素列表。
    */
-  ignore?: (MaybeElementRef | string)[]
+  ignore?: MaybeRefOrGetter<(MaybeElementRef | string)[]>
   /**
    * 对内部事件侦听器使用捕获阶段。
    * @default true
@@ -57,7 +57,7 @@ export function onClickOutside<T extends OnClickOutsideOptions>(
   let shouldListen = true
 
   const shouldIgnore = (event: PointerEvent) => {
-    return ignore.some((target) => {
+    return toValue(ignore).some((target) => {
       if (typeof target === 'string') {
         return Array.from(window.document.querySelectorAll(target))
           .some(el => el === event.target || event.composedPath().includes(el))
@@ -86,8 +86,18 @@ export function onClickOutside<T extends OnClickOutsideOptions>(
     handler(event)
   }
 
+  let isProcessingClick = false
+
   const cleanup = [
-    useEventListener(window, 'click', listener, { passive: true, capture }),
+    useEventListener(window, 'click', (event: PointerEvent) => {
+      if (!isProcessingClick) {
+        isProcessingClick = true
+        setTimeout(() => {
+          isProcessingClick = false
+        }, 0)
+        listener(event)
+      }
+    }, { passive: true, capture }),
     useEventListener(window, 'pointerdown', (e) => {
       const el = unrefElement(target)
       shouldListen = !shouldIgnore(e) && !!(el && !e.composedPath().includes(el))
