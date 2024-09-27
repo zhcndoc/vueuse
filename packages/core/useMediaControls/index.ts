@@ -1,9 +1,9 @@
-import { ref, watch, watchEffect } from 'vue-demi'
 import type { Fn, MaybeRef, MaybeRefOrGetter } from '@vueuse/shared'
-import { createEventHook, isObject, toRef, toValue, tryOnScopeDispose, watchIgnorable } from '@vueuse/shared'
-import { useEventListener } from '../useEventListener'
 import type { ConfigurableDocument } from '../_configurable'
+import { createEventHook, isObject, toRef, toValue, tryOnScopeDispose, watchIgnorable } from '@vueuse/shared'
+import { ref, watch, watchEffect } from 'vue-demi'
 import { defaultDocument } from '../_configurable'
+import { useEventListener } from '../useEventListener'
 
 /**
  * 这里的许多 jsdoc 定义都是修改自 MDN 的文档（https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement）的版本
@@ -210,14 +210,10 @@ export function useMediaControls(target: MaybeRef<HTMLMediaElement | null | unde
       usingElRef<HTMLVideoElement>(target, async (el) => {
         if (supportsPictureInPicture) {
           if (!isPictureInPicture.value) {
-            (el as any).requestPictureInPicture()
-              .then(resolve)
-              .catch(reject)
+            (el as any).requestPictureInPicture().then(resolve).catch(reject)
           }
           else {
-            (document as any).exitPictureInPicture()
-              .then(resolve)
-              .catch(reject)
+            (document as any).exitPictureInPicture().then(resolve).catch(reject)
           }
         }
       })

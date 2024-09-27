@@ -21,7 +21,11 @@ function onDrop(files: File[] | null) {
 const { isOverDropZone } = useDropZone(dropZoneRef, {
   onDrop,
   // 指定要接收的数据类型。
-  dataTypes: ['image/jpeg']
+  dataTypes: ['image/jpeg'],
+  // 多文件拖放控制
+  multiple: true,
+  // 是否阻止未处理事件的默认行为
+  preventDefaultForUnhandled: false,
 })
 </script>
 
