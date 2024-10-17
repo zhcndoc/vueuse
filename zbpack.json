@@ -1,4 +1,4 @@
 {
-  "build_command": "pnpm run install-fonts && pnpm run docs:build",
+  "build_command": "pnpm run docs:build",
   "output_dir": "packages/.vitepress/dist"
 }
