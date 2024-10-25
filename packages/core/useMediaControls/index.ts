@@ -162,6 +162,7 @@ export function useMediaControls(target: MaybeRef<HTMLMediaElement | null | unde
 
   // Events
   const sourceErrorEvent = createEventHook<Event>()
+  const playbackErrorEvent = createEventHook<Event>()
 
   /**
    * Disables the specified track. If no track is specified then
@@ -365,10 +366,15 @@ export function useMediaControls(target: MaybeRef<HTMLMediaElement | null | unde
     if (!el)
       return
 
-    if (isPlaying)
-      el.play()
-    else
+    if (isPlaying) {
+      el.play().catch((e) => {
+        playbackErrorEvent.trigger(e)
+        throw e
+      })
+    }
+    else {
       el.pause()
+    }
   })
 
   useEventListener(target, 'timeupdate', () => ignoreCurrentTimeUpdates(() => currentTime.value = (toValue(target))!.currentTime))
@@ -452,6 +458,7 @@ export function useMediaControls(target: MaybeRef<HTMLMediaElement | null | unde
 
     // Events
     onSourceError: sourceErrorEvent.on,
+    onPlaybackError: playbackErrorEvent.on,
   }
 }
 
