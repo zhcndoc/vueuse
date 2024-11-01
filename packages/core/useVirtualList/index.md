@@ -105,7 +105,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
     <template #default="props">
       <!-- 在这里获取列表的当前项目 -->
       <div style="height: 22px">
-        Row {{ props.data }}
+        Row {{ props.index }} {{ props.data }}
       </div>
     </template>
   </UseVirtualList>
