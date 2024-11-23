@@ -28,18 +28,18 @@ jobs:
           pnpm -w run docs:build
           cd packages/.vitepress/dist && zip -rq ../../../build.zip .
 
-      - name: Deploy to Zeabur
-        env:
-          PROJECT_ID: 670fd965e34974ae6478ad49
-          SERVICE_ID: 67106b9afdfb5253e1603379
-          ENVIRONMENT_ID: 670fd965d0408fcd3bee90a2
-          API_TOKEN: ${{ secrets.ZEABUR_TOKEN }}
-        run: |
-          curl --request POST \
-            --url https://gateway.zeabur.com/projects/${{ env.PROJECT_ID }}/services/${{ env.SERVICE_ID }}/deploy \
-            --header "Authorization: Bearer ${{ env.API_TOKEN }}" \
-            --form "code=@build.zip" \
-            --form "environment=${{ env.ENVIRONMENT_ID }}" || true
+      # - name: Deploy to Zeabur
+      #   env:
+      #     PROJECT_ID: 670fd965e34974ae6478ad49
+      #     SERVICE_ID: 67106b9afdfb5253e1603379
+      #     ENVIRONMENT_ID: 670fd965d0408fcd3bee90a2
+      #     API_TOKEN: ${{ secrets.ZEABUR_TOKEN }}
+      #   run: |
+      #     curl --request POST \
+      #       --url https://gateway.zeabur.com/projects/${{ env.PROJECT_ID }}/services/${{ env.SERVICE_ID }}/deploy \
+      #       --header "Authorization: Bearer ${{ env.API_TOKEN }}" \
+      #       --form "code=@build.zip" \
+      #       --form "environment=${{ env.ENVIRONMENT_ID }}" || true
 
       # - name: Deploy to Server
       #   uses: easingthemes/ssh-deploy@main

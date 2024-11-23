@@ -1,16 +1,18 @@
-FROM node:18-alpine
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
 RUN apk add --no-cache git \
   && cd /app \
   && git clone https://github.com/zhcndoc/vueuse.git . \
-  && npm i -g pnpm \
+  && corepack enable \
   && pnpm install \
   && pnpm run docs:build
 
-EXPOSE 3000
+FROM caddy:2-alpine
 
-WORKDIR /app
+COPY --from=builder /app/packages/.vitepress/dist /usr/share/caddy
 
-CMD ["pnpm", "vitepress", "serve", "packages", "--port", "3000"]
+COPY Caddyfile /etc/caddy/Caddyfile
+
+EXPOSE 80
