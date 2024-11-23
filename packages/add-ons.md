@@ -13,7 +13,6 @@
 - 🏎 基于 [**Popmotion**](https://popmotion.io/) 的**平滑动画**
 - 🎮 **声明式** API
 - 🚀 **即插即用**，支持 **10+ 预设动画**
-- ✅ 使用 [**vue-demi**](https://github.com/antfu/vue-demi) 支持 **Vue 2 & Vue 3**
 - 🚚 使用 [**nuxt-use-motion**](https://github.com/Tahul/nuxt-use-motion) 支持 **Nuxt**
 - ✨ 使用 **TypeScript** 编写
 - 🏋️‍♀️ 轻量级，**<20kb** 大小
@@ -28,7 +27,6 @@
 - 🕹 **鼠标**和**触摸**支持
 - 🎮 **指令**支持 (**v-drag**、**v-pinch**、**v-move** 等)
 - ✨ 使用 **TypeScript** 编写
-- ✅ 使用 [**vue-demi**](https://github.com/antfu/vue-demi) 支持 **Vue 2 & Vue 3**
 - 🤹 与 [**vueuse/motion**](https://github.com/vueuse/motion) 或**任何其他**动画解决方案兼容
 
 > 由 [@Tahul](https://github.com/Tahul) 创建和维护
@@ -39,8 +37,7 @@
 
 - 👂 让你的网站使用 **2 种人类感官**进行**交流**
 - 🔥 使用 **Vue** 组合式 API 构建
-- ✅ 使用 [**vue-demi**](https://github.com/antfu/vue-demi) 支持 **Vue 2 & Vue 3**
-- 🚚 使用 [**@vueuse/sound/nuxt**](https://github.com/vueuse/sound#nuxt) 支持 **Nuxt 2 & Nuxt 3**
+- 🚚 使用 [**@vueuse/sound/nuxt**](https://github.com/vueuse/sound#nuxt) 支持 **Nuxt 3**
 - ⚡️ 在你的**捆绑包**中仅有 **<1kb** (gzip 压缩)！**~10kb** 异步加载。
 - ✨ 使用 **TypeScript** 编写
 - 🗣 使用经过充分测试的强大音频实用程序：[**Howler.js**](https://howlerjs.com/)

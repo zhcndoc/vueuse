@@ -9,7 +9,7 @@
 
 ## 通用
 
-- 从 `"vue-demi"` 导入所有 Vue API
+- 从 `"vue"` 导入所有 Vue API
 - 尽可能使用 `ref` 而不是 `reactive`
 - 尽可能使用选项对象作为参数，以便更灵活地进行未来扩展。
 - 当包装大量数据时，使用 `shallowRef` 而不是 `ref`
@@ -84,7 +84,7 @@ useActiveElement({ window: window.parent })
 在内部使用 `watch` 或 `watchEffect` 时，尽可能使 `immediate` 和 `flush` 选项可配置。例如 `watchDebounced`：
 
 ```ts
-import type { WatchOptions } from 'vue-demi'
+import type { WatchOptions } from 'vue'
 
 // 扩展 WatchOptions
 export interface WatchDebouncedOptions extends WatchOptions {
@@ -211,7 +211,7 @@ export function useFetch<T>(url: MaybeRefOrGetter<string>): UseFetchReturn<T> & 
 ```ts
 import type { MouseOptions } from '@vueuse/core'
 import { useMouse } from '@vueuse/core'
-import { defineComponent, reactive } from 'vue-demi'
+import { defineComponent, reactive } from 'vue'
 
 export const UseMouse = defineComponent<MouseOptions>({
   name: 'UseMouse',

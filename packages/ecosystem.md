@@ -1,14 +1,6 @@
 # 生态系统
 
-在开发 VueUse 的过程中，我们时不时地将正在使用的工具提取为可独立使用的单独项目。
-
-<h2 align="center">
-<a href="https://github.com/vueuse/vue-demi" target="_blank">
-<img src="https://github.com/vueuse/vue-demi/raw/main/assets/banner.png" alt="vue-demi" width="500"/>
-</a>
-</h2>
-
-Vue Demi 是一个为库作者设计的工具，用于创建与 VueUse 类似的、能够同构适用于 Vue 2 和 Vue 3 的组合式库。它已被许多流行库广泛采用，如 [`vuelidate`](https://github.com/vuelidate/vuelidate) 和 [`vue-promised`](https://github.com/posva/vue-promised)。
+在开发 VueUse 时，我们将使用的工具提取到可以独立使用的单独项目中。
 
 <h2 align="center">
 <a href="https://github.com/vueuse/vue-chemistry" target="_blank">

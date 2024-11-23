@@ -6,7 +6,7 @@ VueUse 是基于[组合 API](https://vuejs.org/guide/extras/composition-api-faq.
 
 ## 安装
 
-> 🎩 从 v4.0 开始，它通过 [vue-demi](https://github.com/vueuse/vue-demi) 的支持 Vue 2 和 Vue 3 **在一个单独的包中**！
+> 从 v12.0 开始，VueUse 不再支持 Vue 2。请使用 v10.x 以支持 Vue 2。
 
 ```bash
 npm i @vueuse/core
@@ -14,15 +14,11 @@ npm i @vueuse/core
 
 [附加组件](/add-ons.html) | [Nuxt 模块](/guide/index.html#nuxt)
 
-> 从 v6.0 开始，VueUse 需要 `vue` >= v3.2 或 `@vue/composition-api` >= v1.1
-
 ###### 示例
 
 - [Vite + Vue 3](https://github.com/vueuse/vueuse-vite-starter)
 - [Nuxt 3 + Vue 3](https://github.com/antfu/vitesse-nuxt3)
 - [Webpack + Vue 3](https://github.com/vueuse/vueuse-vue3-example)
-- [Nuxt 2 + Vue 2](https://github.com/antfu/vitesse-nuxt-bridge)
-- [Vue CLI + Vue 2](https://github.com/vueuse/vueuse-vue2-example)
 
 ### CDN
 
@@ -37,6 +33,14 @@ npm i @vueuse/core
 ### Nuxt
 
 从 v7.2.0 开始，我们提供了一个 Nuxt 模块，用于在 Nuxt 3 和 Nuxt Bridge 中启用自动导入。
+
+使用 [nuxi](https://nuxt.com/docs/api/commands/module) 将 vueuse 模块安装到您的应用程序中：
+
+```bash
+npx nuxi@latest module add vueuse
+```
+
+或使用 npm：
 
 ```bash
 npm i -D @vueuse/nuxt @vueuse/core

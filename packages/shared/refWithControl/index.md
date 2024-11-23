@@ -87,7 +87,7 @@ console.log(num.value) // 1（更改被取消）
 
 ### `onChanged()`
 
-`onChanged` 选项提供了类似于 Vue 的 `watch` 的功能，但与 `watch` 相比，具有更少的开销且同步。
+`onChanged` 选项提供了与 Vue 的 `watch` 类似的功能，但与 `watch` 相比，具有更少的开销。
 
 ```ts
 const num = refWithControl(0, {

@@ -1,5 +1,5 @@
-import type { Ref, ShallowUnwrapRef } from 'vue-demi'
-import { isRef, isVue3, version } from 'vue-demi'
+import type { Ref, ShallowUnwrapRef } from 'vue'
+import { isRef } from 'vue'
 
 export interface ExtendRefOptions<Unwrap extends boolean = boolean> {
   /**
@@ -28,13 +28,6 @@ export function extendRef<R extends Ref<any>, Extend extends object, Options ext
 
 // 实现
 export function extendRef<R extends Ref<any>, Extend extends object>(ref: R, extend: Extend, { enumerable = false, unwrap = true }: ExtendRefOptions = {}) {
-  // 兼容性：Vue 2.7 或以上版本
-  if (!isVue3 && !version.startsWith('2.7.')) {
-    if (process.env.NODE_ENV !== 'production')
-      throw new Error('[VueUse] extendRef 只能在 Vue 2.7 或以上版本中使用。')
-    return
-  }
-
   for (const [key, value] of Object.entries(extend)) {
     if (key === 'value')
       continue

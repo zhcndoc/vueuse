@@ -178,10 +178,6 @@ const TemplateFoo = createReusableTemplate<{ msg: string }>()
 ```
 
 ::: warning
-在 Vue 2 中不支持点语法。
-:::
-
-::: warning
 传递布尔类型的 props 而不使用 `v-bind` 不受支持。更多细节请查看[注意事项](#boolean-props)部分。
 :::
 
@@ -212,10 +208,6 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
   </ReuseTemplate>
 </template>
 ```
-
-::: warning
-在 Vue 2 中，传递插槽不生效。
-:::
 
 ## 注意事项
 

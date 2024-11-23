@@ -6,10 +6,6 @@ category: Reactivity
 
 向 Ref 添加额外属性。
 
-::: warning
-此函数仅适用于 Vue 2.7 或以上版本。
-:::
-
 ## 用法
 
 > 请注意，额外属性将无法在 Vue 的模板中访问。

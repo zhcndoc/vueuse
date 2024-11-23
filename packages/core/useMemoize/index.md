@@ -57,13 +57,9 @@ const getUser = useMemoize(
 )
 ```
 
-::: warning
-对于 Vue 2，键必须是 `string` 或 `number`
-:::
-
 ### 自定义缓存机制
 
-默认情况下，结果将缓存在 `Map` 中 (对于 Vue 2，则是普通对象)。你可以通过在选项中传递 `cache` 来实现自己的机制，具体如下：
+默认情况下，结果会缓存到一个 `Map` 中。您可以通过传递 `cache` 作为选项，使用以下结构来实现您自己的机制：
 
 ```ts
 export interface MemoizeCache<Key, Value> {
