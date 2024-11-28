@@ -6,7 +6,7 @@ VueUse 是基于[组合 API](https://vuejs.org/guide/extras/composition-api-faq.
 
 ## 安装
 
-> 从 v12.0 开始，VueUse 不再支持 Vue 2。请使用 v10.x 以支持 Vue 2。
+> 从 v12.0 开始，VueUse 不再支持 Vue 2。请使用 v11.x 以支持 Vue 2。
 
 ```bash
 npm i @vueuse/core

@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/rxjs",
-  "version": "12.0.0-beta.1",
+  "version": "12.0.0",
   "description": "在 Vue 中启用 RxJS 反应函数",
   "author": "Anthony Fu <https://github.com/antfu>",
   "license": "MIT",

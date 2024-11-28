@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/router",
-  "version": "12.0.0-beta.1",
+  "version": "12.0.0",
   "description": "vue-router 的实用工具",
   "author": "Anthony Fu <https://github.com/antfu>",
   "license": "MIT",
