@@ -17,7 +17,7 @@ watchWithFilter(
   source,
   () => { console.log('changed!') }, // 回调函数将以 500ms 的防抖方式调用
   {
-    eventFilter: debounceFilter(500), // throttledFilter、pausabledFilter 或自定义过滤器
+    eventFilter: debounceFilter(500), // 限流过滤器、可暂停过滤器或自定义过滤器
   },
 )
 ```
