@@ -79,4 +79,4 @@ await nextTick() // 日志: 更改为 after!
 
 ## 推荐阅读
 
-- [可忽略的监听器](https://patak.dev/vue/ignorable-watch.html) - 作者：[@matias-capeletto](https://github.com/matias-capeletto)
+- [可忽略的监听器](https://patak.dev/vue/ignorable-watch.html) - 作者：[@patak-dev](https://github.com/patak-dev)
