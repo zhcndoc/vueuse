@@ -1,6 +1,6 @@
 import type { MaybeRef } from '@vueuse/shared'
 import type { WatchSource } from 'vue'
-import { toValue } from '@vueuse/shared'
+import { toRef, toValue } from '@vueuse/shared'
 import { nextTick, ref, watch } from 'vue'
 import { useResizeObserver } from '../useResizeObserver'
 
@@ -8,7 +8,7 @@ export interface UseTextareaAutosizeOptions {
   /** 自动调整大小的文本区域元素。 */
   element?: MaybeRef<HTMLTextAreaElement | undefined>
   /** 文本区域的内容。 */
-  input?: MaybeRef<string | undefined>
+  input?: MaybeRef<string>
   /** 监听应触发文本区域大小调整的源。 */
   watch?: WatchSource | Array<WatchSource>
   /** 当文本区域大小发生变化时调用的函数。 */
@@ -20,8 +20,8 @@ export interface UseTextareaAutosizeOptions {
 }
 
 export function useTextareaAutosize(options?: UseTextareaAutosizeOptions) {
-  const textarea = ref<HTMLTextAreaElement>(options?.element as any)
-  const input = ref<string>(options?.input as any)
+  const textarea = toRef(options?.element)
+  const input = toRef(options?.input ?? '')
   const styleProp = options?.styleProp ?? 'height'
   const textareaScrollHeight = ref(1)
   const textareaOldWidth = ref(0)

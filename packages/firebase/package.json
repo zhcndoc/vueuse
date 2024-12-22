@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/firebase",
-  "version": "12.0.0",
+  "version": "12.1.0",
   "description": "启用 Firebase 的实时绑定功能",
   "author": "Anthony Fu <https://github.com/antfu>",
   "license": "MIT",

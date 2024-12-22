@@ -145,7 +145,9 @@ export default withPwa(defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/zhcndoc/vueuse' },
+      { icon: 'github', link: 'https://github.com/vueuse/vueuse' },
+      { icon: 'discord', link: 'https://chat.antfu.me' },
+      { icon: 'bluesky', link: 'https://bsky.app/profile/vueuse.org' },
     ],
 
     nav: [

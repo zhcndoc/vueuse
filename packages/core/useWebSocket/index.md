@@ -16,21 +16,25 @@ const { status, data, send, open, close } = useWebSocket('ws://websocketurl')
 
 有关更多选项，请参阅[类型声明](#type-declarations)。
 
-### 立即连接
+### immediate
 
-自动连接 (默认启用)。
+默认启用。
 
-这将自动为你调用 `open()`，你不需要自己调用它。
+在调用此组合时立即建立连接。
 
-如果 URL 作为 ref 提供，则它还控制在其值更改时是否重新建立连接 (或者你需要再次调用 open() 以使更改生效)。
+### autoConnect
 
-### 自动关闭连接
+默认启用。
 
-自动关闭连接 (默认启用)。
+如果 URL 作为 ref 提供，当 URL 发生变化时，它将自动重新连接到新 URL。
+
+### autoClose
+
+默认启用。
 
 当触发 `beforeunload` 事件或关联的 effect 范围停止时，这将自动调用 `close()`。
 
-### 自动重连
+### autoReconnect
 
 在错误发生时自动重连 (默认禁用)。
 
@@ -56,7 +60,7 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 
 显式调用 `close()` 不会触发自动重新连接。
 
-### 心跳
+### heartbeat
 
 通常会在每隔一段时间发送一个小消息 (心跳) 以保持连接活动状态。在此函数中，我们提供了一个便利的辅助工具来执行此操作：
 

@@ -19,6 +19,20 @@ const {
 } = useDevicesList()
 ```
 
+## 请求权限
+
+要请求权限，请使用 `ensurePermissions` 方法。
+
+```js
+const {
+  ensurePermissions,
+  permissionGranted,
+} = useDevicesList()
+
+await ensurePermissions()
+console.log(permissionsGranted.value)
+```
+
 # 组件
 
 ```vue

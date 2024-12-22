@@ -17,7 +17,7 @@ export interface UseDropZoneOptions {
    * 允许的数据类型，如果未设置，则允许所有数据类型。
    * 也可以是检查数据类型的函数。
    */
-  dataTypes?: MaybeRef<string[]> | ((types: readonly string[]) => boolean)
+  dataTypes?: MaybeRef<readonly string[]> | ((types: readonly string[]) => boolean)
   onDrop?: (files: File[] | null, event: DragEvent) => void
   onEnter?: (files: File[] | null, event: DragEvent) => void
   onLeave?: (files: File[] | null, event: DragEvent) => void

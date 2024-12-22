@@ -20,7 +20,7 @@ import { useClipboardItems } from '@vueuse/core'
 const mime = 'text/html'
 const source = ref([
   new ClipboardItem({
-    [mime]: new Blob(['\'<b>HTML content</b>\'', { type: mime }]),
+    [mime]: new Blob(['<b>HTML content</b>'], { type: mime }),
   })
 ])
 
@@ -36,7 +36,7 @@ const { content, copy, copied, isSupported } = useClipboardItems({ source })
       <span v-else>已复制！</span>
     </button>
     <p>
-      当前已复制内容：<code>{{ text || '无' }}</code>
+      当前已复制内容：<code>{{ content || '无' }}</code>
     </p>
   </div>
   <p v-else>

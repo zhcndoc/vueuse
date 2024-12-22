@@ -24,6 +24,16 @@ const targetIsVisible = useElementVisibility(target)
 </template>
 ```
 
+### rootMargin
+
+如果你想在元素完全可见之前更早地触发回调，可以使用 `rootMargin` 选项（参见 [MDN IntersectionObserver/rootMargin](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin)）。
+
+```ts
+const targetIsVisible = useElementVisibility(target, {
+  rootMargin: '0 0 100px 0',
+})
+```
+
 ## 组件用法
 
 ```vue
