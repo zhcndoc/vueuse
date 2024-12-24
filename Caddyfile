@@ -1,6 +1,0 @@
-:80 {
-  root * /usr/share/caddy
-  file_server
-  encode gzip
-  try_files {path} {path}.html {path}/index.html index.html
-}
