@@ -1,5 +1,6 @@
+import type { Fn } from '../utils'
 import { onBeforeUnmount } from 'vue'
-import { type Fn, getLifeCycleTarget } from '../utils'
+import { getLifeCycleTarget } from '../utils'
 
 /**
  * 如果在组件生命周期内，调用 onBeforeUnmount()，如果不是，不执行任何操作

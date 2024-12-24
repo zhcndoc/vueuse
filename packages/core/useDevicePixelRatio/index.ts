@@ -1,6 +1,7 @@
+import type { ConfigurableWindow } from '../_configurable'
 import { tryOnScopeDispose } from '@vueuse/shared'
 import { ref } from 'vue'
-import { type ConfigurableWindow, defaultWindow } from '../_configurable'
+import { defaultWindow } from '../_configurable'
 
 /**
  * 响应式跟踪 `window.devicePixelRatio`.

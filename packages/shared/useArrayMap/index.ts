@@ -1,7 +1,6 @@
 import type { ComputedRef } from 'vue'
 import type { MaybeRefOrGetter } from '../utils'
-import { computed } from 'vue'
-import { toValue } from '../toValue'
+import { computed, toValue } from 'vue'
 
 /**
  * 响应式 `Array.map`

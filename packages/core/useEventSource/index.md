@@ -26,19 +26,23 @@ import { useEventSource } from '@vueuse/core'
 const { event, data } = useEventSource('https://event-source-url', ['notice', 'update'] as const)
 ```
 
-### 立即连接
+### immediate
 
-自动连接 (默认启用)。
+默认启用。
 
-这将自动为你调用 `open()`，你无需自行调用它。
+当调用可组合对象时立即建立连接。
 
-如果 URL 作为一个 ref 提供，这也控制了在其值更改时是否重新建立连接 (或者是否需要再次调用 open() 才能生效)。
+### autoConnect
 
-### 自动重连
+默认启用。
+
+如果提供了 URL 作为引用，当 URL 更改时，它将自动重新连接到新 URL。
+
+### 错误时自动重连
 
 自动在发生错误时重新连接 (默认禁用)。
 
-```ts
+```js
 const { status, data, close } = useEventSource('https://event-source-url', [], {
   autoReconnect: true,
 })
@@ -46,7 +50,7 @@ const { status, data, close } = useEventSource('https://event-source-url', [], {
 
 或者使用更多对其行为的控制：
 
-```ts
+```js
 const { status, data, close } = useEventSource('https://event-source-url', [], {
   autoReconnect: {
     retries: 3,

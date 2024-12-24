@@ -1,5 +1,6 @@
+import type { Fn } from '../utils'
 import { nextTick, onBeforeMount } from 'vue'
-import { type Fn, getLifeCycleTarget } from '../utils'
+import { getLifeCycleTarget } from '../utils'
 
 /**
  * 如果在组件生命周期内，调用 onBeforeMount()，如果不是，直接调用函数

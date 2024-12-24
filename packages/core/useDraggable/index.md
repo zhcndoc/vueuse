@@ -28,6 +28,17 @@ const { x, y, style } = useDraggable(el, {
 </template>
 ```
 
+设置 `preventDefault: true` 以覆盖浏览器中某些元素的默认拖放行为。
+
+```ts
+const { x, y, style } = useDraggable(el, {
+  preventDefault: true,
+  // with `preventDefault: true`
+  // you can disable the native behavior (e.g., for img)
+  // and control the drag-and-drop, preventing the browser interference.
+})
+```
+
 ## 组件用法
 
 ```vue

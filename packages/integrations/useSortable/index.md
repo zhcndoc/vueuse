@@ -8,6 +8,10 @@ category: '@Integrations'
 
 要了解可以传递的选项的更多信息，请参阅 `Sortable` 文档中的 [`Sortable.options`](https://github.com/SortableJS/Sortable#options)。
 
+::: warning
+目前，`useSortable` 仅实现了单个列表的拖放排序。
+:::
+
 ## 安装
 
 ```bash
