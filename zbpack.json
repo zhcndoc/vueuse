@@ -1,6 +1,6 @@
 {
   "app_dir": "/",
-  "build_command": "git pull && pnpm run install-fonts && pnpm run docs:build",
+  "build_command": "git fetch --unshallow origin && pnpm run install-fonts && pnpm run docs:build",
   "cache_dependencies": false,
   "install_command": "cd / && rm -rf /src && git clone https://github.com/zhcndoc/vueuse.git /src && cd /src && pnpm install",
   "output_dir": "packages/.vitepress/dist"
