@@ -6,8 +6,6 @@ category: Sensors
 
 响应式按键按下状态，支持神奇按键组合。
 
-<RequiresProxy />
-
 ## 使用方法
 
 ```js

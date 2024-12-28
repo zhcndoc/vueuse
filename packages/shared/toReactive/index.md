@@ -6,8 +6,6 @@ category: Reactivity
 
 将 ref 转换为响应式对象。还可以创建一个 “可交换” 的响应式对象。
 
-<RequiresProxy />
-
 ## 用法
 
 ```ts

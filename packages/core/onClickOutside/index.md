@@ -26,8 +26,6 @@ onClickOutside(target, event => console.log(event))
 </template>
 ```
 
-> 此函数使用 [Event.composedPath()](https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath)，不支持 IE 11、Edge 18 及以下版本。如果你的目标是这些浏览器，请在项目中包含[此代码片段](https://gist.github.com/sibbng/13e83b1dd1b733317ce0130ef07d4efd)。
-
 ## 组件用法
 
 ```vue
