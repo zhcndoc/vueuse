@@ -39,10 +39,15 @@ const Links = [
   { text: '为什么没有翻译？', link: '/why-no-translations' },
 ]
 
-// const Learn = [
-//   { text: '高级视频课程', link: 'https://vueschool.io/courses/vueuse-for-everyone?friend=vueuse' },
-//   { text: '官方 Vue 认证', link: 'https://certification.vuejs.org/?utm_source=vueuse&utm_medium=website&utm_campaign=affiliate&utm_content=guide&banner_type=text&friend=VUEUSE' },
-// ]
+const Learn = [
+  { text: '高级视频课程', link: 'https://vueschool.io/courses/vueuse-for-everyone?friend=vueuse' },
+  { text: '官方 Vue 认证', link: 'https://certification.vuejs.org/?utm_source=vueuse&utm_medium=website&utm_campaign=affiliate&utm_content=guide&banner_type=text&friend=VUEUSE' },
+]
+
+const Resources = [
+  { text: '团队与贡献者', link: '/team' },
+  { text: '学习', items: Learn },
+]
 
 const DefaultSideBar = [
   { text: '指南', items: Guide },
@@ -155,7 +160,6 @@ export default withPwa(defineConfig({
         text: '指南',
         items: [
           { text: '指南', items: Guide },
-          // { text: '学习', items: Learn },
           { text: '链接', items: Links },
         ],
       },
@@ -174,8 +178,8 @@ export default withPwa(defineConfig({
         ],
       },
       {
-        text: '附加组件',
-        link: '/add-ons',
+        text: 'Resources',
+        items: Resources,
       },
       {
         text: '在线演示',
