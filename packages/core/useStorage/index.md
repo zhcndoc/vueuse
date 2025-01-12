@@ -29,7 +29,6 @@ const count = useStorage('my-count', 0) // 返回 Ref<number>
 
 // 使用 SessionStorage 绑定字符串
 const id = useStorage('my-id', 'some-string-id', sessionStorage) // 返回 Ref<string>
-
 // 从存储中删除数据
 state.value = null
 ```

@@ -24,6 +24,10 @@ export interface UseClonedReturn<T> {
    */
   cloned: Ref<T>
   /**
+   * Ref表示克隆的数据是否被修改。
+   */
+  isModified: Ref<boolean>
+  /**
    * 手动将克隆的数据与源同步
    */
   sync: () => void
@@ -40,6 +44,9 @@ export function useCloned<T>(
   options: UseClonedOptions = {},
 ): UseClonedReturn<T> {
   const cloned = ref({} as T) as Ref<T>
+  const isModified = ref<boolean>(false)
+  let _lastSync = false
+
   const {
     manual,
     clone = cloneFnJSON,
@@ -48,7 +55,21 @@ export function useCloned<T>(
     immediate = true,
   } = options
 
+  watch(cloned, () => {
+    if (_lastSync) {
+      _lastSync = false
+      return
+    }
+    isModified.value = true
+  }, {
+    deep: true,
+    flush: 'sync',
+  })
+
   function sync() {
+    _lastSync = true
+    isModified.value = false
+
     cloned.value = clone(toValue(source))
   }
 
@@ -63,5 +84,5 @@ export function useCloned<T>(
     sync()
   }
 
-  return { cloned, sync }
+  return { cloned, isModified, sync }
 }
