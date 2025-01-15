@@ -50,6 +50,7 @@ export function useFetch<T>(url: MaybeRefOrGetter<string>) {
 ```ts
 import type { ConfigurableWindow } from '../_configurable'
 import { defaultWindow } from '../_configurable'
+import { useEventListener } from '../useEventListener'
 
 export function useActiveElement<T extends HTMLElement>(
   options: ConfigurableWindow = {},
@@ -63,7 +64,7 @@ export function useActiveElement<T extends HTMLElement>(
 
   // 在 Node.js 环境下跳过
   if (window) {
-    window.addEventListener('blur', () => {
+    useEventListener(window, 'blur', () => {
       el = window?.document.activeElement
     }, true)
   }
