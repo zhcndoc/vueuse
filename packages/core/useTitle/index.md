@@ -6,9 +6,8 @@ category: Browser
 
 响应式的文档标题。
 
-::: tip
-在 Nuxt 3 中使用时，此函数将**不会**自动导入，而是使用 Nuxt 内置的 `useTitle()`。
-如果要从 VueUse 使用该函数，请显式导入。
+::: warning
+这个可组合组件不兼容 SSR。
 :::
 
 ## 用法
