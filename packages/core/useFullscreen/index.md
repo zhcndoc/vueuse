@@ -10,6 +10,7 @@ category: Browser
 
 ```js
 import { useFullscreen } from '@vueuse/core'
+import { useTemplateRef } from 'vue'
 
 const { isFullscreen, enter, exit, toggle } = useFullscreen()
 ```
@@ -17,7 +18,7 @@ const { isFullscreen, enter, exit, toggle } = useFullscreen()
 指定元素全屏显示。某些平台 (例如 iOS 的 Safari) 仅允许在视频元素上全屏显示。
 
 ```ts
-const el = ref(null)
+const el = useTemplateRef<HTMLElement>('el')
 
 const { isFullscreen, enter, exit, toggle } = useFullscreen(el)
 ```

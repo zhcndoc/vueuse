@@ -24,7 +24,9 @@ const { pressed } = useMousePressed({ touch: false })
 
 ```vue
 <script>
-const el = ref(null)
+import { useTemplateRef } from 'vue'
+
+const el = useTemplateRef('el')
 
 const { pressed } = useMousePressed({ target: el })
 </script>

@@ -11,11 +11,11 @@ category: Elements
 ```vue
 <script>
 import { useElementBounding } from '@vueuse/core'
-import { ref } from 'vue'
+import { useTemplateRef } from 'vue'
 
 export default {
   setup() {
-    const el = ref(null)
+    const el = useTemplateRef('el')
     const { x, y, top, right, bottom, left, width, height }
         = useElementBounding(el)
 
