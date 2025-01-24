@@ -19,35 +19,36 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 22
 
       - name: Build project
         run: |
           corepack enable
-          pnpm install --no-frozen-lockfile
-          pnpm -w run docs:build
-          cd packages/.vitepress/dist && zip -rq ../../../build.zip .
+          pnpm install
+          pnpm run install-fonts && pnpm run docs:build
 
-      # - name: Deploy to Zeabur
-      #   env:
-      #     PROJECT_ID: 670fd965e34974ae6478ad49
-      #     SERVICE_ID: 67106b9afdfb5253e1603379
-      #     ENVIRONMENT_ID: 670fd965d0408fcd3bee90a2
-      #     API_TOKEN: ${{ secrets.ZEABUR_TOKEN }}
-      #   run: |
-      #     curl --request POST \
-      #       --url https://gateway.zeabur.com/projects/${{ env.PROJECT_ID }}/services/${{ env.SERVICE_ID }}/deploy \
-      #       --header "Authorization: Bearer ${{ env.API_TOKEN }}" \
-      #       --form "code=@build.zip" \
-      #       --form "environment=${{ env.ENVIRONMENT_ID }}" || true
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact
+          path: packages/.vitepress/dist
 
-      # - name: Deploy to Server
-      #   uses: easingthemes/ssh-deploy@main
-      #   with:
-      #     SSH_PRIVATE_KEY: ${{ secrets.SERVER_KEY }}
-      #     REMOTE_USER: ${{ secrets.SERVER_USER }}
-      #     REMOTE_HOST: ${{ secrets.SERVER_HOST }}
-      #     REMOTE_PORT: ${{ secrets.SERVER_PORT }}
-      #     SOURCE: "packages/.vitepress/dist/"
-      #     ARGS: "-azr --delete"
-      #     TARGET: "${{ secrets.SERVER_PATH }}/vueuse/"
+  deploy-to-server:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_KEY }}
+          REMOTE_USER: ${{ secrets.SERVER_USER }}
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_PORT: ${{ secrets.SERVER_PORT }}
+          SOURCE: "."
+          ARGS: "-azr --delete"
+          TARGET: "${{ secrets.SERVER_PATH }}/vueuse/"

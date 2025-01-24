@@ -2,7 +2,7 @@
 
 <CourseLink href="https://vueschool.io/courses/vueuse-for-everyone?friend=vueuse">通过视频学习 VueUse</CourseLink>
 
-VueUse 是基于[组合 API](https://vuejs.org/guide/extras/composition-api-faq.html) 的一系列实用函数集合。在继续之前，我们假设你已经对[组合 API](https://vuejs.org/guide/extras/composition-api-faq.html) 的基本概念有所了解。
+VueUse 是基于[组合 API](https://vue.zhcndoc.com/guide/extras/composition-api-faq.html) 的一系列实用函数集合。在继续之前，我们假设你已经对[组合 API](https://vue.zhcndoc.com/guide/extras/composition-api-faq.html) 的基本概念有所了解。
 
 ## 安装
 
@@ -34,7 +34,7 @@ npm i @vueuse/core
 
 从 v7.2.0 开始，我们提供了一个 Nuxt 模块，用于在 Nuxt 3 和 Nuxt Bridge 中启用自动导入。
 
-使用 [nuxi](https://nuxt.com/docs/api/commands/module) 将 vueuse 模块安装到您的应用程序中：
+使用 [nuxi](https://nuxt.zhcndoc.com/docs/api/commands/module) 将 vueuse 模块安装到您的应用程序中：
 
 ```bash
 npx nuxi@latest module add vueuse
