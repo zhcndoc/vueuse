@@ -178,12 +178,37 @@ const TemplateFoo = createReusableTemplate<{ msg: string }>()
 ```
 
 ::: warning
-传递布尔类型的 props 而不使用 `v-bind` 不受支持。更多细节请查看[注意事项](#boolean-props)部分。
+不支持在不使用 `v-bind` 的情况下传递布尔属性。有关更多详细信息，请参见 [注意事项](#boolean-props) 部分。
 :::
+
+### 属性和属性
+
+默认情况下，传递给 `<ReuseTemplate>` 的所有属性和属性将传递给模板。如果您不希望某些属性传递到 DOM，您需要定义运行时属性：
+
+```ts
+import { createReusableTemplate } from '@vueuse/core'
+
+const [DefineTemplate, ReuseTemplate] = createReusableTemplate({
+  props: {
+    msg: String,
+    enable: Boolean,
+  }
+})
+```
+
+如果您不想将任何属性传递给模板，可以传递 `inheritAttrs` 选项：
+
+```ts
+import { createReusableTemplate } from '@vueuse/core'
+
+const [DefineTemplate, ReuseTemplate] = createReusableTemplate({
+  inheritAttrs: false,
+})
+```
 
 ### 传递插槽
 
-也可以通过 `<ReuseTemplate>` 传递插槽。在 `<DefineTemplate>` 上，你可以通过 `$slots` 访问这些插槽：
+也可以从 `<ReuseTemplate>` 返回插槽。您可以通过 `$slots` 在 `<DefineTemplate>` 中访问这些插槽：
 
 ```vue
 <script setup>
@@ -211,7 +236,7 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
 
 ## 注意事项
 
-### Boolean props
+### 布尔属性
 
 与 Vue 默认行为不同，未使用 `v-bind` 或缺失的布尔类型 props 会被解析为空字符串或 `undefined`：
 
