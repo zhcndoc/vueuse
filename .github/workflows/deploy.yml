@@ -16,16 +16,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@master
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
       - name: Build project
-        run: |
-          corepack enable
-          pnpm install
-          pnpm run install-fonts && pnpm run docs:build
+        run: pnpm install && pnpm run install-fonts && pnpm run docs:build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
