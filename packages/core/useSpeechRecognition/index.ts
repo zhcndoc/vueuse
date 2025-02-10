@@ -63,13 +63,11 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}) 
   let recognition: SpeechRecognition | undefined
 
   const start = () => {
-    if (!isListening.value)
-      recognition?.start()
+    isListening.value = true
   }
 
   const stop = () => {
-    if (isListening.value)
-      recognition?.stop()
+    isListening.value = false
   }
 
   const toggle = (value = !isListening.value) => {
@@ -120,8 +118,11 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}) 
       recognition!.lang = toValue(lang)
     }
 
-    watch(isListening, () => {
-      if (isListening.value)
+    watch(isListening, (newValue, oldValue) => {
+      if (newValue === oldValue)
+        return
+
+      if (newValue)
         recognition!.start()
       else
         recognition!.stop()
