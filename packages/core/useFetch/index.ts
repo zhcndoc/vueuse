@@ -1,39 +1,39 @@
 import type { EventHookOn, Fn, MaybeRefOrGetter, Stoppable } from '@vueuse/shared'
-import type { ComputedRef, Ref } from 'vue'
+import type { ComputedRef, ShallowRef } from 'vue'
 import { containsProp, createEventHook, toRef, until, useTimeoutFn } from '@vueuse/shared'
-import { computed, isRef, readonly, ref, shallowRef, toValue, watch } from 'vue'
+import { computed, isRef, readonly, shallowRef, toValue, watch } from 'vue'
 import { defaultWindow } from '../_configurable'
 
 export interface UseFetchReturn<T> {
   /**
    * 表示 fetch 请求是否已完成
    */
-  isFinished: Readonly<Ref<boolean>>
+  isFinished: Readonly<ShallowRef<boolean>>
 
   /**
    * HTTP fetch 响应的 statusCode
    */
-  statusCode: Ref<number | null>
+  statusCode: ShallowRef<number | null>
 
   /**
    * fetch 响应的原始数据
    */
-  response: Ref<Response | null>
+  response: ShallowRef<Response | null>
 
   /**
    * 可能发生的任何 fetch 错误
    */
-  error: Ref<any>
+  error: ShallowRef<any>
 
   /**
    * 成功时的 fetch 响应体，可能是 JSON 或文本
    */
-  data: Ref<T | null>
+  data: ShallowRef<T | null>
 
   /**
    * 表示当前是否正在进行 fetch 请求
    */
-  isFetching: Readonly<Ref<boolean>>
+  isFetching: Readonly<ShallowRef<boolean>>
 
   /**
    * 表示 fetch 请求是否可以中止
@@ -43,7 +43,7 @@ export interface UseFetchReturn<T> {
   /**
    * 表示 fetch 请求是否已中止
    */
-  aborted: Ref<boolean>
+  aborted: ShallowRef<boolean>
 
   /**
    * 中止 fetch 请求
@@ -247,7 +247,13 @@ function combineCallbacks<T = any>(combination: Combination, ...callbacks: (((ct
   if (combination === 'overwrite') {
     // use last callback
     return async (ctx: T) => {
-      const callback = callbacks[callbacks.length - 1]
+      let callback
+      for (let i = callbacks.length - 1; i >= 0; i--) {
+        if (callbacks[i] != null) {
+          callback = callbacks[i]
+          break
+        }
+      }
       if (callback)
         return { ...ctx, ...(await callback(ctx)) }
 
@@ -375,10 +381,10 @@ export function useFetch<T>(url: MaybeRefOrGetter<string>, ...args: any[]): UseF
   const errorEvent = createEventHook<any>()
   const finallyEvent = createEventHook<any>()
 
-  const isFinished = ref(false)
-  const isFetching = ref(false)
-  const aborted = ref(false)
-  const statusCode = ref<number | null>(null)
+  const isFinished = shallowRef(false)
+  const isFetching = shallowRef(false)
+  const aborted = shallowRef(false)
+  const statusCode = shallowRef<number | null>(null)
   const response = shallowRef<Response | null>(null)
   const error = shallowRef<any>(null)
   const data = shallowRef<T | null>(initialData || null)

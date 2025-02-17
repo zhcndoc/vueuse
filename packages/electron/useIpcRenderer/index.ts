@@ -1,5 +1,5 @@
 import type { IpcRenderer, IpcRendererEvent } from 'electron'
-import type { Ref } from 'vue'
+import type { ShallowRef } from 'vue'
 import type { IpcRendererListener } from '../_types'
 import { shallowRef } from 'vue'
 import { useIpcRendererInvoke } from '../useIpcRendererInvoke'
@@ -54,7 +54,7 @@ export interface UseIpcRendererReturn {
    *
    * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererinvokechannel-args
    */
-  invoke: <T>(channel: string, ...args: any[]) => Ref<T | null>
+  invoke: <T>(channel: string, ...args: any[]) => ShallowRef<T | null>
 
   /**
    * 返回 any - 由 ipcMain 处理程序返回的值。
@@ -62,7 +62,7 @@ export interface UseIpcRendererReturn {
    *
    * @see https://www.electronjs.org/docs/api/ipc-renderer#ipcrenderersendsyncchannel-args
    */
-  sendSync: <T>(channel: string, ...args: any[]) => Ref<T | null>
+  sendSync: <T>(channel: string, ...args: any[]) => ShallowRef<T | null>
 
   /**
    * 发送消息到主进程，可选择传输零个或多个 MessagePort 对象的所有权。
@@ -90,8 +90,8 @@ export interface UseIpcRendererReturn {
  * 创建一个 `sendSync` 函数
  */
 function setSendSync(ipcRenderer: IpcRenderer) {
-  return <T>(channel: string, ...args: any[]): Ref<T | null> => {
-    const result = shallowRef<T | null>(null) as Ref<T | null>
+  return <T>(channel: string, ...args: any[]): ShallowRef<T | null> => {
+    const result = shallowRef<T | null>(null) as ShallowRef<T | null>
     result.value = ipcRenderer.sendSync(channel, ...args)
     return result
   }

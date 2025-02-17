@@ -1,7 +1,7 @@
-import type { Ref } from 'vue'
+import type { WritableComputedRef } from 'vue'
 import type { ConfigurableWindow } from '../_configurable'
 import type { MaybeElementRef } from '../unrefElement'
-import { computed, ref, watch } from 'vue'
+import { computed, shallowRef, watch } from 'vue'
 import { unrefElement } from '../unrefElement'
 import { useEventListener } from '../useEventListener'
 
@@ -33,7 +33,7 @@ export interface UseFocusReturn {
    * 如果为 true，则表示元素具有焦点。如果为 false，则表示元素没有焦点
    * 如果设置为 true，则元素将获得焦点。如果设置为 false，则元素将失去焦点。
    */
-  focused: Ref<boolean>
+  focused: WritableComputedRef<boolean>
 }
 
 /**
@@ -46,7 +46,7 @@ export interface UseFocusReturn {
 export function useFocus(target: MaybeElementRef, options: UseFocusOptions = {}): UseFocusReturn {
   const { initialValue = false, focusVisible = false, preventScroll = false } = options
 
-  const innerFocused = ref(false)
+  const innerFocused = shallowRef(false)
   const targetElement = computed(() => unrefElement(target))
 
   const listenerOptions = { passive: true }

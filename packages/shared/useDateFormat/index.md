@@ -42,6 +42,10 @@ category: Time
 | `dd`   | S-S                      | 星期几的简写           |
 | `ddd`  | Sun-Sat                  | 星期几的简写           |
 | `dddd` | Sunday-Saturday          | 星期几的全名           |
+| `z`    | GMT, GMT+1               | 带有偏移的时区         |
+| `zz`   | GMT, GMT+1               | 带有偏移的时区         |
+| `zzz`  | GMT, GMT+1               | 带有偏移的时区         |
+| `zzzz` | GMT, GMT+01:00           | 带有偏移的长时区       |
 
 - 可通过在 `options` 中定义 `customMeridiem` 来自定义上午下午。
 

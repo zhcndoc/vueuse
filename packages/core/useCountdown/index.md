@@ -25,10 +25,10 @@ const { remaining, start, stop, pause, resume } = useCountdown(countdownSeconds,
 您可以使用 `ref` 来更改初始倒计时。`start()` 和 `resume()` 也接受下一个倒计时的新值。
 
 ```js
-import { ref } from 'vue'
+import { shallowRef } from 'vue'
 import { useCountdown } from '@vueuse/core'
 
-const countdown = ref(5)
+const countdown = shallowRef(5)
 const { start, reset } = useCountdown(countdown, {
 })
 

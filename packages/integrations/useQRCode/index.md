@@ -25,9 +25,9 @@ const qrcode = useQRCode('要编码的文本')
 
 ```ts
 import { useQRCode } from '@vueuse/integrations/useQRCode'
-import { ref } from 'vue'
+import { shallowRef } from 'vue'
 
-const text = ref('要编码的文本')
+const text = shallowRef('要编码的文本')
 const qrcode = useQRCode(text)
 ```
 

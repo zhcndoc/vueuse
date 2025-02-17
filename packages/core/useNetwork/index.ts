@@ -1,8 +1,8 @@
 /* this implementation is original ported from https://github.com/logaretm/vue-use-web by Abdelrahman Awad */
 
-import type { ComputedRef, Ref } from 'vue'
+import type { ComputedRef, ShallowRef } from 'vue'
 import type { ConfigurableWindow } from '../_configurable'
-import { readonly, ref } from 'vue'
+import { readonly, shallowRef } from 'vue'
 import { defaultWindow } from '../_configurable'
 import { useEventListener } from '../useEventListener'
 import { useSupported } from '../useSupported'
@@ -16,39 +16,39 @@ export interface NetworkState {
   /**
    * 用户当前是否连接到网络。
    */
-  isOnline: Readonly<Ref<boolean>>
+  isOnline: Readonly<ShallowRef<boolean>>
   /**
    * 用户上次连接到网络的时间。
    */
-  offlineAt: Readonly<Ref<number | undefined>>
+  offlineAt: Readonly<ShallowRef<number | undefined>>
   /**
    * 在此时间点，如果用户处于离线状态并重新连接。
    */
-  onlineAt: Readonly<Ref<number | undefined>>
+  onlineAt: Readonly<ShallowRef<number | undefined>>
   /**
    * 下载速度，以 Mbps 为单位。
    */
-  downlink: Readonly<Ref<number | undefined>>
+  downlink: Readonly<ShallowRef<number | undefined>>
   /**
    * 可达到的最大下载速度，以 Mbps 为单位。
    */
-  downlinkMax: Readonly<Ref<number | undefined>>
+  downlinkMax: Readonly<ShallowRef<number | undefined>>
   /**
    * 检测到的有效速度类型。
    */
-  effectiveType: Readonly<Ref<NetworkEffectiveType | undefined>>
+  effectiveType: Readonly<ShallowRef<NetworkEffectiveType | undefined>>
   /**
    * 当前连接的预估往返时间。
    */
-  rtt: Readonly<Ref<number | undefined>>
+  rtt: Readonly<ShallowRef<number | undefined>>
   /**
    * 用户是否启用了数据节省模式。
    */
-  saveData: Readonly<Ref<boolean | undefined>>
+  saveData: Readonly<ShallowRef<boolean | undefined>>
   /**
    * 检测到的 connection/network 类型。
    */
-  type: Readonly<Ref<NetworkType>>
+  type: Readonly<ShallowRef<NetworkType>>
 }
 
 /**
@@ -62,15 +62,15 @@ export function useNetwork(options: ConfigurableWindow = {}): Readonly<NetworkSt
   const navigator = window?.navigator
   const isSupported = useSupported(() => navigator && 'connection' in navigator)
 
-  const isOnline = ref(true)
-  const saveData = ref(false)
-  const offlineAt: Ref<number | undefined> = ref(undefined)
-  const onlineAt: Ref<number | undefined> = ref(undefined)
-  const downlink: Ref<number | undefined> = ref(undefined)
-  const downlinkMax: Ref<number | undefined> = ref(undefined)
-  const rtt: Ref<number | undefined> = ref(undefined)
-  const effectiveType: Ref<NetworkEffectiveType> = ref(undefined)
-  const type: Ref<NetworkType> = ref<NetworkType>('unknown')
+  const isOnline = shallowRef(true)
+  const saveData = shallowRef(false)
+  const offlineAt = shallowRef<number | undefined>(undefined)
+  const onlineAt = shallowRef<number | undefined>(undefined)
+  const downlink = shallowRef<number | undefined>(undefined)
+  const downlinkMax = shallowRef<number | undefined>(undefined)
+  const rtt = shallowRef<number | undefined>(undefined)
+  const effectiveType = shallowRef<NetworkEffectiveType>(undefined)
+  const type = shallowRef<NetworkType>('unknown')
 
   const connection = isSupported.value && (navigator as any).connection
 

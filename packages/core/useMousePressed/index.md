@@ -23,10 +23,10 @@ const { pressed } = useMousePressed({ touch: false })
 要仅捕获特定元素上的 `mousedown` 和 `touchstart`，可以通过传递元素的 ref 来指定 `target`。
 
 ```vue
-<script>
+<script lang="ts">
 import { useTemplateRef } from 'vue'
 
-const el = useTemplateRef('el')
+const el = useTemplateRef<HTMLDivElement>('el')
 
 const { pressed } = useMousePressed({ target: el })
 </script>

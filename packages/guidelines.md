@@ -12,7 +12,8 @@
 - 从 `"vue"` 导入所有 Vue API
 - 尽可能使用 `ref` 而不是 `reactive`
 - 尽可能使用选项对象作为参数，以便更灵活地进行未来扩展。
-- 当包装大量数据时，使用 `shallowRef` 而不是 `ref`
+- 尽可能优先使用 `shallowRef` 而不是 `ref`
+- 在深度响应的情况下，优先使用显式命名的 `deepRef` 而不是 `ref`。
 - 使用 `configurableWindow` (等) 处理全局变量如 `window`，以便在处理多窗口、测试模拟和 SSR 时更加灵活。
 - 当涉及到浏览器尚未广泛实现的 Web API 时，还应输出 `isSupported` 标志
 - 在内部使用 `watch` 或 `watchEffect` 时，尽可能使 `immediate` 和 `flush` 选项可配置
