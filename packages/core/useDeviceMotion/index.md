@@ -32,7 +32,7 @@ const {
 | permissionGranted            | `boolean`       | 指示用户是否已授予权限。默认情况下始终为 false                         |
 | trigger                      | `Promise<void>` | 一个异步函数，用于请求用户权限。API 在获得权限后自动运行               |
 
-你可以在 [MDN 上找到有关状态的更多信息](https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent#Properties)。
+你可以在 [MDN 上找到有关状态的更多信息](https://developer.mozilla.org/en-US/docs/Web/API/DeviceMotionEvent#instance_properties)。
 
 ## 组件用法
 

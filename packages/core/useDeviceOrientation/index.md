@@ -26,7 +26,7 @@ const {
 | beta       | `number`  | 一个表示设备围绕 x 轴运动的数字，以度为单位，值范围从 -180 到 180。 |
 | gamma      | `number`  | 一个表示设备围绕 y 轴运动的数字，以度为单位，值范围从 -90 到 90。   |
 
-你可以在 [MDN 上找到有关状态的更多信息](https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent#Properties)。
+你可以在 [MDN 上找到有关状态的更多信息](https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent#instance_properties)。
 
 ## 组件用法
 

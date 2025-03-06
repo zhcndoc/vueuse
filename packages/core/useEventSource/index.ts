@@ -1,7 +1,7 @@
-import type { Fn, MaybeRefOrGetter } from '@vueuse/shared'
-import type { Ref, ShallowRef } from 'vue'
+import type { Fn } from '@vueuse/shared'
+import type { MaybeRefOrGetter, Ref, ShallowRef } from 'vue'
 import { isClient, toRef, tryOnScopeDispose } from '@vueuse/shared'
-import { ref as deepRef, shallowReadonly, shallowRef, watch } from 'vue'
+import { ref as deepRef, shallowRef, watch } from 'vue'
 import { useEventListener } from '../useEventListener'
 
 export type EventSourceStatus = 'CONNECTING' | 'OPEN' | 'CLOSED'
@@ -55,23 +55,23 @@ export interface UseEventSourceReturn<Events extends string[], Data = any> {
    * 对通过 EventSource 接收到的最新数据的 ref，
    * 可以被监视以响应传入的消息
    */
-  readonly data: Readonly<ShallowRef<Data>>
+  data: ShallowRef<Data>
 
   /**
    * 连接的当前状态，只能是以下之一：
    * 'CONNECTING', 'OPEN', 'CLOSED'
    */
-  readonly status: Readonly<ShallowRef<EventSourceStatus>>
+  status: ShallowRef<EventSourceStatus>
 
   /**
    * 最新的命名事件
    */
-  readonly event: Readonly<ShallowRef<Events[number] | null>>
+  event: ShallowRef<Events[number] | null>
 
   /**
    * 当前错误
    */
-  readonly error: Readonly<ShallowRef<Event | null>>
+  error: ShallowRef<Event | null>
 
   /**
    * 优雅地关闭 EventSource 连接。
@@ -92,7 +92,7 @@ export interface UseEventSourceReturn<Events extends string[], Data = any> {
    * The last event ID string, for server-sent events.
    * @see https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent/lastEventId
    */
-  readonly lastEventId: Readonly<ShallowRef<string | null>>
+  lastEventId: ShallowRef<string | null>
 }
 
 function resolveNestedOptions<T>(options: T | true): T {
@@ -214,12 +214,12 @@ export function useEventSource<Events extends string[], Data = any>(
 
   return {
     eventSource,
-    event: shallowReadonly(event),
-    data: shallowReadonly(data),
-    status: shallowReadonly(status),
-    error: shallowReadonly(error),
+    event,
+    data,
+    status,
+    error,
     open,
     close,
-    lastEventId: shallowReadonly(lastEventId),
+    lastEventId,
   }
 }

@@ -1,5 +1,4 @@
-import type { ComputedRef } from 'vue'
-import type { MaybeRefOrGetter } from '../utils'
+import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import { computed, toValue } from 'vue'
 
 // Polyfill for node version < 18
@@ -30,6 +29,6 @@ export function useArrayFindLast<T>(
       !Array.prototype.findLast
         ? findLast(toValue(list), (element, index, array) => fn(toValue(element), index, array))
         : toValue(list)
-          .findLast((element, index, array) => fn(toValue(element), index, array)),
+            .findLast((element, index, array) => fn(toValue(element), index, array)),
     ))
 }

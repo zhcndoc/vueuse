@@ -6,7 +6,7 @@ category: '@Integrations'
 
 这是 [`focus-trap`](https://github.com/focus-trap/focus-trap) 的响应式封装。
 
-有关可以传递的选项的更多信息，请参阅 `focus-trap` 文档中的 [`createOptions`](https://github.com/focus-trap/focus-trap#createfocustrapelement-createoptions)。
+有关可以传递的选项的更多信息，请参阅 `focus-trap` 文档中的 [`createOptions`](https://github.com/focus-trap/focus-trap#createoptions)。
 
 ## 安装
 
