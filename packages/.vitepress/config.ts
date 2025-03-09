@@ -96,7 +96,7 @@ export default withPwa(defineConfig({
     logo: '/favicon.svg',
 
     footer: {
-      message: `<a target="_blank" href="https://www.zhcndoc.com?ref=vueuse">简中文档</a>`,
+      message: `<a target="_blank" href="https://www.zhcndoc.com">简中文档</a>`,
       copyright: '<a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn">沪ICP备2024070610号-3</a>',
     },
 
@@ -229,29 +229,12 @@ export default withPwa(defineConfig({
     },
   },
   head: [
-    ['meta', { name: 'baidu-site-verification', content: 'codeva-aPUGvrjCaL' }],
-    [
-      'script',
-      {
-        'defer': '',
-        'src': 'https://analytics.ikxin.com/script.js',
-        'data-website-id': 'f0e90b0d-e086-4fdc-b173-de4857b71900',
-      },
-    ],
     [
       'script',
       {
         async: '',
-        src: 'https://www.googletagmanager.com/gtag/js?id=G-HYH4TH7PWM',
+        src: 'https://www.zhcndoc.com/js/common.js',
       },
-    ],
-    [
-      'script',
-      {},
-      `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-HYH4TH7PWM');`,
     ],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['link', { rel: 'icon', href: '/favicon.ico', sizes: '48x48' }],
@@ -263,7 +246,6 @@ export default withPwa(defineConfig({
     ['meta', { name: 'twitter:creator', content: '@antfu7' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
     ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' }],
-
     ['link', { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' }],
     ['link', { rel: 'preconnect', crossorigin: 'anonymous', href: 'https://fonts.gstatic.com' }],
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap' }],
