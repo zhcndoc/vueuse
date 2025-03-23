@@ -28,4 +28,4 @@ console.log(debounced.value) // 'bar'
 
 ## 推荐阅读
 
-- [**防抖与节流**：完整的可视化指南](https://redd.one/blog/debounce-vs-throttle)
+- [**防抖与节流**：完整的可视化指南](https://kettanaito.com/blog/debounce-vs-throttle)

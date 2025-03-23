@@ -23,4 +23,4 @@ useEventListener(window, 'resize', throttledFn)
 
 ## 推荐阅读
 
-- [**Debounce vs Throttle**：明确的视觉指南](https://redd.one/blog/debounce-vs-throttle)
+- [**Debounce vs Throttle**：明确的视觉指南](https://kettanaito.com/blog/debounce-vs-throttle)

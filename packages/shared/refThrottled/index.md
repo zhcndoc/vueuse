@@ -43,5 +43,5 @@ const throttled = refThrottled(input, 1000, undefined, false)
 
 ## 推荐阅读
 
-- [防抖和节流：图解指南](https://redd.one/blog/debounce-vs-throttle)
+- [防抖和节流：图解指南](https://kettanaito.com/blog/debounce-vs-throttle)
 - [通过示例解释防抖和节流](https://css-tricks.com/debouncing-throttling-explained-examples/)
