@@ -8,7 +8,7 @@ import { useResizeObserver } from '../useResizeObserver'
 
 export interface UseTextareaAutosizeOptions extends ConfigurableWindow {
   /** 自动调整大小的文本区域元素。 */
-  element?: MaybeRef<HTMLTextAreaElement | undefined>
+  element?: MaybeRef<HTMLTextAreaElement | undefined | null>
   /** 文本区域的内容。 */
   input?: MaybeRef<string>
   /** 监听应触发文本区域大小调整的源。 */
