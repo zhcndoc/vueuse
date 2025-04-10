@@ -1,4 +1,4 @@
-import type { MaybeRefOrGetter } from 'vue'
+import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import { computed, toValue } from 'vue'
 
 export type DateLike = Date | number | string | undefined
@@ -109,6 +109,8 @@ export function normalizeDate(date: DateLike) {
   return new Date(date)
 }
 
+export type UseDateFormatReturn = ComputedRef<string>
+
 /**
  * 根据传入的令牌字符串获取格式化日期。
  *
@@ -117,9 +119,6 @@ export function normalizeDate(date: DateLike) {
  * @param formatStr - 用于格式化日期的令牌组合
  * @param options - UseDateFormatOptions
  */
-
-export function useDateFormat(date: MaybeRefOrGetter<DateLike>, formatStr: MaybeRefOrGetter<string> = 'HH:mm:ss', options: UseDateFormatOptions = {}) {
+export function useDateFormat(date: MaybeRefOrGetter<DateLike>, formatStr: MaybeRefOrGetter<string> = 'HH:mm:ss', options: UseDateFormatOptions = {}): UseDateFormatReturn {
   return computed(() => formatDate(normalizeDate(toValue(date)), toValue(formatStr), options))
 }
-
-export type UseDateFormatReturn = ReturnType<typeof useDateFormat>

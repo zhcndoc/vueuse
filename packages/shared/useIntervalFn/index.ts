@@ -1,6 +1,6 @@
 import type { MaybeRefOrGetter } from 'vue'
 import type { Fn, Pausable } from '../utils'
-import { isRef, shallowRef, toValue, watch } from 'vue'
+import { isRef, shallowReadonly, shallowRef, toValue, watch } from 'vue'
 import { tryOnScopeDispose } from '../tryOnScopeDispose'
 import { isClient } from '../utils'
 
@@ -20,6 +20,8 @@ export interface UseIntervalFnOptions {
   immediateCallback?: boolean
 }
 
+export type UseIntervalFnReturn = Pausable
+
 /**
  * 带有控制功能的 `setInterval` 包装器
  *
@@ -27,7 +29,7 @@ export interface UseIntervalFnOptions {
  * @param interval
  * @param options
  */
-export function useIntervalFn(cb: Fn, interval: MaybeRefOrGetter<number> = 1000, options: UseIntervalFnOptions = {}): Pausable {
+export function useIntervalFn(cb: Fn, interval: MaybeRefOrGetter<number> = 1000, options: UseIntervalFnOptions = {}): UseIntervalFnReturn {
   const {
     immediate = true,
     immediateCallback = false,
@@ -74,7 +76,7 @@ export function useIntervalFn(cb: Fn, interval: MaybeRefOrGetter<number> = 1000,
   tryOnScopeDispose(pause)
 
   return {
-    isActive,
+    isActive: shallowReadonly(isActive),
     pause,
     resume,
   }

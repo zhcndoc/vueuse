@@ -4,6 +4,10 @@
 import type { ShallowRef, WatchOptionsBase } from 'vue'
 import { readonly, shallowRef, watchEffect } from 'vue'
 
+export type ComputedEagerOptions = WatchOptionsBase
+
+export type ComputedEagerReturn<T = any> = Readonly<ShallowRef<T>>
+
 /**
  * 注意: 如果你正在使用 Vue 3.4+，你可以直接使用 computed。
  * 因为在 Vue 3.4+ 中，如果计算属性的新值没有变化，
@@ -14,7 +18,7 @@ import { readonly, shallowRef, watchEffect } from 'vue'
  * @param options WatchOptionsBase
  * @returns 只读的 shallowRef
  */
-export function computedEager<T>(fn: () => T, options?: WatchOptionsBase): Readonly<ShallowRef<T>> {
+export function computedEager<T>(fn: () => T, options?: ComputedEagerOptions): ComputedEagerReturn<T> {
   const result = shallowRef()
 
   watchEffect(() => {

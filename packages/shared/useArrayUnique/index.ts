@@ -16,6 +16,8 @@ function uniqueElementsBy<T>(
   }, [])
 }
 
+export type UseArrayUniqueReturn<T = any> = ComputedRef<T[]>
+
 /**
  * 响应式唯一数组
  * @see https://vueuse.org/useArrayUnique
@@ -26,7 +28,7 @@ function uniqueElementsBy<T>(
 export function useArrayUnique<T>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,
   compareFn?: (a: T, b: T, array: T[]) => boolean,
-): ComputedRef<T[]> {
+): UseArrayUniqueReturn<T> {
   return computed<T[]>(() => {
     const resolvedList = toValue(list).map(element => toValue(element))
     return compareFn ? uniqueElementsBy(resolvedList, compareFn) : uniq(resolvedList)

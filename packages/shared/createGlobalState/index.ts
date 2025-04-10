@@ -1,6 +1,8 @@
 import type { AnyFn } from '../utils'
 import { effectScope } from 'vue'
 
+export type CreateGlobalStateReturn<Fn extends AnyFn = AnyFn> = Fn
+
 /**
  * 在全局范围内保留状态，以便在 Vue 实例之间重复使用。
  *
@@ -9,7 +11,7 @@ import { effectScope } from 'vue'
  */
 export function createGlobalState<Fn extends AnyFn>(
   stateFactory: Fn,
-): Fn {
+): CreateGlobalStateReturn<Fn> {
   let initialized = false
   let state: any
   const scope = effectScope(true)

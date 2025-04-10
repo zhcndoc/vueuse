@@ -2,6 +2,8 @@ import type { MaybeRefOrGetter, Ref } from 'vue'
 import { customRef, toValue } from 'vue'
 import { tryOnScopeDispose } from '../tryOnScopeDispose'
 
+export type RefAutoResetReturn<T = any> = Ref<T>
+
 /**
  * 一个在一段时间后将重置为默认值的 ref。
  *
@@ -9,7 +11,7 @@ import { tryOnScopeDispose } from '../tryOnScopeDispose'
  * @param defaultValue 将要设置的值。
  * @param afterMs      延迟时间 （以毫秒为单位）。
  */
-export function refAutoReset<T>(defaultValue: MaybeRefOrGetter<T>, afterMs: MaybeRefOrGetter<number> = 10000): Ref<T> {
+export function refAutoReset<T>(defaultValue: MaybeRefOrGetter<T>, afterMs: MaybeRefOrGetter<number> = 10000): RefAutoResetReturn<T> {
   return customRef<T>((track, trigger) => {
     let value: T = toValue(defaultValue)
     let timer: any

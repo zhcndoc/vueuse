@@ -15,6 +15,7 @@ export interface ToRefsOptions {
  *
  * @see https://vueuse.org/toRefs
  * @param objectRef 一个 ref 或普通对象或数组。
+ * @param options Options
  */
 export function toRefs<T extends object>(
   objectRef: MaybeRef<T>,
