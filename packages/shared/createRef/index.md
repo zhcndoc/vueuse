@@ -4,9 +4,9 @@ category: Reactivity
 
 # createRef
 
-Returns a `deepRef` or `shallowRef` depending on the `deep` param.
+根据 `deep` 参数返回 `deepRef` 或 `shallowRef`。
 
-## Usage
+## 使用方法
 
 ```ts
 import { createRef } from '@vueuse/core'

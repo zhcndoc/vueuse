@@ -4,9 +4,9 @@ category: Time
 
 # useCountdown
 
-Wrapper for `useIntervalFn` that provides a countdown timer.
+`useIntervalFn` 的包装器，提供倒计时器。
 
-## Usage
+## 使用方法
 
 ```js
 import { useCountdown } from '@vueuse/core'
