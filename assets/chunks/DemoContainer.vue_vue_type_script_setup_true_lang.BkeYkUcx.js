@@ -1,0 +1,1 @@
+import{d as t,r as a,ac as n,i as r,o as s,f as c,k as l,t as d}from"./vue.COzvRtV3.js";const i={class:"demo wide"},_={key:0,class:"error"},f=t({__name:"DemoContainer",setup(m){const e=a(null);return n(o=>{e.value=o}),(o,u)=>(s(),r("div",i,[c(o.$slots,"default"),e.value?(s(),r("div",_,d(e.value),1)):l("",!0)]))}});export{f as _};

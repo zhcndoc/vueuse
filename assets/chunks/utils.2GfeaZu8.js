@@ -1,0 +1,1 @@
+import{A as e,a1 as f}from"./vue.COzvRtV3.js";import{Y as s}from"./index.CECeAqpN.js";function u(n,o){const t=f;return function(...r){return e(()=>n.apply(this,r.map(i=>t(i))))}}const c=u(n=>s.stringify(n,(o,t)=>{if(typeof t!="function")return t},{singleQuote:!0,flowCollectionPadding:!1}));export{c as s};
