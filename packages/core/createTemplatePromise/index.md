@@ -7,10 +7,6 @@ outline: deep
 
 将模板作为 Promise。适用于构建自定义对话框、模态框、提示框等。
 
-::: warning
-此函数仅适用于 Vue 3。
-:::
-
 ## 使用方法
 
 ```vue

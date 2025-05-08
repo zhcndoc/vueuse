@@ -6,10 +6,6 @@ category: Component
 
 用于将 refs 绑定到 `v-for` 内的模板元素和组件的快捷方式。
 
-::: warning
-此函数仅适用于 Vue 3
-:::
-
 ## 用法
 
 ```vue

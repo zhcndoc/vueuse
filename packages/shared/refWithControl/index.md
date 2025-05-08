@@ -8,10 +8,6 @@ related: computedWithControl
 
 对 ref 及其响应性进行细粒度控制。
 
-::: warning
-此函数仅适用于 Vue 3
-:::
-
 ## 用法
 
 `refWithControl` 使用 `extendRef` 来提供两个额外函数 `get` 和 `set`，以便更好地控制何时应该跟踪/触发响应性。

@@ -28,8 +28,8 @@ features:
   - title: 功能丰富
     details: 提供 200 多个功能供你选择
     icon: 🎛
-  - title: 无缝迁移
-    details: 适用于 Vue 3 和 Vue 2
+  - title: 专为 Vue 3 打造
+    details: 专为 Vue 3 设计，充分发挥其最新功能优势
     icon: 🚀
   - title: 支持 tree shaking
     details: 只打包你使用的功能

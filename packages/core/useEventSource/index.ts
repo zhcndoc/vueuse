@@ -55,7 +55,7 @@ export interface UseEventSourceReturn<Events extends string[], Data = any> {
    * 对通过 EventSource 接收到的最新数据的 ref，
    * 可以被监视以响应传入的消息
    */
-  data: ShallowRef<Data>
+  data: ShallowRef<Data | null>
 
   /**
    * 连接的当前状态，只能是以下之一：
@@ -114,7 +114,7 @@ export function useEventSource<Events extends string[], Data = any>(
   url: MaybeRefOrGetter<string | URL | undefined>,
   events: Events = [] as unknown as Events,
   options: UseEventSourceOptions = {},
-): UseEventSourceReturn<Events> {
+): UseEventSourceReturn<Events, Data> {
   const event: ShallowRef<string | null> = shallowRef(null)
   const data: ShallowRef<Data | null> = shallowRef(null)
   const status = shallowRef<EventSourceStatus>('CONNECTING')

@@ -34,10 +34,6 @@ const el = useCurrentElement(componentRef) // ComputedRef<Element>
 </template>
 ```
 
-::: info
-仅适用于 Vue 3，因为它在底层使用了 [computedWithControl](https://vueuse.org/shared/computedWithControl/#manual-triggering)
-:::
-
 ## 注意事项
 
 此函数在底层使用 [`$el`](https://vue.zhcndoc.com/api/component-instance.html#el)。
