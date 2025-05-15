@@ -1,0 +1,1 @@
+import{w as a}from"./index.RcmX0-Re.js";import{d as c}from"./filters.Cu29MTGE.js";function s(t,e,o={}){const{debounce:i=0,maxWait:r=void 0,...n}=o;return a(t,e,{...n,eventFilter:c(i,{maxWait:r})})}export{s as w};
