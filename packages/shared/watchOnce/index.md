@@ -4,11 +4,13 @@ category: Watch
 
 # watchOnce
 
-仅触发一次的 `watch`。
+用于观看值的缩写形式，带有 `{ once: true }`。回调函数触发一次后，观察者将停止。
+
+有关完整细节，请参见 [Vue 的文档](https://vue.zhcndoc.com/guide/essentials/watchers.html#once-watchers)。
 
 ## 使用方法
 
-一旦回调函数被触发一次，监听将自动停止。
+类似于 `watch`，但带有 `{ once: true }`。
 
 ```typescript
 import { watchOnce } from '@vueuse/core'

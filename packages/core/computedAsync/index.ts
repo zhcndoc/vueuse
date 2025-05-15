@@ -1,7 +1,13 @@
 import type { Fn } from '@vueuse/shared'
-import type { Ref } from 'vue'
+import type { ComputedRef, Ref } from 'vue'
 import { noop } from '@vueuse/shared'
-import { computed, ref as deepRef, isRef, shallowRef, watchEffect } from 'vue'
+import {
+  computed,
+  ref as deepRef,
+  isRef,
+  shallowRef,
+  watchEffect,
+} from 'vue'
 
 /**
  * 清除计算属性的副作用
@@ -31,6 +37,16 @@ export interface AsyncComputedOptions {
   shallow?: boolean
 
   /**
+   * 刷新选项允许更好地控制历史点的时机，默认为 `pre`。
+   *
+   * 可能的值：`pre`、`post`、`sync`
+   *
+   * 它的工作方式与 Vue 响应式中的 watch 和 watch effect 的 flush 选项相同。
+   * @default 'pre'
+   */
+  flush?: 'pre' | 'post' | 'sync'
+
+  /**
    * 捕获到错误时的回调函数。
    */
   onError?: (e: unknown) => void
@@ -47,18 +63,28 @@ export interface AsyncComputedOptions {
 export function computedAsync<T>(
   evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,
   initialState: T,
-  optionsOrRef?: Ref<boolean> | AsyncComputedOptions,
+  optionsOrRef: AsyncComputedOptions & { lazy: true },
+): ComputedRef<T>
+export function computedAsync<T>(
+  evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,
+  initialState: undefined,
+  optionsOrRef: AsyncComputedOptions & { lazy: true },
+): ComputedRef<T | undefined>
+export function computedAsync<T>(
+  evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,
+  initialState: T,
+  optionsOrRef?: Ref<boolean> | (AsyncComputedOptions & { lazy?: false | undefined }),
 ): Ref<T>
 export function computedAsync<T>(
   evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,
   initialState?: undefined,
-  optionsOrRef?: Ref<boolean> | AsyncComputedOptions,
+  optionsOrRef?: Ref<boolean> | (AsyncComputedOptions & { lazy?: false | undefined }),
 ): Ref<T | undefined>
 export function computedAsync<T>(
   evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,
   initialState?: T,
   optionsOrRef?: Ref<boolean> | AsyncComputedOptions,
-): Ref<T> | Ref<T | undefined> {
+): Ref<T> | Ref<T | undefined> | ComputedRef<T> | ComputedRef<T | undefined> {
   let options: AsyncComputedOptions
 
   if (isRef(optionsOrRef)) {
@@ -72,6 +98,7 @@ export function computedAsync<T>(
 
   const {
     lazy = false,
+    flush = 'pre',
     evaluating = undefined,
     shallow = true,
     onError = noop,
@@ -120,7 +147,7 @@ export function computedAsync<T>(
 
       hasFinished = true
     }
-  })
+  }, { flush })
 
   if (lazy) {
     return computed(() => {

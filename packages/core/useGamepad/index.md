@@ -103,3 +103,11 @@ const controller = mapGamepadToXbox360Controller(gamepad)
 ```
 
 目前只有 Xbox 360 控制器的映射。如果你有要添加映射的控制器，请随时为更多控制器映射打开 PR！
+
+### SSR 兼容性
+
+该组件设计用于客户端。在某些情况下，SSR 可能会导致一些水合不匹配。
+
+如果您使用的是 Nuxt，您可以简单地将组件文件重命名为 `.client.vue` 后缀（例如，`GamepadComponent.client.vue`），这将自动使其仅在客户端渲染，从而避免水合不匹配。
+
+在其他框架或普通 Vue 中，您可以用 `<ClientOnly>` 组件包裹您的使用组件，以确保它仅在客户端渲染。

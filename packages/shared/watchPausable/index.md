@@ -7,6 +7,12 @@ alias: pausableWatch
 
 可暂停的 watch
 
+::: tip
+
+[可暂停侦听器](https://vue.zhcndoc.com/api/reactivity-core.html#watch) 功能已 [自 3.5 版本](https://github.com/vuejs/core/pull/9651) 起加入 Vue，在支持的版本上请使用 `const { stop, pause, resume } = watch(watchSource, callback)` 语法替代。
+
+:::
+
 ## 使用方法
 
 像正常使用 `watch` 一样，但返回额外的 `pause()` 和 `resume()` 函数以进行控制。
