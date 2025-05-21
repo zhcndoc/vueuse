@@ -1,0 +1,1 @@
+import{d as t,r as a,ae as n,i as r,o as s,f as l,k as c,t as d}from"./vue.DQfvmmyQ.js";const i={class:"demo wide"},_={key:0,class:"error"},f=t({__name:"DemoContainer",setup(m){const e=a(null);return n(o=>{e.value=o}),(o,u)=>(s(),r("div",i,[l(o.$slots,"default"),e.value?(s(),r("div",_,d(e.value),1)):c("",!0)]))}});export{f as _};

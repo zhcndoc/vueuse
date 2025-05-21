@@ -1,0 +1,1 @@
+import{g as o}from"./metadata.HXIr2NKd.js";import{u as r}from"./index.DK97_WvT.js";import{z as e}from"./vue.DQfvmmyQ.js";function l(s={}){const{document:i=o}=s;if(!i)return e("visible");const t=e(i.visibilityState);return r(i,"visibilitychange",()=>{t.value=i.visibilityState},{passive:!0}),t}export{l as u};

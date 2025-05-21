@@ -1,0 +1,63 @@
+import{_ as v,a as E}from"./chunks/Contributors.vue_vue_type_script_setup_true_lang.DXhCB5gE.js";import{_ as x}from"./chunks/DemoContainer.vue_vue_type_script_setup_true_lang.BXCM0wL2.js";import{u as C,a as F,_}from"./chunks/FunctionInfo.vue_vue_type_script_setup_true_lang.DvcLzfzF.js";import{a3 as k,z as P,d as $,D as S,A as u,i as D,o as f,F as M,j as i,n as m,a2 as c,a5 as B,H as y,a4 as A,Z as w,g as r,Y as R,y as g,w as T}from"./chunks/vue.DQfvmmyQ.js";import{u as V}from"./chunks/index.RnJrKk7C.js";import{g as z}from"./chunks/metadata.HXIr2NKd.js";import{u as O}from"./chunks/index.BXXSfDxN.js";import{u as U}from"./chunks/index.DK97_WvT.js";import{u as N}from"./chunks/index.BU82Ue8Z.js";import"./chunks/utils.B5e_uQLX.js";import"./chunks/index.DG0WMUxM.js";import"./chunks/index.DXXiP3sM.js";import"./chunks/index.BcBRhzZe.js";import"./chunks/general.CGRH32nb.js";import"./chunks/index.C1bUUpH2.js";import"./chunks/index.B5l6yAbo.js";function q(d){const{x:t,y:e,document:n=z,multiple:s,interval:l="requestAnimationFrame",immediate:h=!0}=d,o=O(()=>k(s)?n&&"elementsFromPoint"in n:n&&"elementFromPoint"in n),a=P(null),p=()=>{a.value=k(s)?(n==null?void 0:n.elementsFromPoint(k(t),k(e)))??[]:(n==null?void 0:n.elementFromPoint(k(t),k(e)))??null},b=l==="requestAnimationFrame"?C(p,{immediate:h}):F(p,l,{immediate:h});return{isSupported:o,element:a,...b}}const L={class:"flex items-center"},I={class:"flex items-center"},G=$({__name:"demo",setup(d){const{x:t,y:e}=N({type:"client"}),{element:n}=q({x:t,y:e}),s=S(V(n));U("scroll",s.update,{passive:!0,capture:!0});const l=u(()=>n.value?{display:"block",width:`${s.width}px`,height:`${s.height}px`,left:`${s.left}px`,top:`${s.top}px`,backgroundColor:"#3eaf7c44",transition:"all 0.05s linear"}:{display:"none"}),h=u(()=>({transform:`translate(calc(${t.value}px - 50%), calc(${e.value}px - 50%))`}));return(o,a)=>(f(),D(M,null,[i("div",{style:m(l.value),fixed:"","pointer-events-none":"","z-9999":"",border:"1 $vp-c-brand"},null,4),i("div",{style:m(h.value),fixed:"","top-0":"","left-0":"","pointer-events-none":"","w-2":"","h-2":"","rounded-full":"","bg-green-400":"",shadow:"","z-999":""},null,4),i("div",L,[a[2]||(a[2]=i("span",{class:"mr-4"},"X",-1)),c(i("input",{"onUpdate:modelValue":a[0]||(a[0]=p=>A(t)?t.value=p:null),type:"number"},null,512),[[B,y(t)]])]),i("div",I,[a[3]||(a[3]=i("span",{class:"mr-4"},"Y",-1)),c(i("input",{"onUpdate:modelValue":a[1]||(a[1]=p=>A(e)?e.value=p:null),type:"number"},null,512),[[B,y(e)]])])],64))}}),H=`<script lang="ts" setup>
+import { useElementBounding, useElementByPoint, useEventListener, useMouse } from '@vueuse/core'
+import { computed, reactive } from 'vue'
+
+const { x, y } = useMouse({ type: 'client' })
+const { element } = useElementByPoint({ x, y })
+const bounding = reactive(useElementBounding(element))
+
+useEventListener('scroll', bounding.update, { passive: true, capture: true })
+
+const boxStyles = computed(() => {
+  if (element.value) {
+    return {
+      display: 'block',
+      width: \`\${bounding.width}px\`,
+      height: \`\${bounding.height}px\`,
+      left: \`\${bounding.left}px\`,
+      top: \`\${bounding.top}px\`,
+      backgroundColor: '#3eaf7c44',
+      transition: 'all 0.05s linear',
+    } as Record<string, string | number>
+  }
+  return {
+    display: 'none',
+  }
+})
+
+const pointStyles = computed<Record<string, string | number>>(() => ({
+  transform: \`translate(calc(\${x.value}px - 50%), calc(\${y.value}px - 50%))\`,
+}))
+<\/script>
+
+<template>
+  <div
+    :style="boxStyles"
+    fixed
+    pointer-events-none
+    z-9999
+    border="1 $vp-c-brand"
+  />
+  <div
+    :style="pointStyles"
+    fixed
+    top-0
+    left-0
+    pointer-events-none
+    w-2
+    h-2
+    rounded-full
+    bg-green-400
+    shadow
+    z-999
+  />
+  <div class="flex items-center">
+    <span class="mr-4">X</span>
+    <input v-model="x" type="number">
+  </div>
+  <div class="flex items-center">
+    <span class="mr-4">Y</span>
+    <input v-model="y" type="number">
+  </div>
+</template>
+`,Y={class:"demo-source-link"},j=["href"],os=JSON.parse('{"title":"useElementByPoint","description":"","frontmatter":{"category":"Sensors"},"headers":[],"relativePath":"core/useElementByPoint/index.md","filePath":"core/useElementByPoint/index.md","lastUpdated":1715934697000}'),X={name:"core/useElementByPoint/index.md"},ds=Object.assign(X,{setup(d){const e=w({template:{value:{welcomeSFC:H}}}).serialize();return(n,s)=>{const l=_,h=x,o=v,a=E;return f(),D("div",null,[s[1]||(s[1]=i("h1",{id:"useelementbypoint",tabindex:"-1"},[g("useElementByPoint "),i("a",{class:"header-anchor",href:"#useelementbypoint","aria-label":"Permalink to “useElementByPoint”"},"​")],-1)),r(l,{fn:"useElementByPoint"}),s[2]||(s[2]=i("p",null,"根据点获取响应式元素。",-1)),s[3]||(s[3]=i("h2",{id:"示例",tabindex:"-1"},[g("示例 "),i("a",{class:"header-anchor",href:"#示例","aria-label":"Permalink to “示例”"},"​")],-1)),r(h,null,{default:T(()=>[i("p",Y,[s[0]||(s[0]=i("a",{href:"https://github.com/vueuse/vueuse/blob/main/packages/core/useElementByPoint/demo.vue",target:"_blank"},"源码",-1)),i("a",{href:`https://playground.vueuse.org/?vueuse=13.2.0${y(e)}`,target:"_blank"},"playground (beta)",8,j)]),r(G)]),_:1}),s[4]||(s[4]=R("",7)),r(o,{fn:"useElementByPoint"}),s[5]||(s[5]=i("h2",{id:"更新日志",tabindex:"-1"},[g("更新日志 "),i("a",{class:"header-anchor",href:"#更新日志","aria-label":"Permalink to “更新日志”"},"​")],-1)),r(a,{fn:"useElementByPoint"})])}}});export{os as __pageData,ds as default};

@@ -1,0 +1,1 @@
+import{aj as n,A as u,a3 as t,r as p}from"./vue.DQfvmmyQ.js";import{l as s}from"./metadata.HXIr2NKd.js";function i(e,r,o){if(typeof e=="function"||n(e))return u(()=>s(t(e),t(r),t(o)));const a=p(e);return u({get(){return a.value=s(a.value,t(r),t(o))},set(f){a.value=s(f,t(r),t(o))}})}export{i as u};
