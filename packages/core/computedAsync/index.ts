@@ -16,13 +16,13 @@ import {
  */
 export type AsyncComputedOnCancel = (cancelCallback: Fn) => void
 
-export interface AsyncComputedOptions {
+export interface AsyncComputedOptions<Lazy = boolean> {
   /**
    * 是否应该延迟评估值
    *
    * @default false
    */
-  lazy?: boolean
+  lazy?: Lazy
 
   /**
    * 传递的 Ref 以接收异步评估的更新
@@ -63,22 +63,22 @@ export interface AsyncComputedOptions {
 export function computedAsync<T>(
   evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,
   initialState: T,
-  optionsOrRef: AsyncComputedOptions & { lazy: true },
+  optionsOrRef: AsyncComputedOptions<true>,
 ): ComputedRef<T>
 export function computedAsync<T>(
   evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,
   initialState: undefined,
-  optionsOrRef: AsyncComputedOptions & { lazy: true },
+  optionsOrRef: AsyncComputedOptions<true>,
 ): ComputedRef<T | undefined>
 export function computedAsync<T>(
   evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,
   initialState: T,
-  optionsOrRef?: Ref<boolean> | (AsyncComputedOptions & { lazy?: false | undefined }),
+  optionsOrRef?: Ref<boolean> | AsyncComputedOptions,
 ): Ref<T>
 export function computedAsync<T>(
   evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,
   initialState?: undefined,
-  optionsOrRef?: Ref<boolean> | (AsyncComputedOptions & { lazy?: false | undefined }),
+  optionsOrRef?: Ref<boolean> | AsyncComputedOptions,
 ): Ref<T | undefined>
 export function computedAsync<T>(
   evaluationCallback: (onCancel: AsyncComputedOnCancel) => T | Promise<T>,

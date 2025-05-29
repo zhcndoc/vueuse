@@ -13,6 +13,13 @@ export interface UseNowOptions<Controls extends boolean> {
   controls?: Controls
 
   /**
+   * 立即开始计时
+   *
+   * @default true
+   */
+  immediate?: boolean
+
+  /**
    * 更新间隔，单位为毫秒，或使用 requestAnimationFrame
    *
    * @default requestAnimationFrame
@@ -32,6 +39,7 @@ export function useNow(options: UseNowOptions<boolean> = {}) {
   const {
     controls: exposeControls = false,
     interval = 'requestAnimationFrame',
+    immediate = true,
   } = options
 
   const now = deepRef(new Date())
@@ -39,8 +47,8 @@ export function useNow(options: UseNowOptions<boolean> = {}) {
   const update = () => now.value = new Date()
 
   const controls: Pausable = interval === 'requestAnimationFrame'
-    ? useRafFn(update, { immediate: true })
-    : useIntervalFn(update, interval, { immediate: true })
+    ? useRafFn(update, { immediate })
+    : useIntervalFn(update, interval, { immediate })
 
   if (exposeControls) {
     return {

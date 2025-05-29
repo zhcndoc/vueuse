@@ -25,6 +25,7 @@ export type UseIntervalFnReturn = Pausable
 /**
  * 带有控制功能的 `setInterval` 包装器
  *
+ * @see https://vueuse.org/useIntervalFn
  * @param cb
  * @param interval
  * @param options
