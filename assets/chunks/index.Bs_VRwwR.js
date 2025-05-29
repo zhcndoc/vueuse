@@ -1,0 +1,1 @@
+import{w as l}from"./index.BfRJYHj0.js";import{p as u}from"./filters.qsUK02Mp.js";function h(t,e,i={}){const{eventFilter:a,initialState:s="active",...r}=i,{eventFilter:o,pause:n,resume:c,isActive:p}=u(a,{initialState:s});return{stop:l(t,e,{...r,eventFilter:o}),pause:n,resume:c,isActive:p}}export{h as w};

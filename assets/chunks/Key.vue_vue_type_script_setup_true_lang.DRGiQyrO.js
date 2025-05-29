@@ -1,0 +1,1 @@
+import{d as o,i as e,o as r,q as t,f as p}from"./vue.BjJVtbJX.js";const c=o({__name:"Key",props:{value:{type:Boolean}},setup(s){return(a,n)=>(r(),e("div",{class:t(["font-mono px-4 py-2 rounded",a.value?"opacity-100 text-primary bg-primary bg-opacity-15":"opacity-50 bg-gray-600 bg-opacity-10 dark:bg-gray-400 dark:bg-opacity-10"])},[p(a.$slots,"default")],2))}});export{c as _};

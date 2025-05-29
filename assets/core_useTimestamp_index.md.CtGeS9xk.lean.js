@@ -1,0 +1,10 @@
+import{_ as o,a as A}from"./chunks/Contributors.vue_vue_type_script_setup_true_lang.B34KrB-E.js";import{_ as m}from"./chunks/DemoContainer.vue_vue_type_script_setup_true_lang.D4TFK0oQ.js";import{_ as c}from"./chunks/FunctionInfo.vue_vue_type_script_setup_true_lang.Dvv1reKl.js";import{u}from"./chunks/index.RK3Ees0j.js";import{d as B,i as l,o as k,t as f,H as p,Z as b,j as i,g as a,Y as C,y as n,w as _}from"./chunks/vue.BjJVtbJX.js";import"./chunks/metadata.CHQ7S0zC.js";import"./chunks/utils.B5e_uQLX.js";const E=B({__name:"demo",setup(e){const t=u();return(h,r)=>(k(),l("div",null,"时间戳: "+f(p(t)),1))}}),F=`<script setup lang="ts">
+import { useTimestamp } from '@vueuse/core'
+
+const timestamp = useTimestamp()
+<\/script>
+
+<template>
+  <div>时间戳: {{ timestamp }}</div>
+</template>
+`,v={class:"demo-source-link"},T=["href"],R=JSON.parse('{"title":"useTimestamp","description":"","frontmatter":{"category":"Animation"},"headers":[],"relativePath":"core/useTimestamp/index.md","filePath":"core/useTimestamp/index.md","lastUpdated":1715934697000}'),x={name:"core/useTimestamp/index.md"},V=Object.assign(x,{setup(e){const h=b({template:{value:{welcomeSFC:F}}}).serialize();return(r,s)=>{const d=c,g=m,y=o,D=A;return k(),l("div",null,[s[1]||(s[1]=i("h1",{id:"usetimestamp",tabindex:"-1"},[n("useTimestamp "),i("a",{class:"header-anchor",href:"#usetimestamp","aria-label":"Permalink to “useTimestamp”"},"​")],-1)),a(d,{fn:"useTimestamp"}),s[2]||(s[2]=i("p",null,"响应式的当前时间戳",-1)),s[3]||(s[3]=i("h2",{id:"示例",tabindex:"-1"},[n("示例 "),i("a",{class:"header-anchor",href:"#示例","aria-label":"Permalink to “示例”"},"​")],-1)),a(g,null,{default:_(()=>[i("p",v,[s[0]||(s[0]=i("a",{href:"https://github.com/vueuse/vueuse/blob/main/packages/core/useTimestamp/demo.vue",target:"_blank"},"源码",-1)),i("a",{href:`https://playground.vueuse.org/?vueuse=13.3.0${p(h)}`,target:"_blank"},"playground (beta)",8,T)]),a(E)]),_:1}),s[4]||(s[4]=C("",10)),a(y,{fn:"useTimestamp"}),s[5]||(s[5]=i("h2",{id:"更新日志",tabindex:"-1"},[n("更新日志 "),i("a",{class:"header-anchor",href:"#更新日志","aria-label":"Permalink to “更新日志”"},"​")],-1)),a(D,{fn:"useTimestamp"})])}}});export{R as __pageData,V as default};

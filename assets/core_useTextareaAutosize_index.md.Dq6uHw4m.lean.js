@@ -1,0 +1,18 @@
+import{_ as m,a as C}from"./chunks/Contributors.vue_vue_type_script_setup_true_lang.B34KrB-E.js";import{_ as x}from"./chunks/DemoContainer.vue_vue_type_script_setup_true_lang.D4TFK0oQ.js";import{_ as b}from"./chunks/FunctionInfo.vue_vue_type_script_setup_true_lang.Dvv1reKl.js";import{z as c,B as d,a3 as v,v as _,d as E,i as A,o as D,j as t,a2 as T,a5 as F,H as B,a4 as z,Z as q,g as k,Y as w,y as g,w as P}from"./chunks/vue.BjJVtbJX.js";import{t as u}from"./chunks/index.CFuYet67.js";import{d as f}from"./chunks/metadata.CHQ7S0zC.js";import{u as R}from"./chunks/index.DfLA9Mbx.js";import"./chunks/utils.B5e_uQLX.js";import"./chunks/index.BsCVlyoA.js";import"./chunks/index.D6Ixh6S-.js";import"./chunks/index.CBIpye6U.js";function H(s=f,h){s&&typeof s.requestAnimationFrame=="function"?s.requestAnimationFrame(h):h()}function S(s={}){const{window:h=f}=s,a=u(s==null?void 0:s.element),p=u((s==null?void 0:s.input)??""),i=(s==null?void 0:s.styleProp)??"height",e=c(1),r=c(0);function l(){var o;if(!a.value)return;let n="";a.value.style[i]="1px",e.value=(o=a.value)==null?void 0:o.scrollHeight;const y=v(s==null?void 0:s.styleTarget);y?y.style[i]=`${e.value}px`:n=`${e.value}px`,a.value.style[i]=n}return d([p,a],()=>_(l),{immediate:!0}),d(e,()=>{var n;return(n=s==null?void 0:s.onResize)==null?void 0:n.call(s)}),R(a,([{contentRect:n}])=>{r.value!==n.width&&H(h,()=>{r.value=n.width,l()})}),s!=null&&s.watch&&d(s.watch,l,{immediate:!0,deep:!0}),{textarea:a,input:p,triggerResize:l}}const M=E({__name:"demo",setup(s){const{textarea:h,input:a}=S();return(p,i)=>(D(),A("div",null,[i[1]||(i[1]=t("span",null,"输入内容，文本框会自动增长：",-1)),T(t("textarea",{ref_key:"textarea",ref:h,"onUpdate:modelValue":i[0]||(i[0]=e=>z(a)?a.value=e:null),class:"resize-none",placeholder:"你在想什么？"},null,512),[[F,B(a)]])]))}}),V=`<script setup lang="ts">
+import { useTextareaAutosize } from '@vueuse/core'
+
+const { textarea, input } = useTextareaAutosize()
+<\/script>
+
+<template>
+  <div>
+    <span>输入内容，文本框会自动增长：</span>
+    <textarea
+      ref="textarea"
+      v-model="input"
+      class="resize-none"
+      placeholder="你在想什么？"
+    />
+  </div>
+</template>
+`,$={class:"demo-source-link"},N=["href"],X=JSON.parse('{"title":"useTextareaAutosize","description":"","frontmatter":{"category":"Browser"},"headers":[],"relativePath":"core/useTextareaAutosize/index.md","filePath":"core/useTextareaAutosize/index.md","lastUpdated":1715934697000}'),O={name:"core/useTextareaAutosize/index.md"},ss=Object.assign(O,{setup(s){const a=q({template:{value:{welcomeSFC:V}}}).serialize();return(p,i)=>{const e=b,r=x,l=m,n=C;return D(),A("div",null,[i[1]||(i[1]=t("h1",{id:"usetextareaautosize",tabindex:"-1"},[g("useTextareaAutosize "),t("a",{class:"header-anchor",href:"#usetextareaautosize","aria-label":"Permalink to “useTextareaAutosize”"},"​")],-1)),k(e,{fn:"useTextareaAutosize"}),i[2]||(i[2]=t("p",null,"根据内容自动更新 textarea 的高度。",-1)),i[3]||(i[3]=t("h2",{id:"示例",tabindex:"-1"},[g("示例 "),t("a",{class:"header-anchor",href:"#示例","aria-label":"Permalink to “示例”"},"​")],-1)),k(r,null,{default:P(()=>[t("p",$,[i[0]||(i[0]=t("a",{href:"https://github.com/vueuse/vueuse/blob/main/packages/core/useTextareaAutosize/demo.vue",target:"_blank"},"源码",-1)),t("a",{href:`https://playground.vueuse.org/?vueuse=13.3.0${B(a)}`,target:"_blank"},"playground (beta)",8,N)]),k(M)]),_:1}),i[4]||(i[4]=w("",12)),k(l,{fn:"useTextareaAutosize"}),i[5]||(i[5]=t("h2",{id:"更新日志",tabindex:"-1"},[g("更新日志 "),t("a",{class:"header-anchor",href:"#更新日志","aria-label":"Permalink to “更新日志”"},"​")],-1)),k(n,{fn:"useTextareaAutosize"})])}}});export{X as __pageData,ss as default};
