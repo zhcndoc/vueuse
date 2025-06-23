@@ -48,6 +48,18 @@ const computedRef = computedWithControl(
 computedRef.trigger()
 ```
 
-::: warning
-手动触发仅适用于 Vue 3
-:::
+### 深度观察
+
+与 `computed` 不同，`computedWithControl` 默认是浅层的。
+
+您可以指定与 `watch` 相同的选项来控制行为：
+
+```ts
+const source = ref({ name: 'foo' })
+
+const computedRef = computedWithControl(
+  source,
+  () => counter.value,
+  { deep: true },
+)
+```

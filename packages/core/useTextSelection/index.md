@@ -11,6 +11,7 @@ category: Sensors
 ```vue
 <script setup lang="ts">
 import { useTextSelection } from '@vueuse/core'
+
 const state = useTextSelection()
 </script>
 

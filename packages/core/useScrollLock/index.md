@@ -30,6 +30,7 @@ isLocked.value = false // 解锁
 ```vue
 <script setup lang="ts">
 import { vScrollLock } from '@vueuse/components'
+
 const data = ref([1, 2, 3, 4, 5, 6])
 const isLocked = ref(false)
 const toggleLock = useToggle(isLocked)

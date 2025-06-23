@@ -13,20 +13,21 @@ interface InferEventTarget<Events> {
 
 export type WindowEventName = keyof WindowEventMap
 export type DocumentEventName = keyof DocumentEventMap
+export type ShadowRootEventName = keyof ShadowRootEventMap
 
 export interface GeneralEventListener<E = Event> {
   (evt: E): void
 }
 
 /**
- * 在挂载时使用 addEventListener 进行注册，并在卸载时自动使用 removeEventListener 进行移除。
+ * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
- * 重载 1：监听 window 事件
+ * Overload 1: Omitted Window target
  *
  * @see https://vueuse.org/useEventListener
- * @param event 事件类型或事件类型数组。
- * @param listener 事件监听器或事件监听器数组。
- * @param options 可选项，用于配置事件监听的行为。
+ * @param event
+ * @param listener
+ * @param options
  */
 // @ts-expect-error - TypeScript gets confused with this and can't infer the correct overload with Parameters<...>
 export function useEventListener<E extends keyof WindowEventMap>(
@@ -36,15 +37,15 @@ export function useEventListener<E extends keyof WindowEventMap>(
 ): Fn
 
 /**
- * 在挂载时使用 addEventListener 进行注册，并在卸载时自动使用 removeEventListener 进行移除。
+ * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
- * 重载 2：显式指定了 Window 目标
+ * Overload 2: Explicitly Window target
  *
  * @see https://vueuse.org/useEventListener
- * @param target Window 目标对象。
- * @param event 事件类型或事件类型数组。
- * @param listener 事件监听器或事件监听器数组。
- * @param options 可选项，用于配置事件监听的行为。
+ * @param target
+ * @param event
+ * @param listener
+ * @param options
  */
 export function useEventListener<E extends keyof WindowEventMap>(
   target: Window,
@@ -54,51 +55,69 @@ export function useEventListener<E extends keyof WindowEventMap>(
 ): Fn
 
 /**
- * 在挂载时使用 addEventListener 进行注册，并在卸载时自动使用 removeEventListener 进行移除。
+ * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
- * 重载 3：显式指定了 Document 目标
+ * Overload 3: Explicitly Document target
  *
  * @see https://vueuse.org/useEventListener
- * @param target Document 或 ShadowRoot 目标对象。
- * @param event 事件类型或事件类型数组。
- * @param listener 事件监听器或事件监听器数组。
- * @param options 可选项，用于配置事件监听的行为。
+ * @param target
+ * @param event
+ * @param listener
+ * @param options
  */
 export function useEventListener<E extends keyof DocumentEventMap>(
-  target: DocumentOrShadowRoot,
+  target: Document,
   event: MaybeRefOrGetter<Arrayable<E>>,
   listener: MaybeRef<Arrayable<(this: Document, ev: DocumentEventMap[E]) => any>>,
   options?: MaybeRefOrGetter<boolean | AddEventListenerOptions>
 ): Fn
 
 /**
- * 在挂载时使用 addEventListener 进行注册，并在卸载时自动使用 removeEventListener 进行移除。
+ * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
- * 重载 4：显式指定了 HTMLElement 目标
+ * Overload 4: Explicitly ShadowRoot target
  *
  * @see https://vueuse.org/useEventListener
- * @param target HTMLElement 目标对象。
- * @param event 事件类型或事件类型数组。
- * @param listener 事件监听器。
- * @param options 可选项，用于配置事件监听的行为。
+ * @param target
+ * @param event
+ * @param listener
+ * @param options
+ */
+export function useEventListener<E extends keyof ShadowRootEventMap>(
+  target: MaybeRefOrGetter<Arrayable<ShadowRoot> | null | undefined>,
+  event: MaybeRefOrGetter<Arrayable<E>>,
+  listener: MaybeRef<Arrayable<(this: ShadowRoot, ev: ShadowRootEventMap[E]) => any>>,
+  options?: MaybeRefOrGetter<boolean | AddEventListenerOptions>
+): Fn
+
+/**
+ * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
+ *
+ * Overload 5: Explicitly HTMLElement target
+ *
+ * @see https://vueuse.org/useEventListener
+ * @param target
+ * @param event
+ * @param listener
+ * @param options
  */
 export function useEventListener<E extends keyof HTMLElementEventMap>(
   target: MaybeRefOrGetter<Arrayable<HTMLElement> | null | undefined>,
   event: MaybeRefOrGetter<Arrayable<E>>,
   listener: MaybeRef<(this: HTMLElement, ev: HTMLElementEventMap[E]) => any>,
   options?: MaybeRefOrGetter<boolean | AddEventListenerOptions>
-): () => void
+): Fn
 
 /**
- * 在挂载时使用 addEventListener 进行注册，并在卸载时自动使用 removeEventListener 进行移除。
+ * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
- * 重载 5：自定义事件目标，并推断事件类型
+ * Overload 6: Custom event target with event type infer
  *
  * @see https://vueuse.org/useEventListener
- * @param target 自定义事件目标对象，根据事件名推断。
- * @param event 事件类型或事件类型数组。
- * @param listener 事件监听器或事件监听器数组。
- * @param options 可选项，用于配置事件监听的行为。
+ * @param target
+ * @param event
+ * @param listener
+ * @param options
  */
 export function useEventListener<Names extends string, EventType = Event>(
   target: MaybeRefOrGetter<Arrayable<InferEventTarget<Names>> | null | undefined>,
@@ -108,15 +127,15 @@ export function useEventListener<Names extends string, EventType = Event>(
 ): Fn
 
 /**
- * 在挂载时使用 addEventListener 进行注册，并在卸载时自动使用 removeEventListener 进行移除。
+ * Register using addEventListener on mounted, and removeEventListener automatically on unmounted.
  *
- * 重载 6：自定义事件目标，通用型
+ * Overload 7: Custom event target fallback
  *
  * @see https://vueuse.org/useEventListener
- * @param target 自定义事件目标对象。
- * @param event 事件类型或事件类型数组。
- * @param listener 事件监听器或事件监听器数组。
- * @param options 可选项，用于配置事件监听的行为。
+ * @param target
+ * @param event
+ * @param listener
+ * @param options
  */
 export function useEventListener<EventType = Event>(
   target: MaybeRefOrGetter<Arrayable<EventTarget> | null | undefined>,

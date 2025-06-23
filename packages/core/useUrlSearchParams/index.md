@@ -47,3 +47,22 @@ params.foo = 'bar'
 params.vueuse = 'awesome'
 // URL 更新为 `/your/route#foo=bar&vueuse=awesome`
 ```
+
+### 自定义字符串化函数
+
+您可以提供自定义函数来序列化 URL 参数，使用 `stringify` 选项。当您需要对查询字符串进行特殊格式化时，这非常有用。
+
+```js
+import { useUrlSearchParams } from '@vueuse/core'
+
+// Custom stringify function that removes equal signs for empty values
+const params = useUrlSearchParams('history', {
+  stringify: (params) => {
+    return params.toString().replace(/=(&|$)/g, '$1')
+  }
+})
+
+params.foo = ''
+params.bar = 'value'
+// url updated to `?foo&bar=value` instead of `?foo=&bar=value`
+```
