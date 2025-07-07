@@ -6,12 +6,13 @@ const voice = deepRef<SpeechSynthesisVoice>(undefined as unknown as SpeechSynthe
 const text = shallowRef('你好，欢迎使用 VueUse！')
 const pitch = shallowRef(1)
 const rate = shallowRef(1)
+const volume = shallowRef(1)
 
 const speech = useSpeechSynthesis(text, {
   voice,
   pitch,
   rate,
-  lang: 'zh-CN',
+  volume,
 })
 
 let synth: SpeechSynthesis
@@ -94,6 +95,14 @@ function stop() {
         <label class="font-bold mr-3">语速</label>
         <div class="mt-1" inline-flex>
           <input v-model="rate" type="range" min="0.5" max="2" step="0.1">
+        </div>
+      </div>
+
+      <br>
+      <div inline-flex items-center>
+        <label class="font-bold mr-3">Volume</label>
+        <div class="mt-1" inline-flex>
+          <input v-model="volume" type="range" min="0.5" max="2" step="0.1">
         </div>
       </div>
 
