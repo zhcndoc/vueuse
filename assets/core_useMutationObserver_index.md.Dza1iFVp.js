@@ -1,0 +1,90 @@
+import{_ as u,a as c}from"./chunks/Contributors.vue_vue_type_script_setup_true_lang.CIm_UbOG.js";import{_ as D}from"./chunks/DemoContainer.vue_vue_type_script_setup_true_lang.CTa0lAlj.js";import{_ as m}from"./chunks/FunctionInfo.vue_vue_type_script_setup_true_lang.DMwR8dBP.js";import{u as A}from"./chunks/index.acMvEksu.js";import{d as b,a1 as f,r as v,z as g,i as h,o as k,j as i,F as B,O as _,t as M,n as C,q as E,Z as O,g as n,Y as F,y as l,w as x,H as R}from"./chunks/vue.DDc96eEg.js";import"./chunks/metadata.DSy5Z-Tw.js";import"./chunks/utils.B5e_uQLX.js";import"./chunks/index.C8PB9l6c.js";import"./chunks/index.rocSL1WN.js";import"./chunks/index.BrP_zX4n.js";import"./chunks/general.tY1gtZD0.js";const T=b({__name:"demo",setup(y){const p=f("el"),e=v([]),r=g({}),s=g({});return A(p,t=>{const a=t[0];a&&e.value.push(a.attributeName)},{attributes:!0}),setTimeout(()=>{r.value={test:!0,test2:!0}},1e3),setTimeout(()=>{s.value={color:"red"}},1550),(t,a)=>(k(),h("div",null,[i("div",{ref_key:"el",ref:p,class:E(r.value),style:C(s.value)},[(k(!0),h(B,null,_(e.value,(d,o)=>(k(),h("div",{key:o}," Mutation Attribute: "+M(d),1))),128))],6)]))}}),N=`<script setup lang="ts">
+import { useMutationObserver } from '@vueuse/core'
+import { ref as deepRef, shallowRef, useTemplateRef } from 'vue'
+
+const el = useTemplateRef<HTMLElement>('el')
+const messages = deepRef<string[]>([])
+const className = shallowRef({})
+const style = shallowRef({})
+
+useMutationObserver(
+  el,
+  (mutations) => {
+    const mutation = mutations[0]
+
+    if (!mutation)
+      return
+
+    messages.value.push(mutation.attributeName!)
+  },
+  { attributes: true },
+)
+
+setTimeout(() => {
+  className.value = {
+    test: true,
+    test2: true,
+  }
+}, 1000)
+
+setTimeout(() => {
+  style.value = {
+    color: 'red',
+  }
+}, 1550)
+<\/script>
+
+<template>
+  <div>
+    <div ref="el" :class="className" :style="style">
+      <div v-for="(text, index) of messages" :key="index">
+        Mutation Attribute: {{ text }}
+      </div>
+    </div>
+  </div>
+</template>
+`,P={class:"demo-source-link"},S=["href"],J=JSON.parse('{"title":"useMutationObserver","description":"","frontmatter":{"category":"Elements"},"headers":[],"relativePath":"core/useMutationObserver/index.md","filePath":"core/useMutationObserver/index.md","lastUpdated":1737604618000}'),w={name:"core/useMutationObserver/index.md"},Y=Object.assign(w,{setup(y){const e=O({template:{value:{welcomeSFC:N}}}).serialize();return(r,s)=>{const t=m,a=D,d=u,o=c;return k(),h("div",null,[s[1]||(s[1]=i("h1",{id:"usemutationobserver",tabindex:"-1"},[l("useMutationObserver "),i("a",{class:"header-anchor",href:"#usemutationobserver","aria-label":"Permalink to “useMutationObserver”"},"​")],-1)),n(t,{fn:"useMutationObserver"}),s[2]||(s[2]=i("p",null,[l("监视对 DOM 树的变更。"),i("a",{href:"https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver",target:"_blank",rel:"noreferrer"},"MutationObserver MDN")],-1)),s[3]||(s[3]=i("h2",{id:"示例",tabindex:"-1"},[l("示例 "),i("a",{class:"header-anchor",href:"#示例","aria-label":"Permalink to “示例”"},"​")],-1)),n(a,null,{default:x(()=>[i("p",P,[s[0]||(s[0]=i("a",{href:"https://github.com/vueuse/vueuse/blob/main/packages/core/useMutationObserver/demo.vue",target:"_blank"},"源码",-1)),i("a",{href:`https://playground.vueuse.org/?vueuse=13.5.0${R(e)}`,target:"_blank"},"playground (beta)",8,S)]),n(T)]),_:1}),s[4]||(s[4]=F(`<h2 id="用法" tabindex="-1">用法 <a class="header-anchor" href="#用法" aria-label="Permalink to “用法”">​</a></h2><div class="language-ts"><button title="Copy Code" class="copy"></button><span class="lang">ts</span><pre class="shiki shiki-themes vitesse-light vitesse-dark" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">import</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> {</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;"> useMutationObserver</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> }</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;"> from</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77;"> &#39;</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D;">@vueuse/core</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77;">&#39;</span></span>
+<span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">import</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> {</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;"> ref</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">,</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;"> useTemplateRef</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> }</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;"> from</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77;"> &#39;</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D;">vue</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77;">&#39;</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">export</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;"> default</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> {</span></span>
+<span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">  setup</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">() {</span></span>
+<span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">    const </span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">el</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> =</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665;"> useTemplateRef</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">(</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77;">&#39;</span><span style="--shiki-light:#B56959;--shiki-dark:#C98A7D;">el</span><span style="--shiki-light:#B5695977;--shiki-dark:#C98A7D77;">&#39;</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">)</span></span>
+<span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">    const </span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">messages</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> =</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665;"> ref</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">([])</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">    useMutationObserver</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">(</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">el</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">, (</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">mutations</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">) =&gt; {</span></span>
+<span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">      if</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> (</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">mutations</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">[</span><span style="--shiki-light:#2F798A;--shiki-dark:#4C9A91;">0</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">])</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">        messages</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">.</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">value</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">.</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">push</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">(</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">mutations</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">[</span><span style="--shiki-light:#2F798A;--shiki-dark:#4C9A91;">0</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">].</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">attributeName</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">)</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">    }, {</span></span>
+<span class="line"><span style="--shiki-light:#998418;--shiki-dark:#B8A965;">      attributes</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">true</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">,</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">    })</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">    return</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> {</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">      el</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">,</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">      messages</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">,</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">    }</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">  },</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">}</span></span></code></pre></div><h2 id="类型声明" tabindex="-1">类型声明 <a class="header-anchor" href="#类型声明" aria-label="Permalink to “类型声明”">​</a></h2><div class="language-typescript"><button title="Copy Code" class="copy"></button><span class="lang">typescript</span><pre class="shiki shiki-themes vitesse-light vitesse-dark" style="--shiki-light:#393a34;--shiki-dark:#dbd7caee;--shiki-light-bg:#ffffff;--shiki-dark-bg:#121212;" tabindex="0" dir="ltr"><code><span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">export</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;"> interface</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;"> UseMutationObserverOptions</span></span>
+<span class="line"><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">  extends</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665;"> MutationObserverInit</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">,</span></span>
+<span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">    ConfigurableWindow</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> {}</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;">/**</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;"> * 监视对 DOM 树的变更</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;"> *</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;"> * </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">@</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">see</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;"> https://vueuse.org/useMutationObserver</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;"> * </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">@</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">see</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;"> https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver</span><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;"> MutationObserver MDN</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;"> * </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">@</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">param</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;"> target</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;"> * </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">@</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">param</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;"> callback</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;"> * </span><span style="--shiki-light:#999999;--shiki-dark:#666666;">@</span><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">param</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;"> options</span></span>
+<span class="line"><span style="--shiki-light:#A0ADA0;--shiki-dark:#758575DD;"> */</span></span>
+<span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">export</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;"> declare</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;"> function</span><span style="--shiki-light:#59873A;--shiki-dark:#80A665;"> useMutationObserver</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">(</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  target</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">:</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">    | </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">MaybeComputedElementRef</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">    | </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">MaybeComputedElementRef</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">[]</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">    | </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">MaybeRefOrGetter</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">&lt;</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">MaybeElement</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">[]&gt;,</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  callback</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">MutationCallback</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">,</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  options</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">?</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">UseMutationObserverOptions</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">,</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">):</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> {</span></span>
+<span class="line"><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;">  isSupported</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">ComputedRef</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">&lt;</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">boolean</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">&gt;</span></span>
+<span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">  stop</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: () =&gt; </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">void</span></span>
+<span class="line"><span style="--shiki-light:#59873A;--shiki-dark:#80A665;">  takeRecords</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">: () =&gt; </span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;">MutationRecord</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">[] | </span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">undefined</span></span>
+<span class="line"><span style="--shiki-light:#999999;--shiki-dark:#666666;">}</span></span>
+<span class="line"><span style="--shiki-light:#1E754F;--shiki-dark:#4D9375;">export</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;"> type</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;"> UseMutationObserverReturn</span><span style="--shiki-light:#999999;--shiki-dark:#666666;"> =</span><span style="--shiki-light:#2E8F82;--shiki-dark:#5DA994;"> ReturnType</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">&lt;</span><span style="--shiki-light:#AB5959;--shiki-dark:#CB7676;">typeof</span><span style="--shiki-light:#B07D48;--shiki-dark:#BD976A;"> useMutationObserver</span><span style="--shiki-light:#999999;--shiki-dark:#666666;">&gt;</span></span></code></pre></div><h2 id="源码" tabindex="-1">源码 <a class="header-anchor" href="#源码" aria-label="Permalink to “源码”">​</a></h2><p><a href="https://github.com/vueuse/vueuse/blob/main/packages/core/useMutationObserver/index.ts" target="_blank" rel="noreferrer">源码</a> • <a href="https://github.com/vueuse/vueuse/blob/main/packages/core/useMutationObserver/demo.vue" target="_blank" rel="noreferrer">演示</a> • <a href="https://github.com/vueuse/vueuse/blob/main/packages/core/useMutationObserver/index.md" target="_blank" rel="noreferrer">文档</a></p><h2 id="贡献者" tabindex="-1">贡献者 <a class="header-anchor" href="#贡献者" aria-label="Permalink to “贡献者”">​</a></h2>`,7)),n(d,{fn:"useMutationObserver"}),s[5]||(s[5]=i("h2",{id:"更新日志",tabindex:"-1"},[l("更新日志 "),i("a",{class:"header-anchor",href:"#更新日志","aria-label":"Permalink to “更新日志”"},"​")],-1)),n(o,{fn:"useMutationObserver"})])}}});export{J as __pageData,Y as default};
