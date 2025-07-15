@@ -184,4 +184,4 @@ batch(() => {
 
 ## 推荐阅读
 
-- [历史记录与持久性](https://patak.dev/vue/history-and-persistence.html) - 由 [@matias-capeletto](https://github.com/matias-capeletto)
+- [历史记录与持久性](https://patak.dev/vue/history-and-persistence.html) - 由 [@patak-dev](https://github.com/patak-dev)
