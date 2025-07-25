@@ -8,10 +8,22 @@ category: Elements
 
 ## 用法
 
-```js
+```vue
+<script setup lang="ts">
 import { useWindowScroll } from '@vueuse/core'
 
 const { x, y } = useWindowScroll()
-console.log(x.value) // 读取当前的 x 滚动值
-y.value = 100 // 将 y 滚动到 100
+</script>
+
+<template>
+  <div>
+    read current x, y scroll: {{ x }}, {{ y }}
+  </div>
+  <button @click="x = 100">
+    scroll X to 100
+  </button>
+  <button @click="y = 100">
+    scroll Y to 100
+  </button>
+</template>
 ```

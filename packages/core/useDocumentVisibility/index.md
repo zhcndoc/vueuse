@@ -8,10 +8,12 @@ category: Elements
 
 ## 用法
 
-```js
+```vue
+<script setup lang="ts">
 import { useDocumentVisibility } from '@vueuse/core'
 
 const visibility = useDocumentVisibility()
+</script>
 ```
 
 ## 组件用法

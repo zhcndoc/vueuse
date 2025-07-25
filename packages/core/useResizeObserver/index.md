@@ -9,7 +9,7 @@ category: Elements
 ## 用法
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { useResizeObserver } from '@vueuse/core'
 import { ref, useTemplateRef } from 'vue'
 

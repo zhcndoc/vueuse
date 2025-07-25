@@ -8,10 +8,16 @@ category: Elements
 
 ## 用法
 
-```js
+```vue
+<script setup lang="ts">
 import { useWindowFocus } from '@vueuse/core'
 
 const focused = useWindowFocus()
+</script>
+
+<template>
+  <div>{{ focused }}</div>
+</template>
 ```
 
 ## 组件使用

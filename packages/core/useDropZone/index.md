@@ -17,6 +17,7 @@ category: Elements
 ```vue
 <script setup lang="ts">
 import { useDropZone } from '@vueuse/core'
+import { ref } from 'vue'
 
 const dropZoneRef = ref<HTMLDivElement>()
 

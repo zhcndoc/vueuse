@@ -24,6 +24,32 @@ await sleep(1100)
 console.log(debounced.value) // 'bar'
 ```
 
+一个带有对象引用的示例。
+
+```js
+import { refDebounced } from '@vueuse/core'
+import { shallowRef } from 'vue'
+
+const data = shallowRef({
+  name: 'foo',
+  age: 18,
+})
+const debounced = refDebounced(data, 1000)
+
+function update() {
+  data.value = {
+    ...data.value,
+    name: 'bar',
+  }
+}
+
+console.log(debounced.value) // { name: 'foo', age: 18 }
+update()
+await sleep(1100)
+
+console.log(debounced.value) // { name: 'bar', age: 18 }
+```
+
 你也可以传递一个可选的第三个参数，包括 `maxWait` 选项。详情请参阅 `useDebounceFn`。
 
 ## 推荐阅读

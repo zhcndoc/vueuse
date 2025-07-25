@@ -105,10 +105,10 @@ import { moveArrayElement } from '@vueuse/integrations/useSortable'
 
 useSortable(el, list, {
   onUpdate: (e) => {
-    // 处理更新
-    moveArrayElement(list.value, e.oldIndex, e.newIndex, e)
-    // 这里需要 nextTick，因为 moveArrayElement 在微任务中执行
-    // 所以我们需要等到下一个刻度直到它完成。
+    // do something
+    moveArrayElement(list, e.oldIndex, e.newIndex, e)
+    // nextTick required here as moveArrayElement is executed in a microtask
+    // so we need to wait until the next tick until that is finished.
     nextTick(() => {
       /* do something */
     })

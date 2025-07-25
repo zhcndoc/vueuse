@@ -8,14 +8,17 @@ category: Elements
 
 ## 用法
 
-```js
+```vue
+<script setup lang="ts">
 import { useActiveElement } from '@vueuse/core'
+import { watch } from 'vue'
 
 const activeElement = useActiveElement()
 
 watch(activeElement, (el) => {
   console.log('当前活动元素是', el)
 })
+</script>
 ```
 
 ## 组件用法
