@@ -1,0 +1,10 @@
+import{_ as D,a as A}from"./chunks/Contributors.vue_vue_type_script_setup_true_lang.aYHrlqwd.js";import{_ as c}from"./chunks/DemoContainer.vue_vue_type_script_setup_true_lang.CTa0lAlj.js";import{b as u,_ as B}from"./chunks/FunctionInfo.vue_vue_type_script_setup_true_lang.BPSCnKkW.js";import{d as m,i as l,o as k,t as f,H as e,Z as b,j as i,g as a,Y as C,y as n,w as _}from"./chunks/vue.DDc96eEg.js";import"./chunks/metadata.BfYDMb5p.js";import"./chunks/utils.B5e_uQLX.js";const w=m({__name:"demo",setup(p){const t=u();return(h,r)=>(k(),l("div",null,"当前: "+f(e(t)),1))}}),E=`<script setup lang="ts">
+import { useNow } from '@vueuse/core'
+
+const now = useNow()
+<\/script>
+
+<template>
+  <div>当前: {{ now }}</div>
+</template>
+`,v={class:"demo-source-link"},F=["href"],j=JSON.parse('{"title":"useNow","description":"","frontmatter":{"category":"Animation"},"headers":[],"relativePath":"core/useNow/index.md","filePath":"core/useNow/index.md","lastUpdated":1715934697000}'),N={name:"core/useNow/index.md"},R=Object.assign(N,{setup(p){const h=b({template:{value:{welcomeSFC:E}}}).serialize();return(r,s)=>{const d=B,g=c,o=D,y=A;return k(),l("div",null,[s[1]||(s[1]=i("h1",{id:"usenow",tabindex:"-1"},[n("useNow "),i("a",{class:"header-anchor",href:"#usenow","aria-label":"Permalink to “useNow”"},"​")],-1)),a(d,{fn:"useNow"}),s[2]||(s[2]=i("p",null,"响应式的当前日期实例。",-1)),s[3]||(s[3]=i("h2",{id:"示例",tabindex:"-1"},[n("示例 "),i("a",{class:"header-anchor",href:"#示例","aria-label":"Permalink to “示例”"},"​")],-1)),a(g,null,{default:_(()=>[i("p",v,[s[0]||(s[0]=i("a",{href:"https://github.com/vueuse/vueuse/blob/main/packages/core/useNow/demo.vue",target:"_blank"},"源码",-1)),i("a",{href:`https://playground.vueuse.org/?vueuse=13.5.0${e(h)}`,target:"_blank"},"playground (beta)",8,F)]),a(w)]),_:1}),s[4]||(s[4]=C("",10)),a(o,{fn:"useNow"}),s[5]||(s[5]=i("h2",{id:"更新日志",tabindex:"-1"},[n("更新日志 "),i("a",{class:"header-anchor",href:"#更新日志","aria-label":"Permalink to “更新日志”"},"​")],-1)),a(y,{fn:"useNow"})])}}});export{j as __pageData,R as default};
