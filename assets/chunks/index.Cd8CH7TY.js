@@ -1,0 +1,1 @@
+import{t as a}from"./index.BGs_z4hs.js";import{u as o}from"./index.B4vKqgz9.js";import{u as s}from"./index.C6vnENxY.js";import{z as u,B as m,a3 as l}from"./vue.K-Nh9t7y.js";function E(t=s()){const e=u(),r=()=>{const n=o(t);n&&(e.value=n.parentElement)};return a(r),m(()=>l(t),r),e}export{E as u};

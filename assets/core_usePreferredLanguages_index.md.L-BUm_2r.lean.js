@@ -1,0 +1,15 @@
+import{_ as m,a as _}from"./chunks/Contributors.vue_vue_type_script_setup_true_lang.AiBx4Pr3.js";import{_ as D}from"./chunks/DemoContainer.vue_vue_type_script_setup_true_lang.Cn6cz7M5.js";import{_ as b}from"./chunks/FunctionInfo.vue_vue_type_script_setup_true_lang.DUJiisVJ.js";import{_ as A}from"./chunks/Note.DW__0Z7J.js";import{d as v}from"./chunks/metadata.ByJC-ruD.js";import{u as P}from"./chunks/index.qy4VQT1o.js";import{r as g,d as B,i as h,o as p,F as d,g as n,j as a,w as o,y as t,O as C,t as L,H as u,Z as x,Y as E}from"./chunks/vue.K-Nh9t7y.js";import"./chunks/utils.B5e_uQLX.js";import"./chunks/plugin-vue_export-helper.DlAUqK2U.js";import"./chunks/index.B4vKqgz9.js";import"./chunks/general.tY1gtZD0.js";function F(k={}){const{window:i=v}=k;if(!i)return g(["en"]);const r=i.navigator,e=g(r.languages);return P(i,"languagechange",()=>{e.value=r.languages},{passive:!0}),e}const S=B({__name:"demo",setup(k){const i=F();return(r,e)=>{const s=A;return p(),h(d,null,[n(s,{class:"mb-2"},{default:o(()=>e[0]||(e[0]=[t(" 首选语言： ",-1)])),_:1,__:[0]}),a("div",null,[(p(!0),h(d,null,C(u(i),l=>(p(),h("code",{key:l,class:"mr-2"},L(l),1))),128))])],64)}}}),w=`<script setup lang="ts">
+import { usePreferredLanguages } from '@vueuse/core'
+
+const languages = usePreferredLanguages()
+<\/script>
+
+<template>
+  <note class="mb-2">
+    首选语言：
+  </note>
+  <div>
+    <code v-for="lang in languages" :key="lang" class="mr-2">{{ lang }}</code>
+  </div>
+</template>
+`,N={class:"demo-source-link"},T=["href"],Y=JSON.parse('{"title":"usePreferredLanguages","description":"","frontmatter":{"category":"Browser"},"headers":[],"relativePath":"core/usePreferredLanguages/index.md","filePath":"core/usePreferredLanguages/index.md","lastUpdated":1715934697000}'),V={name:"core/usePreferredLanguages/index.md"},Z=Object.assign(V,{setup(k){const r=x({template:{value:{welcomeSFC:w}}}).serialize();return(e,s)=>{const l=b,c=D,f=m,y=_;return p(),h("div",null,[s[1]||(s[1]=a("h1",{id:"usepreferredlanguages",tabindex:"-1"},[t("usePreferredLanguages "),a("a",{class:"header-anchor",href:"#usepreferredlanguages","aria-label":"Permalink to “usePreferredLanguages”"},"​")],-1)),n(l,{fn:"usePreferredLanguages"}),s[2]||(s[2]=a("p",null,[t("响应式的"),a("a",{href:"https://developer.mozilla.org/en-US/docs/Web/API/NavigatorLanguage/languages",target:"_blank",rel:"noreferrer"},"首选语言"),t("。它为 Web 开发人员提供了有关用户首选语言的信息。例如，这可能有助于根据用户的首选语言调整用户界面的语言，以提供更好的体验。")],-1)),s[3]||(s[3]=a("h2",{id:"示例",tabindex:"-1"},[t("示例 "),a("a",{class:"header-anchor",href:"#示例","aria-label":"Permalink to “示例”"},"​")],-1)),n(c,null,{default:o(()=>[a("p",N,[s[0]||(s[0]=a("a",{href:"https://github.com/vueuse/vueuse/blob/main/packages/core/usePreferredLanguages/demo.vue",target:"_blank"},"源码",-1)),a("a",{href:`https://playground.vueuse.org/?vueuse=13.6.0${u(r)}`,target:"_blank"},"playground (beta)",8,T)]),n(S)]),_:1}),s[4]||(s[4]=E("",9)),n(f,{fn:"usePreferredLanguages"}),s[5]||(s[5]=a("h2",{id:"更新日志",tabindex:"-1"},[t("更新日志 "),a("a",{class:"header-anchor",href:"#更新日志","aria-label":"Permalink to “更新日志”"},"​")],-1)),n(y,{fn:"usePreferredLanguages"})])}}});export{Y as __pageData,Z as default};

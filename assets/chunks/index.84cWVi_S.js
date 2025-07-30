@@ -1,0 +1,1 @@
+import{n as e}from"./metadata.ByJC-ruD.js";import{ab as n,G as r,r as f,ac as a}from"./vue.K-Nh9t7y.js";function i(...t){if(t.length!==1)return n(...t);const o=t[0];return typeof o=="function"?r(a(()=>({get:o,set:e}))):f(o)}export{i as t};

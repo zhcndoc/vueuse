@@ -1,0 +1,1 @@
+import{w as a}from"./index.6NEX30Ir.js";import{d as c}from"./filters.Dfclkjvt.js";function s(t,e,o={}){const{debounce:i=0,maxWait:r=void 0,...n}=o;return a(t,e,{...n,eventFilter:c(i,{maxWait:r})})}export{s as w};

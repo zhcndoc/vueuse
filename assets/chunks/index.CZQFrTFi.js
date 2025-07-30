@@ -1,0 +1,1 @@
+import{w as l}from"./index.6NEX30Ir.js";import{p as u}from"./filters.Dfclkjvt.js";function h(t,e,i={}){const{eventFilter:a,initialState:s="active",...r}=i,{eventFilter:o,pause:n,resume:c,isActive:p}=u(a,{initialState:s});return{stop:l(t,e,{...r,eventFilter:o}),pause:n,resume:c,isActive:p}}export{h as w};

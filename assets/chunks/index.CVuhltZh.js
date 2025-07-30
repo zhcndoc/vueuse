@@ -1,0 +1,1 @@
+import{a4 as v,z as c,a3 as l}from"./vue.K-Nh9t7y.js";function h(u=!1,s={}){const{truthyValue:r=!0,falsyValue:n=!1}=s,o=v(u),e=c(u);function t(f){if(arguments.length)return e.value=f,e.value;{const a=l(r);return e.value=e.value===a?l(n):a,e.value}}return o?t:[e,t]}export{h as u};
