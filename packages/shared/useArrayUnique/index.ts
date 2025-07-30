@@ -24,6 +24,8 @@ export type UseArrayUniqueReturn<T = any> = ComputedRef<T[]>
  * @param list - 被调用的数组。
  * @param compareFn
  * @returns 返回一个计算属性 ref，该 ref 返回一个唯一项目的数组。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useArrayUnique<T>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,

@@ -21,6 +21,8 @@ export type UseArrayFindLastReturn<T = any> = ComputedRef<T | undefined>
  * @param fn - 用于测试每个元素的函数。
  *
  * @returns 数组中满足提供的测试函数的最后一个元素。否则，返回 undefined。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useArrayFindLast<T>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,

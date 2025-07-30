@@ -11,6 +11,8 @@ export type UseArrayReducer<PV, CV, R> = (previousValue: PV, currentValue: CV, c
  * @param reducer - 一个“reducer”函数。
  *
  * @returns 在整个数组上运行“reducer”回调函数完成后的值。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useArrayReduce<T>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,
@@ -26,6 +28,8 @@ export function useArrayReduce<T>(
  * @param initialValue - 在第一次调用回调函数时初始化的值。
  *
  * @returns 在整个数组上运行“reducer”回调函数完成后的值。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useArrayReduce<T, U>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,
@@ -42,6 +46,8 @@ export function useArrayReduce<T, U>(
  * @param args
  *
  * @returns 在整个数组上运行“reducer”回调函数完成后的值。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useArrayReduce<T>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,

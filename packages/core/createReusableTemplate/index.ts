@@ -51,6 +51,8 @@ export interface CreateReusableTemplateOptions<Props extends Record<string, any>
  * 它还允许传递一个泛型来绑定类型。
  *
  * @see https://vueuse.org/createReusableTemplate
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function createReusableTemplate<
   Bindings extends Record<string, any>,

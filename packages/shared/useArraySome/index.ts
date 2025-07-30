@@ -11,6 +11,8 @@ export type UseArraySomeReturn = ComputedRef<boolean>
  * @param fn - 用于测试每个元素的函数。
  *
  * @returns 如果 `fn` 函数对数组中的任何元素都返回一个真值，则返回 **true**。否则，返回 **false**。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useArraySome<T>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,

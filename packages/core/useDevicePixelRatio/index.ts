@@ -8,6 +8,8 @@ import { useMediaQuery } from '../useMediaQuery'
  * 响应式跟踪 `window.devicePixelRatio`.
  *
  * @see https://vueuse.org/useDevicePixelRatio
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useDevicePixelRatio(options: ConfigurableWindow = {}) {
   const {

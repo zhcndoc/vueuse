@@ -3,6 +3,8 @@ import { computed } from 'vue'
 
 /**
  * 将默认值应用于 ref。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function refDefault<T>(source: Ref<T | undefined | null>, defaultValue: T): Ref<T> {
   return computed({

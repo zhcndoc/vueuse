@@ -27,6 +27,8 @@ export interface UseToNumberOptions {
 
 /**
  * 将字符串 ref 转换为数字。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useToNumber(
   value: MaybeRefOrGetter<number | string>,

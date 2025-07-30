@@ -9,22 +9,12 @@ category: Elements
 ## 用法
 
 ```vue
-<script>
+<script setup lang="ts">
 import { useElementSize } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
-export default {
-  setup() {
-    const el = useTemplateRef('el')
-    const { width, height } = useElementSize(el)
-
-    return {
-      el,
-      width,
-      height,
-    }
-  }
-}
+const el = useTemplateRef('el')
+const { width, height } = useElementSize(el)
 </script>
 
 <template>

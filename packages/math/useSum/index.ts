@@ -10,6 +10,8 @@ export function useSum(...args: MaybeRefOrGetter<number>[]): ComputedRef<number>
  * 获取一组数字的总和。
  *
  * @see https://vueuse.org/useSum
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useSum(...args: MaybeComputedRefArgs<number>): ComputedRef<number> {
   return computed(() => toValueArgsFlat(args).reduce((sum, v) => sum += v, 0))

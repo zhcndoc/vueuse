@@ -15,6 +15,8 @@ import { createFilterWrapper, throttleFilter } from '../utils'
  * @param [rejectOnCancel] 如果为 true，如果上次调用已被取消，则拒绝最后一次调用
  *
  * @return  一个新的节流函数。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useThrottleFn<T extends FunctionArgs>(
   fn: T,

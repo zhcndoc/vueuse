@@ -12,6 +12,8 @@ function getRangesFromSelection(selection: Selection) {
  * 基于 [`Window.getSelection`](https://developer.mozilla.org/en-US/docs/Web/API/Window/getSelection) 响应式跟踪用户文本选择。
  *
  * @see https://vueuse.org/useTextSelection
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useTextSelection(options: ConfigurableWindow = {}) {
   const {

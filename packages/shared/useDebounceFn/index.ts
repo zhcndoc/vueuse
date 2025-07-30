@@ -13,6 +13,8 @@ export type UseDebounceFnReturn<T extends FunctionArgs> = PromisifyFn<T>
  * @param  options     选项
  *
  * @return 一个新的延迟函数。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useDebounceFn<T extends FunctionArgs>(
   fn: T,

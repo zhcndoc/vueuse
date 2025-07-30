@@ -61,6 +61,8 @@ export type TemplatePromise<Return, Args extends any[] = []> = DefineComponent<o
  * 将模板作为 Promise。适用于构建自定义对话框、模态框、提示框等。
  *
  * @see https://vueuse.org/createTemplatePromise
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function createTemplatePromise<Return, Args extends any[] = []>(
   options: TemplatePromiseOptions = {},

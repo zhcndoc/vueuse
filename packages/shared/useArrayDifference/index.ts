@@ -35,6 +35,8 @@ export function useArrayDifference<T>(
  * @see https://vueuse.org/useArrayDifference
  * @returns - 两个数组的差集
  * @param args
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useArrayDifference<T>(...args: any[]): UseArrayDifferenceReturn<T> {
   const list: MaybeRefOrGetter<T[]> = args[0]

@@ -8,6 +8,8 @@ export type CreateGlobalStateReturn<Fn extends AnyFn = AnyFn> = Fn
  *
  * @see https://vueuse.org/createGlobalState
  * @param stateFactory 用于创建状态的工厂函数
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function createGlobalState<Fn extends AnyFn>(
   stateFactory: Fn,

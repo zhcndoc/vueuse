@@ -10,6 +10,8 @@ export function useMax(...args: MaybeRefOrGetter<number>[]): ComputedRef<number>
  * 响应式的获取最大值。
  *
  * @see https://vueuse.org/useMax
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useMax(...args: MaybeComputedRefArgs<number>) {
   return computed<number>(() => {

@@ -65,12 +65,46 @@ const { hasFocus, activate, deactivate } = useFocusTrap([targetOne, targetTwo])
       <input type="text">
     </div>
     ...
-    <div ref="targetTow">
+    <div ref="targetTwo">
       <p>另一个目标在这里</p>
       <input type="text">
       <button @click="deactivate()">
         停用
       </button>
+    </div>
+  </div>
+</template>
+```
+
+**动态焦点目标**
+
+```vue
+<script setup lang="ts">
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
+import { computed, shallowRef, useTemplateRef } from 'vue'
+
+const left = useTemplateRef('left')
+const right = useTemplateRef('right')
+const currentRef = shallowRef<'left' | 'right'>('left')
+
+const target = computed(() =>
+  currentRef.value === 'left'
+    ? left
+    : currentRef.value === 'right'
+      ? right
+      : null,
+)
+
+const { activate } = useFocusTrap(target)
+</script>
+
+<template>
+  <div>
+    <div ref="left" class="left">
+      ...
+    </div>
+    <div ref="right" class="right">
+      ...
     </div>
   </div>
 </template>
@@ -98,11 +132,11 @@ const { hasFocus, activate, deactivate } = useFocusTrap(target, { immediate: tru
 
 **条件渲染**
 
-这个函数不能正确激活具有使用 `v-if` 进行条件渲染的元素上的焦点。这是因为它们在焦点激活时尚不存在于 DOM 中。要解决这个问题，你需要在下一个刻度上激活。
+该函数无法正确激活使用 `v-if` 进行条件渲染的元素上的焦点。因为它们在激活焦点时尚不存在于 DOM 中。要解决此问题，你需要在下一个渲染周期激活。
 
 ```vue
 <script setup lang="ts">
-import { nextTick, useTemplateRef } from 'vue'
+import { nextTick, ref, useTemplateRef } from 'vue'
 
 const target = useTemplateRef<HTMLDivElement>('target')
 const { activate, deactivate } = useFocusTrap(target, { immediate: true })

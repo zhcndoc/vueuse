@@ -21,6 +21,8 @@ type NavigatorWithBattery = Navigator & {
  * 响应式电池状态
  *
  * @see https://vueuse.org/useBattery
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useBattery(options: ConfigurableNavigator = {}) {
   const { navigator = defaultNavigator } = options

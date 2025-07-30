@@ -118,6 +118,8 @@ export type UseDateFormatReturn = ComputedRef<string>
  * @param date - 要格式化的日期，可以是 `Date` 对象、时间戳或字符串
  * @param formatStr - 用于格式化日期的令牌组合
  * @param options - UseDateFormatOptions
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useDateFormat(date: MaybeRefOrGetter<DateLike>, formatStr: MaybeRefOrGetter<string> = 'HH:mm:ss', options: UseDateFormatOptions = {}): UseDateFormatReturn {
   return computed(() => formatDate(normalizeDate(toValue(date)), toValue(formatStr), options))

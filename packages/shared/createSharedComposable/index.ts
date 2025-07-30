@@ -9,6 +9,8 @@ export type SharedComposableReturn<T extends AnyFn = AnyFn> = T
  * 使可组合函数可用于多个 Vue 实例。
  *
  * @see https://vueuse.org/createSharedComposable
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function createSharedComposable<Fn extends AnyFn>(composable: Fn): SharedComposableReturn<Fn> {
   let subscribers = 0

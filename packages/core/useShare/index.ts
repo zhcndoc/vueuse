@@ -23,6 +23,8 @@ interface NavigatorWithShare {
  * @see https://vueuse.org/useShare
  * @param shareOptions
  * @param options
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useShare(shareOptions: MaybeRefOrGetter<UseShareOptions> = {}, options: ConfigurableNavigator = {}) {
   const { navigator = defaultNavigator } = options

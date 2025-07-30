@@ -27,6 +27,8 @@ export function createCookies(req?: IncomingMessage) {
  * @param options.doNotParse - 不尝试解析值为 JSON
  * @param options.autoUpdateDependencies - 自动更新监视依赖项
  * @param cookies - universal-cookie 实例
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useCookies(
   dependencies?: string[] | null,

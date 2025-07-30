@@ -2,6 +2,12 @@
 category: Component
 ---
 
+::: info
+This function will be removed in future version.
+
+Vue 3.5 introduced the `useTemplateRef` API which can effectively replace the functionality of `templateRef`, therefore we recommend using the native approach.
+:::
+
 # templateRef
 
 将 ref 绑定到模板元素的简写方式。

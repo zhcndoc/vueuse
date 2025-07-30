@@ -11,6 +11,8 @@ export type UseArrayFindReturn<T = any> = ComputedRef<T | undefined>
  * @param fn - 用于测试每个元素的函数。
  *
  * @returns 数组中满足提供的测试函数的第一个元素。否则，返回 undefined。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useArrayFind<T>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,

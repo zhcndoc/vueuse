@@ -11,6 +11,8 @@ export interface UseFirebaseAuthOptions {
  * 响应式 Firebase 身份验证绑定
  *
  * @see https://vueuse.org/useAuth
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useAuth(auth: Auth) {
   const user = deepRef<User | null>(auth.currentUser)

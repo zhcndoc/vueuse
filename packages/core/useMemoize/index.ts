@@ -65,6 +65,8 @@ export interface UseMemoizeOptions<Result, Args extends unknown[]> {
 
 /**
  * 基于参数的响应式函数结果缓存
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useMemoize<Result, Args extends unknown[]>(
   resolver: (...args: Args) => Result,

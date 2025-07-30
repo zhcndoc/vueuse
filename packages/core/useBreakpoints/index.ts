@@ -27,6 +27,8 @@ export interface UseBreakpointsOptions extends ConfigurableWindow {
  * 响应式视口断点
  *
  * @see https://vueuse.org/useBreakpoints
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useBreakpoints<K extends string>(
   breakpoints: Breakpoints<K>,

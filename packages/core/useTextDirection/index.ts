@@ -33,6 +33,8 @@ export interface UseTextDirectionOptions extends ConfigurableDocument {
  * 元素文本的响应式方向。
  *
  * @see https://vueuse.org/useTextDirection
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useTextDirection(options: UseTextDirectionOptions = {}) {
   const {

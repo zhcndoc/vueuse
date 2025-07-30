@@ -10,6 +10,8 @@ export type UnrefFn<T> = T extends (...args: infer A) => infer R
 /**
  * 创建一个普通函数，接受 ref 和原始值作为参数。
  * 返回与未转换函数返回相同的值，具有正确的类型。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function createUnrefFn<T extends Function>(fn: T): UnrefFn<T> {
   return function (this: any, ...args: any[]) {

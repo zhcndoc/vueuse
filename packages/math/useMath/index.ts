@@ -7,6 +7,8 @@ export type UseMathKeys = keyof { [K in keyof Math as Math[K] extends (...args: 
  * 响应式 `Math` 方法
  *
  * @see https://vueuse.org/useMath
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useMath<K extends keyof Math>(
   key: K,

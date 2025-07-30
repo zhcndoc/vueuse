@@ -34,6 +34,8 @@ export type EventHookReturn<T> = EventHook<T>
  * 用于创建事件钩子的工具函数
  *
  * @see https://vueuse.org/createEventHook
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function createEventHook<T = any>(): EventHookReturn<T> {
   const fns: Set<Callback<T>> = new Set()

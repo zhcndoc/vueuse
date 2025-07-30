@@ -20,6 +20,8 @@ export interface ControlledRefOptions<T> {
 
 /**
  * 对 ref 及其响应性进行细粒度控制。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function refWithControl<T>(
   initial: T,

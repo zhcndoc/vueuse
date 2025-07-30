@@ -23,6 +23,8 @@ export function useChangeCase(input: MaybeRefOrGetter<string>, type: MaybeRefOrG
  * 响应式 `change-case` 包装器
  *
  * @see https://vueuse.org/useChangeCase
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useChangeCase(input: MaybeRefOrGetter<string>, type: MaybeRefOrGetter<ChangeCaseType>, options?: MaybeRefOrGetter<Options> | undefined) {
   const typeRef = computed(() => {

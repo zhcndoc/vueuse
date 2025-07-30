@@ -6,6 +6,8 @@ import { createProjection } from '../createProjection'
  * 从一个域映射到另一个域的响应式数值投影。
  *
  * @see https://vueuse.org/useProjection
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useProjection(
   input: MaybeRefOrGetter<number>,

@@ -11,6 +11,8 @@ export type UseArrayMapReturn<T = any> = ComputedRef<T[]>
  * @param fn - 对给定 `list` 的每个元素调用的函数。每次 `fn` 执行时，返回的值都会添加到新数组中。
  *
  * @returns 一个新数组，其中每个元素都是回调函数的结果。
+ *
+ * @__NO_SIDE_EFFECTS__
  */
 export function useArrayMap<T, U = T>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,
