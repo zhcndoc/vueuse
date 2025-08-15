@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { useUrlSearchParams } from '@vueuse/core'
 
 const params = useUrlSearchParams('history')
@@ -24,7 +24,7 @@ params.vueuse = 'awesome'
 
 当在哈希模式路由中使用时，将 `mode` 设置为 `hash`
 
-```js
+```ts
 import { useUrlSearchParams } from '@vueuse/core'
 
 const params = useUrlSearchParams('hash')
@@ -38,7 +38,7 @@ params.vueuse = 'awesome'
 
 当在历史模式路由中使用，但想要使用哈希作为参数时，将 `mode` 设置为 `hash-params`
 
-```js
+```ts
 import { useUrlSearchParams } from '@vueuse/core'
 
 const params = useUrlSearchParams('hash-params')

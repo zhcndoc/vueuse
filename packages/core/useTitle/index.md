@@ -12,7 +12,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { useTitle } from '@vueuse/core'
 
 const title = useTitle()
@@ -22,15 +22,17 @@ title.value = 'Hello' // 更改当前标题
 
 立即设置初始标题：
 
-```js
+```ts
+import { useTitle } from '@vueuse/core'
+// ---cut---
 const title = useTitle('New Title')
 ```
 
 传递一个 `ref`，当源 ref 发生变化时，标题将被更新：
 
-```js
-import { shallowRef } from 'vue'
+```ts
 import { useTitle } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const messages = shallowRef(0)
 
@@ -43,8 +45,12 @@ useTitle(title) // 文档标题将与 ref "title" 匹配
 
 传递一个可选的模板标记 [Vue Meta Title Template](https://vue-meta.nuxtjs.org/guide/metainfo.html) 来更新要注入到该模板中的标题：
 
-```js
-const title = useTitle('New Title', { titleTemplate: '%s | My Awesome Website' })
+```ts
+import { useTitle } from '@vueuse/core'
+// ---cut---
+const title = useTitle('New Title', {
+  titleTemplate: '%s | My Awesome Website'
+})
 ```
 
 ::: warning

@@ -8,7 +8,9 @@ category: '@RxJS'
 
 ## 用法
 
-```ts
+<!-- TODO: import rxjs error if enable twoslash -->
+
+```ts no-twoslash
 import { useObservable } from '@vueuse/rxjs'
 import { interval } from 'rxjs'
 import { mapTo, scan, startWith } from 'rxjs/operators'
@@ -25,7 +27,7 @@ const count = useObservable(
 
 如果你想要为可能出错的 `Observable` 添加自定义错误处理，你可以提供一个可选的 `onError` 配置。如果没有提供，RxJS 将把提供的 `Observable` 中的任何错误视为 “未处理的错误”，并且它将在一个新的调用栈中抛出，并报告给 `window.onerror` (或者如果你恰好在 Node 中，则为 `process.on('error')`)。
 
-```ts
+```ts no-twoslash
 import { useObservable } from '@vueuse/rxjs'
 import { interval } from 'rxjs'
 import { map } from 'rxjs/operators'

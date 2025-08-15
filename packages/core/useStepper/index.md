@@ -10,7 +10,7 @@ category: Utilities
 
 ### 步骤作为数组
 
-```js
+```ts
 import { useStepper } from '@vueuse/core'
 
 const {
@@ -43,7 +43,7 @@ console.log(current.value) // 'billing-address'
 
 ### 步骤作为对象
 
-```js
+```ts
 import { useStepper } from '@vueuse/core'
 
 const {

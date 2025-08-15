@@ -9,7 +9,7 @@ alias: useThrottle, throttledRef
 
 ## 用法
 
-```js {5}
+```ts
 import { refThrottled } from '@vueuse/core'
 import { shallowRef } from 'vue'
 
@@ -48,7 +48,7 @@ console.log(throttled.value) // { count: 5, name: 'final' } (updated)
 
 如果你不想监听尾部的变化，可以设置第三个参数为 `false` (默认为 `true`)：
 
-```js
+```ts
 import { refThrottled } from '@vueuse/core'
 import { shallowRef } from 'vue'
 
@@ -60,7 +60,7 @@ const throttled = refThrottled(input, 1000, false)
 
 允许回调函数立即被调用 (在 `ms` 超时的头部)。如果你不想这种行为，可以将第四个参数设置为 `false` (默认为 `true`)：
 
-```js
+```ts
 import { refThrottled } from '@vueuse/core'
 import { shallowRef } from 'vue'
 

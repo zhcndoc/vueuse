@@ -8,7 +8,8 @@ category: Browser
 
 ## 使用方法
 
-```ts
+```vue
+<script setup lang="ts">
 import { useFileDialog } from '@vueuse/core'
 
 const { files, open, reset, onCancel, onChange } = useFileDialog({
@@ -23,9 +24,8 @@ onChange((files) => {
 onCancel(() => {
   /** 在取消时做一些事情 */
 })
-```
+</script>
 
-```vue
 <template>
   <button type="button" @click="open">
     选择文件

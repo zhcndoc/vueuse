@@ -8,10 +8,16 @@ category: Sensors
 
 ## 基本用法
 
-```js
+```ts
 import { usePointerLock } from '@vueuse/core'
 
-const { isSupported, lock, unlock, element, triggerElement } = usePointerLock()
+const {
+  isSupported,
+  lock,
+  unlock,
+  element,
+  triggerElement
+} = usePointerLock()
 ```
 
 ## 组件用法

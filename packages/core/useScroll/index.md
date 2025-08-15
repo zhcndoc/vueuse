@@ -24,7 +24,9 @@ const { x, y, isScrolling, arrivedState, directions } = useScroll(el)
 
 ### 带偏移量
 
-```js
+```ts
+import { useScroll } from '@vueuse/core'
+// ---cut---
 const { x, y, isScrolling, arrivedState, directions } = useScroll(el, {
   offset: { top: 30, bottom: 30, right: 30, left: 30 },
 })

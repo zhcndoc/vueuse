@@ -8,9 +8,9 @@ category: State
 
 ## 用法
 
-```ts
-import { createInjectionState } from '@vueuse/core'
+```ts twoslash include useCounterStore
 // useCounterStore.ts
+import { createInjectionState } from '@vueuse/core'
 import { computed, shallowRef } from 'vue'
 
 const [useProvideCounterStore, useCounterStore] = createInjectionState((initialValue: number) => {
@@ -29,6 +29,7 @@ const [useProvideCounterStore, useCounterStore] = createInjectionState((initialV
 })
 
 export { useProvideCounterStore }
+
 // 如果想隐藏 `useCounterStore` 并将其包装在默认值逻辑或抛出错误逻辑中，请不要导出 `useCounterStore`
 export { useCounterStore }
 
@@ -51,6 +52,9 @@ export function useCounterStoreOrThrow() {
 ```vue
 <!-- RootComponent.vue -->
 <script setup lang="ts">
+// @filename: useCounterStore.ts
+// @include: useCounterStore
+// ---cut---
 import { useProvideCounterStore } from './useCounterStore'
 
 useProvideCounterStore(0)
@@ -66,6 +70,9 @@ useProvideCounterStore(0)
 ```vue
 <!-- CountComponent.vue -->
 <script setup lang="ts">
+// @filename: useCounterStore.ts
+// @include: useCounterStore
+// ---cut---
 import { useCounterStore } from './useCounterStore'
 
 // 使用非空断言操作符来忽略未提供存储的情况。
@@ -93,6 +100,9 @@ const { count, double } = useCounterStore()!
 ```vue
 <!-- ButtonComponent.vue -->
 <script setup lang="ts">
+// @filename: useCounterStore.ts
+// @include: useCounterStore
+// ---cut---
 import { useCounterStore } from './useCounterStore'
 
 // 使用非空断言操作符来忽略未提供存储的情况。
@@ -109,8 +119,8 @@ const { increment } = useCounterStore()!
 ## 提供自定义的 InjectionKey
 
 ```ts
-import { createInjectionState } from '@vueuse/core'
 // useCounterStore.ts
+import { createInjectionState } from '@vueuse/core'
 import { computed, shallowRef } from 'vue'
 
 // 自定义 injectionKey
@@ -135,8 +145,8 @@ const [useProvideCounterStore, useCounterStore] = createInjectionState((initialV
 ## Provide a custom default value
 
 ```ts
-import { createInjectionState } from '@vueuse/core'
 // useCounterStore.ts
+import { createInjectionState } from '@vueuse/core'
 import { computed, shallowRef } from 'vue'
 
 const [useProvideCounterStore, useCounterStore] = createInjectionState((initialValue: number) => {

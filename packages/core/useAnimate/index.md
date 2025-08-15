@@ -13,7 +13,7 @@ category: Animation
 `useAnimate` 函数将返回动画及其控制函数。
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { useAnimate } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
@@ -50,6 +50,10 @@ const {
 可以是关键帧对象的数组、关键帧对象，或者是一个 `ref`。更多详情请参考[关键帧格式](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats)。
 
 ```ts
+import { useAnimate } from '@vueuse/core'
+
+const el = useTemplateRef<HTMLElement>('el')
+// ---cut---
 const keyframes = { transform: 'rotate(360deg)' }
 // 或者
 const keyframes = [

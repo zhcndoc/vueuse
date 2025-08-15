@@ -8,7 +8,7 @@ category: Component
 
 ## 使用方法
 
-```js
+```ts
 import { useMounted } from '@vueuse/core'
 
 const isMounted = useMounted()

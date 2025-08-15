@@ -8,23 +8,26 @@ category: Browser
 
 ## 使用方法
 
-```js
+```ts
 import { useFullscreen } from '@vueuse/core'
-import { useTemplateRef } from 'vue'
 
 const { isFullscreen, enter, exit, toggle } = useFullscreen()
 ```
 
 指定元素全屏显示。某些平台 (例如 iOS 的 Safari) 仅允许在视频元素上全屏显示。
 
-```ts
-const el = useTemplateRef<HTMLElement>('el')
+```vue
+<script setup lang="ts">
+import { useFullscreen } from '@vueuse/core'
+import { useTemplateRef } from 'vue'
 
+const el = useTemplateRef('el')
 const { isFullscreen, enter, exit, toggle } = useFullscreen(el)
-```
+</script>
 
-```html
-<video ref="el"></video>
+<template>
+  <video ref="el" />
+</template>
 ```
 
 ## 组件使用

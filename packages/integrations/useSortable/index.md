@@ -98,10 +98,10 @@ useSortable('#dv', list)
 
 ### 提示
 
-如果你想要自己处理 onUpdate，可以传递 onUpdate 参数，我们还提供了一个移动项目位置的函数。
+如果你想要自己处理 `onUpdate`，可以传递 `onUpdate` 参数，我们还提供了一个移动项目位置的函数。
 
 ```ts
-import { moveArrayElement } from '@vueuse/integrations/useSortable'
+import { moveArrayElement, useSortable } from '@vueuse/integrations/useSortable'
 
 useSortable(el, list, {
   onUpdate: (e) => {

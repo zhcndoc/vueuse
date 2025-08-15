@@ -20,6 +20,8 @@ whenever(isReady, () => console.log(state))
 ```
 
 ```typescript
+import { whenever } from '@vueuse/core'
+// ---cut---
 // 这个
 whenever(ready, () => console.log(state))
 
@@ -35,6 +37,8 @@ watch(ready, (isReady) => {
 与 `watch` 相同，回调函数将使用 `cb(value, oldValue, onInvalidate)` 调用。
 
 ```typescript
+import { whenever } from '@vueuse/core'
+// ---cut---
 whenever(height, (current, lastHeight) => {
   if (current > lastHeight)
     console.log(`高度增加了 ${current - lastHeight}`)
@@ -46,6 +50,8 @@ whenever(height, (current, lastHeight) => {
 与 `watch` 相同，你可以传递一个获取器函数来在每次更改时计算。
 
 ```typescript
+import { whenever } from '@vueuse/core'
+// ---cut---
 // 这个
 whenever(
   () => counter.value === 7,
@@ -58,6 +64,8 @@ whenever(
 选项和默认值与 `watch` 相同。
 
 ```typescript
+import { whenever } from '@vueuse/core'
+// ---cut---
 // 这个
 whenever(
   () => counter.value === 7,

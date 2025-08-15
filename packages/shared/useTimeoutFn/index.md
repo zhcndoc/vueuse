@@ -8,7 +8,7 @@ category: Animation
 
 ## 用法
 
-```js
+```ts
 import { useTimeoutFn } from '@vueuse/core'
 
 const { isPending, start, stop } = useTimeoutFn(() => {

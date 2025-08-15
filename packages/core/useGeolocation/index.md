@@ -8,7 +8,7 @@ category: Sensors
 
 ## 使用方法
 
-```js
+```ts
 import { useGeolocation } from '@vueuse/core'
 
 const { coords, locatedAt, error, resume, pause } = useGeolocation()

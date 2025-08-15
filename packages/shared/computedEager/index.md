@@ -19,7 +19,7 @@ alias: eagerComputed
 
 ## 用法
 
-```js
+```ts
 import { computedEager } from '@vueuse/core'
 
 const todos = ref([])

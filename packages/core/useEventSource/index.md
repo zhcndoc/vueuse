@@ -8,7 +8,7 @@ category: Network
 
 ## 用法
 
-```js
+```ts
 import { useEventSource } from '@vueuse/core'
 
 const { status, data, error, close } = useEventSource('https://event-source-url')
@@ -22,8 +22,11 @@ const { status, data, error, close } = useEventSource('https://event-source-url'
 
 ```ts
 import { useEventSource } from '@vueuse/core'
-
-const { event, data } = useEventSource('https://event-source-url', ['notice', 'update'] as const)
+// ---cut---
+const { event, data } = useEventSource(
+  'https://event-source-url',
+  ['notice', 'update']
+)
 ```
 
 ### immediate
@@ -42,22 +45,34 @@ const { event, data } = useEventSource('https://event-source-url', ['notice', 'u
 
 自动在发生错误时重新连接 (默认禁用)。
 
-```js
-const { status, data, close } = useEventSource('https://event-source-url', [], {
-  autoReconnect: true,
-})
+```ts
+import { useEventSource } from '@vueuse/core'
+// ---cut---
+const { status, data, close } = useEventSource(
+  'https://event-source-url',
+  [],
+  {
+    autoReconnect: true,
+  }
+)
 ```
 
 或者使用更多对其行为的控制：
 
-```js
-const { status, data, close } = useEventSource('https://event-source-url', [], {
-  autoReconnect: {
-    retries: 3,
-    delay: 1000,
-    onFailed() {
-      alert('重试 3 次后无法连接 EventSource')
+```ts
+import { useEventSource } from '@vueuse/core'
+// ---cut---
+const { status, data, close } = useEventSource(
+  'https://event-source-url',
+  [],
+  {
+    autoReconnect: {
+      retries: 3,
+      delay: 1000,
+      onFailed() {
+        alert('Failed to connect EventSource after 3 retries')
+      },
     },
-  },
-})
+  }
+)
 ```

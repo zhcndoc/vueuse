@@ -8,7 +8,7 @@ category: Component
 
 ## 用法
 
-```js
+```ts
 import { tryOnScopeDispose } from '@vueuse/core'
 
 tryOnScopeDispose(() => {

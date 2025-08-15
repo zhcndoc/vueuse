@@ -37,21 +37,12 @@ const { focused } = useFocus(target, { initialValue: true })
 `focused` 响应式引用的更改将自动触发对应于 `true` 和 `false` 值的 `focus` 和 `blur` 事件。你可以利用这种行为来作为其他操作的结果使目标元素获得焦点 (例如，当按钮被点击时，如下所示)。
 
 ```vue
-<script>
+<script setup lang="ts">
 import { useFocus } from '@vueuse/core'
 import { shallowRef } from 'vue'
 
-export default {
-  setup() {
-    const input = shallowRef()
-    const { focused } = useFocus(input)
-
-    return {
-      input,
-      focused,
-    }
-  },
-}
+const input = shallowRef()
+const { focused } = useFocus(input)
 </script>
 
 <template>

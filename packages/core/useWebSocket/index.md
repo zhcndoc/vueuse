@@ -8,7 +8,7 @@ category: Network
 
 ## 用法
 
-```js
+```ts
 import { useWebSocket } from '@vueuse/core'
 
 const { status, data, send, open, close } = useWebSocket('ws://websocketurl')
@@ -38,7 +38,9 @@ const { status, data, send, open, close } = useWebSocket('ws://websocketurl')
 
 在错误发生时自动重连 (默认禁用)。
 
-```js
+```ts
+import { useWebSocket } from '@vueuse/core'
+// ---cut---
 const { status, data, close } = useWebSocket('ws://websocketurl', {
   autoReconnect: true,
 })
@@ -46,7 +48,9 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 
 或者具有更多控制其行为的选项：
 
-```js
+```ts
+import { useWebSocket } from '@vueuse/core'
+// ---cut---
 const { status, data, close } = useWebSocket('ws://websocketurl', {
   autoReconnect: {
     retries: 3,
@@ -64,7 +68,9 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 
 通常会在每隔一段时间发送一个小消息 (心跳) 以保持连接活动状态。在此函数中，我们提供了一个便利的辅助工具来执行此操作：
 
-```js
+```ts
+import { useWebSocket } from '@vueuse/core'
+// ---cut---
 const { status, data, close } = useWebSocket('ws://websocketurl', {
   heartbeat: true,
 })
@@ -72,7 +78,9 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 
 或者具有更多控制：
 
-```js
+```ts
+import { useWebSocket } from '@vueuse/core'
+// ---cut---
 const { status, data, close } = useWebSocket('ws://websocketurl', {
   heartbeat: {
     message: 'ping',
@@ -86,9 +94,9 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 
 要使用的一个或多个子协议列表，在这种情况下是 soap 和 wamp。
 
-```js
+```ts
 import { useWebSocket } from '@vueuse/core'
-
+// ---cut---
 const { status, data, send, open, close } = useWebSocket('ws://websocketurl', {
   protocols: ['soap'], // ['soap', 'wamp']
 })

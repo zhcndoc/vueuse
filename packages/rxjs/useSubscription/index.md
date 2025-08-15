@@ -8,7 +8,9 @@ category: '@RxJS'
 
 ## 用法
 
-```ts
+<!-- TODO: import rxjs error if enable twoslash -->
+
+```ts no-twoslash
 import { useSubscription } from '@vueuse/rxjs'
 import { interval } from 'rxjs'
 

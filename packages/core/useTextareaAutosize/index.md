@@ -12,6 +12,8 @@ category: Browser
 
 ```vue
 <script setup lang="ts">
+import { useTextareaAutosize } from '@vueuse/core'
+
 const { textarea, input } = useTextareaAutosize()
 </script>
 
@@ -48,6 +50,8 @@ textarea::-webkit-scrollbar {
 
 ```vue
 <script setup lang="ts">
+import { useTextareaAutosize } from '@vueuse/core'
+
 const { textarea, input } = useTextareaAutosize({ styleProp: 'minHeight' })
 </script>
 

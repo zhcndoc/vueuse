@@ -8,7 +8,7 @@ category: Sensors
 
 ## 基本用法
 
-```js
+```ts
 import { usePointer } from '@vueuse/core'
 
 const { x, y, pressure, pointerType } = usePointer()

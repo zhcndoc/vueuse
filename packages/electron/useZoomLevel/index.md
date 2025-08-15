@@ -21,7 +21,7 @@ level.value = 2 // 修改当前缩放级别
 
 立即设置初始缩放级别
 
-```js
+```ts
 import { useZoomLevel } from '@vueuse/electron'
 
 const level = useZoomLevel(2)
@@ -29,9 +29,9 @@ const level = useZoomLevel(2)
 
 传递一个 `ref`，当源 `ref` 更改时，级别将更新
 
-```js
-import { shallowRef } from 'vue'
+```ts
 import { useZoomLevel } from '@vueuse/electron'
+import { shallowRef } from 'vue'
 
 const level = shallowRef(1)
 

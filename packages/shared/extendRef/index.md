@@ -25,6 +25,8 @@ extended.foo === '额外数据'
 Refs 将被解封装并具有响应性
 
 ```ts
+import { extendRef } from '@vueuse/core'
+// ---cut---
 const myRef = shallowRef('content')
 const extraRef = shallowRef('extra')
 

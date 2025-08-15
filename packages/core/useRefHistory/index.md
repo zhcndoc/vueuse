@@ -11,7 +11,7 @@ related: useManualRefHistory
 
 ## 用法
 
-```ts {5}
+```ts {5} twoslash include usage
 import { useRefHistory } from '@vueuse/core'
 import { shallowRef } from 'vue'
 
@@ -22,6 +22,8 @@ const { history, undo, redo } = useRefHistory(counter)
 在内部，使用 `watch` 来触发历史记录点，当 ref 的值被修改时。这意味着历史记录点是异步触发的，将相同的修改批处理在同一 “时刻” 内。
 
 ```ts
+// @include: usage
+// ---cut---
 counter.value += 1
 
 await nextTick()
@@ -35,6 +37,8 @@ console.log(history.value)
 你可以使用 `undo` 将 ref 的值重置为上一个历史记录点。
 
 ```ts
+// @include: usage
+// ---cut---
 console.log(counter.value) // 1
 undo()
 console.log(counter.value) // 0
@@ -45,6 +49,8 @@ console.log(counter.value) // 0
 当使用对象或数组时，由于更改它们的属性不会更改引用，因此不会触发提交。要跟踪属性更改，你需要传递 `deep: true`。它将为每个历史记录创建克隆。
 
 ```ts
+import { useRefHistory } from '@vueuse/core'
+// ---cut---
 const state = ref({
   foo: 1,
   bar: 'bar',
@@ -112,6 +118,8 @@ const refHistory = useRefHistory(target, {
 默认情况下，我们会保留所有的历史记录 (无限)，直到你明确清除它们，你可以通过 `capacity` 选项设置要保留的历史记录的最大数量。
 
 ```ts
+import { useRefHistory } from '@vueuse/core'
+// ---cut---
 const refHistory = useRefHistory(target, {
   capacity: 15, // 限制为 15 条历史记录
 })
@@ -126,6 +134,8 @@ refHistory.clear() // 明确清除所有的历史记录
 与 `watch` 类似，你可以使用 `flush` 选项修改刷新时机。
 
 ```ts
+import { useRefHistory } from '@vueuse/core'
+// ---cut---
 const refHistory = useRefHistory(target, {
   flush: 'sync', // 选项 'pre'（默认），'post' 和 'sync'
 })
@@ -134,6 +144,8 @@ const refHistory = useRefHistory(target, {
 默认值是 `'pre'`，以使此组合与 Vue 观察器的默认值保持一致。这也有助于避免常见问题，比如在同一 “时刻” 内作为 ref 值多步更新的一部分生成了几个历史记录点，这可能会破坏应用程序状态的不变性。如果需要在同一 “时刻” 内创建多个历史记录点，则可以使用 `commit()`。
 
 ```ts
+import { useRefHistory } from '@vueuse/core'
+// ---cut---
 const r = shallowRef(0)
 const { history, commit } = useRefHistory(r)
 
@@ -154,6 +166,8 @@ console.log(history.value)
 另一方面，当使用 `flush: 'sync'` 时，你可以使用 `batch(fn)` 为多个同步操作生成单个历史记录点。
 
 ```ts
+import { useRefHistory } from '@vueuse/core'
+// ---cut---
 const r = ref({ names: [], version: 1 })
 const { history, batch } = useRefHistory(r, { flush: 'sync' })
 
@@ -172,6 +186,8 @@ console.log(history.value)
 如果使用了 `{ flush: 'sync', deep: true }`，`batch` 在对数组进行可变的 `splice` 时也很有用。`splice` 可以生成最多三个原子操作，这些操作将被推送到 ref 历史记录中。
 
 ```ts
+import { useRefHistory } from '@vueuse/core'
+// ---cut---
 const arr = ref([1, 2, 3])
 const { history, batch } = useRefHistory(arr, { deep: true, flush: 'sync' })
 

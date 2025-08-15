@@ -14,7 +14,7 @@ BroadcastChannel 接口表示一个命名的频道，同一来源的任何浏览
 
 消息通过在所有监听频道的 BroadcastChannel 对象上触发的消息事件进行广播。
 
-```js
+```ts
 import { useBroadcastChannel } from '@vueuse/core'
 import { shallowRef } from 'vue'
 

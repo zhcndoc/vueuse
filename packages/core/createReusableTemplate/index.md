@@ -31,7 +31,7 @@ outline: deep
 针对上述示例，我们可以这样重构：
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { createReusableTemplate } from '@vueuse/core'
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
@@ -96,7 +96,7 @@ export default defineComponent({
 - 直接在 `<ReuseTemplate>` 上绑定数据以传递至模板。
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { createReusableTemplate } from '@vueuse/core'
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate()
@@ -211,7 +211,7 @@ const [DefineTemplate, ReuseTemplate] = createReusableTemplate({
 也可以从 `<ReuseTemplate>` 返回插槽。您可以通过 `$slots` 在 `<DefineTemplate>` 中访问这些插槽：
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { createReusableTemplate } from '@vueuse/core'
 
 const [DefineTemplate, ReuseTemplate] = createReusableTemplate()

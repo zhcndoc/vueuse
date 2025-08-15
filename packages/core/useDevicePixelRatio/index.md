@@ -10,16 +10,10 @@ category: Sensors
 
 ## 用法
 
-```js
+```ts
 import { useDevicePixelRatio } from '@vueuse/core'
 
-export default {
-  setup() {
-    const { pixelRatio } = useDevicePixelRatio()
-
-    return { pixelRatio }
-  },
-}
+const { pixelRatio } = useDevicePixelRatio()
 ```
 
 ## 组件用法

@@ -9,21 +9,24 @@ related: useUserMedia
 
 ## 用法
 
-```ts
+```vue
+<script setup lang="ts">
 import { useDisplayMedia } from '@vueuse/core'
+import { useTemplateRef } from 'vue'
 
 const { stream, start } = useDisplayMedia()
 
-// 开始流式传输
-
+// start streaming
 start()
-```
 
-```ts
-const video = document.getElementById('video')
-
+const videoRef = useTemplateRef('video')
 watchEffect(() => {
-  // 在视频元素上预览
-  video.srcObject = stream.value
+  // preview on a video element
+  videoRef.value.srcObject = stream.value
 })
+</script>
+
+<template>
+  <video ref="video" />
+</template>
 ```

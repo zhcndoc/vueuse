@@ -10,7 +10,7 @@ category: Array
 
 ### 与多个 ref 组成的数组一起使用
 
-```js
+```ts
 import { useArrayJoin } from '@vueuse/core'
 
 const item1 = ref('foo')
@@ -25,7 +25,7 @@ item1.value = 'bar'
 
 ### 与响应式数组一起使用
 
-```js
+```ts
 import { useArrayJoin } from '@vueuse/core'
 
 const list = ref(['string', 0, { prop: 'val' }, false, [1], [[2]], null, undefined, []])
@@ -39,7 +39,7 @@ list.value = [null, 'string', undefined]
 
 ### 与响应式分隔符一起使用
 
-```js
+```ts
 import { useArrayJoin } from '@vueuse/core'
 
 const list = ref(['string', 0, { prop: 'val' }])

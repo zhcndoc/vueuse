@@ -136,6 +136,7 @@ const { hasFocus, activate, deactivate } = useFocusTrap(target, { immediate: tru
 
 ```vue
 <script setup lang="ts">
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import { nextTick, ref, useTemplateRef } from 'vue'
 
 const target = useTemplateRef<HTMLDivElement>('target')

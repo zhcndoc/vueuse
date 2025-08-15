@@ -11,9 +11,9 @@ category: '@Electron'
 ```ts
 import { useIpcRendererOn } from '@vueuse/electron'
 
-// 如果没有显式提供 ipcRenderer，请启用 nodeIntegration
-// 参见：https://www.electronjs.org/docs/api/webview-tag#nodeintegration
-// 在组件卸载时自动移除监听器
+// enable nodeIntegration if you don't provide ipcRenderer explicitly
+// see: https://www.electronjs.org/docs/api/webview-tag#nodeintegration
+// remove listener automatically on unmounted
 useIpcRendererOn('custom-event', (event, ...args) => {
   console.log(args)
 })

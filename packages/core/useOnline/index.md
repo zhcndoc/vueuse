@@ -8,7 +8,7 @@ category: Sensors
 
 ## 使用方法
 
-```js
+```ts
 import { useOnline } from '@vueuse/core'
 
 const online = useOnline()

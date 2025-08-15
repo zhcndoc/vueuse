@@ -8,7 +8,7 @@ category: Sensors
 
 ## 使用方法
 
-```js
+```ts
 import { useMagicKeys } from '@vueuse/core'
 
 const { shift, space, a /* keys you want to monitor */ } = useMagicKeys()
@@ -141,6 +141,8 @@ whenever(ctrl_s, () => console.log('Ctrl+S 已经被按下'))
 默认情况下，`useMagicKeys()` 的值是 `Ref<boolean>`。如果你想在模板中使用对象，则可以将其设置为响应式模式。
 
 ```ts
+import { useMagicKeys } from '@vueuse/core'
+// ---cut---
 const keys = useMagicKeys({ reactive: true })
 ```
 

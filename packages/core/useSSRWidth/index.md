@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { provideSSRWidth } from '@vueuse/core'
 
 const app = createApp(App)
@@ -19,7 +19,7 @@ provideSSRWidth(500, app)
 或在根组件中
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { provideSSRWidth } from '@vueuse/core'
 
 provideSSRWidth(500)
@@ -29,7 +29,7 @@ provideSSRWidth(500)
 如果您在子组件中需要它，可以检索提供的值。
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { useSSRWidth } from '@vueuse/core'
 
 const width = useSSRWidth()

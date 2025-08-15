@@ -21,7 +21,6 @@ const {
   utterance,
   error,
   stop,
-
   toggle,
   speak,
 } = useSpeechSynthesis()
@@ -32,6 +31,8 @@ const {
 以下显示了选项的默认值，它们将直接传递给 [SpeechSynthesis API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)。
 
 ```ts
+import { useSpeechSynthesis } from '@vueuse/core'
+// ---cut---
 useSpeechSynthesis({
   lang: 'en-US',
   pitch: 1,

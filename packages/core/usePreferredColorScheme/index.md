@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { usePreferredColorScheme } from '@vueuse/core'
 
 const preferredColor = usePreferredColorScheme()

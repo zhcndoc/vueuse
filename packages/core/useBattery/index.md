@@ -8,7 +8,7 @@ category: Sensors
 
 ## 用法
 
-```js
+```ts
 import { useBattery } from '@vueuse/core'
 
 const { charging, chargingTime, dischargingTime, level } = useBattery()

@@ -8,7 +8,7 @@ category: Sensors
 
 ## 基本用法
 
-```js
+```ts
 import { useMousePressed } from '@vueuse/core'
 
 const { pressed } = useMousePressed()
@@ -16,7 +16,9 @@ const { pressed } = useMousePressed()
 
 默认情况下启用触摸。要使其仅检测鼠标变化，将 `touch` 设置为 `false`
 
-```js
+```ts
+import { useMousePressed } from '@vueuse/core'
+// ---cut---
 const { pressed } = useMousePressed({ touch: false })
 ```
 
@@ -24,6 +26,8 @@ const { pressed } = useMousePressed({ touch: false })
 
 ```vue
 <script lang="ts">
+import { useMousePressed } from '@vueuse/core'
+// ---cut---
 import { useTemplateRef } from 'vue'
 
 const el = useTemplateRef<HTMLDivElement>('el')

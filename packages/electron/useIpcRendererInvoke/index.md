@@ -13,7 +13,7 @@ import { useIpcRendererInvoke } from '@vueuse/electron'
 import { computed } from 'vue'
 
 // 如果没有明确提供 ipcRenderer，则需要启用 nodeIntegration
-// @see: https://www.electronjs.org/docs/api/webview-tag#nodeintegration
+// see: https://www.electronjs.org/docs/api/webview-tag#nodeintegration
 // Ref 结果将返回
 const result = useIpcRendererInvoke<string>('custom-channel', 'some data')
 const msg = computed(() => result.value?.msg)

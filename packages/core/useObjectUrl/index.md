@@ -11,7 +11,7 @@ category: Browser
 ## 使用方法
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { useObjectUrl } from '@vueuse/core'
 import { shallowRef } from 'vue'
 

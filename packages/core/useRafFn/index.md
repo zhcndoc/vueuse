@@ -8,7 +8,7 @@ category: Animation
 
 ## 用法
 
-```js
+```ts
 import { useRafFn } from '@vueuse/core'
 import { shallowRef } from 'vue'
 

@@ -9,7 +9,7 @@ category: Sensors
 ## 用法
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { onClickOutside } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
@@ -95,7 +95,7 @@ function closeModal() {
 你还可以将处理程序设置为数组，以设置指令的配置项。
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { vOnClickOutside } from '@vueuse/components'
 import { shallowRef, useTemplateRef } from 'vue'
 

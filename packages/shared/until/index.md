@@ -10,7 +10,7 @@ category: Watch
 
 #### 等待一些异步数据准备就绪
 
-```js
+```ts
 import { until, useAsyncState } from '@vueuse/core'
 
 const { state, isReady } = useAsyncState(
@@ -29,7 +29,7 @@ const { state, isReady } = useAsyncState(
 
 > 你可以使用 `invoke` 调用异步函数。
 
-```js
+```ts
 import { invoke, until, useCounter } from '@vueuse/core'
 
 const { count } = useCounter()
@@ -44,6 +44,8 @@ invoke(async () => {
 #### 超时
 
 ```ts
+import { until } from '@vueuse/core'
+// ---cut---
 // 将会在 ref.value === true 或者 1000ms 过去时解析
 await until(ref).toBe(true, { timeout: 1000 })
 
@@ -60,6 +62,8 @@ catch (e) {
 #### 更多示例
 
 ```ts
+import { until } from '@vueuse/core'
+// ---cut---
 await until(ref).toBe(true)
 await until(ref).toMatch(v => v > 10 && v < 100)
 await until(ref).changed()

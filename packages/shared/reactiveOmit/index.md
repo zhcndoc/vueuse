@@ -44,20 +44,14 @@ const picked = reactiveOmit(obj, (value, key) => key === 'baz' || value === true
 #### 有选择地将属性传递给子组件
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { reactiveOmit } from '@vueuse/core'
 
-const props = defineProps({
-  value: {
-    default: 'value',
-  },
-  color: {
-    type: String,
-  },
-  font: {
-    type: String,
-  }
-})
+const props = defineProps<{
+  value: string
+  color?: string
+  font?: string
+}>()
 
 const childProps = reactiveOmit(props, 'value')
 </script>

@@ -45,20 +45,14 @@ source.qux = false
 #### 有选择地将属性传递给子组件
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { reactivePick } from '@vueuse/core'
 
-const props = defineProps({
-  value: {
-    default: 'value',
-  },
-  color: {
-    type: String,
-  },
-  font: {
-    type: String,
-  }
-})
+const props = defineProps<{
+  value: string
+  color?: string
+  font?: string
+}>()
 
 const childProps = reactivePick(props, 'color', 'font')
 </script>

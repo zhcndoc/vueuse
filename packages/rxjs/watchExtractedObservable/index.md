@@ -12,7 +12,9 @@ category: '@RxJS'
 
 ## 用法
 
-```ts
+<!-- TODO: import rxjs error if enable twoslash -->
+
+```ts no-twoslash
 import { watchExtractedObservable } from '@vueuse/rxjs'
 import { computed, reactive, shallowRef } from 'vue'
 import { AudioPlayer } from '../my/libs/AudioPlayer'
@@ -34,7 +36,7 @@ watchExtractedObservable(player, p => p.progress$, (percentage) => {
 
 你还可以提供一个可选的 `onComplete` 配置，如果需要在观察到的可观察对象完成时附加特殊行为。
 
-```ts
+```ts no-twoslash
 import { watchExtractedObservable } from '@vueuse/rxjs'
 import { computed, reactive, shallowRef } from 'vue'
 import { AudioPlayer } from '../my/libs/AudioPlayer'
@@ -61,7 +63,7 @@ watchExtractedObservable(player, p => p.progress$, (percentage) => {
 
 如果需要，你还可以将 `watch` 选项作为最后一个参数传递：
 
-```ts
+```ts no-twoslash
 import { watchExtractedObservable } from '@vueuse/rxjs'
 import { computed, reactive, shallowRef } from 'vue'
 import { AudioPlayer } from '../my/libs/AudioPlayer'

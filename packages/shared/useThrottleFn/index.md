@@ -11,7 +11,7 @@ related: refThrottled, refDebounced, useDebounceFn
 
 ## 使用方法
 
-```js
+```ts
 import { useThrottleFn } from '@vueuse/core'
 
 const throttledFn = useThrottleFn(() => {

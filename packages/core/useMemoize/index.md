@@ -36,6 +36,13 @@ getUser.clear() // 清除完整缓存
 结合 `computed` 或 `asyncComputed` 可以实现响应性：
 
 ```ts
+import { asyncComputed, useMemoize } from '@vueuse/core'
+
+const getUser = useMemoize(
+  async (userId: number): Promise<UserData> =>
+    axios.get(`users/${userId}`).then(({ data }) => data),
+)
+// ---cut---
 const user1 = asyncComputed(() => getUser(1))
 // ...
 await getUser.load(1) // 也会更新 user1
@@ -47,6 +54,8 @@ await getUser.load(1) // 也会更新 user1
 这将使相等的对象接收相同的缓存键。如果你想自定义键，可以通过 `getKey` 传递。
 
 ```ts
+import { useMemoize } from '@vueuse/core'
+// ---cut---
 const getUser = useMemoize(
   async (userId: number, headers: AxiosRequestHeaders): Promise<UserData> =>
     axios.get(`users/${userId}`, { headers }).then(({ data }) => data),

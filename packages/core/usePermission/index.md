@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { usePermission } from '@vueuse/core'
 
 const microphoneAccess = usePermission('microphone')

@@ -11,7 +11,7 @@ category: Browser
 > 由于 Gamepad API 的工作方式，你必须使用游戏手柄与页面进行交互，然后才能检测到它。
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { useGamepad } from '@vueuse/core'
 import { computed } from 'vue'
 
@@ -49,6 +49,8 @@ resume()
 当游戏手柄连接或断开连接时，`onConnected` 和 `onDisconnected` 事件将触发。
 
 ```ts
+import { useGamepad } from '@vueuse/core'
+// ---cut---
 const { gamepads, onConnected, onDisconnected } = useGamepad()
 
 onConnected((index) => {
@@ -64,7 +66,14 @@ onDisconnected((index) => {
 
 > 游戏手柄触觉 API 的支持不完整，请在使用之前检查[兼容性表](https://developer.mozilla.org/en-US/docs/Web/API/GamepadHapticActuator#browser_compatibility)。
 
+<!-- eslint-disable import/first -->
+
 ```ts
+import { useGamepad } from '@vueuse/core'
+
+const { gamepads, onConnected, onDisconnected } = useGamepad()
+const gamepad = gamepads.value[0]!
+// ---cut---
 import { computed } from 'vue'
 
 const supportsVibration = computed(() => gamepad.hapticActuators.length > 0)

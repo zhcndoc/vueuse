@@ -14,7 +14,7 @@ related:
 
 ## 基本用法
 
-```js
+```ts
 import { useDark, useToggle } from '@vueuse/core'
 
 const isDark = useDark()
@@ -48,6 +48,8 @@ const toggleDark = useToggle(isDark)
 例如：
 
 ```ts
+import { useDark } from '@vueuse/core'
+// ---cut---
 const isDark = useDark({
   selector: 'body',
   attribute: 'color-scheme',
@@ -77,8 +79,10 @@ const isDark = useDark({
 如果上述配置仍然不符合你的需求，你可以使用 `onChanged` 选项来完全控制你如何处理更新。
 
 ```ts
+import { useDark } from '@vueuse/core'
+// ---cut---
 const isDark = useDark({
-  onChanged(dark: boolean) {
+  onChanged(dark) {
     // 更新 dom，调用 API 或其他操作
   },
 })

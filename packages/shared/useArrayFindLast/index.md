@@ -8,7 +8,7 @@ category: Array
 
 ## 用法
 
-```js
+```ts
 import { useArrayFindLast } from '@vueuse/core'
 
 const list = [ref(1), ref(-1), ref(2)]
@@ -18,7 +18,7 @@ const positive = useArrayFindLast(list, val => val > 0)
 
 ### 与响应式数组一起使用
 
-```js
+```ts
 import { useArrayFindLast } from '@vueuse/core'
 
 const list = reactive([-1, -2])

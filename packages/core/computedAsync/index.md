@@ -9,7 +9,7 @@ alias: asyncComputed
 
 ## 用法
 
-```js
+```ts
 import { computedAsync } from '@vueuse/core'
 import { shallowRef } from 'vue'
 
@@ -19,7 +19,7 @@ const userInfo = computedAsync(
   async () => {
     return await mockLookUp(name.value)
   },
-  null, // 初始状态
+  null, /* 初始状态 */
 )
 ```
 
@@ -27,7 +27,7 @@ const userInfo = computedAsync(
 
 你需要传递一个 ref 来跟踪异步函数的状态。
 
-```js
+```ts
 import { computedAsync } from '@vueuse/core'
 import { shallowRef } from 'vue'
 
@@ -44,7 +44,9 @@ const userInfo = computedAsync(
 
 当计算源在前一个异步函数解决之前发生变化时，你可能希望取消前一个函数。以下是如何与 fetch API 结合使用的示例。
 
-```js
+```ts
+import { computedAsync } from '@vueuse/core'
+// ---cut---
 const packageName = shallowRef('@vueuse/core')
 
 const downloads = computedAsync(async (onCancel) => {
@@ -65,7 +67,7 @@ const downloads = computedAsync(async (onCancel) => {
 
 默认情况下，`computedAsync` 在创建时立即开始解析，指定 `lazy: true` 可以使其在第一次访问时开始解析。
 
-```js
+```ts
 import { computedAsync } from '@vueuse/core'
 import { shallowRef } from 'vue'
 

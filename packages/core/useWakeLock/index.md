@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { useWakeLock } from '@vueuse/core'
 
 const { isSupported, isActive, forceRequest, request, release } = useWakeLock()

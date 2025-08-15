@@ -11,7 +11,7 @@ related: useThrottleFn
 
 ## 使用方法
 
-```js
+```ts
 import { useDebounceFn, useEventListener } from '@vueuse/core'
 
 const debouncedFn = useDebounceFn(() => {
@@ -23,7 +23,7 @@ useEventListener(window, 'resize', debouncedFn)
 
 你还可以传递第三个参数给它，带有一个最大等待时间，类似于 [lodash debounce](https://lodash.com/docs/4.17.15#debounce)
 
-```js
+```ts
 import { useDebounceFn, useEventListener } from '@vueuse/core'
 
 // 如果在重复输入后 5000ms 内没有调用，该函数将被调用。
@@ -36,7 +36,7 @@ useEventListener(window, 'resize', debouncedFn)
 
 此外，你可以使用 promise 操作获取函数的返回值。
 
-```js
+```ts
 import { useDebounceFn } from '@vueuse/core'
 
 const debouncedRequest = useDebounceFn(() => 'response', 1000)
@@ -54,7 +54,7 @@ async function doRequest() {
 
 由于未处理的拒绝错误在开发者不需要返回值时相当烦人，promise 在**默认情况下**如果函数被取消，则**不会**被拒绝。你需要指定选项 `rejectOnCancel: true` 来捕获拒绝。
 
-```js
+```ts
 import { useDebounceFn } from '@vueuse/core'
 
 const debouncedRequest = useDebounceFn(() => 'response', 1000, { rejectOnCancel: true })

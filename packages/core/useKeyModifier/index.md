@@ -41,6 +41,8 @@ console.log(capsLockState) // true
 默认情况下，返回的 ref 将是 `Ref<boolean | null>`，直到收到第一个事件为止。你可以通过以下方式明确地将初始状态传递给它：
 
 ```ts
+import { useKeyModifier } from '@vueuse/core'
+// ---cut---
 const capsLockState1 = useKeyModifier('CapsLock') // Ref<boolean | null>
 const capsLockState2 = useKeyModifier('CapsLock', { initial: false }) // Ref<boolean>
 ```

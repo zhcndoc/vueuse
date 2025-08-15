@@ -14,7 +14,7 @@ category: Component
 
 ### 简单列表
 
-```typescript
+```ts
 import { useVirtualList } from '@vueuse/core'
 
 const { list, containerProps, wrapperProps } = useVirtualList(
@@ -38,7 +38,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 
 ### 响应式列表
 
-```typescript
+```ts
 import { useToggle, useVirtualList } from '@vueuse/core'
 import { computed } from 'vue'
 
@@ -72,7 +72,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 
 ### 水平列表
 
-```typescript
+```ts
 import { useVirtualList } from '@vueuse/core'
 
 const allItems = Array.from(Array.from({ length: 99999 }).keys())

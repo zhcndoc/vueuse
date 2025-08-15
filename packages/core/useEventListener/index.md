@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { useEventListener } from '@vueuse/core'
 
 useEventListener(document, 'visibilitychange', (evt) => {
@@ -18,17 +18,17 @@ useEventListener(document, 'visibilitychange', (evt) => {
 
 你也可以将一个 ref 作为事件目标传递给 `useEventListener`，当你改变目标时，`useEventListener` 会注销之前的事件并注册新的事件。
 
-```ts
+```vue
+<script setup lang="ts">
 import { useEventListener } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
-const element = useTemplateRef<HTMLDivElement>('element')
+const element = useTemplateRef('element')
 useEventListener(element, 'keydown', (e) => {
   console.log(e.key)
 })
-```
+</script>
 
-```vue
 <template>
   <div v-if="cond" ref="element">
     Div1
@@ -54,7 +54,10 @@ cleanup() // 这将注销监听器。
 注意，如果你的组件也在 SSR (服务器端渲染) 中运行，你可能会遇到错误 (如 `document is not defined`)，因为类似 `document` 和 `window` 的 DOM API 在 Node.js 中不可用。为了避免这种情况，你可以将逻辑放在 `onMounted` 钩子内部。
 
 ```ts
-// onMounted 只会在客户端执行，所以它保证了 DOM API 是可用的。
+import { useEventListener } from '@vueuse/core'
+// ---cut---
+// onMounted will only be called in the client side
+// so it guarantees the DOM APIs are available.
 onMounted(() => {
   useEventListener(document, 'keydown', (e) => {
     console.log(e.key)

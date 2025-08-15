@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { usePreferredContrast } from '@vueuse/core'
 
 const preferredContrast = usePreferredContrast()

@@ -21,7 +21,7 @@ factor.value = 2 // 修改当前缩放因子
 
 立即设置初始缩放因子
 
-```js
+```ts
 import { useZoomFactor } from '@vueuse/electron'
 
 const factor = useZoomFactor(2)
@@ -29,9 +29,9 @@ const factor = useZoomFactor(2)
 
 传递一个 `ref`，当源 `ref` 更改时，缩放因子将更新
 
-```js
-import { shallowRef } from 'vue'
+```ts
 import { useZoomFactor } from '@vueuse/electron'
+import { shallowRef } from 'vue'
 
 const factor = shallowRef(1)
 

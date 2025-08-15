@@ -21,18 +21,10 @@ npm i universal-cookie@^7
 ### 常规用法
 
 ```vue
-<script>
+<script setup lang="ts">
 import { useCookies } from '@vueuse/integrations/useCookies'
-import { defineComponent } from 'vue'
 
-export default defineComponent({
-  setup() {
-    const cookies = useCookies(['locale'])
-    return {
-      cookies,
-    }
-  },
-})
+const cookies = useCookies(['locale'])
 </script>
 
 <template>
@@ -57,7 +49,19 @@ export default defineComponent({
 > 默认情况下，应该在 `setup()` 中使用它，但此函数也可以在其他任何地方使用。
 
 ```ts
-const { get, getAll, set, remove, addChangeListener, removeChangeListener } = useCookies(['cookie-name'], { doNotParse: false, autoUpdateDependencies: false })
+import { useCookies } from '@vueuse/integrations/useCookies'
+// ---cut---
+const {
+  get,
+  getAll,
+  set,
+  remove,
+  addChangeListener,
+  removeChangeListener
+} = useCookies(['cookie-name'], {
+  doNotParse: false,
+  autoUpdateDependencies: false
+})
 ```
 
 ### `dependencies` (可选)

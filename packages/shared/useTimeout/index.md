@@ -8,17 +8,21 @@ category: Animation
 
 ## 使用方法
 
-```js
-import { promiseTimeout, useTimeout } from '@vueuse/core'
+```ts
+import { useTimeout } from '@vueuse/core'
 
 const ready = useTimeout(1000)
 ```
 
-```js
+```ts
+import { useTimeout } from '@vueuse/core'
+// ---cut---
 const { ready, start, stop } = useTimeout(1000, { controls: true })
 ```
 
-```js
+```ts
+import { promiseTimeout } from '@vueuse/core'
+
 console.log(ready.value) // false
 
 await promiseTimeout(1200)

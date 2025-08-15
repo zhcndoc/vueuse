@@ -45,7 +45,7 @@ async function open() {
 
 `createTemplatePromise` 返回一个 **Vue 组件**，你可以直接在模板中使用 `<script setup>`。
 
-```ts
+```ts twoslash include main
 import { createTemplatePromise } from '@vueuse/core'
 
 const TemplatePromise = createTemplatePromise()
@@ -71,6 +71,8 @@ const MyPromise = createTemplatePromise<boolean>() // 使用泛型类型
 插槽最初不会被渲染 (类似于 `v-if="false"`)，直到你从组件中调用 `start` 方法。
 
 ```ts
+// @include: main
+// ---cut---
 const result = await TemplatePromise.start()
 ```
 
@@ -80,13 +82,15 @@ const result = await TemplatePromise.start()
 
 你可以通过参数将参数传递给 `start`。
 
-```ts
+```ts twoslash include passing-arguments
 import { createTemplatePromise } from '@vueuse/core'
 
 const TemplatePromise = createTemplatePromise<boolean, [string, number]>()
 ```
 
 ```ts
+// @include: passing-arguments
+// ---cut---
 const result = await TemplatePromise.start('hello', 123) // Pr
 ```
 

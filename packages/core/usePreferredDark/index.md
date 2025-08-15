@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { usePreferredDark } from '@vueuse/core'
 
 const isDark = usePreferredDark()

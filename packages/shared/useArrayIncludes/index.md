@@ -10,7 +10,7 @@ category: Array
 
 ### 与响应式数组一起使用
 
-```js
+```ts
 import { useArrayIncludes } from '@vueuse/core'
 
 const list = ref([0, 2, 4, 6, 8])

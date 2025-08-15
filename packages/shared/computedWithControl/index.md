@@ -9,7 +9,7 @@ alias: controlledComputed
 
 ## 用法
 
-```ts
+```ts twoslash include main
 import { computedWithControl } from '@vueuse/core'
 
 const source = ref('foo')
@@ -24,6 +24,8 @@ const computedRef = computedWithControl(
 通过这种方式，`counter` 的更改不会触发 `computedRef` 更新，但是 `source` ref 会。
 
 ```ts
+// @include: main
+// ---cut---
 console.log(computedRef.value) // 0
 
 counter.value += 1
@@ -40,6 +42,8 @@ console.log(computedRef.value) // 1
 你还可以通过以下方式手动触发计算属性的更新：
 
 ```ts
+// @include: main
+// ---cut---
 const computedRef = computedWithControl(
   () => source.value,
   () => counter.value,

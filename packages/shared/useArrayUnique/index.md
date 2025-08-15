@@ -10,7 +10,7 @@ category: Array
 
 ### 与多个 ref 组成的数组一起使用
 
-```js
+```ts
 import { useArrayUnique } from '@vueuse/core'
 
 const item1 = ref(0)
@@ -27,7 +27,7 @@ item5.value = 1
 
 ### 与响应式数组一起使用
 
-```js
+```ts
 import { useArrayUnique } from '@vueuse/core'
 
 const list = reactive([1, 2, 2, 3])
@@ -40,7 +40,7 @@ list.push(1)
 
 ### 使用自定义函数
 
-```js
+```ts
 import { useArrayUnique } from '@vueuse/core'
 
 const list = reactive([

@@ -10,7 +10,7 @@ category: Browser
 
 ## 使用方法
 
-```js
+```ts
 import { useBrowserLocation } from '@vueuse/core'
 
 const location = useBrowserLocation()

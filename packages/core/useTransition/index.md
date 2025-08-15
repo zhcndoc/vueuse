@@ -10,7 +10,7 @@ category: Animation
 
 定义一个数值型的源值，当其改变时，输出值会过渡到新值。如果源值在过渡进行中发生变化，则会从中断处开始新的过渡。
 
-```js
+```ts
 import { TransitionPresets, useTransition } from '@vueuse/core'
 import { shallowRef } from 'vue'
 
@@ -24,7 +24,9 @@ const output = useTransition(source, {
 
 为了同步过渡，可以使用数字数组。以下是一个在颜色之间过渡的示例。
 
-```js
+```ts
+import { useTransition } from '@vueuse/core'
+// ---cut---
 const source = shallowRef([0, 0, 0])
 
 const output = useTransition(source)
@@ -37,7 +39,9 @@ const color = computed(() => {
 
 可以使用三次贝塞尔曲线自定义过渡缓动。以与 [CSS 缓动函数](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function#easing_functions)相同的方式定义过渡。
 
-```js
+```ts
+import { useTransition } from '@vueuse/core'
+// ---cut---
 useTransition(source, {
   transition: [0.75, 0, 0.25, 1],
 })
@@ -73,7 +77,9 @@ useTransition(source, {
 
 对于更复杂的过渡效果，可以提供自定义函数。
 
-```js
+```ts
+import { useTransition } from '@vueuse/core'
+// ---cut---
 function easeOutElastic(n) {
   return n === 0
     ? 0
@@ -89,7 +95,9 @@ useTransition(source, {
 
 要控制过渡何时开始，设置 `delay` 值。要围绕过渡效果协调行为，请定义 `onStarted` 或 `onFinished` 回调函数。
 
-```js
+```ts
+import { useTransition } from '@vueuse/core'
+// ---cut---
 useTransition(source, {
   delay: 1000,
   onStarted() {
@@ -105,7 +113,7 @@ useTransition(source, {
 
 要更精确地控制，可以使用 `executeTransition` 手动执行过渡。此函数返回一个在完成后解析的 promise。手动过渡可以通过定义一个返回真值的 `abort` 函数来取消。
 
-```js
+```ts
 import { executeTransition } from '@vueuse/core'
 
 await executeTransition(source, from, to, {

@@ -10,19 +10,10 @@ category: Sensors
 
 ```ts
 import { useNavigatorLanguage } from '@vueuse/core'
-import { defineComponent } from 'vue'
 
-export default defineComponent({
-  setup() {
-    const { language } = useNavigatorLanguage()
+const { language } = useNavigatorLanguage()
 
-    watch(language, () => {
-      // 监听值的变化
-    })
-
-    return {
-      language,
-    }
-  },
+watch(language, () => {
+  // 监听值的变化
 })
 ```

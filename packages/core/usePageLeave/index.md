@@ -8,7 +8,7 @@ category: Sensors
 
 ## 使用方法
 
-```js
+```ts
 import { usePageLeave } from '@vueuse/core'
 
 const isLeft = usePageLeave()

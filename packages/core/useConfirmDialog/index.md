@@ -19,7 +19,7 @@ category: Utilities
 ### 使用钩子
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { useConfirmDialog } from '@vueuse/core'
 
 const { isRevealed, reveal, confirm, cancel, onReveal, onConfirm, onCancel }
@@ -52,7 +52,7 @@ const { isRevealed, reveal, confirm, cancel, onReveal, onConfirm, onCancel }
 如果你更喜欢使用 promises：
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { useConfirmDialog } from '@vueuse/core'
 
 const {

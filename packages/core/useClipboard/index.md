@@ -46,7 +46,3 @@ const { text, copy, copied, isSupported } = useClipboard({ source })
   </UseClipboard>
 </template>
 ```
-
-```
-
-```

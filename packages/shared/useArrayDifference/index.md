@@ -14,7 +14,7 @@ category: Array
 
 ### 与响应式数组一起使用
 
-```js
+```ts
 import { useArrayDifference } from '@vueuse/core'
 
 const list1 = ref([0, 1, 2, 3, 4, 5])
@@ -27,7 +27,7 @@ list2.value = [0, 1, 2]
 
 ### 与响应式数组和自定义比较函数一起使用
 
-```js
+```ts
 import { useArrayDifference } from '@vueuse/core'
 
 const list1 = ref([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }])
@@ -41,7 +41,7 @@ const result = useArrayDifference(list1, list2, (value, othVal) => value.id === 
 
 This composable also supports [Symmetric difference](https://en.wikipedia.org/wiki/Symmetric_difference) by passing the `symmetric` option.
 
-```js
+```ts {10}
 import { useArrayDifference } from '@vueuse/core'
 
 const list1 = ref([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }])
@@ -51,7 +51,7 @@ const result = useArrayDifference(
   list1,
   list2,
   (value, othVal) => value.id === othVal.id,
-  { symmetric: true } // [!code hl]
+  { symmetric: true }
 )
 // result.value: [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 6 }]
 ```

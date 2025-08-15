@@ -8,7 +8,7 @@ category: Browser
 
 ## 使用方法
 
-```js
+```ts
 import { usePreferredReducedTransparency } from '@vueuse/core'
 
 const preferredTransparency = usePreferredReducedTransparency()

@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { usePreferredReducedMotion } from '@vueuse/core'
 
 const preferredMotion = usePreferredReducedMotion()

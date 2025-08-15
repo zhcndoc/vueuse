@@ -10,7 +10,7 @@ category: Browser
 
 ### 基本示例
 
-```js
+```ts
 import { useWebWorkerFn } from '@vueuse/core'
 
 const { workerFn } = useWebWorkerFn(() => {

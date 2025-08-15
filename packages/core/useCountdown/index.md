@@ -8,7 +8,7 @@ category: Time
 
 ## 使用方法
 
-```js
+```ts
 import { useCountdown } from '@vueuse/core'
 
 const countdownSeconds = 5
@@ -24,9 +24,9 @@ const { remaining, start, stop, pause, resume } = useCountdown(countdownSeconds,
 
 您可以使用 `ref` 来更改初始倒计时。`start()` 和 `resume()` 也接受下一个倒计时的新值。
 
-```js
-import { shallowRef } from 'vue'
+```ts
 import { useCountdown } from '@vueuse/core'
+import { shallowRef } from 'vue'
 
 const countdown = shallowRef(5)
 const { start, reset } = useCountdown(countdown, {

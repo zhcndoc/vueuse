@@ -8,7 +8,7 @@ category: Sensors
 
 ## 使用方法
 
-```js
+```ts
 import { useIdle } from '@vueuse/core'
 
 const { idle, lastActive } = useIdle(5 * 60 * 1000) // 5 分钟
@@ -18,7 +18,7 @@ console.log(idle.value) // true 或 false
 
 程序化重置：
 
-```js
+```ts
 import { useCounter, useIdle } from '@vueuse/core'
 import { watch } from 'vue'
 

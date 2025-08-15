@@ -8,7 +8,7 @@ category: Animation
 
 ## 使用方法
 
-```js
+```ts
 import { useIntervalFn } from '@vueuse/core'
 
 const { pause, resume, isActive } = useIntervalFn(() => {

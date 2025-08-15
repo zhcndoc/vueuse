@@ -31,6 +31,8 @@ const { x, y, style } = useDraggable(el, {
 设置 `preventDefault: true` 以覆盖浏览器中某些元素的默认拖放行为。
 
 ```ts
+import { useDraggable } from '@vueuse/core'
+// ---cut---
 const { x, y, style } = useDraggable(el, {
   preventDefault: true,
   // with `preventDefault: true`

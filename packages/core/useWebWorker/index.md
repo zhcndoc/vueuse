@@ -9,7 +9,7 @@ related: useWebWorkerFn
 
 ## Usage
 
-```js
+```ts
 import { useWebWorker } from '@vueuse/core'
 
 const { data, post, terminate, worker } = useWebWorker('/path/to/worker.js')

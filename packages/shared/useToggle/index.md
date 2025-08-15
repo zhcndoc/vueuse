@@ -8,7 +8,7 @@ category: Utilities
 
 ## 用法
 
-```js
+```ts
 import { useToggle } from '@vueuse/core'
 
 const [value, toggle] = useToggle()
@@ -16,7 +16,7 @@ const [value, toggle] = useToggle()
 
 当你传入一个 ref 时，`useToggle` 将返回一个简单的切换函数：
 
-```js
+```ts
 import { useDark, useToggle } from '@vueuse/core'
 
 const isDark = useDark()

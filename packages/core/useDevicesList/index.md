@@ -8,7 +8,7 @@ category: Sensors
 
 ## 用法
 
-```js
+```ts
 import { useDevicesList } from '@vueuse/core'
 
 const {
@@ -23,7 +23,9 @@ const {
 
 要请求权限，请使用 `ensurePermissions` 方法。
 
-```js
+```ts
+import { useDevicesList } from '@vueuse/core'
+// ---cut---
 const {
   ensurePermissions,
   permissionGranted,

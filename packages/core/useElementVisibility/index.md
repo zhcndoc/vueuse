@@ -29,6 +29,8 @@ const targetIsVisible = useElementVisibility(target)
 如果你想在元素完全可见之前更早地触发回调，可以使用 `rootMargin` 选项（参见 [MDN IntersectionObserver/rootMargin](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin)）。
 
 ```ts
+import { useElementVisibility } from '@vueuse/core'
+// ---cut---
 const targetIsVisible = useElementVisibility(target, {
   rootMargin: '0px 0px 100px 0px',
 })

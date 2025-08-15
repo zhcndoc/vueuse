@@ -8,7 +8,7 @@ category: '@Firebase'
 
 ## 用法
 
-```js {9,12,17,22}
+```ts {9,12,17,22}
 import { useFirestore } from '@vueuse/firebase/useFirestore'
 import { initializeApp } from 'firebase/app'
 import { collection, doc, getFirestore, limit, orderBy, query } from 'firebase/firestore'
@@ -41,13 +41,18 @@ const userData = useFirestore(userQuery, null)
 注意：再次获取未释放的 db 引用不会产生 Firestore 读取成本。
 
 ```ts
+import { useFirestore } from '@vueuse/firebase/useFirestore'
+import { collection } from 'firebase/firestore'
+// ---cut---
 const todos = useFirestore(collection(db, 'todos'), undefined, { autoDispose: false })
 ```
 
 或者使用核心包中的 `createGlobalState`
 
-```js
-// store.js
+```ts twoslash include store
+// @filename: store.ts
+// ---cut---
+// store.ts
 import { createGlobalState } from '@vueuse/core'
 import { useFirestore } from '@vueuse/firebase/useFirestore'
 
@@ -56,14 +61,13 @@ export const useTodos = createGlobalState(
 )
 ```
 
-```js
-// app.js
+```vue
+<!-- app.vue -->
+<script setup lang="ts">
+// @include: store
+// ---cut---
 import { useTodos } from './store'
 
-export default {
-  setup() {
-    const todos = useTodos()
-    return { todos }
-  },
-}
+const todos = useTodos()
+</script>
 ```

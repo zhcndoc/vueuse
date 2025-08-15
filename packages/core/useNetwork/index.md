@@ -8,7 +8,7 @@ category: Sensors
 
 ## 使用方法
 
-```js
+```ts
 import { useNetwork } from '@vueuse/core'
 
 const { isOnline, offlineAt, downlink, downlinkMax, effectiveType, saveData, type } = useNetwork()
@@ -18,7 +18,9 @@ console.log(isOnline.value)
 
 要将其作为对象使用，请使用 `reactive()` 进行包装
 
-```js
+```ts
+import { useNetwork } from '@vueuse/core'
+// ---cut---
 import { reactive } from 'vue'
 
 const network = reactive(useNetwork())

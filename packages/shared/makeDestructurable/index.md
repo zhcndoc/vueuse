@@ -10,10 +10,7 @@ category: Utilities
 
 TypeScript 示例：
 
-<!-- eslint-disable array-bracket-spacing -->
-<!-- eslint-disable ts/no-redeclare -->
-
-```ts
+```ts twoslash include main
 import { makeDestructurable } from '@vueuse/core'
 
 const foo = { name: 'foo' }
@@ -27,10 +24,9 @@ const obj = makeDestructurable(
 
 用法：
 
-<!-- eslint-disable array-bracket-spacing -->
-<!-- eslint-disable ts/no-redeclare -->
-
-```ts
+```ts twoslash
+// @include: main
+// ---cut---
 let { foo, bar } = obj
 let [foo, bar] = obj
 ```

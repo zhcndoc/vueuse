@@ -8,7 +8,7 @@ category: Sensors
 
 ## 用法
 
-```js
+```ts
 import { useDeviceOrientation } from '@vueuse/core'
 
 const {

@@ -9,7 +9,7 @@ related: useRefHistory
 
 ## 使用方法
 
-```ts {5}
+```ts {5} twoslash include usage
 import { useManualRefHistory } from '@vueuse/core'
 import { shallowRef } from 'vue'
 
@@ -29,6 +29,8 @@ console.log(history.value)
 你可以使用 `undo` 将 ref 值重置为上一个历史点。
 
 ```ts
+// @include: usage
+// ---cut---
 console.log(counter.value) // 1
 undo()
 console.log(counter.value) // 0
@@ -97,6 +99,8 @@ const refHistory = useManualRefHistory(target, {
 默认情况下，我们会保留所有历史记录 (无限制)，直到你明确清除它们，你可以通过 `capacity` 选项设置要保留的最大历史记录数量。
 
 ```ts
+import { useManualRefHistory } from '@vueuse/core'
+
 const refHistory = useManualRefHistory(target, {
   capacity: 15, // 限制为 15 条历史记录
 })

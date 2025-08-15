@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { useFavicon } from '@vueuse/core'
 
 const icon = useFavicon()
@@ -20,7 +20,7 @@ icon.value = 'dark.png' // 更改当前图标
 
 你可以将一个 `ref` 传递给它，源 ref 的更改将自动反映到你的网站图标上。
 
-```js {7}
+```ts {7}
 import { useFavicon, usePreferredDark } from '@vueuse/core'
 import { computed } from 'vue'
 
@@ -33,6 +33,8 @@ useFavicon(favicon)
 当传递了一个源 ref 时，返回的 ref 将与源 ref 相同
 
 ```ts
+import { useFavicon } from '@vueuse/core'
+// ---cut---
 const source = shallowRef('icon.png')
 const icon = useFavicon(source)
 

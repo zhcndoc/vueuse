@@ -9,7 +9,7 @@ category: Sensors
 ## 用法
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { usePointerSwipe } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 

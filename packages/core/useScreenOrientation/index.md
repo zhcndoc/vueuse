@@ -39,6 +39,10 @@ lockOrientation('portrait-primary')
 然后再次解锁，使用以下方式：
 
 ```ts
+import { useScreenOrientation } from '@vueuse/core'
+
+const { unlockOrientation } = useScreenOrientation()
+// ---cut---
 unlockOrientation()
 ```
 

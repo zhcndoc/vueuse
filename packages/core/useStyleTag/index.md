@@ -12,7 +12,7 @@ category: Browser
 
 提供一个 CSS 字符串，然后 `useStyleTag` 将自动生成一个 id 并将其注入到 `<head>` 中。
 
-```js
+```ts
 import { useStyleTag } from '@vueuse/core'
 
 const {
@@ -41,9 +41,9 @@ css.value = '.foo { margin-top: 64px; }'
 
 如果需要定义自己的 id，可以将 `id` 作为第一个参数传递。
 
-```js
+```ts
 import { useStyleTag } from '@vueuse/core'
-
+// ---cut---
 useStyleTag('.foo { margin-top: 32px; }', { id: 'custom-id' })
 ```
 
@@ -60,7 +60,9 @@ useStyleTag('.foo { margin-top: 32px; }', { id: 'custom-id' })
 
 你可以在对象中的最后一个参数中传递媒体属性。
 
-```js
+```ts
+import { useStyleTag } from '@vueuse/core'
+// ---cut---
 useStyleTag('.foo { margin-top: 32px; }', { media: 'print' })
 ```
 

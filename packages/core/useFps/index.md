@@ -8,7 +8,7 @@ category: Sensors
 
 ## 使用方法
 
-```js
+```ts
 import { useFps } from '@vueuse/core'
 
 const fps = useFps()

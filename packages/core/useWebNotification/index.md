@@ -15,6 +15,8 @@ Before an app can send a notification, the user must grant the application the r
 :::
 
 ```ts
+import { useWebNotification } from '@vueuse/core'
+
 const {
   isSupported,
   notification,
@@ -40,6 +42,10 @@ if (isSupported.value && permissionGranted.value)
 这个组合式还利用了 `@vueuse/shared` 中的 `createEventHook` 工具：
 
 ```ts
+import { useWebNotification } from '@vueuse/core'
+
+const { onClick, onShow, onError, onClose, } = useWebNotification()
+// ---cut---
 onClick((evt: Event) => {
   // 处理通知的点击事件...
 })

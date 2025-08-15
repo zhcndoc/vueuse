@@ -11,9 +11,9 @@ related: createSharedComposable
 
 ### 无持久性 (存储在内存中)
 
-```js
+```ts
+// store.ts
 import { createGlobalState } from '@vueuse/core'
-// store.js
 import { shallowRef } from 'vue'
 
 export const useGlobalState = createGlobalState(
@@ -26,9 +26,9 @@ export const useGlobalState = createGlobalState(
 
 更大的示例：
 
-```js
+```ts
+// store.ts
 import { createGlobalState } from '@vueuse/core'
-// store.js
 import { computed, shallowRef } from 'vue'
 
 export const useGlobalState = createGlobalState(
@@ -53,8 +53,8 @@ export const useGlobalState = createGlobalState(
 
 使用 `useStorage` 将数据存储在 `localStorage` 中：
 
-```js
-// store.js
+```ts twoslash include store
+// store.ts
 import { createGlobalState, useStorage } from '@vueuse/core'
 
 export const useGlobalState = createGlobalState(
@@ -62,8 +62,11 @@ export const useGlobalState = createGlobalState(
 )
 ```
 
-```js
-// component.js
+```ts
+// @filename: store.ts
+// @include: store
+// ---cut---
+// component.ts
 import { useGlobalState } from './store'
 
 export default defineComponent({

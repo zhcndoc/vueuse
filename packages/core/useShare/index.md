@@ -10,7 +10,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { useShare } from '@vueuse/core'
 
 const { share, isSupported } = useShare()
@@ -28,7 +28,7 @@ function startShare() {
 
 你可以传递一个 `ref`，源引用的更改将反映到你的分享选项中。
 
-```ts {7}
+```ts {6}
 import { ref } from 'vue'
 
 const shareOptions = ref<ShareOptions>({ text: 'foo' })

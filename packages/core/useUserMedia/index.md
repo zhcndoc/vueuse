@@ -9,27 +9,31 @@ related: useDevicesList, usePermission
 
 ## 用法
 
-```js
+```vue
+<script setup lang="ts">
 import { useUserMedia } from '@vueuse/core'
+import { useTemplateRef, watchEffect } from 'vue'
 
 const { stream, start } = useUserMedia()
-
 start()
-```
 
-```ts
-const video = document.getElementById('video')
-
+const videoRef = useTemplateRef('video')
 watchEffect(() => {
   // 在 video 元素上预览
-  video.srcObject = stream.value
+  videoRef.value.srcObject = stream.value
 })
+</script>
+
+<template>
+  <video ref="video" />
+</template>
 ```
 
 ### 设备
 
-```js
+```ts
 import { useDevicesList, useUserMedia } from '@vueuse/core'
+import { computed, reactive } from 'vue'
 
 const {
   videoInputs: cameras,

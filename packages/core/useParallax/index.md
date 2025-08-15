@@ -9,7 +9,7 @@ category: Sensors
 ## 使用方法
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { useParallax } from '@vueuse/core'
 
 const container = ref(null)

@@ -9,9 +9,9 @@ category: Sensors
 ## 基本用法
 
 ```vue
-<script>
-import { ref, watch } from 'vue'
+<script setup lang="ts">
 import { useFocusWithin } from '@vueuse/core'
+import { ref, watch } from 'vue'
 
 const target = ref()
 const { focused } = useFocusWithin(target)
@@ -19,7 +19,8 @@ const { focused } = useFocusWithin(target)
 watch(focused, (focused) => {
   if (focused)
     console.log('目标包含有焦点的元素')
-  else console.log('目标不包含有焦点的元素')
+  else
+    console.log('目标不包含有焦点的元素')
 })
 </script>
 

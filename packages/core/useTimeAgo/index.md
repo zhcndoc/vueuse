@@ -8,7 +8,7 @@ category: Time
 
 ## 用法
 
-```js
+```ts
 import { useTimeAgo } from '@vueuse/core'
 
 const timeAgo = useTimeAgo(new Date(2021, 0, 1))
@@ -28,7 +28,7 @@ const timeAgo = useTimeAgo(new Date(2021, 0, 1))
 
 如果你不需要响应性，可以使用 `formatTimeAgo` 函数获取格式化的字符串，而不是一个 Ref。
 
-```js
+```ts
 import { formatTimeAgo } from '@vueuse/core'
 
 const timeAgo = formatTimeAgo(new Date(2021, 0, 1)) // 字符串

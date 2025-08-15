@@ -8,7 +8,7 @@ category: Utilities
 
 ## 基本用法
 
-```js
+```ts
 import { useCounter } from '@vueuse/core'
 
 const { count, inc, dec, set, reset } = useCounter()
@@ -16,7 +16,7 @@ const { count, inc, dec, set, reset } = useCounter()
 
 ## 带有选项的用法
 
-```js
+```ts
 import { useCounter } from '@vueuse/core'
 
 const { count, inc, dec, set, reset } = useCounter(1, { min: 0, max: 16 })

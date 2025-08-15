@@ -8,7 +8,7 @@ category: Browser
 
 ## 用法
 
-```js
+```ts
 import { usePreferredLanguages } from '@vueuse/core'
 
 const languages = usePreferredLanguages()

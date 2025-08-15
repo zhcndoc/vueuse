@@ -28,6 +28,8 @@ const {
 以下显示了选项的默认值，它们将直接传递给 [SpeechRecognition API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition)。
 
 ```ts
+import { useSpeechRecognition } from '@vueuse/core'
+// ---cut---
 useSpeechRecognition({
   lang: 'zh-CN',
   interimResults: true,

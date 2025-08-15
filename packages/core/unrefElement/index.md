@@ -9,7 +9,7 @@ category: Component
 ## 用法
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { unrefElement } from '@vueuse/core'
 import { onMounted, useTemplateRef } from 'vue'
 

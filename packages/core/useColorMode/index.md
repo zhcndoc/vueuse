@@ -12,7 +12,7 @@ related:
 
 ## 基本用法
 
-```js
+```ts
 import { useColorMode } from '@vueuse/core'
 
 const mode = useColorMode() // Ref<'dark' | 'light'>
@@ -21,6 +21,10 @@ const mode = useColorMode() // Ref<'dark' | 'light'>
 默认情况下，它将使用 `usePreferredDark` (也称为 `auto` 模式) 匹配用户浏览器的偏好。在读取 ref 时，默认将返回当前的颜色模式 (`dark`、`light` 或你的自定义模式)。可以通过启用 `emitAuto` 选项将 `auto` 模式包含在返回的模式中。在写入 ref 时，它将触发 DOM 更新并将颜色模式持久化到本地存储 (或你的自定义存储)。你可以传递 `auto` 来设置回自动模式。
 
 ```ts
+import { useColorMode } from '@vueuse/core'
+
+const mode = useColorMode()
+// ---cut---
 mode.value // 'dark' | 'light'
 
 mode.value = 'dark' // 切换到暗模式并持久化
@@ -30,7 +34,7 @@ mode.value = 'auto' // 切换到自动模式
 
 ## 配置
 
-```js
+```ts
 import { useColorMode } from '@vueuse/core'
 
 const mode = useColorMode({
@@ -47,7 +51,7 @@ const mode = useColorMode({
 
 你还可以明确访问系统偏好和存储的用户覆盖模式。
 
-```js
+```ts
 import { useColorMode } from '@vueuse/core'
 
 const { system, store } = useColorMode()

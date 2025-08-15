@@ -10,7 +10,7 @@ category: Component
 
 祖先组件
 
-```ts
+```ts twoslash include main
 import type { InjectionKey, Ref } from 'vue'
 import { provide } from 'vue'
 
@@ -29,6 +29,9 @@ provide(ArrayKey, array)
 后代组件
 
 ```ts
+// @filename: provider.ts
+// @include: main
+// ---cut---
 import { computedInject } from '@vueuse/core'
 
 import { ArrayKey } from './provider'

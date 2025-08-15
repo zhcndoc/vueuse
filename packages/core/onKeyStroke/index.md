@@ -8,7 +8,7 @@ category: Sensors
 
 ## 用法
 
-```js
+```ts
 import { onKeyStroke } from '@vueuse/core'
 
 onKeyStroke('ArrowDown', (e) => {
@@ -20,7 +20,7 @@ onKeyStroke('ArrowDown', (e) => {
 
 ### 监听多个按键
 
-```js
+```ts
 import { onKeyStroke } from '@vueuse/core'
 
 onKeyStroke(['s', 'S', 'ArrowDown'], (e) => {
@@ -38,7 +38,9 @@ onKeyStroke((e) => {
 
 ### 自定义事件目标
 
-```js
+```ts
+import { onKeyStroke } from '@vueuse/core'
+// ---cut---
 onKeyStroke('A', (e) => {
   console.log('按键 A 在文档上被按下')
 }, { target: document })
@@ -48,9 +50,9 @@ onKeyStroke('A', (e) => {
 
 当按下 `A` 键并保持按下时，回调函数只会触发一次。
 
-```js
+```ts
 import { onKeyStroke } from '@vueuse/core'
-
+// ---cut---
 // 使用 `autoRepeat` 选项
 onKeyStroke('A', (e) => {
   console.log('按键 A 被按下')
@@ -79,7 +81,9 @@ function onUpdate(e) {
 
 ### 自定义键盘事件
 
-```js
+```ts
+import { onKeyStroke } from '@vueuse/core'
+// ---cut---
 onKeyStroke('Shift', (e) => {
   console.log('按键 Shift 松开')
 }, { eventName: 'keyup' })
@@ -87,7 +91,9 @@ onKeyStroke('Shift', (e) => {
 
 或者
 
-```js
+```ts
+import { onKeyUp } from '@vueuse/core'
+// ---cut---
 onKeyUp('Shift', () => console.log('按键 Shift 松开'))
 ```
 

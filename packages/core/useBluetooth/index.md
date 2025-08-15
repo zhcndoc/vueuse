@@ -16,7 +16,8 @@ Web 蓝牙 API 允许网站使用通用属性配置文件 (GATT) 在蓝牙 4 无
 
 ## 默认用法
 
-```ts
+```vue
+<script setup lang="ts">
 import { useBluetooth } from '@vueuse/core'
 
 const {
@@ -28,9 +29,8 @@ const {
 } = useBluetooth({
   acceptAllDevices: true,
 })
-```
+</script>
 
-```vue
 <template>
   <button @click="requestDevice()">
     请求蓝牙设备
@@ -46,7 +46,8 @@ const {
 
 在此示例中，我们使用 `characteristicvaluechanged` 事件侦听器来处理读取电池电量特征值。此事件侦听器还将选择性地处理即将到来的通知。
 
-```ts
+```vue
+<script setup lang="ts">
 import { pausableWatch, useBluetooth, useEventListener } from '@vueuse/core'
 
 const {
@@ -96,9 +97,8 @@ const { stop } = pausableWatch(isConnected, (newIsConnected) => {
   // We only want to run this on the initial connection, as we will use an event listener to handle updates:
   stop()
 })
-```
+</script>
 
-```vue
 <template>
   <button @click="requestDevice()">
     请求蓝牙设备

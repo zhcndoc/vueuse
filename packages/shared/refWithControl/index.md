@@ -42,10 +42,16 @@ console.log(doubled.value) // 100（再次更新，因为它是一个响应式�
 我们还提供了一些简写，用于在不跟踪/触发响应性系统的情况下进行获取/设置。以下代码是等效的。
 
 ```ts
+import { refWithControl } from '@vueuse/core'
+// ---cut---
 const foo = refWithControl('foo')
 ```
 
 ```ts
+import { refWithControl } from '@vueuse/core'
+
+const foo = refWithControl('foo')
+// ---cut---
 // 获取
 foo.get(false)
 foo.untrackedGet()
@@ -53,6 +59,10 @@ foo.peek() // `untrackedGet` 的别名
 ```
 
 ```ts
+import { refWithControl } from '@vueuse/core'
+
+const foo = refWithControl('foo')
+// ---cut---
 // 设置
 foo.set('bar', false)
 foo.silentSet('bar')
@@ -66,6 +76,8 @@ foo.lay('bar') // `silentSet` 的别名
 提供 `onBeforeChange` 选项，以控制是否应接受新值。例如：
 
 ```ts
+import { refWithControl } from '@vueuse/core'
+// ---cut---
 const num = refWithControl(0, {
   onBeforeChange(value, oldValue) {
     // 禁止一次操作中的更改大于 ±5
@@ -86,6 +98,8 @@ console.log(num.value) // 1（更改被取消）
 `onChanged` 选项提供了与 Vue 的 `watch` 类似的功能，但与 `watch` 相比，具有更少的开销。
 
 ```ts
+import { refWithControl } from '@vueuse/core'
+// ---cut---
 const num = refWithControl(0, {
   onChanged(value, oldValue) {
     console.log(value)

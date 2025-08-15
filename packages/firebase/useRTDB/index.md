@@ -8,7 +8,7 @@ category: '@Firebase'
 
 ## 用法
 
-```js
+```ts
 import { useRTDB } from '@vueuse/firebase/useRTDB'
 import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database'
@@ -28,8 +28,10 @@ const todos = useRTDB(db.ref('todos'), { autoDispose: false })
 
 或者使用核心包中的 `createGlobalState`
 
-```js
-// store.js
+```ts twoslash include store
+// @filename: store.ts
+// ---cut---
+// store.ts
 import { createGlobalState } from '@vueuse/core'
 import { useRTDB } from '@vueuse/firebase/useRTDB'
 
@@ -38,9 +40,13 @@ export const useTodos = createGlobalState(
 )
 ```
 
-```js
-// app.js
+```vue
+<!-- app.vue -->
+<script setup lang="ts">
+// @include: store
+// ---cut---
 import { useTodos } from './store'
 
 const todos = useTodos()
+</script>
 ```

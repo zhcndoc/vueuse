@@ -10,7 +10,7 @@ category: Array
 
 ### 与多个 ref 组成的数组一起使用
 
-```js
+```ts
 import { useArrayMap } from '@vueuse/core'
 
 const item1 = ref(0)
@@ -27,7 +27,7 @@ item1.value = 1
 
 ### 与响应式数组一起使用
 
-```js
+```ts
 import { useArrayMap } from '@vueuse/core'
 
 const list = ref([0, 1, 2, 3, 4])
