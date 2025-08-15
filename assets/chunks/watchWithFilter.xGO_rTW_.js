@@ -1,0 +1,1 @@
+import{Z as e}from"./vue.SmZHjSKv.js";import{b as t,c as n}from"./filters.F1JdbmOs.js";function r(r,i,a={}){let{eventFilter:o=t,...s}=a;return e(r,n(o,i),s)}export{r as b};

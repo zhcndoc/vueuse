@@ -1,0 +1,1 @@
+import{a9 as e,af as t,am as n,r}from"./vue.SmZHjSKv.js";import{b as i}from"./is.B44asreI.js";function a(a,o,s){if(typeof a==`function`||e(a))return r(()=>i(n(a),n(o),n(s)));let c=t(a);return r({get(){return c.value=i(c.value,n(o),n(s))},set(e){c.value=i(e,n(o),n(s))}})}export{a as b};

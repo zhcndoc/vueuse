@@ -1,0 +1,1 @@
+import{d as e}from"./configurable.B6vo-bvD.js";import{b as t}from"./useScroll.BdZ_XDFC.js";function n(n={}){let{window:r=e,...i}=n;return t(r,i)}export{n as b};

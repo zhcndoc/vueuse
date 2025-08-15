@@ -1,0 +1,1 @@
+import{b as e}from"./useMediaQuery.CH_c548f.js";function t(t){return e(`(prefers-color-scheme: dark)`,t)}export{t as b};

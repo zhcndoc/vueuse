@@ -1,0 +1,1 @@
+import{A as e,K as t,O as n,T as r,af as i,ar as a,u as o,v as s}from"./vue.SmZHjSKv.js";const c={class:`demo wide`},l={key:0,class:`error`};var u=e({__name:`DemoContainer`,setup(e){let u=i(null);return t(e=>{u.value=e}),(e,t)=>(n(),s(`div`,c,[r(e.$slots,`default`),u.value?(n(),s(`div`,l,a(u.value),1)):o(``,!0)]))}}),d=u;export{d as b};

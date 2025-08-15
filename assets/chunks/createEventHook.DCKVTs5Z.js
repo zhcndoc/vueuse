@@ -1,0 +1,1 @@
+import{b as e}from"./tryOnScopeDispose.BiAxsNIV.js";function t(){let t=new Set,n=e=>{t.delete(e)},r=()=>{t.clear()},i=r=>{t.add(r);let i=()=>n(r);return e(i),{off:i}},a=(...e)=>Promise.all(Array.from(t).map(t=>t(...e)));return{on:i,off:n,trigger:a,clear:r}}export{t as b};

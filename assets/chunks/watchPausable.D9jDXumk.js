@@ -1,0 +1,1 @@
+import{e}from"./filters.F1JdbmOs.js";import{b as t}from"./watchWithFilter.xGO_rTW_.js";function n(n,r,i={}){let{eventFilter:a,initialState:o=`active`,...s}=i,{eventFilter:c,pause:l,resume:u,isActive:d}=e(a,{initialState:o}),f=t(n,r,{...s,eventFilter:c});return{stop:f,pause:l,resume:u,isActive:d}}export{n as b};

@@ -1,0 +1,1 @@
+import{r as e}from"./vue.SmZHjSKv.js";import{b as t}from"./useMounted.C9YyHf0Q.js";function n(n){let r=t();return e(()=>(r.value,!!n()))}export{n as b};

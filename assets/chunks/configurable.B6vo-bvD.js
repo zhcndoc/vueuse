@@ -1,0 +1,1 @@
+import{d as e}from"./is.B44asreI.js";const t=e?window:void 0,n=e?window.document:void 0,r=e?window.navigator:void 0;e&&window.location;export{n as b,r as c,t as d};
