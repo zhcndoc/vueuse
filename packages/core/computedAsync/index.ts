@@ -42,7 +42,7 @@ export interface AsyncComputedOptions<Lazy = boolean> {
    * 可能的值：`pre`、`post`、`sync`
    *
    * 它的工作方式与 Vue 响应式中的 watch 和 watch effect 的 flush 选项相同。
-   * @default 'pre'
+   * @default 'sync'
    */
   flush?: 'pre' | 'post' | 'sync'
 
@@ -98,7 +98,7 @@ export function computedAsync<T>(
 
   const {
     lazy = false,
-    flush = 'pre',
+    flush = 'sync',
     evaluating = undefined,
     shallow = true,
     onError = globalThis.reportError ?? noop,

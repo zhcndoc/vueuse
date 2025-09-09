@@ -33,17 +33,17 @@ getUser.delete(1) // 删除用户1的缓存
 getUser.clear() // 清除完整缓存
 ```
 
-结合 `computed` 或 `asyncComputed` 可以实现响应性：
+结合 `computed` 或 `computedAsync` 可以实现响应性：
 
 ```ts
-import { asyncComputed, useMemoize } from '@vueuse/core'
+import { computedAsync, useMemoize } from '@vueuse/core'
 
 const getUser = useMemoize(
   async (userId: number): Promise<UserData> =>
     axios.get(`users/${userId}`).then(({ data }) => data),
 )
 // ---cut---
-const user1 = asyncComputed(() => getUser(1))
+const user1 = computedAsync(() => getUser(1))
 // ...
 await getUser.load(1) // 也会更新 user1
 ```

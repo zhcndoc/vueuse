@@ -17,7 +17,7 @@
 - 使用 `configurableWindow` (等) 处理全局变量如 `window`，以便在处理多窗口、测试模拟和 SSR 时更加灵活。
 - 当涉及到浏览器尚未广泛实现的 Web API 时，还应输出 `isSupported` 标志
 - 在内部使用 `watch` 或 `watchEffect` 时，尽可能使 `immediate` 和 `flush` 选项可配置
-- 使用 `tryOnUnmounted` 优雅地清除副作用
+- 使用 `tryOnScopeDispose` 优雅地清除副作用
 - 避免使用控制台日志
 - 当函数是异步的，返回一个 PromiseLike
 

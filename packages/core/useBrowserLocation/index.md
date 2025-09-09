@@ -19,7 +19,7 @@ const location = useBrowserLocation()
 ## 组件用法
 
 ```vue
-<UseBrowserLocation v-slot="{ location }">
+<UseBrowserLocation v-slot="location">
   浏览器位置: {{ location }}
 </UseBrowserLocation>
 ```

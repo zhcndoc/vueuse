@@ -36,16 +36,16 @@ motionControl.resume()
 
 VueUse 的函数在可能的情况下遵循 Vue 的响应式系统默认的[刷新时机](https://vue.zhcndoc.com/guide/essentials/watchers.html#callback-flush-timing)。
 
-对于类似 `watch` 的组合式 (例如 `pausableWatch`、`whenever`、`useStorage`、`useRefHistory`)，默认值为 `{ flush: 'pre' }`。这意味着它们将缓冲无效的效果并异步刷新它们。当在同一 “tick” 中发生多次状态突变时，避免不必要的重复调用。
+对于类似 `watch` 的组合式 (例如 `watchPausable`、`whenever`、`useStorage`、`useRefHistory`)，默认值为 `{ flush: 'pre' }`。这意味着它们将缓冲无效的效果并异步刷新它们。当在同一 “tick” 中发生多次状态突变时，避免不必要的重复调用。
 
 与 `watch` 相同，VueUse 允许你通过传递 `flush` 选项来配置时机：
 
 ```ts twoslash
-import { pausableWatch } from '@vueuse/core'
+import { watchPausable } from '@vueuse/core'
 import { ref } from 'vue'
 
 const counter = ref(0)
-const { pause, resume } = pausableWatch(
+const { pause, resume } = watchPausable(
   counter,
   () => {
     // 安全地访问更新后的 DOM
@@ -60,7 +60,7 @@ const { pause, resume } = pausableWatch(
 - `'post'`：类似于 ‘pre’，但在组件更新后异步触发，因此你可以访问更新后的 DOM
 - `'sync'`：强制效果始终同步触发
 
-**注意：**对于类似 `computed` 的组合式 (例如 `syncRef`、`controlledComputed`)，当刷新时机可配置时，默认值更改为 `{ flush: 'sync' }`，以使其与 Vue 中计算引用的工作方式保持一致。
+**注意：**对于类似 `computed` 的组合式 (例如 `syncRef`、`computedWithControl`)，当刷新时机可配置时，默认值更改为 `{ flush: 'sync' }`，以使其与 Vue 中计算引用的工作方式保持一致。
 
 ### 可配置的全局依赖项
 

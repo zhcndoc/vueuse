@@ -197,7 +197,7 @@ export default withPwa(defineConfig({
       },
       {
         text: '在线演示',
-        link: 'https://play.vueuse.org',
+        link: `https://playground.vueuse.org?vueuse=${currentVersion.replace('v', '')}`,
       },
       {
         text: currentVersion,
