@@ -1,0 +1,1 @@
+import{e}from"./filters.BCF9Ii3D.js";import{b as t}from"./watchWithFilter.-K4NsjS0.js";function n(n,r,i={}){let{eventFilter:a,initialState:o=`active`,...s}=i,{eventFilter:c,pause:l,resume:u,isActive:d}=e(a,{initialState:o}),f=t(n,r,{...s,eventFilter:c});return{stop:f,pause:l,resume:u,isActive:d}}export{n as b};

@@ -1,0 +1,1 @@
+import{ab as e,aj as t,an as n}from"./vue.qHGUiKBK.js";function r(r=!1,i={}){let{truthyValue:a=!0,falsyValue:o=!1}=i,s=e(r),c=t(r);function l(e){if(arguments.length)return c.value=e,c.value;{let e=n(a);return c.value=c.value===e?n(o):e,c.value}}return s?l:[c,l]}export{r as b};

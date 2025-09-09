@@ -1,0 +1,1 @@
+import{a5 as e,af as t,ag as n,al as r}from"./vue.qHGUiKBK.js";import{h as i}from"./is.VA25y-14.js";function a(...a){if(a.length!==1)return r(...a);let o=a[0];return typeof o==`function`?t(e(()=>({get:o,set:i}))):n(o)}export{a as b};

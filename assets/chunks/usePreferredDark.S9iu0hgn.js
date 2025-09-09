@@ -1,0 +1,1 @@
+import{b as e}from"./useMediaQuery.DD_64L6u.js";function t(t){return e(`(prefers-color-scheme: dark)`,t)}export{t as b};

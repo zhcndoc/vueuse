@@ -1,0 +1,1 @@
+import{d as e}from"./filters.BCF9Ii3D.js";import{b as t}from"./watchWithFilter.-K4NsjS0.js";function n(n,r,i={}){let{debounce:a=0,maxWait:o=void 0,...s}=i;return t(n,r,{...s,eventFilter:e(a,{maxWait:o})})}export{n as b};

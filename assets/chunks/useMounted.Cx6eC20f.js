@@ -1,0 +1,1 @@
+import{C as e,M as t,aj as n}from"./vue.qHGUiKBK.js";function r(){let r=n(!1),i=e();return i&&t(()=>{r.value=!0},i),r}export{r as b};
