@@ -160,5 +160,5 @@ export function computedAsync<T>(
   }
 }
 
-// 别名
-export { computedAsync as asyncComputed }
+/** @deprecated use `computedAsync` instead */
+export const asyncComputed = computedAsync

@@ -8,8 +8,11 @@ alias: eagerComputed
 即时计算的计算属性，没有延迟评估。
 
 ::: tip
-注意💡：如果您使用的是 Vue 3.4+，您可以立即使用 `computed`。在 Vue 3.4+ 中，如果计算的新值没有变化，`computed`、`effect`、`watch`、`watchEffect`、`render` 的依赖将不会被触发。
-参考：https://github.com/vuejs/core/pull/5912
+注意💡：如果您使用的是 Vue 3.4+，您可以立即使用 `computed`，不再需要这个函数。
+
+在 Vue 3.4+ 中，如果计算的新值没有变化，`computed`、`effect`、`watch`、`watchEffect`、`render` 的依赖将不会被触发。
+
+查看： https://github.com/vuejs/core/pull/5912
 :::
 
 在 [Vue：When a computed property can be the wrong tool](https://dev.to/linusborg/vue-when-a-computed-property-can-be-the-wrong-tool-195j) 中了解更多。

@@ -23,7 +23,7 @@ category: Utilities
 import { useConfirmDialog } from '@vueuse/core'
 
 const { isRevealed, reveal, confirm, cancel, onReveal, onConfirm, onCancel }
-    = useConfirmDialog()
+  = useConfirmDialog()
 </script>
 
 <template>

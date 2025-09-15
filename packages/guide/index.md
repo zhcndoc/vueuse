@@ -34,10 +34,10 @@ npm i @vueuse/core
 
 从 v7.2.0 开始，我们提供了一个 Nuxt 模块，用于在 Nuxt 3 和 Nuxt Bridge 中启用自动导入。
 
-使用 [nuxi](https://nuxt.zhcndoc.com/docs/api/commands/module) 将 vueuse 模块安装到您的应用程序中：
+使用 [@nuxt/cli](https://nuxt.zhcndoc.com/docs/api/commands/module) 将 vueuse 模块安装到您的应用程序中：
 
 ```bash
-npx nuxi@latest module add vueuse
+npx nuxt@latest module add vueuse
 ```
 
 或使用 npm：
@@ -57,18 +57,7 @@ export default defineNuxtConfig({
 })
 ```
 
-Nuxt 2
-
-```ts
-// nuxt.config.js
-export default {
-  buildModules: [
-    '@vueuse/nuxt',
-  ],
-}
-```
-
-然后在你的 Nuxt 应用程序中的任何地方使用 VueUse 函数。例如：
+然后在你的 Nuxt 应用中的任何地方使用 VueUse 函数。例如：
 
 ```vue twoslash
 <script setup lang="ts">

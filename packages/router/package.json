@@ -1,7 +1,7 @@
 {
   "name": "@vueuse/router",
   "type": "module",
-  "version": "14.0.0-alpha.1",
+  "version": "14.0.0-alpha.2",
   "description": "vue-router 的实用工具",
   "author": "Anthony Fu <https://github.com/antfu>",
   "license": "MIT",

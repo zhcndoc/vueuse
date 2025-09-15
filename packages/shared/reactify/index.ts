@@ -35,7 +35,5 @@ export function reactify<T extends AnyFn, K extends boolean = true>(fn: T, optio
   } as any
 }
 
-// alias
-export {
-  reactify as createReactiveFn,
-}
+/** @deprecated use `reactify` instead */
+export const createReactiveFn = reactify
