@@ -1,0 +1,1 @@
+import{t as e}from"./useMediaQuery.ccNFVciy.js";function t(t){return e(`(prefers-color-scheme: dark)`,t)}export{t};

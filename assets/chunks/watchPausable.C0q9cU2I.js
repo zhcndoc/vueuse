@@ -1,0 +1,1 @@
+import{i as e}from"./filters.CUMa_U49.js";import{t}from"./watchWithFilter.DZ5NXp2w.js";function n(n,r,i={}){let{eventFilter:a,initialState:o=`active`,...s}=i,{eventFilter:c,pause:l,resume:u,isActive:d}=e(a,{initialState:o});return{stop:t(n,r,{...s,eventFilter:c}),pause:l,resume:u,isActive:d}}const r=n;export{n,r as t};

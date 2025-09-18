@@ -1,0 +1,1 @@
+import{tC as e,t_ as t,tv as n}from"./vue.DLm9j74-.js";function r(r=0,i={}){let a=e(r),o=n(r),{max:s=1/0,min:c=-1/0}=i,l=(e=1)=>o.value=Math.max(Math.min(s,o.value+e),c),u=(e=1)=>o.value=Math.min(Math.max(c,o.value-e),s),d=()=>o.value,f=e=>o.value=Math.max(c,Math.min(s,e));return{count:t(o),inc:l,dec:u,get:d,set:f,reset:(e=a)=>(a=e,f(e))}}export{r as t};

@@ -1,0 +1,1 @@
+import{r as e}from"./configurable.DuBTHq8T.js";import{t}from"./useScroll.B_sgaQf9.js";function n(n={}){let{window:r=e,...i}=n;return t(r,i)}export{n as t};

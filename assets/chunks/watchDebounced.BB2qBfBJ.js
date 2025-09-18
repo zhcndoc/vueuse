@@ -1,0 +1,1 @@
+import{r as e}from"./filters.CUMa_U49.js";import{t}from"./watchWithFilter.DZ5NXp2w.js";function n(n,r,i={}){let{debounce:a=0,maxWait:o=void 0,...s}=i;return t(n,r,{...s,eventFilter:e(a,{maxWait:o})})}const r=n;export{n,r as t};
