@@ -1,4 +1,4 @@
-import type { ConfigurableEventFilter, Fn } from '@vueuse/shared'
+import type { ConfigurableEventFilter, Fn, WatchOptionFlush } from '@vueuse/shared'
 import type { Ref } from 'vue'
 import type { CloneFn } from '../useCloned'
 import type { UseManualRefHistoryReturn } from '../useManualRefHistory'
@@ -23,7 +23,7 @@ export interface UseRefHistoryOptions<Raw, Serialized = Raw> extends Configurabl
    *
    * @default 'pre'
    */
-  flush?: 'pre' | 'post' | 'sync'
+  flush?: WatchOptionFlush
 
   /**
    * 要保留的历史记录的最大数量。默认为无限。

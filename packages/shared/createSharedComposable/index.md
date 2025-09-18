@@ -7,6 +7,10 @@ related: createGlobalState
 
 创建一个可在多个 Vue 实例中使用的可组合函数。
 
+> [!WARNING]
+> 在 **SSR** 环境中使用时，`createSharedComposable` 将 **自动回退** 到非共享版本。
+> 这意味着每个调用将在 SSR 中创建一个新的实例，以避免 [跨请求状态污染](https://vue.zhcndoc.com/guide/scaling-up/ssr.html#cross-request-state-pollution)。
+
 ## 用法
 
 ```ts

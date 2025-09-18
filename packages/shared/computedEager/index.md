@@ -7,6 +7,10 @@ alias: eagerComputed
 
 即时计算的计算属性，没有延迟评估。
 
+::: info
+This function will be removed in future version.
+:::
+
 ::: tip
 注意💡：如果您使用的是 Vue 3.4+，您可以立即使用 `computed`，不再需要这个函数。
 

@@ -41,7 +41,7 @@ source.value = 'logged'
 await nextTick() // 日志: 更改为 logged!
 ```
 
-## 刷新时机
+## WatchOptionFlush 定时
 
 `watchIgnorable` 接受与 `watch` 相同的选项，并使用相同的默认值。
 因此，默认情况下，组合函数使用 `flush: 'pre'`。

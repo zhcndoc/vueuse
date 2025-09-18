@@ -9,6 +9,9 @@ export type ComputedEagerOptions = WatchOptionsBase
 export type ComputedEagerReturn<T = any> = Readonly<ShallowRef<T>>
 
 /**
+ *
+ * @deprecated This function will be removed in future version.
+ *
  * 注意: 如果你正在使用 Vue 3.4+，你可以直接使用 computed。
  * 因为在 Vue 3.4+ 中，如果计算属性的新值没有变化，
  * computed、effect、watch、watchEffect、render 的依赖关系将不会触发。
