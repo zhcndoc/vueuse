@@ -1,3 +1,4 @@
+import type { ComponentInternalInstance } from 'vue'
 import type { Fn } from '../utils'
 import { nextTick, onBeforeMount } from 'vue'
 import { getLifeCycleTarget } from '../utils'
@@ -9,7 +10,7 @@ import { getLifeCycleTarget } from '../utils'
  * @param sync 如果设置为 false，则会在 Vue 的下一个 tick 中运行
  * @param target
  */
-export function tryOnBeforeMount(fn: Fn, sync = true, target?: any) {
+export function tryOnBeforeMount(fn: Fn, sync = true, target?: ComponentInternalInstance | null) {
   const instance = getLifeCycleTarget(target)
   if (instance)
     onBeforeMount(fn, target)

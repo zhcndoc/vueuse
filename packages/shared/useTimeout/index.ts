@@ -18,7 +18,11 @@ export interface UseTimeoutOptions<Controls extends boolean> extends UseTimeoutF
   callback?: Fn
 }
 
-export type UseTimoutReturn = ComputedRef<boolean> | { readonly ready: ComputedRef<boolean> } & Stoppable
+export type UseTimeoutReturn = ComputedRef<boolean> | { readonly ready: ComputedRef<boolean> } & Stoppable
+/**
+ * @deprecated use UseTimeoutReturn instead
+ */
+export type UseTimoutReturn = UseTimeoutReturn
 
 /**
  * 在一定时间后更新值，并带有控制功能。
@@ -29,7 +33,7 @@ export type UseTimoutReturn = ComputedRef<boolean> | { readonly ready: ComputedR
  */
 export function useTimeout(interval?: MaybeRefOrGetter<number>, options?: UseTimeoutOptions<false>): ComputedRef<boolean>
 export function useTimeout(interval: MaybeRefOrGetter<number>, options: UseTimeoutOptions<true>): { ready: ComputedRef<boolean> } & Stoppable
-export function useTimeout(interval: MaybeRefOrGetter<number> = 1000, options: UseTimeoutOptions<boolean> = {}): UseTimoutReturn {
+export function useTimeout(interval: MaybeRefOrGetter<number> = 1000, options: UseTimeoutOptions<boolean> = {}): UseTimeoutReturn {
   const {
     controls: exposeControls = false,
     callback,

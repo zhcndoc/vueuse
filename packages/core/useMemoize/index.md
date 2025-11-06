@@ -53,6 +53,12 @@ await getUser.load(1) // 也会更新 user1
 缓存的键由传递给函数的参数确定，并且默认情况下将使用 `JSON.stringify` 进行序列化。
 这将使相等的对象接收相同的缓存键。如果你想自定义键，可以通过 `getKey` 传递。
 
+::: warning Performance Consideration
+Using `JSON.stringify` as the default key generator can be **slow for large or complex objects**. For better performance with complex arguments, it's highly recommended to provide a custom `getKey` function that generates keys based on primitive values or unique identifiers.
+:::
+
+#### Basic Example
+
 ```ts
 import { useMemoize } from '@vueuse/core'
 // ---cut---

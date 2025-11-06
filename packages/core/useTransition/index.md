@@ -18,32 +18,17 @@ const source = shallowRef(0)
 
 const output = useTransition(source, {
   duration: 1000,
-  transition: TransitionPresets.easeInOutCubic,
+  easing: TransitionPresets.easeInOutCubic,
 })
 ```
 
-为了同步过渡，可以使用数字数组。以下是一个在颜色之间过渡的示例。
-
-```ts
-import { useTransition } from '@vueuse/core'
-// ---cut---
-const source = shallowRef([0, 0, 0])
-
-const output = useTransition(source)
-
-const color = computed(() => {
-  const [r, g, b] = output.value
-  return `rgb(${r}, ${g}, ${b})`
-})
-```
-
-可以使用三次贝塞尔曲线自定义过渡缓动。以与 [CSS 缓动函数](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function#easing_functions)相同的方式定义过渡。
+可以使用 [立方贝济耶曲线](https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function/cubic-bezier#description) 自定义过渡缓解。
 
 ```ts
 import { useTransition } from '@vueuse/core'
 // ---cut---
 useTransition(source, {
-  transition: [0.75, 0, 0.25, 1],
+  easing: [0.75, 0, 0.25, 1],
 })
 ```
 
@@ -75,7 +60,7 @@ useTransition(source, {
 - [`easeOutBack`](https://cubic-bezier.com/#.34,1.56,.64,1)
 - [`easeInOutBack`](https://cubic-bezier.com/#.68,-.6,.32,1.6)
 
-对于更复杂的过渡效果，可以提供自定义函数。
+对于更复杂的缓动效果，可以提供自定义函数。
 
 ```ts
 import { useTransition } from '@vueuse/core'
@@ -89,7 +74,21 @@ function easeOutElastic(n) {
 }
 
 useTransition(source, {
-  transition: easeOutElastic,
+  easing: easeOutElastic,
+})
+```
+
+By default the `source` must be a number, or array of numbers. For more complex values, define a custom `interpolation` function. For example, the following would transition a Three.js rotation.
+
+```ts
+import { useTransition } from '@vueuse/core'
+// ---cut---
+import { Quaternion } from 'three'
+
+const source = ref(new Quaternion())
+
+const output = useTransition(source, {
+  interpolation: (q1, q2, t) => new Quaternion().slerpQuaternions(q1, q2, t)
 })
 ```
 
@@ -109,14 +108,17 @@ useTransition(source, {
 })
 ```
 
-要暂时停止过渡，定义一个布尔型 `disabled` 属性。请注意，这与 `duration` 为 `0` 不同。禁用过渡会**同步**跟踪源值。它们不会遵循 `delay`，也不会触发 `onStarted` 或 `onFinished` 回调函数。
+要停止过渡，定义一个布尔类型的 `disabled` 属性。请注意，这与 `duration` 为 `0` 并不相同。禁用的过渡会**同步**跟踪源值。它们不会遵循 `delay`，也不会触发 `onStarted` 或 `onFinished` 回调。
 
-要更精确地控制，可以使用 `executeTransition` 手动执行过渡。此函数返回一个在完成后解析的 promise。手动过渡可以通过定义一个返回真值的 `abort` 函数来取消。
+为了获得更多控制，可以通过 `transition` 函数手动执行过渡。该函数返回一个在过渡完成时解析的 promise。通过定义一个返回真值的 `abort` 函数，可以取消手动过渡。
 
 ```ts
-import { executeTransition } from '@vueuse/core'
+import { transition } from '@vueuse/core'
 
-await executeTransition(source, from, to, {
-  duration: 1000,
+await transition(source, from, to, {
+  abort() {
+    if (shouldAbort)
+      return true
+  }
 })
 ```
