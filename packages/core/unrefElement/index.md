@@ -1,5 +1,5 @@
 ---
-category: Component
+category: 组件
 ---
 
 # unrefElement
@@ -13,8 +13,8 @@ category: Component
 import { unrefElement } from '@vueuse/core'
 import { onMounted, useTemplateRef } from 'vue'
 
-const div = useTemplateRef<HTMLElement>('div') // 将绑定到 <div> 元素
-const hello = useTemplateRef<Component>('hello') // 将绑定到 HelloWorld 组件
+const div = useTemplateRef('div') // 将绑定到 <div> 元素
+const hello = useTemplateRef('hello') // 将绑定到 HelloWorld 组件
 
 onMounted(() => {
   console.log(unrefElement(div)) // <div> 元素

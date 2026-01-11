@@ -16,12 +16,12 @@ category: Sensors
 
 ## 用法
 
-```vue no-twoslash
+```vue
 <script setup lang="ts">
 import { onLongPress } from '@vueuse/core'
 import { shallowRef, useTemplateRef } from 'vue'
 
-const htmlRefHook = useTemplateRef<HTMLElement>('htmlRefHook')
+const htmlRefHook = useTemplateRef('htmlRefHook')
 const longPressedHook = shallowRef(false)
 
 function onLongPressCallbackHook(e: PointerEvent) {
@@ -57,7 +57,7 @@ onLongPress(
 
 ## 组件用法
 
-```vue no-twoslash
+```vue
 <script setup lang="ts">
 import { OnLongPress } from '@vueuse/components'
 import { shallowRef } from 'vue'

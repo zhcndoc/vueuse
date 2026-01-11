@@ -4,7 +4,7 @@ category: Network
 
 # useWebSocket
 
-响应式 [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket) 客户端。
+响应式的 [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket) 客户端。
 
 ## 用法
 
@@ -20,7 +20,7 @@ const { status, data, send, open, close } = useWebSocket('ws://websocketurl')
 
 默认启用。
 
-在调用此组合时立即建立连接。
+调用此组合函数时立即建立连接。
 
 ### autoConnect
 
@@ -36,7 +36,7 @@ const { status, data, send, open, close } = useWebSocket('ws://websocketurl')
 
 ### autoReconnect
 
-在错误发生时自动重连 (默认禁用)。
+在发生错误时自动重连（默认禁用）。
 
 ```ts
 import { useWebSocket } from '@vueuse/core'
@@ -62,11 +62,37 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 })
 ```
 
+你也可以传入一个函数给 `delay`，根据重试次数计算延迟时间。这在实现指数退避时非常有用：
+
+```ts
+import { useWebSocket } from '@vueuse/core'
+// ---cut---
+const { status, data, close } = useWebSocket('ws://websocketurl', {
+  autoReconnect: {
+    retries: 5,
+    // 指数退避：1秒，2秒，4秒，8秒，16秒
+    delay: retries => Math.min(1000 * 2 ** (retries - 1), 30000),
+  },
+})
+```
+
+```ts
+import { useWebSocket } from '@vueuse/core'
+// ---cut---
+const { status, data, close } = useWebSocket('ws://websocketurl', {
+  autoReconnect: {
+    retries: 5,
+    // 线性退避：1秒，2秒，3秒，4秒，5秒
+    delay: retries => retries * 1000,
+  },
+})
+```
+
 显式调用 `close()` 不会触发自动重新连接。
 
 ### heartbeat
 
-通常会在每隔一段时间发送一个小消息 (心跳) 以保持连接活动状态。在此函数中，我们提供了一个便利的辅助工具来执行此操作：
+通常会每隔一段时间发送一个小消息（心跳）以保持连接活动。在此函数中，我们提供了一个方便的辅助工具来执行此操作：
 
 ```ts
 import { useWebSocket } from '@vueuse/core'
@@ -92,7 +118,7 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 
 ### 子协议
 
-要使用的一个或多个子协议列表，在这种情况下是 soap 和 wamp。
+要使用的一个或多个子协议列表，在这种情况下是 SOAP 和 WAMP。
 
 ```ts
 import { useWebSocket } from '@vueuse/core'

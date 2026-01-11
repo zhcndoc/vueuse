@@ -51,8 +51,9 @@ const {
 
 ```ts
 import { useAnimate } from '@vueuse/core'
+import { useTemplateRef } from 'vue'
 
-const el = useTemplateRef<HTMLElement>('el')
+const el = useTemplateRef('el')
 // ---cut---
 const keyframes = { transform: 'rotate(360deg)' }
 // 或者

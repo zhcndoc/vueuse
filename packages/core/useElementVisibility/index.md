@@ -13,7 +13,7 @@ category: Elements
 import { useElementVisibility } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
-const target = useTemplateRef<HTMLDivElement>('target')
+const target = useTemplateRef('target')
 const targetIsVisible = useElementVisibility(target)
 </script>
 
@@ -63,7 +63,7 @@ const targetIsVisible = useElementVisibility(target, {
 import { vElementVisibility } from '@vueuse/components'
 import { shallowRef, useTemplateRef } from 'vue'
 
-const target = useTemplateRef<HTMLDivElement>('target')
+const target = useTemplateRef('target')
 const isVisible = shallowRef(false)
 
 function onElementVisibility(state) {

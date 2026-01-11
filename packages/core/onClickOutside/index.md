@@ -13,7 +13,7 @@ category: Sensors
 import { onClickOutside } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
-const target = useTemplateRef<HTMLElement>('target')
+const target = useTemplateRef('target')
 
 onClickOutside(target, event => console.log(event))
 </script>
@@ -47,7 +47,7 @@ useEventListener('pointermove', (e) => {
 如果您想忽略某些元素，可以使用 `ignore` 选项。将要忽略的元素提供为 Refs 或 CSS 选择器的数组。
 
 ```ts
-const ignoreElRef = useTemplateRef<HTMLElement>('ignoreEl')
+const ignoreElRef = useTemplateRef('ignoreEl')
 const ignoreElSelector = '.ignore-el'
 
 onClickOutside(
@@ -101,7 +101,7 @@ import { shallowRef, useTemplateRef } from 'vue'
 
 const modal = shallowRef(false)
 
-const ignoreElRef = useTemplateRef<HTMLElement>('ignoreEl')
+const ignoreElRef = useTemplateRef('ignoreEl')
 
 const onClickOutsideHandler = [
   (ev) => {

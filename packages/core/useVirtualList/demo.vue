@@ -42,7 +42,7 @@ function handleScrollTo() {
     <div>
       <div class="inline-block mr-4">
         按尺寸筛选列表
-        <input v-model="search" placeholder="例如小号，中号，大号" type="search">
+        <input v-model="search" placeholder="例如 small, large" type="search">
       </div>
     </div>
     <div v-bind="containerProps" class="h-300px overflow-auto p-2 bg-gray-500/5 rounded">

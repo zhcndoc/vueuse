@@ -13,7 +13,7 @@ category: Sensors
 import { onElementRemoval } from '@vueuse/core'
 import { shallowRef, useTemplateRef } from 'vue'
 
-const btnRef = useTemplateRef<HTMLElement>('btn')
+const btnRef = useTemplateRef('btn')
 const btnState = shallowRef(true)
 const removedCount = shallowRef(0)
 

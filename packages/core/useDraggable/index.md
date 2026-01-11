@@ -13,7 +13,7 @@ category: Elements
 import { useDraggable } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
-const el = useTemplateRef<HTMLElement>('el')
+const el = useTemplateRef('el')
 
 // `style` 将作为 `left: ?px; top: ?px;` 的辅助计算属性
 const { x, y, style } = useDraggable(el, {

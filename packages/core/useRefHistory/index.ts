@@ -1,11 +1,11 @@
-import type { ConfigurableEventFilter, Fn, WatchOptionFlush } from '@vueuse/shared'
+import type { ConfigurableEventFilter, ConfigurableFlush, Fn } from '@vueuse/shared'
 import type { Ref } from 'vue'
 import type { CloneFn } from '../useCloned'
 import type { UseManualRefHistoryReturn } from '../useManualRefHistory'
 import { pausableFilter, watchIgnorable } from '@vueuse/shared'
 import { useManualRefHistory } from '../useManualRefHistory'
 
-export interface UseRefHistoryOptions<Raw, Serialized = Raw> extends ConfigurableEventFilter {
+export interface UseRefHistoryOptions<Raw, Serialized = Raw> extends ConfigurableEventFilter, ConfigurableFlush {
   /**
    * 监听深层变化，默认为 false
    *
@@ -14,16 +14,6 @@ export interface UseRefHistoryOptions<Raw, Serialized = Raw> extends Configurabl
    * @default false
    */
   deep?: boolean
-
-  /**
-   * flush 选项允许更大的控制历史点的时间，默认为 'pre'
-   *
-   * 可能的值：'pre', 'post', 'sync'
-   * 它的工作方式与 vue 响应性中 watch 和 watch effect 中的 flush 选项相同
-   *
-   * @default 'pre'
-   */
-  flush?: WatchOptionFlush
 
   /**
    * 要保留的历史记录的最大数量。默认为无限。

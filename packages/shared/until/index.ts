@@ -1,9 +1,9 @@
 import type { MaybeRefOrGetter, WatchOptions, WatchSource } from 'vue'
-import type { ElementOf, ShallowUnwrapRef, WatchOptionFlush } from '../utils'
+import type { ConfigurableFlushSync, ElementOf, ShallowUnwrapRef } from '../utils'
 import { isRef, nextTick, toValue, watch } from 'vue'
 import { promiseTimeout } from '../utils'
 
-export interface UntilToMatchOptions {
+export interface UntilToMatchOptions extends ConfigurableFlushSync {
   /**
    * 当条件未满足时，Promise resolve/reject 的毫秒超时时间。
    * 0 表示永不超时
@@ -20,13 +20,6 @@ export interface UntilToMatchOptions {
   throwOnTimeout?: boolean
 
   /**
-   * 内部监视的 `flush` 选项
-   *
-   * @default 'sync'
-   */
-  flush?: WatchOptionFlush
-
-  /**
    * 内部监视的 `deep` 选项
    *
    * @default 'false'
@@ -37,10 +30,10 @@ export interface UntilToMatchOptions {
 export interface UntilBaseInstance<T, Not extends boolean = false> {
   toMatch: (<U extends T = T>(
     condition: (v: T) => v is U,
-    options?: UntilToMatchOptions
+    options?: UntilToMatchOptions,
   ) => Not extends true ? Promise<Exclude<T, U>> : Promise<U>) & ((
     condition: (v: T) => boolean,
-    options?: UntilToMatchOptions
+    options?: UntilToMatchOptions,
   ) => Promise<T>)
   changed: (options?: UntilToMatchOptions) => Promise<T>
   changedTimes: (n?: number, options?: UntilToMatchOptions) => Promise<T>

@@ -16,13 +16,13 @@ category: '@RxJS'
 
 ```ts no-twoslash
 import { watchExtractedObservable } from '@vueuse/rxjs'
-import { computed, reactive, shallowRef } from 'vue'
+import { computed, reactive, useTemplateRef } from 'vue'
 import { AudioPlayer } from '../my/libs/AudioPlayer'
 
 // setup()
 
-const audio = shallowRef<HTMLAudioElement>()
-const player = computed(() => (audio.value ? new AudioPlayer(audio) : null))
+const audio = useTemplateRef('audio')
+const player = computed(() => (audio.value ? new AudioPlayer(audio.value) : null))
 const state = reactive({
   progress: 0,
 })
@@ -38,13 +38,13 @@ watchExtractedObservable(player, p => p.progress$, (percentage) => {
 
 ```ts no-twoslash
 import { watchExtractedObservable } from '@vueuse/rxjs'
-import { computed, reactive, shallowRef } from 'vue'
+import { computed, reactive, useTemplateRef } from 'vue'
 import { AudioPlayer } from '../my/libs/AudioPlayer'
 
 // setup()
 
-const audio = shallowRef<HTMLAudioElement>()
-const player = computed(() => (audio.value ? new AudioPlayer(audio) : null))
+const audio = useTemplateRef('audio')
+const player = computed(() => (audio.value ? new AudioPlayer(audio.value) : null))
 const state = reactive({
   progress: 0,
 })
@@ -65,13 +65,13 @@ watchExtractedObservable(player, p => p.progress$, (percentage) => {
 
 ```ts no-twoslash
 import { watchExtractedObservable } from '@vueuse/rxjs'
-import { computed, reactive, shallowRef } from 'vue'
+import { computed, reactive, useTemplateRef } from 'vue'
 import { AudioPlayer } from '../my/libs/AudioPlayer'
 
 // setup()
 
-const audio = shallowRef<HTMLAudioElement>()
-const player = computed(() => (audio.value ? new AudioPlayer(audio) : null))
+const audio = useTemplateRef('audio')
+const player = computed(() => (audio.value ? new AudioPlayer(audio.value) : null))
 const state = reactive({
   progress: 0,
 })

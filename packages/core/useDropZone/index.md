@@ -17,9 +17,9 @@ category: Elements
 ```vue
 <script setup lang="ts">
 import { useDropZone } from '@vueuse/core'
-import { ref } from 'vue'
+import { useTemplateRef } from 'vue'
 
-const dropZoneRef = ref<HTMLDivElement>()
+const dropZoneRef = useTemplateRef('dropZoneRef')
 
 function onDrop(files: File[] | null) {
   // 当文件被拖放到区域时调用

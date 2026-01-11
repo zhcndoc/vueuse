@@ -24,7 +24,7 @@ export interface UseIntersectionObserverOptions extends ConfigurableWindow {
   /**
    * 一个字符串，指定计算相交时要添加到根边界框的偏移量集。
    */
-  rootMargin?: string
+  rootMargin?: MaybeRefOrGetter<string>
 
   /**
    * 单个数字或介于 0.0 和 1 之间的数字数组。
@@ -53,7 +53,7 @@ export function useIntersectionObserver(
 ): UseIntersectionObserverReturn {
   const {
     root,
-    rootMargin = '0px',
+    rootMargin,
     threshold = 0,
     window = defaultWindow,
     immediate = true,
@@ -70,8 +70,8 @@ export function useIntersectionObserver(
 
   const stopWatch = isSupported.value
     ? watch(
-        () => [targets.value, unrefElement(root as MaybeComputedElementRef), isActive.value] as const,
-        ([targets, root]) => {
+        () => [targets.value, unrefElement(root as MaybeComputedElementRef), toValue(rootMargin), isActive.value] as const,
+        ([targets, root, rootMargin]) => {
           cleanup()
           if (!isActive.value)
             return

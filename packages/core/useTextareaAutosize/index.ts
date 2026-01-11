@@ -1,5 +1,5 @@
 import type { Fn } from '@vueuse/shared'
-import type { MaybeRef, WatchSource } from 'vue'
+import type { MaybeRef, MultiWatchSources, WatchSource } from 'vue'
 import type { ConfigurableWindow } from '../_configurable'
 import { toRef } from '@vueuse/shared'
 import { nextTick, shallowRef, toValue, watch } from 'vue'
@@ -12,7 +12,7 @@ export interface UseTextareaAutosizeOptions extends ConfigurableWindow {
   /** 文本区域的内容。 */
   input?: MaybeRef<string>
   /** 监听应触发文本区域大小调整的源。 */
-  watch?: WatchSource | Array<WatchSource>
+  watch?: WatchSource | MultiWatchSources
   /** 当文本区域大小发生变化时调用的函数。 */
   onResize?: () => void
   /** 指定样式目标以根据文本区域内容应用高度。如果未提供，将使用文本区域本身。 */

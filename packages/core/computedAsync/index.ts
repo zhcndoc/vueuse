@@ -1,4 +1,4 @@
-import type { Fn, WatchOptionFlush } from '@vueuse/shared'
+import type { ConfigurableFlushSync, Fn } from '@vueuse/shared'
 import type { ComputedRef, Ref } from 'vue'
 import { noop } from '@vueuse/shared'
 import {
@@ -16,7 +16,7 @@ import {
  */
 export type AsyncComputedOnCancel = (cancelCallback: Fn) => void
 
-export interface AsyncComputedOptions<Lazy = boolean> {
+export interface AsyncComputedOptions<Lazy = boolean> extends ConfigurableFlushSync {
   /**
    * 是否应该延迟评估值
    *
@@ -35,16 +35,6 @@ export interface AsyncComputedOptions<Lazy = boolean> {
    * @default true
    */
   shallow?: boolean
-
-  /**
-   * 刷新选项允许更好地控制历史点的时机，默认为 `pre`。
-   *
-   * 可能的值：`pre`、`post`、`sync`
-   *
-   * 它的工作方式与 Vue 响应式中的 watch 和 watch effect 的 flush 选项相同。
-   * @default 'sync'
-   */
-  flush?: WatchOptionFlush
 
   /**
    * 捕获到错误时的回调函数。

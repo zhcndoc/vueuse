@@ -13,7 +13,7 @@ category: Sensors
 import { useScroll } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
-const el = useTemplateRef<HTMLElement>('el')
+const el = useTemplateRef('el')
 const { x, y, isScrolling, arrivedState, directions } = useScroll(el)
 </script>
 
@@ -41,7 +41,7 @@ const { x, y, isScrolling, arrivedState, directions } = useScroll(el, {
 import { useScroll } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
-const el = useTemplateRef<HTMLElement>('el')
+const el = useTemplateRef('el')
 const { x, y } = useScroll(el)
 </script>
 
@@ -64,7 +64,7 @@ const { x, y } = useScroll(el)
 import { useScroll } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
-const el = useTemplateRef<HTMLElement>('el')
+const el = useTemplateRef('el')
 const { x, y } = useScroll(el, { behavior: 'smooth' })
 
 // 或作为 `ref`：
@@ -83,7 +83,7 @@ This is useful, for example, after dynamic content changes or when you want to r
 import { useScroll } from '@vueuse/core'
 import { nextTick, onMounted, useTemplateRef, watch } from 'vue'
 
-const el = useTemplateRef<HTMLElement>('el')
+const el = useTemplateRef('el')
 const reactiveValue = shallowRef(false)
 
 const { measure } = useScroll(el)
