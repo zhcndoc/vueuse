@@ -109,14 +109,14 @@ export default withPwa(defineConfig({
   themeConfig: {
     logo: '/favicon.svg',
 
-    footer: {
-      message: `<a target="_blank" href="https://www.zhcndoc.com">简中文档</a>`,
-      copyright: '<a rel="nofollow" target="_blank" href="https://beian.miit.gov.cn">沪ICP备2024070610号-3</a>',
+    editLink: {
+      pattern: 'https://github.com/zhcndoc/vueuse/tree/main/packages/:path',
+      text: '在 GitHub 上编辑此页面',
     },
 
-    editLink: {
-      text: '在 GitHub 上编辑此页面',
-      pattern: 'https://github.com/zhcndoc/vueuse/tree/main/packages/:path',
+    footer: {
+      message: `<a style="text-decoration: none;" target="_blank" href="https://www.zhcndoc.com">简中文档</a>`,
+      copyright: '<a style="text-decoration: none;" rel="nofollow" target="_blank" href="https://beian.miit.gov.cn">沪ICP备2024070610号-3</a>',
     },
     docFooter: {
       prev: '上一页',
@@ -243,13 +243,7 @@ export default withPwa(defineConfig({
     },
   },
   head: [
-    [
-      'script',
-      {
-        async: '',
-        src: 'https://www.zhcndoc.com/js/common.js',
-      },
-    ],
+    ['script', { async: '', src: 'https://www.zhcndoc.com/js/common.js' }],
     ['meta', { name: 'theme-color', content: '#ffffff' }],
     ['link', { rel: 'icon', href: '/favicon.ico', sizes: '48x48' }],
     ['link', { rel: 'icon', href: '/favicon.svg', sizes: 'any', type: 'image/svg+xml' }],
@@ -260,6 +254,7 @@ export default withPwa(defineConfig({
     ['meta', { name: 'twitter:creator', content: '@antfu7' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover' }],
     ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' }],
+
     ['link', { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' }],
     ['link', { rel: 'preconnect', crossorigin: 'anonymous', href: 'https://fonts.gstatic.com' }],
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap' }],

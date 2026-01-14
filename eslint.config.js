@@ -24,7 +24,7 @@ const restricted = [
 export default antfu(
   {
     formatters: true,
-    pnpm: true,
+    pnpm: false,
     test: {
       overrides: {
         'test/padding-around-after-all-blocks': 'error',

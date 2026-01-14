@@ -2,7 +2,7 @@
   "name": "@vueuse/firebase",
   "type": "module",
   "version": "14.1.0",
-  "description": "启用 Firebase 的实时绑定功能",
+  "description": "Enables realtime bindings for Firebase",
   "author": "Anthony Fu <https://github.com/antfu>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/antfu",

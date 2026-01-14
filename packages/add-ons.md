@@ -62,7 +62,7 @@
 
 ## Router - [`@vueuse/router`](https://vueuse.org/router/README.html)
 
-vue-router 的实用工具
+Utilities for vue-router
 
 - [`useRouteHash`](https://vueuse.org/router/useRouteHash/) — 对响应式的 `route.hash` 的简写。
 - [`useRouteParams`](https://vueuse.org/router/useRouteParams/) — 对响应式的 `route.params` 的简写。
@@ -70,7 +70,7 @@ vue-router 的实用工具
 
 ## Integrations - [`@vueuse/integrations`](https://vueuse.org/integrations/README.html)
 
-实用程序库的集成包装器
+Integration wrappers for utility libraries
 
 - [`useAsyncValidator`](https://vueuse.org/integrations/useAsyncValidator/) — 对 [`async-validator`](https://github.com/yiminghe/async-validator) 的封装。
 - [`useAxios`](https://vueuse.org/integrations/useAxios/) — 对 [`axios`](https://github.com/axios/axios) 的封装。
@@ -87,7 +87,7 @@ vue-router 的实用工具
 
 ## RxJS - [`@vueuse/rxjs`](https://vueuse.org/rxjs/README.html)
 
-在 Vue 中启用 RxJS 反应函数
+Enables RxJS reactive functions in Vue
 
 - [`from`](https://vueuse.org/rxjs/from/) — rxJS 的 [`from()`](https://rxjs.dev/api/index/function/from) 和 [`fromEvent()`](https://rxjs.dev/api/index/function/fromEvent) 的包装器，使它们能够接受 `ref`。
 - [`toObserver`](https://vueuse.org/rxjs/toObserver/) — sugar function to convert a `ref` into an RxJS [Observer](https://rxjs.dev/guide/observer)
@@ -99,7 +99,7 @@ vue-router 的实用工具
 
 ## Firebase - [`@vueuse/firebase`](https://vueuse.org/firebase/README.html)
 
-启用 Firebase 的实时绑定功能
+Enables realtime bindings for Firebase
 
 - [`useAuth`](https://vueuse.org/firebase/useAuth/) — 响应式的 [Firebase Auth](https://firebase.google.com/docs/auth) 绑定。它提供了一个响应式的 `user` 和 `isAuthenticated`，因此你可以轻松地对用户的身份验证状态变化做出反应。
 - [`useFirestore`](https://vueuse.org/firebase/useFirestore/) — 响应式的 [Firestore](https://firebase.google.com/docs/firestore) 绑定。使得**始终将本地数据与远程数据库同步**变得简单直观。
@@ -107,7 +107,7 @@ vue-router 的实用工具
 
 ## Electron - [`@vueuse/electron`](https://vueuse.org/electron/README.html)
 
-VueUse 的 Electron 渲染器进程模块
+Electron renderer process modules for VueUse
 
 - [`useIpcRenderer`](https://vueuse.org/electron/useIpcRenderer/) — 提供 [ipcRenderer](https://www.electronjs.org/docs/api/ipc-renderer) 及其所有 API。
 - [`useIpcRendererInvoke`](https://vueuse.org/electron/useIpcRendererInvoke/) — 响应式的 [ipcRenderer.invoke API](https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererinvokechannel-args) 结果。使异步操作看起来像同步的。

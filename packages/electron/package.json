@@ -2,7 +2,7 @@
   "name": "@vueuse/electron",
   "type": "module",
   "version": "14.1.0",
-  "description": "VueUse 的 Electron 渲染器进程模块",
+  "description": "Electron renderer process modules for VueUse",
   "author": "Archer Gu<https://github.com/ArcherGu>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/antfu",

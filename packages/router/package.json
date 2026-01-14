@@ -2,7 +2,7 @@
   "name": "@vueuse/router",
   "type": "module",
   "version": "14.1.0",
-  "description": "vue-router 的实用工具",
+  "description": "Utilities for vue-router",
   "author": "Anthony Fu <https://github.com/antfu>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/antfu",
