@@ -1,6 +1,6 @@
 ---
-category: Component
-outline: deep
+category: 组件
+outline: 深入
 ---
 
 # createTemplatePromise
@@ -110,6 +110,22 @@ const result = await TemplatePromise.start('hello', 123) // Pr
 </template>
 ```
 
+### Singleton 模式
+
+使用 `singleton` 选项确保同一时间只有一个 Promise 实例处于激活状态。如果 `start` 在已有激活的 Promise 时被调用，它将返回现有的 Promise，而不是创建新实例。
+
+```ts
+import { createTemplatePromise } from '@vueuse/core'
+
+const TemplatePromise = createTemplatePromise<boolean>({
+  singleton: true,
+})
+
+// 如果快速连续调用，这些将返回相同的 Promise
+const result1 = TemplatePromise.start()
+const result2 = TemplatePromise.start() // 返回与 result1 相同的 Promise
+```
+
 ### 过渡
 
 你可以使用过渡来为插槽添加动画效果。
@@ -147,9 +163,40 @@ const TemplatePromise = createTemplatePromise<ReturnType>({
 
 了解更多关于 [Vue 过渡](https://vue.zhcndoc.com/guide/built-ins/transition.html)。
 
+### 插槽属性
+
+插槽提供以下属性：
+
+| 属性          | 类型                                     | 说明                                                |
+| ------------- | ---------------------------------------- | --------------------------------------------------- |
+| `promise`     | `Promise<Return> \| undefined`           | 当前的 Promise 实例                                 |
+| `resolve`     | `(v: Return \| Promise<Return>) => void` | 使用一个值解决 Promise                              |
+| `reject`      | `(v: any) => void`                       | 拒绝 Promise                                        |
+| `args`        | `Args`                                   | 传递给 `start()` 的参数                             |
+| `isResolving` | `boolean`                                | 当解析传递给 `resolve` 的另一个 Promise 时为 `true` |
+| `key`         | `number`                                 | 用于列表渲染的唯一 key                              |
+
+```vue
+<template>
+  <TemplatePromise v-slot="{ promise, resolve, reject, args, isResolving }">
+    <div v-if="isResolving">
+      加载中...
+    </div>
+    <div v-else>
+      <button @click="resolve('ok')">
+        确定
+      </button>
+      <button @click="reject('cancelled')">
+        取消
+      </button>
+    </div>
+  </TemplatePromise>
+</template>
+```
+
 ## 动机
 
-以编程方式调用对话框或模型的常见方法如下：
+以编程方式调用对话框或模态框的常见方法如下：
 
 ```ts
 const dialog = useDialog()

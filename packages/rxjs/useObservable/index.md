@@ -25,7 +25,24 @@ const count = useObservable(
 )
 ```
 
-如果你想要为可能出错的 `Observable` 添加自定义错误处理，你可以提供一个可选的 `onError` 配置。如果没有提供，RxJS 将把提供的 `Observable` 中的任何错误视为 “未处理的错误”，并且它将在一个新的调用栈中抛出，并报告给 `window.onerror` (或者如果你恰好在 Node 中，则为 `process.on('error')`)。
+### 初始值
+
+你可以提供一个初始值，在 Observable 发出第一个值之前使用：
+
+```ts no-twoslash
+import { useObservable } from '@vueuse/rxjs'
+import { interval } from 'rxjs'
+
+const count = useObservable(
+  interval(1000),
+  { initialValue: 0 },
+)
+// count.value 在第一次发出之前是 0
+```
+
+### 错误处理
+
+如果你想要为可能出错的 `Observable` 添加自定义错误处理，你可以提供一个可选的 `onError` 配置。如果没有提供，RxJS 将把提供的 `Observable` 中的任何错误视为“未处理的错误”，并且它将在一个新的调用栈中抛出，并报告给 `window.onerror`（或者如果你恰好在 Node 中，则为 `process.on('error')`）。
 
 ```ts no-twoslash
 import { useObservable } from '@vueuse/rxjs'
@@ -49,3 +66,10 @@ const count = useObservable(
   },
 )
 ```
+
+### 选项
+
+| 选项           | 类型                 | 说明                              |
+| -------------- | -------------------- | --------------------------------- |
+| `initialValue` | `T`                  | Observable 发出值之前使用的初始值 |
+| `onError`      | `(err: any) => void` | Observable 错误的处理函数         |

@@ -15,6 +15,7 @@ const Guide = [
   { text: '最佳实践', link: '/guide/best-practice' },
   { text: '配置', link: '/guide/config' },
   { text: '组件', link: '/guide/components' },
+  { text: '使用 AI', link: '/guide/work-with-ai' },
   { text: '贡献', link: '/contributing' },
   { text: '参考指南', link: '/guidelines' },
 ]

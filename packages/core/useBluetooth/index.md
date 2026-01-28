@@ -1,5 +1,5 @@
 ---
-category: Browser
+category: 浏览器
 ---
 
 # useBluetooth
@@ -26,6 +26,7 @@ const {
   device,
   requestDevice,
   server,
+  error,
 } = useBluetooth({
   acceptAllDevices: true,
 })
@@ -35,8 +36,22 @@ const {
   <button @click="requestDevice()">
     请求蓝牙设备
   </button>
+  <div v-if="error">
+    错误: {{ error }}
+  </div>
 </template>
 ```
+
+### 返回值
+
+| 属性            | 类型                             | 说明                     |
+| --------------- | -------------------------------- | ------------------------ |
+| `isSupported`   | `ComputedRef<boolean>`           | 是否支持 Web 蓝牙 API    |
+| `isConnected`   | `Ref<boolean>`                   | 当前是否有设备连接       |
+| `device`        | `Ref<BluetoothDevice>`           | 已连接的蓝牙设备         |
+| `server`        | `Ref<BluetoothRemoteGATTServer>` | 已连接设备的 GATT 服务器 |
+| `error`         | `Ref<unknown>`                   | 连接过程中产生的任何错误 |
+| `requestDevice` | `() => Promise<void>`            | 请求蓝牙设备的函数       |
 
 当设备已配对并连接时，你可以自由地使用 server 对象。
 
@@ -70,20 +85,20 @@ const isGettingBatteryLevels = ref(false)
 async function getBatteryLevels() {
   isGettingBatteryLevels.value = true
 
-  // Get the battery service:
+  // 获取电池服务：
   const batteryService = await server.getPrimaryService('battery_service')
 
-  // Get the current battery level
+  // 获取当前电池电量特征值
   const batteryLevelCharacteristic = await batteryService.getCharacteristic(
     'battery_level',
   )
 
-  // Listen to when characteristic value changes on `characteristicvaluechanged` event:
+  // 监听 'characteristicvaluechanged' 事件，响应特征值变化：
   useEventListener(batteryLevelCharacteristic, 'characteristicvaluechanged', (event) => {
     batteryPercent.value = event.target.value.getUint8(0)
   }, { passive: true })
 
-  // Convert received buffer to number:
+  // 将接收到的缓冲区转换为数字：
   const batteryLevel = await batteryLevelCharacteristic.readValue()
 
   batteryPercent.value = await batteryLevel.getUint8(0)
@@ -92,9 +107,9 @@ async function getBatteryLevels() {
 const { stop } = watchPausable(isConnected, (newIsConnected) => {
   if (!newIsConnected || !server.value || isGettingBatteryLevels.value)
     return
-  // Attempt to get the battery levels of the device:
+  // 尝试获取设备的电池电量：
   getBatteryLevels()
-  // We only want to run this on the initial connection, as we will use an event listener to handle updates:
+  // 我们只希望在初次连接时运行此逻辑，之后通过事件监听处理更新：
   stop()
 })
 </script>

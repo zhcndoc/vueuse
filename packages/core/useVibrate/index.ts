@@ -1,11 +1,25 @@
-import type { Pausable } from '@vueuse/shared'
-import type { MaybeRefOrGetter } from 'vue'
-import type { ConfigurableNavigator } from '../_configurable'
+import type { AnyFn, Arrayable, Pausable } from '@vueuse/shared'
+import type { ComputedRef, MaybeRefOrGetter } from 'vue'
+import type { ConfigurableNavigator, ConfigurableScheduler } from '../_configurable'
 import { toRef, useIntervalFn } from '@vueuse/shared'
 import { defaultNavigator } from '../_configurable'
 import { useSupported } from '../useSupported'
 
-export interface UseVibrateOptions extends ConfigurableNavigator {
+function getDefaultScheduler(options: UseVibrateOptions = { interval: 0 }) {
+  const {
+    interval,
+  } = options
+
+  if (interval === 0)
+    return
+
+  return (fn: AnyFn) => useIntervalFn(fn, interval, {
+    immediate: false,
+    immediateCallback: false,
+  })
+}
+
+export interface UseVibrateOptions extends ConfigurableNavigator, ConfigurableScheduler {
   /**
    *
    * 一个值数组描述了设备震动和不震动的交替周期。
@@ -14,16 +28,25 @@ export interface UseVibrateOptions extends ConfigurableNavigator {
    * @default []
    *
    */
-  pattern?: MaybeRefOrGetter<number[] | number>
+  pattern?: MaybeRefOrGetter<Arrayable<number>>
   /**
    * 持续震动的间隔，以毫秒为单位
    *
    * 设置为 `0` 表示禁用
    *
+   * @deprecated Please use `scheduler` option instead
    * @default 0
    *
    */
-  interval?: number
+  interval: number
+}
+
+export interface UseVibrateReturn {
+  isSupported: ComputedRef<boolean>
+  pattern: MaybeRefOrGetter<Arrayable<number>>
+  intervalControls?: Pausable
+  vibrate: (pattern?: Arrayable<number>) => void
+  stop: () => void
 }
 
 /**
@@ -35,22 +58,23 @@ export interface UseVibrateOptions extends ConfigurableNavigator {
  *
  * @__NO_SIDE_EFFECTS__
  */
-export function useVibrate(options?: UseVibrateOptions) {
+export function useVibrate(options?: UseVibrateOptions): UseVibrateReturn {
   const {
     pattern = [],
-    interval = 0,
+    scheduler = getDefaultScheduler(options),
     navigator = defaultNavigator,
   } = options || {}
 
   const isSupported = useSupported(() => typeof navigator !== 'undefined' && 'vibrate' in navigator)
 
   const patternRef = toRef(pattern)
-  let intervalControls: Pausable | undefined
 
   const vibrate = (pattern = patternRef.value) => {
     if (isSupported.value)
       navigator!.vibrate(pattern)
   }
+
+  const intervalControls = scheduler?.(vibrate)
 
   // Attempt to stop the vibration:
   const stop = () => {
@@ -58,17 +82,6 @@ export function useVibrate(options?: UseVibrateOptions) {
     if (isSupported.value)
       navigator!.vibrate(0)
     intervalControls?.pause()
-  }
-
-  if (interval > 0) {
-    intervalControls = useIntervalFn(
-      vibrate,
-      interval,
-      {
-        immediate: false,
-        immediateCallback: false,
-      },
-    )
   }
 
   return {
@@ -79,5 +92,3 @@ export function useVibrate(options?: UseVibrateOptions) {
     stop,
   }
 }
-
-export type UseVibrateReturn = ReturnType<typeof useVibrate>

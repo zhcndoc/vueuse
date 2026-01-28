@@ -5,10 +5,10 @@ category: Component
 # useVirtualList
 
 ::: warning
-如果你正在寻找更多功能，请考虑使用 [`vue-virtual-scroller`](https://github.com/Akryum/vue-virtual-scroller)。
+如果你正在寻找更多功能，请考虑使用 [`@tanstack/vue-virtual`](https://tanstack.com/virtual/v3/docs/framework/vue/vue-virtual)。
 :::
 
-轻松创建虚拟列表。虚拟列表 (有时称为 [_virtual scrollers_](https://vue-virtual-scroller-demo.netlify.app/)) 允许你高效地渲染大量项目。它们只渲染必要的最小数量的 DOM 节点，以通过使用 `wrapper` 元素模拟容器元素的完整高度来显示 `container` 元素中的项目。
+轻松创建虚拟列表。虚拟列表（有时称为 [_virtual scrollers_](https://vue-virtual-scroller-demo.netlify.app/)）允许你高效地渲染大量项目。它们只渲染必要的最小数量的 DOM 节点，以通过使用 `wrapper` 元素模拟容器元素的完整高度来显示 `container` 元素中的项目。
 
 ## 用法
 

@@ -1,10 +1,10 @@
 ---
-category: Sensors
+category: 传感器
 ---
 
 # onElementRemoval
 
-当该元素或包含该元素的任何元素被移除时触发。
+当该元素或任何包含该元素的元素从 DOM 中被移除时触发。
 
 ## 用法
 
@@ -40,4 +40,27 @@ onElementRemoval(btnRef, () => ++removedCount.value)
   </button>
   <b>removed times: {{ removedCount }}</b>
 </template>
+```
+
+### 带有 Mutation Records 的回调
+
+回调函数会接收一个触发移除的 `MutationRecord` 对象数组。
+
+```ts
+import { onElementRemoval } from '@vueuse/core'
+
+onElementRemoval(targetRef, (mutationRecords) => {
+  console.log('元素已被移除', mutationRecords)
+})
+```
+
+### 返回值
+
+返回一个停止函数，用于停止观察。
+
+```ts
+const stop = onElementRemoval(targetRef, callback)
+
+// 之后，停止观察
+stop()
 ```

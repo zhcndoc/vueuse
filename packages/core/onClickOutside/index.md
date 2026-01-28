@@ -1,10 +1,10 @@
 ---
-category: Sensors
+category: 传感器
 ---
 
 # onClickOutside
 
-监听元素外的点击事件。适用于模态框或下拉菜单等场景。
+监听元素外的点击事件。适用于模态框或下拉菜单。
 
 ## 用法
 
@@ -26,10 +26,23 @@ onClickOutside(target, event => console.log(event))
 </template>
 ```
 
-如果您需要更好地控制触发处理程序，可以使用 `controls` 选项。
+### 返回值
+
+默认情况下，`onClickOutside` 返回一个 `stop` 函数，用于移除事件监听。
 
 ```ts
-const { cancel, trigger } = onClickOutside(
+const stop = onClickOutside(target, handler)
+
+// 之后，停止监听
+stop()
+```
+
+### 控制选项
+
+如果您需要更好地控制处理程序的触发，可以使用 `controls` 选项。它返回一个包含 `stop`、`cancel` 和 `trigger` 函数的对象。
+
+```ts
+const { stop, cancel, trigger } = onClickOutside(
   modalRef,
   (event) => {
     modal.value = false
@@ -37,24 +50,44 @@ const { cancel, trigger } = onClickOutside(
   { controls: true },
 )
 
-useEventListener('pointermove', (e) => {
-  cancel()
-  // or
-  trigger(e)
-})
+// cancel 用于阻止下一次点击触发处理器
+cancel()
+
+// trigger 用于手动触发处理器
+trigger(event)
+
+// stop 用于移除所有事件监听
+stop()
 ```
 
-如果您想忽略某些元素，可以使用 `ignore` 选项。将要忽略的元素提供为 Refs 或 CSS 选择器的数组。
+### 忽略元素
+
+使用 `ignore` 选项来防止某些元素触发处理器。将元素以 Refs 或 CSS 选择器数组的形式提供。
 
 ```ts
 const ignoreElRef = useTemplateRef('ignoreEl')
-const ignoreElSelector = '.ignore-el'
 
 onClickOutside(
   target,
   event => console.log(event),
-  { ignore: [ignoreElRef, ignoreElSelector] },
+  { ignore: [ignoreElRef, '.ignore-class', '#ignore-id'] },
 )
+```
+
+### 捕获阶段
+
+默认情况下，事件监听使用捕获阶段（`capture: true`）。设置 `capture: false` 可改用冒泡阶段。
+
+```ts
+onClickOutside(target, handler, { capture: false })
+```
+
+### 侦测 iframe 点击
+
+默认情况下，iframe 内的点击不会被检测。启用 `detectIframe` 可在焦点切换到 iframe 时触发处理器。
+
+```ts
+onClickOutside(target, handler, { detectIframe: true })
 ```
 
 ## 组件用法

@@ -40,7 +40,7 @@
 - 🚚 使用 [**@vueuse/sound/nuxt**](https://github.com/vueuse/sound#nuxt) 支持 **Nuxt 3**
 - ⚡️ 在你的**捆绑包**中仅有 **<1kb** (gzip 压缩)！**~10kb** 异步加载。
 - ✨ 使用 **TypeScript** 编写
-- 🗣 使用经过充分测试的强大音频实用程序：[**Howler.js**](https://howlerjs.com/)
+- 🗣 使用经过充分测试的强大音频实用工具：[**Howler.js**](https://howlerjs.com/)
 
 > 由 [@Tahul](https://github.com/Tahul) 创建和维护
 
@@ -62,23 +62,23 @@
 
 ## Router - [`@vueuse/router`](https://vueuse.org/router/README.html)
 
-Utilities for vue-router
+vue-router 的工具集
 
-- [`useRouteHash`](https://vueuse.org/router/useRouteHash/) — 对响应式的 `route.hash` 的简写。
-- [`useRouteParams`](https://vueuse.org/router/useRouteParams/) — 对响应式的 `route.params` 的简写。
-- [`useRouteQuery`](https://vueuse.org/router/useRouteQuery/) — 对响应式的 `route.query` 的简写。
+- [`useRouteHash`](https://vueuse.org/router/useRouteHash/) — 响应式 `route.hash` 的简写。
+- [`useRouteParams`](https://vueuse.org/router/useRouteParams/) — 响应式 `route.params` 的简写。
+- [`useRouteQuery`](https://vueuse.org/router/useRouteQuery/) — 响应式 `route.query` 的简写。
 
 ## Integrations - [`@vueuse/integrations`](https://vueuse.org/integrations/README.html)
 
-Integration wrappers for utility libraries
+流行工具库的集成包装器
 
-- [`useAsyncValidator`](https://vueuse.org/integrations/useAsyncValidator/) — 对 [`async-validator`](https://github.com/yiminghe/async-validator) 的封装。
-- [`useAxios`](https://vueuse.org/integrations/useAxios/) — 对 [`axios`](https://github.com/axios/axios) 的封装。
-- [`useChangeCase`](https://vueuse.org/integrations/useChangeCase/) — 对 [`change-case`](https://github.com/blakeembrey/change-case) 的响应式封装。
-- [`useCookies`](https://vueuse.org/integrations/useCookies/) — 对 [`universal-cookie`](https://www.npmjs.com/package/universal-cookie) 的包装。
-- [`useDrauu`](https://vueuse.org/integrations/useDrauu/) — 这是 [drauu](https://github.com/antfu/drauu) 的响应式实例。
-- [`useFocusTrap`](https://vueuse.org/integrations/useFocusTrap/) — 这是 [`focus-trap`](https://github.com/focus-trap/focus-trap) 的响应式封装。
-- [`useFuse`](https://vueuse.org/integrations/useFuse/) — 使用 [Fuse.js](https://github.com/krisk/fuse) 组合式轻松实现模糊搜索。
+- [`useAsyncValidator`](https://vueuse.org/integrations/useAsyncValidator/) — [`async-validator`](https://github.com/yiminghe/async-validator) 的封装。
+- [`useAxios`](https://vueuse.org/integrations/useAxios/) — [`axios`](https://github.com/axios/axios) 的封装。
+- [`useChangeCase`](https://vueuse.org/integrations/useChangeCase/) — [`change-case`](https://github.com/blakeembrey/change-case) 的响应式封装。
+- [`useCookies`](https://vueuse.org/integrations/useCookies/) — [`universal-cookie`](https://www.npmjs.com/package/universal-cookie) 的包装。
+- [`useDrauu`](https://vueuse.org/integrations/useDrauu/) — [drauu](https://github.com/antfu/drauu) 的响应式实例。
+- [`useFocusTrap`](https://vueuse.org/integrations/useFocusTrap/) — [`focus-trap`](https://github.com/focus-trap/focus-trap) 的响应式封装。
+- [`useFuse`](https://vueuse.org/integrations/useFuse/) — 使用 [Fuse.js](https://github.com/krisk/fuse) 的组合式工具轻松实现模糊搜索。
 - [`useIDBKeyval`](https://vueuse.org/integrations/useIDBKeyval/) — [`idb-keyval`](https://www.npmjs.com/package/idb-keyval) 的封装。
 - [`useJwt`](https://vueuse.org/integrations/useJwt/) — [`jwt-decode`](https://github.com/auth0/jwt-decode) 的封装。
 - [`useNProgress`](https://vueuse.org/integrations/useNProgress/) — [`nprogress`](https://github.com/rstacruz/nprogress) 的响应式封装。
@@ -87,31 +87,31 @@ Integration wrappers for utility libraries
 
 ## RxJS - [`@vueuse/rxjs`](https://vueuse.org/rxjs/README.html)
 
-Enables RxJS reactive functions in Vue
+在 Vue 中启用 RxJS 响应式函数
 
-- [`from`](https://vueuse.org/rxjs/from/) — rxJS 的 [`from()`](https://rxjs.dev/api/index/function/from) 和 [`fromEvent()`](https://rxjs.dev/api/index/function/fromEvent) 的包装器，使它们能够接受 `ref`。
-- [`toObserver`](https://vueuse.org/rxjs/toObserver/) — sugar function to convert a `ref` into an RxJS [Observer](https://rxjs.dev/guide/observer)
-- [`useExtractedObservable`](https://vueuse.org/rxjs/useExtractedObservable/) — 从一个或多个组合式中提取并使用 RxJS [`Observable`](https://rxjs.dev/guide/observable)，返回一个 `ref`，并在组件卸载时自动取消订阅。
-- [`useObservable`](https://vueuse.org/rxjs/useObservable/) — 使用 RxJS [`Observable`](https://rxjs.dev/guide/observable)，返回一个 `ref`，并在组件卸载时自动取消订阅。
-- [`useSubject`](https://vueuse.org/rxjs/useSubject/) — 将 RxJS [`Subject`](https://rxjs.dev/guide/subject) 绑定到一个 `ref` 上，并在两者之间传播值变化。
-- [`useSubscription`](https://vueuse.org/rxjs/useSubscription/) — 使用 RxJS [`Subscription`](https://rxjs.dev/guide/subscription)，无需担心取消订阅或创建内存泄漏。
-- [`watchExtractedObservable`](https://vueuse.org/rxjs/watchExtractedObservable/) — 监视从一个或多个组合式中提取的 RxJS [`Observable`](https://rxjs.dev/guide/observable) 的值。
+- [`from`](https://vueuse.org/rxjs/from/) — rxJS 的 [`from()`](https://rxjs.dev/api/index/function/from) 和 [`fromEvent()`](https://rxjs.dev/api/index/function/fromEvent) 的包装器，支持接受 `ref`。
+- [`toObserver`](https://vueuse.org/rxjs/toObserver/) — 将 `ref` 转换为 RxJS [Observer](https://rxjs.dev/guide/observer) 的便捷函数。
+- [`useExtractedObservable`](https://vueuse.org/rxjs/useExtractedObservable/) — 从一个或多个组合式函数中提取并使用 RxJS [`Observable`](https://rxjs.dev/guide/observable)，返回一个 `ref`，组件卸载时自动取消订阅。
+- [`useObservable`](https://vueuse.org/rxjs/useObservable/) — 使用 RxJS [`Observable`](https://rxjs.dev/guide/observable)，返回一个 `ref`，组件卸载时自动取消订阅。
+- [`useSubject`](https://vueuse.org/rxjs/useSubject/) — 将 RxJS [`Subject`](https://rxjs.dev/guide/subject) 绑定到 `ref` 上，并实现双向值传播。
+- [`useSubscription`](https://vueuse.org/rxjs/useSubscription/) — 使用 RxJS [`Subscription`](https://rxjs.dev/guide/subscription)，无需担心取消订阅或内存泄漏。
+- [`watchExtractedObservable`](https://vueuse.org/rxjs/watchExtractedObservable/) — 监听从一个或多个组合式函数中提取的 RxJS [`Observable`](https://rxjs.dev/guide/observable) 的值。
 
 ## Firebase - [`@vueuse/firebase`](https://vueuse.org/firebase/README.html)
 
-Enables realtime bindings for Firebase
+为 Firebase 提供实时绑定
 
-- [`useAuth`](https://vueuse.org/firebase/useAuth/) — 响应式的 [Firebase Auth](https://firebase.google.com/docs/auth) 绑定。它提供了一个响应式的 `user` 和 `isAuthenticated`，因此你可以轻松地对用户的身份验证状态变化做出反应。
-- [`useFirestore`](https://vueuse.org/firebase/useFirestore/) — 响应式的 [Firestore](https://firebase.google.com/docs/firestore) 绑定。使得**始终将本地数据与远程数据库同步**变得简单直观。
-- [`useRTDB`](https://vueuse.org/firebase/useRTDB/) — 响应式的 [Firebase 实时数据库](https://firebase.google.com/docs/database)绑定。使得**始终将本地数据与远程数据库同步**变得简单直观。
+- [`useAuth`](https://vueuse.org/firebase/useAuth/) — 响应式的 [Firebase Auth](https://firebase.google.com/docs/auth) 绑定。提供响应式的 `user` 和 `isAuthenticated`，方便响应用户身份验证状态变化。
+- [`useFirestore`](https://vueuse.org/firebase/useFirestore/) — 响应式的 [Firestore](https://firebase.google.com/docs/firestore) 绑定，轻松实现本地数据与远程数据库的实时同步。
+- [`useRTDB`](https://vueuse.org/firebase/useRTDB/) — 响应式的 [Firebase 实时数据库](https://firebase.google.com/docs/database) 绑定，轻松实现本地数据与远程数据库的实时同步。
 
 ## Electron - [`@vueuse/electron`](https://vueuse.org/electron/README.html)
 
-Electron renderer process modules for VueUse
+Electron 渲染进程的 VueUse 模块
 
-- [`useIpcRenderer`](https://vueuse.org/electron/useIpcRenderer/) — 提供 [ipcRenderer](https://www.electronjs.org/docs/api/ipc-renderer) 及其所有 API。
-- [`useIpcRendererInvoke`](https://vueuse.org/electron/useIpcRendererInvoke/) — 响应式的 [ipcRenderer.invoke API](https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererinvokechannel-args) 结果。使异步操作看起来像同步的。
-- [`useIpcRendererOn`](https://vueuse.org/electron/useIpcRendererOn/) — 轻松使用 [ipcRenderer.on](https://www.electronjs.org/docs/api/ipc-renderer#ipcrendereronchannel-listener)，并在组件卸载时自动移除监听器 [ipcRenderer.removeListener](https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererremovelistenerchannel-listener)。
+- [`useIpcRenderer`](https://vueuse.org/electron/useIpcRenderer/) — 提供 [ipcRenderer](https://www.electronjs.org/docs/api/ipc-renderer) 及其所有 API 的 Vue 响应式支持。
+- [`useIpcRendererInvoke`](https://vueuse.org/electron/useIpcRendererInvoke/) — 响应式的 [ipcRenderer.invoke API](https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererinvokechannel-args) 结果，使异步操作看起来像同步的。
+- [`useIpcRendererOn`](https://vueuse.org/electron/useIpcRendererOn/) — 简化使用 [ipcRenderer.on](https://www.electronjs.org/docs/api/ipc-renderer#ipcrendereronchannel-listener)，并在组件卸载时自动移除监听器 [ipcRenderer.removeListener](https://www.electronjs.org/docs/api/ipc-renderer#ipcrendererremovelistenerchannel-listener)。
 - [`useZoomFactor`](https://vueuse.org/electron/useZoomFactor/) — 响应式的 [WebFrame](https://www.electronjs.org/docs/api/web-frame#webframe) 缩放因子。
 - [`useZoomLevel`](https://vueuse.org/electron/useZoomLevel/) — 响应式的 [WebFrame](https://www.electronjs.org/docs/api/web-frame#webframe) 缩放级别。
 

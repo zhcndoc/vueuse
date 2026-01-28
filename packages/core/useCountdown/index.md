@@ -1,10 +1,10 @@
 ---
-category: Time
+category: 时间
 ---
 
 # useCountdown
 
-`useIntervalFn` 的包装器，提供倒计时器。
+秒级响应式倒计时器。
 
 ## 使用方法
 
@@ -32,15 +32,15 @@ const countdown = shallowRef(5)
 const { start, reset } = useCountdown(countdown, {
 })
 
-// change the countdown value
+// 更改倒计时的值
 countdown.value = 10
 
-// start a new countdown with 2 seconds
+// 以 2 秒开始新的倒计时
 start(2)
 
-// reset the countdown to 4, but do not start it
+// 重置倒计时为 4 秒，但不启动
 reset(4)
 
-// start the countdown with the current value of `countdown`
+// 使用当前 `countdown` 的值开始倒计时
 start()
 ```

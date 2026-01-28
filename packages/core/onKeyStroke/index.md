@@ -4,7 +4,7 @@ category: Sensors
 
 # onKeyStroke
 
-监听键盘按键事件。
+监听键盘按键事件。默认情况下，监听 `window` 上的 `keydown` 事件。
 
 ## 用法
 
@@ -18,6 +18,17 @@ onKeyStroke('ArrowDown', (e) => {
 
 请参阅[此表格](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values)获取所有按键代码。
 
+### 返回值
+
+返回一个停止函数，用于移除事件监听器。
+
+```ts
+const stop = onKeyStroke('Escape', handler)
+
+// 之后，停止监听
+stop()
+```
+
 ### 监听多个按键
 
 ```ts
@@ -27,7 +38,7 @@ onKeyStroke(['s', 'S', 'ArrowDown'], (e) => {
   e.preventDefault()
 })
 
-// 通过 [true / 略过键定义] 监听所有键
+// 通过传入 `true` 或省略按键参数来监听所有按键
 onKeyStroke(true, (e) => {
   e.preventDefault()
 })
@@ -36,11 +47,26 @@ onKeyStroke((e) => {
 })
 ```
 
+### 自定义键盘谓词
+
+你可以传入自定义函数来判断哪些按键会触发回调。
+
+```ts
+import { onKeyStroke } from '@vueuse/core'
+
+onKeyStroke(
+  e => e.key === 'A' && e.shiftKey,
+  (e) => {
+    console.log('Shift+A 被按下')
+  },
+)
+```
+
 ### 自定义事件目标
 
 ```ts
 import { onKeyStroke } from '@vueuse/core'
-// ---cut---
+
 onKeyStroke('A', (e) => {
   console.log('按键 A 在文档上被按下')
 }, { target: document })
@@ -48,18 +74,27 @@ onKeyStroke('A', (e) => {
 
 ### 忽略重复事件
 
-当按下 `A` 键并保持按下时，回调函数只会触发一次。
+当按下 `A` 键并保持按下时，回调函数只会触发一次。`dedupe` 选项也可以是响应式的 `ref`。
 
 ```ts
 import { onKeyStroke } from '@vueuse/core'
-// ---cut---
-// 使用 `autoRepeat` 选项
+
 onKeyStroke('A', (e) => {
   console.log('按键 A 被按下')
 }, { dedupe: true })
 ```
 
 参考：[KeyboardEvent.repeat](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat)
+
+### 被动模式
+
+设置 `passive: true` 可使用被动事件监听器。
+
+```ts
+import { onKeyStroke } from '@vueuse/core'
+
+onKeyStroke('A', handler, { passive: true })
+```
 
 ## 指令用法
 
@@ -83,7 +118,7 @@ function onUpdate(e) {
 
 ```ts
 import { onKeyStroke } from '@vueuse/core'
-// ---cut---
+
 onKeyStroke('Shift', (e) => {
   console.log('按键 Shift 松开')
 }, { eventName: 'keyup' })
@@ -93,7 +128,7 @@ onKeyStroke('Shift', (e) => {
 
 ```ts
 import { onKeyUp } from '@vueuse/core'
-// ---cut---
+
 onKeyUp('Shift', () => console.log('按键 Shift 松开'))
 ```
 

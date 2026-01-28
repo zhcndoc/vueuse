@@ -2,7 +2,7 @@
 
 这些是 VueUse 中大多数函数的一般配置。
 
-### 事件过滤器
+## 事件过滤器
 
 从 v4.0 开始，我们提供了事件过滤器系统，以灵活控制事件触发的时机。例如，你可以使用 `throttleFilter` 和 `debounceFilter` 控制事件触发频率：
 
@@ -32,7 +32,7 @@ motionControl.resume()
 // 运动更新恢复
 ```
 
-### 响应式定时
+## 响应式定时
 
 VueUse 的函数在可能的情况下遵循 Vue 的响应式系统默认的[刷新时机](https://vue.zhcndoc.com/guide/essentials/watchers.html#callback-flush-timing)。
 
@@ -62,7 +62,7 @@ const { pause, resume } = watchPausable(
 
 **注意：**对于类似 `computed` 的组合式 (例如 `syncRef`、`computedWithControl`)，当刷新时机可配置时，默认值更改为 `{ flush: 'sync' }`，以使其与 Vue 中计算引用的工作方式保持一致。
 
-### 可配置的全局依赖项
+## 可配置的全局依赖项
 
 从 v4.0 开始，访问浏览器 API 的函数将提供一个选项字段，你可以在其中指定全局依赖项 (例如 `window`、`document` 和 `navigator`)。它默认使用全局实例，因此在大多数情况下，你不需要担心它。此配置在处理 iframe 和测试环境时非常有用。
 
@@ -85,4 +85,19 @@ const childMousePos = useMouse({ window: iframe.contentWindow })
 const mockWindow = { /* ... */ }
 
 const { x, y } = useMouse({ window: mockWindow })
+```
+
+## 自定义调度器
+
+从 v14.1.0 开始，VueUse 引入了自定义调度器系统，允许你控制基于时间的函数如何在内部更新。例如，配合 `useRafFn` 使用、放慢更新速率，或者在 Web Worker 内运行。
+
+当组合函数支持定时功能（如 `useNow`、`useCountdown` 等）时，你可以在其选项中传入一个名为 `scheduler` 的函数。`scheduler` 会接收一个回调，并负责安排该回调的重复执行。
+
+```ts twoslash
+import { useNow, useRafFn } from '@vueuse/core'
+
+const { now, pause, resume } = useNow({
+  controls: true,
+  scheduler: cb => useRafFn(cb),
+})
 ```

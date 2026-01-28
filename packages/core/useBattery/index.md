@@ -1,25 +1,30 @@
 ---
-category: Sensors
+category: 传感器
 ---
 
 # useBattery
 
-响应式的 [Battery Status API](https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API)，更常被称为电池 API，提供有关系统电池充电级别的信息，并允许在电池级别或充电状态发生变化时发送事件通知。这可以用来调整你的应用程序的资源使用，以减少电池耗尽时的电池消耗，或在电池耗尽之前保存更改，以防止数据丢失。
+响应式的 [电池状态 API](https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API)，更常被称为电池 API，提供有关系统电池充电级别的信息，并允许在电池级别或充电状态发生变化时发送事件通知。这可以用来调整你的应用程序的资源使用，以减少电池耗尽时的电池消耗，或在电池耗尽之前保存更改，以防止数据丢失。
 
 ## 用法
 
 ```ts
 import { useBattery } from '@vueuse/core'
 
-const { charging, chargingTime, dischargingTime, level } = useBattery()
+const { isSupported, charging, chargingTime, dischargingTime, level } = useBattery()
 ```
 
 | 状态            | 类型      | 描述                                         |
 | --------------- | --------- | -------------------------------------------- |
+| isSupported     | `Boolean` | 当前浏览器是否支持电池状态 API。             |
 | charging        | `Boolean` | 设备当前是否正在充电。                       |
 | chargingTime    | `Number`  | 直到设备完全充满的秒数。                     |
 | dischargingTime | `Number`  | 直到设备完全放电的秒数。                     |
 | level           | `Number`  | 介于 0 和 1 之间的数字，表示当前的充电水平。 |
+
+::: warning 浏览器支持
+电池状态 API 的浏览器支持有限。目前仅在基于 Chromium 的浏览器中可用。使用数值前，请务必检查 `isSupported`。
+:::
 
 ## 使用场景
 
@@ -30,12 +35,18 @@ const { charging, chargingTime, dischargingTime, level } = useBattery()
 - 禁用一些不是必要的后台任务。
 - 限制网络调用并减少 CPU/内存消耗。
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
-  <UseBattery v-slot="{ charging }">
-    正在充电: {{ charging }}
+  <UseBattery v-slot="{ isSupported, charging, level }">
+    <div v-if="isSupported">
+      <p>是否正在充电: {{ charging }}</p>
+      <p>电池电量: {{ (level * 100).toFixed(0) }}%</p>
+    </div>
+    <div v-else>
+      不支持电池 API
+    </div>
   </UseBattery>
 </template>
 ```

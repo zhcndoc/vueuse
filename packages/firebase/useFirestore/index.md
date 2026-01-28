@@ -34,6 +34,31 @@ const userQuery = computed(() => userId.value && doc(db, 'users', userId.value))
 const userData = useFirestore(userQuery, null)
 ```
 
+### 返回值
+
+- 对于 **文档引用（Document Reference）**：返回 `Ref<T | null>`（单个带有 `id` 属性的文档）
+- 对于 **查询（Query）**：返回 `Ref<T[]>`（文档数组，每个文档都有 `id` 属性）
+
+文档的 `id` 会自动作为只读属性添加到每个返回的文档中。
+
+### 选项
+
+| 选项           | 类型                   | 默认值          | 说明                                                         |
+| -------------- | ---------------------- | --------------- | ------------------------------------------------------------ |
+| `errorHandler` | `(err: Error) => void` | `console.error` | 自定义错误处理函数                                           |
+| `autoDispose`  | `boolean \| number`    | `true`          | 在作用域销毁时自动取消订阅。传入数字可延迟指定毫秒数后释放。 |
+
+### 错误处理
+
+```ts
+const todos = useFirestore(collection(db, 'todos'), [], {
+  errorHandler: (err) => {
+    console.error('Firestore 错误:', err)
+    // 处理错误（例如显示通知）
+  },
+})
+```
+
 ## 在实例之间共享
 
 你可以通过传递 `autoDispose: false` 来重用 db 引用。你还可以设置自动释放 db 引用之前的毫秒数。
