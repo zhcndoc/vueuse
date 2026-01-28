@@ -1,0 +1,1 @@
+import{t as e}from"./useMediaQuery.DV1FpnDS.js";function t(t){return e(`(prefers-color-scheme: dark)`,t)}export{t};

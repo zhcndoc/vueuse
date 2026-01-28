@@ -1,0 +1,1 @@
+import{Ct as e,dt as t,yt as n}from"./vue.CAJL2k56.js";function r(r=!1,i={}){let{truthyValue:a=!0,falsyValue:o=!1}=i,s=t(r),c=n(r);function l(t){if(arguments.length)return c.value=t,c.value;{let t=e(a);return c.value=c.value===t?e(o):t,c.value}}return s?l:[c,l]}export{r as t};

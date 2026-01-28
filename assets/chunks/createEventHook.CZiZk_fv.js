@@ -1,0 +1,1 @@
+import{t as e}from"./tryOnScopeDispose.C50xVOZe.js";function t(){let t=new Set,n=e=>{t.delete(e)};return{on:r=>{t.add(r);let i=()=>n(r);return e(i),{off:i}},off:n,trigger:(...e)=>Promise.all(Array.from(t).map(t=>t(...e))),clear:()=>{t.clear()}}}export{t};

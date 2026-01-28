@@ -1,0 +1,1 @@
+import{r as e}from"./configurable.CHIFr4yg.js";import{t}from"./useScroll.UB9ukARy.js";function n(n={}){let{window:r=e,...i}=n;return t(r,i)}export{n as t};

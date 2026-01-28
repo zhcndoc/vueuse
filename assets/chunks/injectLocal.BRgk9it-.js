@@ -1,0 +1,1 @@
+import{M as e,N as t,ct as n,k as r}from"./vue.CAJL2k56.js";const i=new WeakMap,a=(...a)=>{let o=a[0],s=r()?.proxy??n();if(s==null&&!e())throw Error(`injectLocal must be called in setup`);return s&&i.has(s)&&o in i.get(s)?i.get(s)[o]:t(...a)};export{i as n,a as t};

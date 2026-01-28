@@ -1,0 +1,1 @@
+import{i as e}from"./filters.FeueHqze.js";import{t}from"./watchWithFilter.DPQ9dII4.js";function n(n,r,i={}){let{eventFilter:a,initialState:o=`active`,...s}=i,{eventFilter:c,pause:l,resume:u,isActive:d}=e(a,{initialState:o});return{stop:t(n,r,{...s,eventFilter:c}),pause:l,resume:u,isActive:d}}export{n as t};
