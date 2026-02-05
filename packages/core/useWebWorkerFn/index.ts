@@ -1,5 +1,6 @@
 /* this implementation is a vue port of https://github.com/alewin/useWorker by Alessio Koci */
 
+import type { ShallowRef } from 'vue'
 import type { ConfigurableWindow } from '../_configurable'
 import { tryOnScopeDispose } from '@vueuse/shared'
 import { ref as deepRef, shallowRef } from 'vue'
@@ -30,6 +31,12 @@ export interface UseWebWorkerOptions extends ConfigurableWindow {
   localDependencies?: Function[]
 }
 
+export interface UseWebWorkerFnReturn<T extends (...fnArgs: any[]) => any> {
+  workerFn: (...fnArgs: Parameters<T>) => Promise<ReturnType<T>>
+  workerStatus: ShallowRef<WebWorkerStatus>
+  workerTerminate: (status?: WebWorkerStatus) => void
+}
+
 /**
  * 使用简单的语法运行耗时函数，而不会阻塞用户界面，使用 Promise 来实现。
  *
@@ -37,7 +44,7 @@ export interface UseWebWorkerOptions extends ConfigurableWindow {
  * @param fn
  * @param options
  */
-export function useWebWorkerFn<T extends (...fnArgs: any[]) => any>(fn: T, options: UseWebWorkerOptions = {}) {
+export function useWebWorkerFn<T extends (...fnArgs: any[]) => any>(fn: T, options: UseWebWorkerOptions = {}): UseWebWorkerFnReturn<T> {
   const {
     dependencies = [],
     localDependencies = [],
@@ -131,5 +138,3 @@ export function useWebWorkerFn<T extends (...fnArgs: any[]) => any>(fn: T, optio
     workerTerminate,
   }
 }
-
-export type UseWebWorkerFnReturn = ReturnType<typeof useWebWorkerFn>

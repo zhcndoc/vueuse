@@ -1,6 +1,7 @@
-import type { EventHook } from '@vueuse/shared'
-import type { Ref } from 'vue'
+import type { EventHookOn } from '@vueuse/shared'
+import type { Ref, ShallowRef } from 'vue'
 import type { ConfigurableWindow } from '../_configurable'
+import type { Supportable } from '../types'
 import { createEventHook, tryOnMounted, tryOnScopeDispose } from '@vueuse/shared'
 import { ref as deepRef, shallowRef } from 'vue'
 import { defaultWindow } from '../_configurable'
@@ -82,6 +83,18 @@ export interface UseWebNotificationOptions extends ConfigurableWindow, WebNotifi
   requestPermissions?: boolean
 }
 
+export interface UseWebNotificationReturn extends Supportable {
+  notification: Ref<Notification | null>
+  ensurePermissions: () => Promise<boolean | undefined>
+  permissionGranted: ShallowRef<boolean>
+  show: (overrides?: WebNotificationOptions) => Promise<Notification | undefined>
+  close: () => void
+  onClick: EventHookOn<Event>
+  onShow: EventHookOn<Event>
+  onError: EventHookOn<Event>
+  onClose: EventHookOn<Event>
+}
+
 /**
  * 用于响应式地使用 Web 通知
  *
@@ -90,7 +103,7 @@ export interface UseWebNotificationOptions extends ConfigurableWindow, WebNotifi
  */
 export function useWebNotification(
   options: UseWebNotificationOptions = {},
-) {
+): UseWebNotificationReturn {
   const {
     window = defaultWindow,
     requestPermissions: _requestForPermissions = true,
@@ -138,10 +151,10 @@ export function useWebNotification(
     return permissionGranted.value
   }
 
-  const { on: onClick, trigger: clickTrigger }: EventHook = createEventHook<Event>()
-  const { on: onShow, trigger: showTrigger }: EventHook = createEventHook<Event>()
-  const { on: onError, trigger: errorTrigger }: EventHook = createEventHook<Event>()
-  const { on: onClose, trigger: closeTrigger }: EventHook = createEventHook<Event>()
+  const { on: onClick, trigger: clickTrigger } = createEventHook<Event>()
+  const { on: onShow, trigger: showTrigger } = createEventHook<Event>()
+  const { on: onError, trigger: errorTrigger } = createEventHook<Event>()
+  const { on: onClose, trigger: closeTrigger } = createEventHook<Event>()
 
   // Show notification method:
   const show = async (overrides?: WebNotificationOptions) => {
@@ -204,5 +217,3 @@ export function useWebNotification(
     onClose,
   }
 }
-
-export type UseWebNotificationReturn = ReturnType<typeof useWebNotification>

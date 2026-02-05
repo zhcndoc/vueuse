@@ -1,5 +1,5 @@
-import type { Fn } from '@vueuse/shared'
-import type { MaybeRef, MaybeRefOrGetter } from 'vue'
+import type { EventHookOn, Fn } from '@vueuse/shared'
+import type { MaybeRef, MaybeRefOrGetter, Ref, ShallowRef } from 'vue'
 import type { ConfigurableDocument } from '../_configurable'
 import { createEventHook, isObject, toRef, tryOnScopeDispose, watchIgnorable } from '@vueuse/shared'
 import { ref as deepRef, shallowRef, toValue, watch, watchEffect } from 'vue'
@@ -105,6 +105,33 @@ export interface UseMediaTextTrack {
   activeCues: TextTrackCueList | null
 }
 
+export interface UseMediaControlsReturn {
+  currentTime: ShallowRef<number>
+  duration: ShallowRef<number>
+  waiting: ShallowRef<boolean>
+  seeking: ShallowRef<boolean>
+  ended: ShallowRef<boolean>
+  stalled: ShallowRef<boolean>
+  buffered: Ref<[number, number][]>
+  playing: ShallowRef<boolean>
+  rate: ShallowRef<number>
+  // Volume
+  volume: ShallowRef<number>
+  muted: ShallowRef<boolean>
+  // Tracks
+  tracks: Ref<UseMediaTextTrack[]>
+  selectedTrack: ShallowRef<number>
+  enableTrack: (track: number | UseMediaTextTrack, disableTracks?: boolean) => void
+  disableTrack: (track?: number | UseMediaTextTrack) => void
+  // Picture in Picture
+  supportsPictureInPicture: boolean
+  togglePictureInPicture: () => Promise<PictureInPictureWindow | void>
+  isPictureInPicture: ShallowRef<boolean>
+  // Events
+  onSourceError: EventHookOn<Event>
+  onPlaybackError: EventHookOn<Event>
+}
+
 /**
  * Automatically check if the ref exists and if it does run the cb fn
  */
@@ -138,7 +165,7 @@ const defaultOptions: UseMediaControlsOptions = {
   tracks: [],
 }
 
-export function useMediaControls(target: MaybeRef<HTMLMediaElement | null | undefined>, options: UseMediaControlsOptions = {}) {
+export function useMediaControls(target: MaybeRef<HTMLMediaElement | null | undefined>, options: UseMediaControlsOptions = {}): UseMediaControlsReturn {
   target = toRef(target)
   options = {
     ...defaultOptions,
@@ -166,7 +193,7 @@ export function useMediaControls(target: MaybeRef<HTMLMediaElement | null | unde
   const isPictureInPicture = shallowRef(false)
   const muted = shallowRef(false)
 
-  const supportsPictureInPicture = document && 'pictureInPictureEnabled' in document
+  const supportsPictureInPicture = Boolean(document && 'pictureInPictureEnabled' in document)
 
   // Events
   const sourceErrorEvent = createEventHook<Event>()
@@ -215,14 +242,14 @@ export function useMediaControls(target: MaybeRef<HTMLMediaElement | null | unde
    * Toggle picture in picture mode for the player.
    */
   const togglePictureInPicture = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise<PictureInPictureWindow | void>((resolve, reject) => {
       usingElRef<HTMLVideoElement>(target, async (el) => {
         if (supportsPictureInPicture) {
           if (!isPictureInPicture.value) {
-            (el as any).requestPictureInPicture().then(resolve).catch(reject)
+            el.requestPictureInPicture().then(resolve).catch(reject)
           }
           else {
-            (document as any).exitPictureInPicture().then(resolve).catch(reject)
+            document!.exitPictureInPicture().then(resolve).catch(reject)
           }
         }
       })
@@ -540,5 +567,3 @@ export function useMediaControls(target: MaybeRef<HTMLMediaElement | null | unde
     onPlaybackError: playbackErrorEvent.on,
   }
 }
-
-export type UseMediaControlsReturn = ReturnType<typeof useMediaControls>

@@ -2,6 +2,7 @@
 
 import type { ComputedRef, Ref, ShallowRef } from 'vue'
 import type { ConfigurableNavigator } from '../_configurable'
+import type { Supportable } from '../types'
 import { computed, ref as deepRef, shallowRef } from 'vue'
 import { defaultNavigator } from '../_configurable'
 import { useEventListener } from '../useEventListener'
@@ -24,7 +25,7 @@ export interface UseDevicesListOptions extends ConfigurableNavigator {
   constraints?: MediaStreamConstraints
 }
 
-export interface UseDevicesListReturn {
+export interface UseDevicesListReturn extends Supportable {
   /**
    * 所有设备
    */
@@ -34,7 +35,6 @@ export interface UseDevicesListReturn {
   audioOutputs: ComputedRef<MediaDeviceInfo[]>
   permissionGranted: ShallowRef<boolean>
   ensurePermissions: () => Promise<boolean>
-  isSupported: ComputedRef<boolean>
 }
 
 /**

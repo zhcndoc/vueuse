@@ -99,6 +99,18 @@ const { x, y } = useDraggable(el, {
 })
 ```
 
+设置 `autoScroll: true` 以在拖动靠近边缘时启用自动滚动。
+
+```ts
+const { x, y, style } = useDraggable(el, {
+  autoScroll: {
+    speed: 2, // 控制自动滚动的速度。
+    margin: 30, // 触发自动滚动的边缘距离。
+    direction: 'both' // 自动滚动的方向。
+  },
+})
+```
+
 ## 组件用法
 
 ```vue

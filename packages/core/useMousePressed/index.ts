@@ -1,3 +1,4 @@
+import type { ShallowRef } from 'vue'
 import type { ConfigurableWindow } from '../_configurable'
 import type { MaybeComputedElementRef } from '../unrefElement'
 import type { UseMouseSourceType } from '../useMouse'
@@ -6,7 +7,7 @@ import { defaultWindow } from '../_configurable'
 import { unrefElement } from '../unrefElement'
 import { useEventListener } from '../useEventListener'
 
-export interface MousePressedOptions extends ConfigurableWindow {
+export interface UseMousePressedOptions extends ConfigurableWindow {
   /**
    * Listen to `touchstart` `touchend` events
    *
@@ -56,13 +57,21 @@ export interface MousePressedOptions extends ConfigurableWindow {
   onReleased?: (event: MouseEvent | TouchEvent | DragEvent) => void
 }
 
+/** @deprecated use {@link UseMousePressedOptions} instead */
+export type MousePressedOptions = UseMousePressedOptions
+
+export interface UseMousePressedReturn {
+  pressed: ShallowRef<boolean>
+  sourceType: ShallowRef<UseMouseSourceType>
+}
+
 /**
  * 反应性鼠标按下状态。由目标元素上的mousedown touchstart触发，并由窗口上的mouseup mouseleave touchend touchcancel释放。
  *
  * @see https://vueuse.org/useMousePressed
  * @param options
  */
-export function useMousePressed(options: MousePressedOptions = {}) {
+export function useMousePressed(options: UseMousePressedOptions = {}): UseMousePressedReturn {
   const {
     touch = true,
     drag = true,
@@ -119,5 +128,3 @@ export function useMousePressed(options: MousePressedOptions = {}) {
     sourceType,
   }
 }
-
-export type UseMousePressedReturn = ReturnType<typeof useMousePressed>
