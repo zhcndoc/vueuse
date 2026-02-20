@@ -85,8 +85,8 @@ onLongPress(target, handler, { distanceThreshold: false })
 import { onLongPress } from '@vueuse/core'
 
 onLongPress(target, handler, {
-  onMouseUp(duration, distance, isLongPress) {
-    console.log(`按住了 ${duration} 毫秒，移动了 ${distance} 像素，是否长按：${isLongPress}`)
+  onMouseUp(duration, distance, isLongPress, pointerEvent) {
+    console.log(`按住了 ${duration} 毫秒，移动了 ${distance} 像素，是否长按：${isLongPress}, x: ${pointerEvent.clientX}`)
   },
 })
 ```
