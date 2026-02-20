@@ -1,0 +1,1 @@
+function e(e){return typeof Window<`u`&&e instanceof Window?e.document.documentElement:typeof Document<`u`&&e instanceof Document?e.documentElement:e}export{e as t};

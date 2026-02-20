@@ -1,0 +1,1 @@
+import{vt as e}from"./vue.BaB2p0KY.js";import{t}from"./useEventListener.DfXcFEgx.js";import{t as n}from"./configurable.BN1b0qB7.js";function r(r={}){let{document:i=n}=r;if(!i)return e(`visible`);let a=e(i.visibilityState);return t(i,`visibilitychange`,()=>{a.value=i.visibilityState},{passive:!0}),a}export{r as t};

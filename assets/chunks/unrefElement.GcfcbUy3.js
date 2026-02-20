@@ -1,0 +1,1 @@
+import{St as e}from"./vue.BaB2p0KY.js";function t(t){let n=e(t);return n?.$el??n}export{t};

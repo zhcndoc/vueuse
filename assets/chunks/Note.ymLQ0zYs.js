@@ -1,0 +1,1 @@
+import{K as e,S as t,V as n}from"./vue.BaB2p0KY.js";import{t as r}from"./plugin-vue_export-helper.tvx4b2PG.js";var i={},a={class:`note`};function o(r,i){return n(),t(`div`,a,[e(r.$slots,`default`)])}var s=r(i,[[`render`,o]]);export{s as t};

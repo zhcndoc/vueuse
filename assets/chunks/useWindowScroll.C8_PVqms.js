@@ -1,0 +1,1 @@
+import{r as e}from"./configurable.BN1b0qB7.js";import{t}from"./useScroll.Besuur_P.js";function n(n={}){let{window:r=e,...i}=n;return t(r,i)}export{n as t};

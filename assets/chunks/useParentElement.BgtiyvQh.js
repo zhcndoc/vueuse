@@ -1,0 +1,1 @@
+import{Q as e,St as t,vt as n}from"./vue.BaB2p0KY.js";import{t as r}from"./useCurrentElement.CEwoUnu-.js";import{t as i}from"./tryOnMounted.13bBNfnj.js";import{t as a}from"./unrefElement.GcfcbUy3.js";function o(o=r()){let s=n(),c=()=>{let e=a(o);e&&(s.value=e.parentElement)};return i(c),e(()=>t(o),c),s}export{o as t};
