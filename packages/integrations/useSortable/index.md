@@ -96,6 +96,47 @@ useSortable('#dv', list)
 </template>
 ```
 
+### 使用组件
+
+```vue
+<script setup lang="ts">
+import { UseSortable } from '@vueuse/integrations/useSortable/component'
+import { shallowRef } from 'vue'
+
+const list = shallowRef([
+  { id: 1, name: 'a' },
+  { id: 2, name: 'b' },
+  { id: 3, name: 'c' },
+])
+</script>
+
+<template>
+  <UseSortable v-model="list" as="ol" :options="{ animation: 150 }">
+    <li v-for="item in list" :key="item.id">
+      {{ item.name }}
+    </li>
+  </UseSortable>
+</template>
+```
+
+你也可以从作用域插槽中访问辅助函数，如 `start`、`stop` 和 `option`：
+
+```vue
+<template>
+  <UseSortable v-slot="{ stop, start }" v-model="list">
+    <button @click="stop()">
+      停止排序
+    </button>
+    <button @click="start()">
+      开始排序
+    </button>
+    <div v-for="item in list" :key="item.id">
+      {{ item.name }}
+    </div>
+  </UseSortable>
+</template>
+```
+
 ### 返回值
 
 | 属性     | 说明                                   |

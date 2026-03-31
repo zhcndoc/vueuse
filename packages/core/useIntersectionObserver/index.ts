@@ -39,7 +39,7 @@ export interface UseIntersectionObserverReturn extends Supportable, Pausable {
 }
 
 /**
- * 检测目标元素的可见性。
+ * Detects changes to a target element's visibility.
  *
  * @see https://vueuse.org/useIntersectionObserver
  * @param target

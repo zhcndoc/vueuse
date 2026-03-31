@@ -4,7 +4,7 @@ category: State
 
 # useStorageAsync
 
-具有异步支持的响应式 Storage。
+支持异步的响应式存储。
 
 ## 用法
 

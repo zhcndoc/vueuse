@@ -1,8 +1,8 @@
 import type { AnyFn, Fn, TimerHandle } from '@vueuse/shared'
-import type { MaybeRefOrGetter, Ref, ShallowRef } from 'vue'
+import type { MaybeRefOrGetter, ShallowRef } from 'vue'
 import type { ConfigurableScheduler } from '../_configurable'
 import { isClient, isWorker, toRef, tryOnScopeDispose, useIntervalFn } from '@vueuse/shared'
-import { ref as deepRef, shallowRef, toValue, watch } from 'vue'
+import { shallowRef, toValue, watch } from 'vue'
 import { useEventListener } from '../useEventListener'
 
 export type WebSocketStatus = 'OPEN' | 'CONNECTING' | 'CLOSED'
@@ -113,7 +113,7 @@ export interface UseWebSocketReturn<T> {
   /**
    * WebSocket 最新接收到的数据的 ref，可以监听以响应传入的消息
    */
-  data: Ref<T | null>
+  data: ShallowRef<T | null>
 
   /**
    * 当前 WebSocket 的状态，只能是以下之一：
@@ -143,7 +143,7 @@ export interface UseWebSocketReturn<T> {
   /**
    * WebSocket 实例的 ref。
    */
-  ws: Ref<WebSocket | undefined>
+  ws: ShallowRef<WebSocket | undefined>
 }
 
 function resolveNestedOptions<T>(options: T | true): T {
@@ -185,9 +185,9 @@ export function useWebSocket<Data = any>(
     protocols = [],
   } = options
 
-  const data: Ref<Data | null> = deepRef(null)
+  const data = shallowRef<Data | null>(null)
   const status = shallowRef<WebSocketStatus>('CLOSED')
-  const wsRef = deepRef<WebSocket | undefined>()
+  const wsRef = shallowRef<WebSocket | undefined>()
   const urlRef = toRef(url)
 
   let heartbeatPause: Fn | undefined
@@ -253,6 +253,9 @@ export function useWebSocket<Data = any>(
     status.value = 'CONNECTING'
 
     ws.onopen = () => {
+      if (wsRef.value !== ws)
+        return
+
       status.value = 'OPEN'
       retried = 0
       onConnected?.(ws!)
@@ -261,7 +264,9 @@ export function useWebSocket<Data = any>(
     }
 
     ws.onclose = (ev) => {
-      status.value = 'CLOSED'
+      if (wsRef.value === ws)
+        status.value = 'CLOSED'
+
       resetHeartbeat()
       heartbeatPause?.()
       onDisconnected?.(ws, ev)
@@ -273,11 +278,11 @@ export function useWebSocket<Data = any>(
           onFailed,
         } = resolveNestedOptions(options.autoReconnect)
 
-        const checkRetires = typeof retries === 'function'
+        const checkRetries = typeof retries === 'function'
           ? retries
           : () => typeof retries === 'number' && (retries < 0 || retried < retries)
 
-        if (checkRetires(retried)) {
+        if (checkRetries(retried)) {
           retried += 1
           const delayTime = typeof delay === 'function' ? delay(retried) : delay
           retryTimeout = setTimeout(_init, delayTime)

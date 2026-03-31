@@ -15,11 +15,18 @@ import { useTemplateRef } from 'vue'
 
 const target = useTemplateRef('target')
 const targetIsVisible = useElementVisibility(target)
+
+const target2 = useTemplateRef('target2')
+const targetVisibilityController = useElementVisibility(target2, { controls: true })
 </script>
 
 <template>
   <div ref="target">
     <h1>Hello world</h1>
+  </div>
+
+  <div ref="target2">
+    <h1>Hi there</h1>
   </div>
 </template>
 ```
@@ -42,7 +49,7 @@ const targetIsVisible = useElementVisibility(target, {
 
 ```ts
 const targetIsVisible = useElementVisibility(target, {
-  threshold: 1.0, // 100% visible
+  threshold: 1.0, // 100% 可见
 })
 ```
 
@@ -69,6 +76,16 @@ const isVisible = shallowRef(false)
 function onElementVisibility(state) {
   isVisible.value = state
 }
+
+const target2 = useTemplateRef('target2')
+const isVisible2 = shallowRef(false)
+
+function onElementVisibilityWithControls(state) {
+  isVisible2.value = state.isVisible.value
+  if (state.isVisible.value) {
+    state.stop()
+  }
+}
 </script>
 
 <template>
@@ -80,6 +97,13 @@ function onElementVisibility(state) {
   <div ref="target">
     <div v-element-visibility="[onElementVisibility, { scrollTarget: target }]">
       {{ isVisible ? '在内部' : '在外部' }}
+    </div>
+  </div>
+
+  <!-- 带控制 -->
+  <div ref="target2">
+    <div v-element-visibility="[onElementVisibilityWithControls, { controls: true }]">
+      {{ isVisible2 ? 'inside' : 'outside' }}
     </div>
   </div>
 </template>

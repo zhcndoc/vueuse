@@ -1,11 +1,11 @@
 ---
-category: State
+category: 状态
 related: useRefHistory
 ---
 
 # useManualRefHistory
 
-手动跟踪 ref 的变化历史，当使用者调用 `commit()` 时，也提供了撤销和重做功能。
+当用户调用 `commit()` 时手动跟踪 ref 的变更历史，还提供撤销和重做功能
 
 ## 使用方法
 

@@ -1,5 +1,5 @@
 ---
-category: State
+category: 状态
 ---
 
 # createInjectionState
@@ -88,10 +88,10 @@ const { count, double } = useCounterStore()!
 <template>
   <ul>
     <li>
-      计数: {{ count }}
+      计数：{{ count }}
     </li>
     <li>
-      两倍: {{ double }}
+      两倍：{{ double }}
     </li>
   </ul>
 </template>
@@ -142,21 +142,22 @@ const [useProvideCounterStore, useCounterStore] = createInjectionState((initialV
 }, { injectionKey: CounterStoreKey })
 ```
 
-## Provide a custom default value
+## 提供自定义默认值
 
 ```ts
 // useCounterStore.ts
 import { createInjectionState } from '@vueuse/core'
 import { computed, shallowRef } from 'vue'
 
+// 当指定了 defaultValue 时，useCounterStore 不会返回 undefined
 const [useProvideCounterStore, useCounterStore] = createInjectionState((initialValue: number) => {
-  // state
+  // 状态
   const count = shallowRef(initialValue)
 
-  // getters
+  // 计算属性
   const double = computed(() => count.value * 2)
 
-  // actions
+  // 动作
   function increment() {
     count.value++
   }

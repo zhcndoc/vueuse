@@ -29,7 +29,7 @@ export function useStorageAsync<T>(key: string, initialValue: MaybeRefOrGetter<T
 export function useStorageAsync<T = unknown>(key: string, initialValue: MaybeRefOrGetter<null>, storage?: StorageLikeAsync, options?: UseStorageAsyncOptions<T>): RemovableRef<T> & Promise<RemovableRef<T>>
 
 /**
- * 具有异步支持的响应式 Storage
+ * Reactive Storage with async support.
  *
  * @see https://vueuse.org/useStorageAsync
  * @param key

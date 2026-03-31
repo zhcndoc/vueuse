@@ -4,7 +4,7 @@ category: Elements
 
 # useIntersectionObserver
 
-检测目标元素的可见性。
+检测目标元素可见性的变化。
 
 ## 使用方法
 
@@ -69,4 +69,4 @@ function onIntersectionObserver([entry]: IntersectionObserverEntry[]) {
 </template>
 ```
 
-[IntersectionObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver)
+[IntersectionObserver MDN 文档](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver)
