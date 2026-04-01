@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "buildCommand": "pnpm run install-fonts && pnpm run docs:build",
+  "installCommand": "git fetch --unshallow && npm install -g pnpm && pnpm install",
+  "outputDirectory": "packages/.vitepress/dist"
+}

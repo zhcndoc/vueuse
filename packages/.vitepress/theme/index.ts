@@ -1,8 +1,8 @@
 import type { Theme } from 'vitepress'
 import TwoSlashFloatingVue from '@shikijs/vitepress-twoslash/client'
 import DefaultTheme from 'vitepress/theme'
+import { h } from 'vue'
 import { functions } from '../../../packages/metadata/metadata'
-import Layout from './Layout.vue'
 import { handleRedirects } from './redirects'
 import '@shikijs/vitepress-twoslash/style.css'
 
@@ -15,7 +15,18 @@ import 'uno.css'
 
 export default {
   extends: DefaultTheme,
-  Layout,
+  Layout() {
+    return h((DefaultTheme as any).Layout, null, {
+      'aside-outline-before': () => h('div', {
+        'class': 'wwads-cn wwads-vertical w-full mt-0! mb-4',
+        'data-id': '354',
+      }),
+      'doc-after': () => h('div', {
+        'class': 'wwads-cn wwads-horizontal w-full mt-4',
+        'data-id': '354',
+      }),
+    })
+  },
   enhanceApp(ctx) {
     if (typeof window !== 'undefined')
       handleRedirects(ctx.router)
