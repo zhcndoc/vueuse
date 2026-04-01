@@ -2,7 +2,7 @@
 
 import type { MaybeRefOrGetter, ShallowRef } from 'vue'
 import { toRef } from '@vueuse/shared'
-import { readonly, shallowRef, watch } from 'vue'
+import { readonly as deepReadonly, shallowRef, watch } from 'vue'
 
 /**
  * 保存 ref 的前一个值。
@@ -22,5 +22,5 @@ export function usePrevious<T>(value: MaybeRefOrGetter<T>, initialValue?: T) {
     { flush: 'sync' },
   )
 
-  return readonly(previous)
+  return deepReadonly(previous)
 }

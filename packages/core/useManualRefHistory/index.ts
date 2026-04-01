@@ -45,7 +45,7 @@ export interface UseManualRefHistoryReturn<Raw, Serialized> {
   /**
    * 用于撤销的历史记录数组，最新的记录在最前面
    */
-  history: Ref<UseRefHistoryRecord<Serialized>[]>
+  history: ComputedRef<UseRefHistoryRecord<Serialized>[]>
 
   /**
    * 最后的历史记录点，如果暂停，则源可能不同
