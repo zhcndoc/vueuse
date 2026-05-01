@@ -5,11 +5,11 @@ alias: debouncedWatch
 
 # watchDebounced
 
-Debounced watch. The callback will only be invoked after the source stops changing for the specified duration.
+防抖 watch。回调函数只会在源停止变化指定时长后被调用。
 
-## Usage
+## 用法
 
-Similar to `watch`, but offering extra options `debounce` and `maxWait` which will be applied to the callback function.
+类似于 `watch`，但额外提供了 `debounce` 和 `maxWait` 选项，它们会应用到回调函数上。
 
 ```ts
 import { watchDebounced } from '@vueuse/core'
@@ -21,18 +21,18 @@ watchDebounced(
 )
 ```
 
-### Options
+### 选项
 
-| Option     | Type                       | Default | Description                                |
-| ---------- | -------------------------- | ------- | ------------------------------------------ |
-| `debounce` | `MaybeRefOrGetter<number>` | `0`     | Debounce delay in ms (can be reactive)     |
-| `maxWait`  | `MaybeRefOrGetter<number>` | —       | Maximum wait time before forced invocation |
+| 选项       | 类型                       | 默认值 | 描述                                   |
+| ---------- | -------------------------- | ------ | -------------------------------------- |
+| `debounce` | `MaybeRefOrGetter<number>` | `0`    | 防抖延迟，单位为毫秒（可以是响应式的）  |
+| `maxWait`   | `MaybeRefOrGetter<number>` | —      | 强制触发前的最长等待时间               |
 
-All standard `watch` options (`deep`, `immediate`, `flush`, etc.) are also supported.
+所有标准的 `watch` 选项（`deep`、`immediate`、`flush` 等）也都支持。
 
-### Reactive Debounce Time
+### 响应式防抖时间
 
-The debounce time can be reactive:
+防抖时间可以是响应式的：
 
 ```ts
 import { watchDebounced } from '@vueuse/core'
@@ -49,9 +49,9 @@ watchDebounced(
 debounceMs.value = 1000
 ```
 
-## How It Works
+## 工作原理
 
-It's essentially a shorthand for the following code:
+它本质上是下面代码的一个简写：
 
 ```ts
 import { debounceFilter, watchWithFilter } from '@vueuse/core'
@@ -65,7 +65,7 @@ watchWithFilter(
 )
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface WatchDebouncedOptions<Immediate>
@@ -73,19 +73,19 @@ export interface WatchDebouncedOptions<Immediate>
   debounce?: MaybeRefOrGetter<number>
 }
 export declare function watchDebounced<
-  T extends Readonly<MultiWatchSources>,
-  Immediate extends Readonly<boolean> = false,
->(
-  sources: [...T],
-  cb: WatchCallback<MapSources<T>, MapOldSources<T, Immediate>>,
-  options?: WatchDebouncedOptions<Immediate>,
-): WatchHandle
-export declare function watchDebounced<
   T,
   Immediate extends Readonly<boolean> = false,
 >(
   source: WatchSource<T>,
   cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
+  options?: WatchDebouncedOptions<Immediate>,
+): WatchHandle
+export declare function watchDebounced<
+  T extends Readonly<MultiWatchSources>,
+  Immediate extends Readonly<boolean> = false,
+>(
+  sources: [...T],
+  cb: WatchCallback<MapSources<T>, MapOldSources<T, Immediate>>,
   options?: WatchDebouncedOptions<Immediate>,
 ): WatchHandle
 export declare function watchDebounced<
@@ -96,6 +96,6 @@ export declare function watchDebounced<
   cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
   options?: WatchDebouncedOptions<Immediate>,
 ): WatchHandle
-/** @deprecated use `watchDebounced` instead */
+/** @deprecated 使用 `watchDebounced` 代替 */
 export declare const debouncedWatch: typeof watchDebounced
 ```

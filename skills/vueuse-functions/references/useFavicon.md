@@ -4,21 +4,21 @@ category: Browser
 
 # useFavicon
 
-Reactive favicon
+响应式 favicon
 
-## Usage
+## 用法
 
 ```ts {3}
 import { useFavicon } from '@vueuse/core'
 
 const icon = useFavicon()
 
-icon.value = 'dark.png' // change current icon
+icon.value = 'dark.png' // 更改当前图标
 ```
 
-### Passing a source ref
+### 传入一个 source ref
 
-You can pass a `ref` to it, changes from of the source ref will be reflected to your favicon automatically.
+你可以向它传入一个 `ref`，源 `ref` 的变化会自动反映到你的 favicon 上。
 
 ```ts {7}
 import { useFavicon, usePreferredDark } from '@vueuse/core'
@@ -30,7 +30,7 @@ const favicon = computed(() => isDark.value ? 'dark.png' : 'light.png')
 useFavicon(favicon)
 ```
 
-When a source ref is passed, the return ref will be identical to the source ref
+当传入一个 source ref 时，返回的 ref 将与 source ref 完全相同
 
 ```ts
 import { useFavicon } from '@vueuse/core'
@@ -41,15 +41,18 @@ const icon = useFavicon(source)
 console.log(icon === source) // true
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseFaviconOptions extends ConfigurableDocument {
   baseUrl?: string
   rel?: string
 }
+export type UseFaviconReturn =
+  | ComputedRef<string | null | undefined>
+  | Ref<string | null | undefined>
 /**
- * Reactive favicon.
+ * 响应式 favicon。
  *
  * @see https://vueuse.org/useFavicon
  * @param newIcon
@@ -63,5 +66,4 @@ export declare function useFavicon(
   newIcon?: MaybeRef<string | null | undefined>,
   options?: UseFaviconOptions,
 ): Ref<string | null | undefined>
-export type UseFaviconReturn = ReturnType<typeof useFavicon>
 ```

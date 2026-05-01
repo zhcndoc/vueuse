@@ -60,7 +60,32 @@ const { textarea, input } = useTextareaAutosize({ styleProp: 'minHeight' })
     ref="textarea"
     v-model="input"
     class="resize-none"
-    placeholder="What's on your mind?"
+    placeholder="你在想什么？"
+    rows="3"
+  />
+</template>
+```
+
+### 使用 `maxHeight`
+
+使用 `maxHeight` 选项可在保持自动调整大小行为的同时，以像素为单位限制 textarea 的高度。
+
+```vue
+<script setup lang="ts">
+import { useTextareaAutosize } from '@vueuse/core'
+
+const { textarea, input } = useTextareaAutosize({
+  maxHeight: 180,
+  styleProp: 'minHeight',
+})
+</script>
+
+<template>
+  <textarea
+    ref="textarea"
+    v-model="input"
+    class="resize-none"
+    placeholder="你在想什么？"
     rows="3"
   />
 </template>

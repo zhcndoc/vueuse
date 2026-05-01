@@ -1,12 +1,12 @@
 ---
-category: Elements
+category: 元素
 ---
 
 # useResizeObserver
 
-Reports changes to the dimensions of an Element's content or the border-box
+报告元素内容或边框盒尺寸的变化
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -30,7 +30,7 @@ useResizeObserver(el, (entries) => {
 </template>
 ```
 
-## Directive Usage
+## 指令用法
 
 ```vue
 <script setup lang="ts">
@@ -54,20 +54,20 @@ function onResizeObserver(entries) {
 
 [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
 
-## Type Declarations
+## 类型声明
 
 ```ts
 /**
- * @deprecated This interface is now available in the DOM lib.
- * Use the global {@link globalThis.ResizeObserverSize} instead.
+ * @deprecated 此接口现在可在 DOM 库中使用。
+ * 请改用全局 {@link globalThis.ResizeObserverSize}。
  */
 export interface ResizeObserverSize {
   readonly inlineSize: number
   readonly blockSize: number
 }
 /**
- * @deprecated This interface is now available in the DOM lib.
- * Use the global {@link globalThis.ResizeObserverEntry} instead.
+ * @deprecated 此接口现在可在 DOM 库中使用。
+ * 请改用全局 {@link globalThis.ResizeObserverEntry}。
  */
 export interface ResizeObserverEntry {
   readonly target: Element
@@ -77,8 +77,8 @@ export interface ResizeObserverEntry {
   readonly devicePixelContentBoxSize: ReadonlyArray<ResizeObserverSize>
 }
 /**
- * @deprecated This interface is now available in the DOM lib.
- * Use the global {@link globalThis.ResizeObserverCallback} instead.
+ * @deprecated 此接口现在可在 DOM 库中使用。
+ * 请改用全局 {@link globalThis.ResizeObserverCallback}。
  */
 export type ResizeObserverCallback = (
   entries: ReadonlyArray<ResizeObserverEntry>,
@@ -86,8 +86,11 @@ export type ResizeObserverCallback = (
 ) => void
 export interface UseResizeObserverOptions
   extends ResizeObserverOptions, ConfigurableWindow {}
+export interface UseResizeObserverReturn extends Supportable {
+  stop: () => void
+}
 /**
- * Reports changes to the dimensions of an Element's content or the border-box
+ * 报告元素内容或边框盒尺寸的变化
  *
  * @see https://vueuse.org/useResizeObserver
  * @param target
@@ -101,9 +104,5 @@ export declare function useResizeObserver(
     | MaybeRefOrGetter<MaybeElement[]>,
   callback: globalThis.ResizeObserverCallback,
   options?: UseResizeObserverOptions,
-): {
-  isSupported: ComputedRef<boolean>
-  stop: () => void
-}
-export type UseResizeObserverReturn = ReturnType<typeof useResizeObserver>
+): UseResizeObserverReturn
 ```

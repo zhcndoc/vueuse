@@ -4,23 +4,23 @@ category: '@Integrations'
 
 # useSortable
 
-Wrapper for [`sortable`](https://github.com/SortableJS/Sortable).
+[`sortable`](https://github.com/SortableJS/Sortable) 的包装器。
 
-For more information on what options can be passed, see [`Sortable.options`](https://github.com/SortableJS/Sortable#options) in the `Sortable` documentation.
+有关可传入哪些选项的更多信息，请参阅 `Sortable` 文档中的 [`Sortable.options`](https://github.com/SortableJS/Sortable#options)。
 
 ::: warning
-Currently, `useSortable` only implements drag-and-drop sorting for a single list.
+目前，`useSortable` 仅实现单个列表的拖拽排序。
 :::
 
-## Install
+## 安装
 
 ```bash
 npm i sortablejs@^1
 ```
 
-## Usage
+## 用法
 
-### Use template ref
+### 使用模板 ref
 
 ```vue
 <script setup lang="ts">
@@ -42,7 +42,7 @@ useSortable(el, list)
 </template>
 ```
 
-### Use specifies the selector to operate on
+### 使用指定要操作的选择器
 
 ```vue
 <script setup lang="ts">
@@ -56,11 +56,11 @@ const animation = 200
 
 const { option } = useSortable(el, list, {
   handle: '.handle',
-  // or option set
+  // 或者设置选项
   // animation
 })
 
-// You can use the option method to set and get the option of Sortable
+// 你可以使用 option 方法来设置和获取 Sortable 的选项
 option('animation', animation)
 // option('animation') // 200
 </script>
@@ -75,7 +75,7 @@ option('animation', animation)
 </template>
 ```
 
-### Use a selector to get the root element
+### 使用选择器获取根元素
 
 ```vue
 <script setup lang="ts">
@@ -96,80 +96,121 @@ useSortable('#dv', list)
 </template>
 ```
 
-### Return Values
+### 使用组件
 
-| Property | Description                                                      |
-| -------- | ---------------------------------------------------------------- |
-| `start`  | Initialize the Sortable instance (called automatically on mount) |
-| `stop`   | Destroy the Sortable instance                                    |
-| `option` | Get or set Sortable options at runtime                           |
+```vue
+<script setup lang="ts">
+import { UseSortable } from '@vueuse/integrations/useSortable/component'
+import { shallowRef } from 'vue'
+
+const list = shallowRef([
+  { id: 1, name: 'a' },
+  { id: 2, name: 'b' },
+  { id: 3, name: 'c' },
+])
+</script>
+
+<template>
+  <UseSortable v-model="list" as="ol" :options="{ animation: 150 }">
+    <li v-for="item in list" :key="item.id">
+      {{ item.name }}
+    </li>
+  </UseSortable>
+</template>
+```
+
+你还可以从插槽作用域中访问 `start`、`stop` 和 `option` 这类辅助函数：
+
+```vue
+<template>
+  <UseSortable v-slot="{ stop, start }" v-model="list">
+    <button @click="stop()">
+      停止排序
+    </button>
+    <button @click="start()">
+      开始排序
+    </button>
+    <div v-for="item in list" :key="item.id">
+      {{ item.name }}
+    </div>
+  </UseSortable>
+</template>
+```
+
+### 返回值
+
+| 属性 | 描述                                                         |
+| ---- | ------------------------------------------------------------ |
+| `start`  | 初始化 Sortable 实例（在挂载时会自动调用） |
+| `stop`   | 销毁 Sortable 实例                                    |
+| `option` | 在运行时获取或设置 Sortable 选项                           |
 
 ```ts
 const { start, stop, option } = useSortable(el, list)
 
-// Stop sorting
+// 停止排序
 stop()
 
-// Start sorting again
+// 重新开始排序
 start()
 
-// Get/set options
+// 获取/设置选项
 option('animation', 200) // set
 const animation = option('animation') // get
 ```
 
-### Watch Element Changes
+### 监听元素变化
 
-Use the `watchElement` option to automatically reinitialize Sortable when the element changes (useful with `v-if`).
+使用 `watchElement` 选项，在元素变化时自动重新初始化 Sortable（在 `v-if` 场景下很有用）。
 
 ```ts
 import { useSortable } from '@vueuse/integrations/useSortable'
 
 useSortable(el, list, {
-  watchElement: true, // auto-reinitialize when element changes
+  watchElement: true, // 当元素变化时自动重新初始化
 })
 ```
 
-### Custom Update Handler
+### 自定义更新处理器
 
-If you want to handle the `onUpdate` yourself, you can pass in `onUpdate` parameters, and we also exposed a function to move the item position.
+如果你想自己处理 `onUpdate`，可以传入 `onUpdate` 参数，我们也提供了一个用于移动项目位置的函数。
 
 ```ts
 import { moveArrayElement, useSortable } from '@vueuse/integrations/useSortable'
 
 useSortable(el, list, {
   onUpdate: (e) => {
-    // do something
+    // 做一些事情
     moveArrayElement(list, e.oldIndex, e.newIndex, e)
-    // nextTick required here as moveArrayElement is executed in a microtask
-    // so we need to wait until the next tick until that is finished.
+    // 这里需要 nextTick，因为 moveArrayElement 会在微任务中执行
+    // 所以我们需要等待到下一个 tick，直到它执行完成。
     nextTick(() => {
-      /* do something */
+      /* 做一些事情 */
     })
   }
 })
 ```
 
-### Helper Functions
+### 辅助函数
 
-The following helper functions are also exported:
+此外还导出了以下辅助函数：
 
-| Function                                   | Description                                           |
+| 函数                                   | 描述                                           |
 | ------------------------------------------ | ----------------------------------------------------- |
-| `moveArrayElement(list, from, to, event?)` | Move an element in an array from one index to another |
-| `insertNodeAt(parent, element, index)`     | Insert a DOM node at a specific index                 |
-| `removeNode(node)`                         | Remove a DOM node from its parent                     |
+| `moveArrayElement(list, from, to, event?)` | 将数组中的元素从一个索引移动到另一个索引 |
+| `insertNodeAt(parent, element, index)`     | 在特定索引处插入一个 DOM 节点                 |
+| `removeNode(node)`                         | 从其父节点中移除一个 DOM 节点                     |
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseSortableReturn {
   /**
-   * start sortable instance
+   * 启动 sortable 实例
    */
   start: () => void
   /**
-   * destroy sortable instance
+   * 销毁 sortable 实例
    */
   stop: () => void
   /**
@@ -185,14 +226,13 @@ export interface UseSortableReturn {
 }
 export interface UseSortableOptions extends Options, ConfigurableDocument {
   /**
-   * Watch the element reference for changes and automatically reinitialize Sortable
-   * when the element changes.
+   * 监听元素引用的变化，并在元素变化时自动重新初始化 Sortable。
    *
-   * When `false` (default), Sortable is only initialized once on mount.
-   * You must manually call `start()` if the element reference changes.
+   * 当为 `false`（默认）时，Sortable 只会在挂载时初始化一次。
+   * 如果元素引用发生变化，你必须手动调用 `start()`。
    *
-   * When `true`, automatically watches the element reference and reinitializes
-   * Sortable whenever it changes (e.g., conditional rendering with v-if).
+   * 当为 `true` 时，会自动监听元素引用，并在其变化时重新初始化
+   * Sortable（例如，使用 v-if 的条件渲染）。
    *
    * @default false
    */
@@ -209,7 +249,7 @@ export declare function useSortable<T>(
   options?: UseSortableOptions,
 ): UseSortableReturn
 /**
- * Inserts a element into the DOM at a given index.
+ * 将一个元素插入到 DOM 中的给定索引处。
  * @param parentElement
  * @param element
  * @param {number} index
@@ -221,7 +261,7 @@ export declare function insertNodeAt(
   index: number,
 ): void
 /**
- * Removes a node from the DOM.
+ * 从 DOM 中移除一个节点。
  * @param {Node} node
  * @see https://github.com/Alfred-Skyblue/vue-draggable-plus/blob/a3829222095e1949bf2c9a20979d7b5930e66f14/src/utils/index.ts#L96C1-L102C2
  */

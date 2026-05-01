@@ -4,11 +4,11 @@ category: Browser
 
 # useObjectUrl
 
-Reactive URL representing an object.
+表示对象的响应式 URL。
 
-Creates an URL for the provided `File`, `Blob`, or `MediaSource` via [URL.createObjectURL()](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL) and automatically releases the URL via [URL.revokeObjectURL()](https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL) when the source changes or the component is unmounted.
+通过 [URL.createObjectURL()](https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL) 为提供的 `File`、`Blob` 或 `MediaSource` 创建一个 URL，并在源发生变化或组件卸载时通过 [URL.revokeObjectURL()](https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL) 自动释放该 URL。
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -26,30 +26,30 @@ function onFileChange(event) {
 <template>
   <input type="file" @change="onFileChange">
 
-  <a :href="url">Open file</a>
+  <a :href="url">打开文件</a>
 </template>
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseObjectUrl v-slot="url" :object="file">
-    <a :href="url">Open file</a>
+    <a :href="url">打开文件</a>
   </UseObjectUrl>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 /**
- * Reactive URL representing an object.
+ * 表示对象的响应式 URL。
  *
  * @see https://vueuse.org/useObjectUrl
  * @param object
  */
 export declare function useObjectUrl(
   object: MaybeRefOrGetter<Blob | MediaSource | null | undefined>,
-): Readonly<Ref<string | undefined, string | undefined>>
+): Readonly<ShallowRef<string | undefined, string | undefined>>
 ```

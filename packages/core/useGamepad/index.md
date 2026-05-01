@@ -1,5 +1,5 @@
 ---
-category: Browser
+category: 浏览器
 ---
 
 # useGamepad
@@ -54,11 +54,11 @@ import { useGamepad } from '@vueuse/core'
 const { gamepads, onConnected, onDisconnected } = useGamepad()
 
 onConnected((index) => {
-  console.log(`${gamepads.value[index].id} connected`)
+  console.log(`${gamepads.value[index].id} 已连接`)
 })
 
 onDisconnected((index) => {
-  console.log(`${index} disconnected`)
+  console.log(`${index} 已断开连接`)
 })
 ```
 
@@ -66,15 +66,13 @@ onDisconnected((index) => {
 
 > 游戏手柄触觉 API 的支持不完整，请在使用之前检查[兼容性表](https://developer.mozilla.org/en-US/docs/Web/API/GamepadHapticActuator#browser_compatibility)。
 
-<!-- eslint-disable import/first -->
-
 ```ts
 import { useGamepad } from '@vueuse/core'
+// ---cut---
+import { computed } from 'vue'
 
 const { gamepads, onConnected, onDisconnected } = useGamepad()
 const gamepad = gamepads.value[0]!
-// ---cut---
-import { computed } from 'vue'
 
 const supportsVibration = computed(() => gamepad.hapticActuators.length > 0)
 function vibrate() {

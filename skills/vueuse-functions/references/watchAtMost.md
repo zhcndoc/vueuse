@@ -4,25 +4,25 @@ category: Watch
 
 # watchAtMost
 
-`watch` with the number of times triggered.
+`watch`，带有触发次数限制。
 
-## Usage
+## 用法
 
-Similar to `watch` with an extra option `count` which set up the number of times the callback function is triggered. After the count is reached, the watch will be stopped automatically.
+类似于 `watch`，额外提供了一个 `count` 选项，用于设置回调函数被触发的次数。达到次数后，watch 会自动停止。
 
 ```ts
 import { watchAtMost } from '@vueuse/core'
 
 watchAtMost(
   source,
-  () => { console.log('trigger!') }, // triggered it at most 3 times
+  () => { console.log('触发！') }, // 最多触发 3 次
   {
-    count: 3, // the number of times triggered
+    count: 3, // 触发次数
   },
 )
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface WatchAtMostOptions<
@@ -37,6 +37,14 @@ export interface WatchAtMostReturn {
   count: ShallowRef<number>
 }
 export declare function watchAtMost<
+  T,
+  Immediate extends Readonly<boolean> = false,
+>(
+  sources: WatchSource<T>,
+  cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
+  options: WatchAtMostOptions<Immediate>,
+): WatchAtMostReturn
+export declare function watchAtMost<
   T extends Readonly<MultiWatchSources>,
   Immediate extends Readonly<boolean> = false,
 >(
@@ -45,11 +53,11 @@ export declare function watchAtMost<
   options: WatchAtMostOptions<Immediate>,
 ): WatchAtMostReturn
 export declare function watchAtMost<
-  T,
+  T extends object,
   Immediate extends Readonly<boolean> = false,
 >(
-  sources: WatchSource<T>,
-  cb: WatchCallback<T, Immediate extends true ? T | undefined : T>,
+  sources: T,
+  cb: WatchCallback<MapSources<T>, MapOldSources<T, Immediate>>,
   options: WatchAtMostOptions<Immediate>,
 ): WatchAtMostReturn
 ```

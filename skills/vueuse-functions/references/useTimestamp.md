@@ -4,9 +4,9 @@ category: Animation
 
 # useTimestamp
 
-Reactive current timestamp
+响应式当前时间戳
 
-## Usage
+## 用法
 
 ```ts
 import { useTimestamp } from '@vueuse/core'
@@ -20,61 +20,66 @@ import { useTimestamp } from '@vueuse/core'
 const { timestamp, pause, resume } = useTimestamp({ controls: true })
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseTimestamp v-slot="{ timestamp, pause, resume }">
-    Current Time: {{ timestamp }}
+    当前时间：{{ timestamp }}
     <button @click="pause()">
-      Pause
+      暂停
     </button>
     <button @click="resume()">
-      Resume
+      恢复
     </button>
   </UseTimestamp>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseTimestampOptions<
   Controls extends boolean,
 > extends ConfigurableScheduler {
   /**
-   * Expose more controls
+   * 暴露更多控制项
    *
    * @default false
    */
   controls?: Controls
   /**
-   * Offset value adding to the value
+   * 添加到值上的偏移量
    *
    * @default 0
    */
   offset?: number
   /**
-   * Update the timestamp immediately
+   * 立即更新时间戳
    *
-   * @deprecated Please use `scheduler` option instead
+   * @deprecated 请改用 `scheduler` 选项
    * @default true
    */
   immediate?: boolean
   /**
-   * Update interval, or use requestAnimationFrame
+   * 更新间隔，或使用 requestAnimationFrame
    *
-   * @deprecated Please use `scheduler` option instead
+   * @deprecated 请改用 `scheduler` 选项
    * @default requestAnimationFrame
    */
   interval?: "requestAnimationFrame" | number
   /**
-   * Callback on each update
+   * 每次更新时的回调
    */
   callback?: (timestamp: number) => void
 }
+export type UseTimestampReturn<Controls extends boolean> = Controls extends true
+  ? {
+      timestamp: ShallowRef<number>
+    } & Pausable
+  : ShallowRef<number>
 /**
- * Reactive current timestamp.
+ * 响应式当前时间戳。
  *
  * @see https://vueuse.org/useTimestamp
  * @param options
@@ -85,5 +90,4 @@ export declare function useTimestamp(
 export declare function useTimestamp(options: UseTimestampOptions<true>): {
   timestamp: ShallowRef<number>
 } & Pausable
-export type UseTimestampReturn = ReturnType<typeof useTimestamp>
 ```

@@ -4,9 +4,9 @@ category: Sensors
 
 # useDevicesList
 
-Reactive [enumerateDevices](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices) listing available input/output devices.
+响应式 [enumerateDevices](https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices) 列出可用的输入/输出设备。
 
-## Usage
+## 用法
 
 ```ts
 import { useDevicesList } from '@vueuse/core'
@@ -19,9 +19,9 @@ const {
 } = useDevicesList()
 ```
 
-## Requesting Permissions
+## 请求权限
 
-To request permissions, use the `ensurePermissions` method.
+要请求权限，请使用 `ensurePermissions` 方法。
 
 ```ts
 import { useDevicesList } from '@vueuse/core'
@@ -35,7 +35,7 @@ await ensurePermissions()
 console.log(permissionsGranted.value)
 ```
 
-# Component
+## 组件
 
 ```vue
 <template>
@@ -47,39 +47,38 @@ console.log(permissionsGranted.value)
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseDevicesListOptions extends ConfigurableNavigator {
   onUpdated?: (devices: MediaDeviceInfo[]) => void
   /**
-   * Request for permissions immediately if it's not granted,
-   * otherwise label and deviceIds could be empty
+   * 如果未授予权限，则立即请求权限，
+   * 否则 label 和 deviceIds 可能为空
    *
    * @default false
    */
   requestPermissions?: boolean
   /**
-   * Request for types of media permissions
+   * 请求的媒体权限类型
    *
    * @default { audio: true, video: true }
    */
   constraints?: MediaStreamConstraints
 }
-export interface UseDevicesListReturn {
+export interface UseDevicesListReturn extends Supportable {
   /**
-   * All devices
+   * 所有设备
    */
-  devices: Ref<MediaDeviceInfo[]>
+  devices: ShallowRef<MediaDeviceInfo[]>
   videoInputs: ComputedRef<MediaDeviceInfo[]>
   audioInputs: ComputedRef<MediaDeviceInfo[]>
   audioOutputs: ComputedRef<MediaDeviceInfo[]>
   permissionGranted: ShallowRef<boolean>
   ensurePermissions: () => Promise<boolean>
-  isSupported: ComputedRef<boolean>
 }
 /**
- * Reactive `enumerateDevices` listing available input/output devices
+ * 响应式 `enumerateDevices` 列出可用的输入/输出设备
  *
  * @see https://vueuse.org/useDevicesList
  * @param options

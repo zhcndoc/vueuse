@@ -4,9 +4,9 @@ category: Animation
 
 # useNow
 
-Reactive current Date instance.
+响应式当前 Date 实例。
 
-## Usage
+## 用法
 
 ```ts
 import { useNow } from '@vueuse/core'
@@ -20,60 +20,64 @@ import { useNow } from '@vueuse/core'
 const { now, pause, resume } = useNow({ controls: true })
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseNow v-slot="{ now, pause, resume }">
-    Now: {{ now }}
+    当前：{{ now }}
     <button @click="pause()">
-      Pause
+      暂停
     </button>
     <button @click="resume()">
-      Resume
+      恢复
     </button>
   </UseNow>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseNowOptions<
   Controls extends boolean,
 > extends ConfigurableScheduler {
   /**
-   * Expose more controls
+   * 暴露更多控制
    *
    * @default false
    */
   controls?: Controls
   /**
-   * Start the clock immediately
+   * 立即启动时钟
    *
-   * @deprecated Please use `scheduler` option instead
+   * @deprecated 请改用 `scheduler` 选项
    * @default true
    */
   immediate?: boolean
   /**
-   * Update interval in milliseconds, or use requestAnimationFrame
+   * 以毫秒为单位的更新间隔，或使用 requestAnimationFrame
    *
-   * @deprecated Please use `scheduler` option instead
+   * @deprecated 请改用 `scheduler` 选项
    * @default requestAnimationFrame
    */
   interval?: "requestAnimationFrame" | number
 }
+export type UseNowReturn<Controls extends boolean> = Controls extends true
+  ? {
+      now: ShallowRef<Date>
+    } & Pausable
+  : ShallowRef<Date>
 /**
- * Reactive current Date instance.
+ * 响应式当前 Date 实例。
  *
  * @see https://vueuse.org/useNow
  * @param options
  *
  * @__NO_SIDE_EFFECTS__
  */
-export declare function useNow(options?: UseNowOptions<false>): Ref<Date>
+export declare function useNow(options?: UseNowOptions<false>): ShallowRef<Date>
 export declare function useNow(options: UseNowOptions<true>): {
-  now: Ref<Date>
+  now: ShallowRef<Date>
 } & Pausable
-export type UseNowReturn = ReturnType<typeof useNow>
 ```

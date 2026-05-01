@@ -4,9 +4,9 @@ category: Sensors
 
 # useMousePressed
 
-Reactive mouse pressing state. Triggered by `mousedown` `touchstart` on target element and released by `mouseup` `mouseleave` `touchend` `touchcancel` on window.
+响应式鼠标按下状态。通过目标元素上的 `mousedown` `touchstart` 触发，并在 window 上通过 `mouseup` `mouseleave` `touchend` `touchcancel` 释放。
 
-## Basic Usage
+## 基本用法
 
 ```ts
 import { useMousePressed } from '@vueuse/core'
@@ -14,7 +14,7 @@ import { useMousePressed } from '@vueuse/core'
 const { pressed } = useMousePressed()
 ```
 
-Touching is enabled by default. To make it only detects mouse changes, set `touch` to `false`
+默认启用触摸。若要仅检测鼠标变化，将 `touch` 设置为 `false`
 
 ```ts
 import { useMousePressed } from '@vueuse/core'
@@ -22,7 +22,7 @@ import { useMousePressed } from '@vueuse/core'
 const { pressed } = useMousePressed({ touch: false })
 ```
 
-To only capture `mousedown` and `touchstart` on specific element, you can specify `target` by passing a ref of the element.
+若只想捕获特定元素上的 `mousedown` 和 `touchstart`，可以通过传入该元素的 ref 来指定 `target`。
 
 ```vue
 <script setup lang="ts">
@@ -37,76 +37,80 @@ const { pressed } = useMousePressed({ target: el })
 
 <template>
   <div ref="el">
-    Only clicking on this element will trigger the update.
+    只有点击这个元素才会触发更新。
   </div>
 </template>
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseMousePressed v-slot="{ pressed }">
-    Is Pressed: {{ pressed }}
+    是否按下：{{ pressed }}
   </UseMousePressed>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
-export interface MousePressedOptions extends ConfigurableWindow {
+export interface UseMousePressedOptions extends ConfigurableWindow {
   /**
-   * Listen to `touchstart` `touchend` events
+   * 监听 `touchstart` `touchend` 事件
    *
    * @default true
    */
   touch?: boolean
   /**
-   * Listen to `dragstart` `drop` and `dragend` events
+   * 监听 `dragstart` `drop` 和 `dragend` 事件
    *
    * @default true
    */
   drag?: boolean
   /**
-   * Add event listeners with the `capture` option set to `true`
-   * (see [MDN](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#capture))
+   * 添加事件监听器时将 `capture` 选项设置为 `true`
+   *（参见 [MDN](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#capture)）
    *
    * @default false
    */
   capture?: boolean
   /**
-   * Initial values
+   * 初始值
    *
    * @default false
    */
   initialValue?: boolean
   /**
-   * Element target to be capture the click
+   * 用于捕获点击的元素目标
    */
   target?: MaybeComputedElementRef
   /**
-   * Callback to be called when the mouse is pressed
+   * 鼠标按下时调用的回调
    *
    * @param event
    */
   onPressed?: (event: MouseEvent | TouchEvent | DragEvent) => void
   /**
-   * Callback to be called when the mouse is released
+   * 鼠标释放时调用的回调
    *
    * @param event
    */
   onReleased?: (event: MouseEvent | TouchEvent | DragEvent) => void
 }
+/** @deprecated 请改用 {@link UseMousePressedOptions} */
+export type MousePressedOptions = UseMousePressedOptions
+export interface UseMousePressedReturn {
+  pressed: ShallowRef<boolean>
+  sourceType: ShallowRef<UseMouseSourceType>
+}
 /**
- * Reactive mouse pressing state.
+ * 响应式鼠标按下状态。
  *
  * @see https://vueuse.org/useMousePressed
  * @param options
  */
-export declare function useMousePressed(options?: MousePressedOptions): {
-  pressed: ShallowRef<boolean, boolean>
-  sourceType: ShallowRef<UseMouseSourceType, UseMouseSourceType>
-}
-export type UseMousePressedReturn = ReturnType<typeof useMousePressed>
+export declare function useMousePressed(
+  options?: UseMousePressedOptions,
+): UseMousePressedReturn
 ```

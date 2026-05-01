@@ -1,12 +1,12 @@
 ---
-category: Sensors
+category: 传感器
 ---
 
 # usePointerSwipe
 
-Reactive swipe detection based on [PointerEvents](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent).
+基于 [PointerEvents](https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent) 的响应式滑动检测。
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -19,12 +19,12 @@ const { isSwiping, direction } = usePointerSwipe(el)
 
 <template>
   <div ref="el">
-    Swipe here
+    在这里滑动
   </div>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UsePointerSwipeOptions {
@@ -33,25 +33,25 @@ export interface UsePointerSwipeOptions {
    */
   threshold?: number
   /**
-   * Callback on swipe start.
+   * 滑动开始时的回调。
    */
   onSwipeStart?: (e: PointerEvent) => void
   /**
-   * Callback on swipe move.
+   * 滑动过程中的回调。
    */
   onSwipe?: (e: PointerEvent) => void
   /**
-   * Callback on swipe end.
+   * 滑动结束时的回调。
    */
   onSwipeEnd?: (e: PointerEvent, direction: UseSwipeDirection) => void
   /**
-   * Pointer types to listen to.
+   * 要监听的指针类型。
    *
    * @default ['mouse', 'touch', 'pen']
    */
   pointerTypes?: PointerType[]
   /**
-   * Disable text selection on swipe.
+   * 在滑动时禁用文本选择。
    *
    * @default false
    */
@@ -60,14 +60,14 @@ export interface UsePointerSwipeOptions {
 export interface UsePointerSwipeReturn {
   readonly isSwiping: ShallowRef<boolean>
   direction: Readonly<ShallowRef<UseSwipeDirection>>
-  readonly posStart: Position
-  readonly posEnd: Position
+  readonly posStart: DeepReadonly<Position>
+  readonly posEnd: DeepReadonly<Position>
   distanceX: Readonly<ComputedRef<number>>
   distanceY: Readonly<ComputedRef<number>>
   stop: () => void
 }
 /**
- * Reactive swipe detection based on PointerEvents.
+ * 基于 PointerEvents 的响应式滑动检测。
  *
  * @see https://vueuse.org/usePointerSwipe
  * @param target

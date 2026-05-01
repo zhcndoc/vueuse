@@ -4,9 +4,9 @@ category: Browser
 
 # useMemory
 
-Reactive Memory Info.
+响应式内存信息。
 
-## Usage
+## 用法
 
 ```ts
 import { useMemory } from '@vueuse/core'
@@ -14,7 +14,7 @@ import { useMemory } from '@vueuse/core'
 const { isSupported, memory } = useMemory()
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 /**
@@ -24,43 +24,42 @@ const { isSupported, memory } = useMemory()
  */
 export interface MemoryInfo {
   /**
-   * The maximum size of the heap, in bytes, that is available to the context.
+   * 当前上下文可用的堆最大大小，单位为字节。
    */
   readonly jsHeapSizeLimit: number
   /**
-   *  The total allocated heap size, in bytes.
+   * 已分配的堆总大小，单位为字节。
    */
   readonly totalJSHeapSize: number
   /**
-   * The currently active segment of JS heap, in bytes.
+   * 当前活动的 JS 堆分段，单位为字节。
    */
   readonly usedJSHeapSize: number
   [Symbol.toStringTag]: "MemoryInfo"
 }
 export interface UseMemoryOptions extends ConfigurableScheduler {
   /**
-   * Start the timer immediately
+   * 立即启动定时器
    *
-   * @deprecated Please use `scheduler` option instead
+   * @deprecated 请改用 `scheduler` 选项
    * @default true
    */
   immediate?: boolean
   /**
-   * Execute the callback immediately after calling `resume`
+   * 在调用 `resume` 后立即执行回调
    *
-   * @deprecated Please use `scheduler` option instead
+   * @deprecated 请改用 `scheduler` 选项
    * @default false
    */
   immediateCallback?: boolean
-  /** @deprecated Please use `scheduler` option instead */
+  /** @deprecated 请改用 `scheduler` 选项 */
   interval?: number
 }
-export interface UseMemoryReturn {
-  isSupported: ComputedRef<boolean>
-  memory: Ref<MemoryInfo | undefined>
+export interface UseMemoryReturn extends Supportable {
+  memory: ShallowRef<MemoryInfo | undefined>
 }
 /**
- * Reactive Memory Info.
+ * 响应式内存信息。
  *
  * @see https://vueuse.org/useMemory
  * @param options

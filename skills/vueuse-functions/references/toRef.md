@@ -1,13 +1,12 @@
 ---
-category: Reactivity
-alias: resolveRef
+category: 响应式
 ---
 
 # toRef
 
-Normalize value/ref/getter to `ref` or `computed`.
+将值/ref/获取器规范化为 `ref` 或 `computed`。
 
-## Usage
+## 用法
 
 ```ts
 import { toRef } from '@vueuse/core'
@@ -19,45 +18,45 @@ const b = toRef(foo) // Ref<string>
 const c = toRef(() => 'hi') // ComputedRef<string>
 ```
 
-## Differences from Vue's `toRef`
+## 与 Vue 的 `toRef` 的区别
 
-VueUse's `toRef` is not the same as Vue’s `toRef` from the `vue` package.
+VueUse 的 `toRef` 与 `vue` 包中的 Vue `toRef` 并不相同。
 
 ### VueUse `toRef`
 
-- Accepts **value**, **ref**, or **getter**
-- Returns:
-  - a **ref** for primitive values
-  - a **ref** for existing refs
-  - a **computed** for getter functions
-- Does **not** accept `object + key`
-- Getters always produce readonly computed values
+- 接受 **值**、**ref** 或 **获取器**
+- 返回：
+  - 基本类型值对应的 **ref**
+  - 已存在 ref 对应的 **ref**
+  - 获取器函数对应的 **computed**
+- **不**接受 `object + key`
+- 获取器始终生成只读的 computed 值
 
 ### Vue `toRef`
 
-- Accepts only:
-  - a **reactive object + property key**, or
-  - an existing **ref**
-- Produces a **writable ref** linked to the underlying reactive object
-- Does **not** accept primitive values
-- Does **not** accept getter functions
+- 只接受：
+  - **响应式对象 + 属性键**，或
+  - 已存在的 **ref**
+- 生成一个与底层响应式对象绑定的**可写 ref**
+- **不**接受基本类型值
+- **不**接受获取器函数
 
-### Summary
+### 总结
 
-| Behavior                 | VueUse `toRef`            | Vue `toRef`             |
+| 行为                     | VueUse `toRef`            | Vue `toRef`             |
 | ------------------------ | ------------------------- | ----------------------- |
-| Accepts primitive values | ✔️                        | ❌                      |
-| Accepts getter           | ✔️ (computed)             | ❌                      |
-| Accepts existing ref     | ✔️                        | ✔️                      |
-| Accepts object + key     | ❌                        | ✔️                      |
-| Writable                 | ✔️ (except getter)        | ✔️                      |
-| Purpose                  | Normalize to ref/computed | Bind to reactive object |
+| 接受基本类型值           | ✔️                        | ❌                      |
+| 接受获取器               | ✔️（computed）            | ❌                      |
+| 接受已存在 ref           | ✔️                        | ✔️                      |
+| 接受 object + key         | ❌                        | ✔️                      |
+| 可写                     | ✔️（获取器除外）          | ✔️                      |
+| 目的                     | 规范化为 ref/computed     | 绑定到响应式对象         |
 
-## Type Declarations
+## 类型声明
 
 ```ts
 /**
- * Normalize value/ref/getter to `ref` or `computed`.
+ * 将值/ref/获取器规范化为 `ref` 或 `computed`。
  */
 export declare function toRef<T>(r: () => T): Readonly<Ref<T>>
 export declare function toRef<T>(r: ComputedRef<T>): ComputedRef<T>

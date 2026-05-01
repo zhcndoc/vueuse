@@ -4,9 +4,9 @@ category: Sensors
 
 # useInfiniteScroll
 
-Infinite scrolling of the element.
+元素的无限滚动。
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -19,15 +19,15 @@ const data = ref([1, 2, 3, 4, 5, 6])
 const { reset } = useInfiniteScroll(
   el,
   () => {
-    // load more
+    // 加载更多
     data.value.push(...moreData)
   },
   {
     distance: 10,
     canLoadMore: () => {
-      // inidicate when there is no more content to load so onLoadMore stops triggering
+      // 指示何时没有更多内容可加载，以便 onLoadMore 停止触发
       // if (noMoreContent) return false
-      return true // for demo purposes
+      return true // 仅用于演示
     },
   }
 )
@@ -45,27 +45,27 @@ function resetList() {
     </div>
   </div>
   <button @click="resetList()">
-    Reset
+    重置
   </button>
 </template>
 ```
 
-## Direction
+## 方向
 
-Different scroll directions require different CSS style settings:
+不同的滚动方向需要不同的 CSS 样式设置：
 
-| Direction          | Required CSS                                          |
+| Direction          | 所需 CSS                                              |
 | ------------------ | ----------------------------------------------------- |
-| `bottom` (default) | No special settings required                          |
+| `bottom` (default) | 无需特殊设置                                            |
 | `top`              | `display: flex;`<br>`flex-direction: column-reverse;` |
 | `left`             | `display: flex;`<br>`flex-direction: row-reverse;`    |
 | `right`            | `display: flex;`                                      |
 
 ::: warning
-Make sure to indicate when there is no more content to load with `canLoadMore`, otherwise `onLoadMore` will trigger as long as there is space for more content.
+请确保使用 `canLoadMore` 指示何时没有更多内容可加载，否则只要还有更多内容的空间，`onLoadMore` 就会持续触发。
 :::
 
-## Directive Usage
+## 指令用法
 
 ```vue
 <script setup lang="ts">
@@ -79,9 +79,9 @@ function onLoadMore() {
   data.value.push(...Array.from({ length: 5 }, (_, i) => length + i))
 }
 function canLoadMore() {
-  // inidicate when there is no more content to load so onLoadMore stops triggering
+  // 指示何时没有更多内容可加载，以便 onLoadMore 停止触发
   // if (noMoreContent) return false
-  return true // for demo purposes
+  return true // 仅用于演示
 }
 </script>
 
@@ -92,7 +92,7 @@ function canLoadMore() {
     </div>
   </div>
 
-  <!-- with options -->
+  <!-- 带选项 -->
   <div v-infinite-scroll="[onLoadMore, { distance: 10, canLoadMore }]">
     <div v-for="item in data" :key="item">
       {{ item }}
@@ -101,7 +101,7 @@ function canLoadMore() {
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 type InfiniteScrollElement =
@@ -115,43 +115,42 @@ export interface UseInfiniteScrollOptions<
   T extends InfiniteScrollElement = InfiniteScrollElement,
 > extends UseScrollOptions {
   /**
-   * The minimum distance between the bottom of the element and the bottom of the viewport
+   * 元素底部与视口底部之间的最小距离
    *
    * @default 0
    */
   distance?: number
   /**
-   * The direction in which to listen the scroll.
+   * 监听滚动的方向。
    *
    * @default 'bottom'
    */
   direction?: "top" | "bottom" | "left" | "right"
   /**
-   * The interval time between two load more (to avoid too many invokes).
+   * 两次加载更多之间的间隔时间（用于避免过多调用）。
    *
    * @default 100
    */
   interval?: number
   /**
-   * A function that determines whether more content can be loaded for a specific element.
-   * Should return `true` if loading more content is allowed for the given element,
-   * and `false` otherwise.
+   * 一个用于判断特定元素是否可以加载更多内容的函数。
+   * 如果允许为给定元素加载更多内容，则应返回 `true`，
+   * 否则返回 `false`。
    */
   canLoadMore?: (el: T) => boolean
 }
+export interface UseInfiniteScrollReturn {
+  isLoading: ComputedRef<boolean>
+  reset: () => void
+}
 /**
- * Reactive infinite scroll.
+ * 响应式无限滚动。
  *
  * @see https://vueuse.org/useInfiniteScroll
  */
 export declare function useInfiniteScroll<T extends InfiniteScrollElement>(
   element: MaybeRefOrGetter<T>,
-  onLoadMore: (
-    state: UnwrapNestedRefs<ReturnType<typeof useScroll>>,
-  ) => Awaitable<void>,
+  onLoadMore: (state: UnwrapNestedRefs<UseScrollReturn>) => Awaitable<void>,
   options?: UseInfiniteScrollOptions<T>,
-): {
-  isLoading: ComputedRef<boolean>
-  reset(): void
-}
+): UseInfiniteScrollReturn
 ```

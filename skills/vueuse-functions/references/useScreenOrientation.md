@@ -1,12 +1,12 @@
 ---
-category: Browser
+category: 浏览器
 ---
 
 # useScreenOrientation
 
-Reactive [Screen Orientation API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Orientation_API). It provides web developers with information about the user's current screen orientation.
+响应式 [屏幕方向 API](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Orientation_API)。它为 Web 开发者提供有关用户当前屏幕方向的信息。
 
-## Usage
+## 用法
 
 ```ts
 import { useScreenOrientation } from '@vueuse/core'
@@ -20,7 +20,7 @@ const {
 } = useScreenOrientation()
 ```
 
-To lock the orientation, you can pass an [OrientationLockType](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation/type) to the lockOrientation function:
+要锁定方向，你可以向 lockOrientation 函数传递一个 [OrientationLockType](https://developer.mozilla.org/en-US/docs/Web/API/ScreenOrientation/type)：
 
 ```ts
 import { useScreenOrientation } from '@vueuse/core'
@@ -36,7 +36,7 @@ const {
 lockOrientation('portrait-primary')
 ```
 
-and then unlock again, with the following:
+然后再解锁，如下所示：
 
 ```ts
 import { useScreenOrientation } from '@vueuse/core'
@@ -46,11 +46,11 @@ const { unlockOrientation } = useScreenOrientation()
 unlockOrientation()
 ```
 
-Accepted orientation types are one of `"landscape-primary"`, `"landscape-secondary"`, `"portrait-primary"`, `"portrait-secondary"`, `"any"`, `"landscape"`, `"natural"` and `"portrait"`.
+可接受的方向类型包括 `"landscape-primary"`、`"landscape-secondary"`、`"portrait-primary"`、`"portrait-secondary"`、`"any"`、`"landscape"`、`"natural"` 和 `"portrait"`。
 
-[Screen Orientation API MDN](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Orientation_API)
+[屏幕方向 API MDN](https://developer.mozilla.org/en-US/docs/Web/API/Screen_Orientation_API)
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export type OrientationType =
@@ -78,19 +78,21 @@ export interface ScreenOrientation extends EventTarget {
     useCapture?: boolean,
   ) => void
 }
+export interface UseScreenOrientationOptions extends ConfigurableWindow {}
+export interface UseScreenOrientationReturn extends Supportable {
+  orientation: ShallowRef<OrientationType | undefined>
+  angle: ShallowRef<number>
+  lockOrientation: (type: OrientationLockType) => Promise<void>
+  unlockOrientation: () => void
+}
 /**
- * Reactive screen orientation
+ * 响应式屏幕方向
  *
  * @see https://vueuse.org/useScreenOrientation
  *
  * @__NO_SIDE_EFFECTS__
  */
-export declare function useScreenOrientation(options?: ConfigurableWindow): {
-  isSupported: ComputedRef<boolean>
-  orientation: Ref<OrientationType | undefined, OrientationType | undefined>
-  angle: ShallowRef<number, number>
-  lockOrientation: (type: OrientationLockType) => Promise<void>
-  unlockOrientation: () => void
-}
-export type UseScreenOrientationReturn = ReturnType<typeof useScreenOrientation>
+export declare function useScreenOrientation(
+  options?: UseScreenOrientationOptions,
+): UseScreenOrientationReturn
 ```

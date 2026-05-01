@@ -4,11 +4,11 @@ category: Sensors
 
 # useSpeechSynthesis
 
-Reactive [SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis).
+响应式 [SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)。
 
 > [Can I use?](https://caniuse.com/mdn-api_speechsynthesis)
 
-## Usage
+## 用法
 
 ```ts
 import { useSpeechSynthesis } from '@vueuse/core'
@@ -26,9 +26,9 @@ const {
 } = useSpeechSynthesis()
 ```
 
-### Options
+### 选项
 
-The following shows the default values of the options, they will be directly passed to [SpeechSynthesis API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis).
+下方展示了选项的默认值，它们会直接传递给 [SpeechSynthesis API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)。
 
 ```ts
 import { useSpeechSynthesis } from '@vueuse/core'
@@ -41,46 +41,55 @@ useSpeechSynthesis({
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export type UseSpeechSynthesisStatus = "init" | "play" | "pause" | "end"
 export interface UseSpeechSynthesisOptions extends ConfigurableWindow {
   /**
-   * Language for SpeechSynthesis
+   * SpeechSynthesis 的语言
    *
    * @default 'en-US'
    */
   lang?: MaybeRefOrGetter<string>
   /**
-   * Gets and sets the pitch at which the utterance will be spoken at.
+   * 获取并设置语音播报时的音调。
    *
    * @default 1
    */
   pitch?: MaybeRefOrGetter<SpeechSynthesisUtterance["pitch"]>
   /**
-   * Gets and sets the speed at which the utterance will be spoken at.
+   * 获取并设置语音播报时的速度。
    *
    * @default 1
    */
   rate?: MaybeRefOrGetter<SpeechSynthesisUtterance["rate"]>
   /**
-   * Gets and sets the voice that will be used to speak the utterance.
+   * 获取并设置用于朗读该语音的声音。
    */
   voice?: MaybeRef<SpeechSynthesisVoice>
   /**
-   * Gets and sets the volume that the utterance will be spoken at.
+   * 获取并设置语音播报时的音量。
    *
    * @default 1
    */
   volume?: MaybeRefOrGetter<SpeechSynthesisUtterance["volume"]>
   /**
-   * Callback function that is called when the boundary event is triggered.
+   * 当触发 boundary 事件时调用的回调函数。
    */
   onBoundary?: (event: SpeechSynthesisEvent) => void
 }
+export interface UseSpeechSynthesisReturn extends Supportable {
+  isPlaying: ShallowRef<boolean>
+  status: ShallowRef<UseSpeechSynthesisStatus>
+  utterance: ComputedRef<SpeechSynthesisUtterance>
+  error: ShallowRef<SpeechSynthesisErrorEvent | undefined>
+  stop: () => void
+  toggle: (value?: boolean) => void
+  speak: () => void
+}
 /**
- * Reactive SpeechSynthesis.
+ * 响应式 SpeechSynthesis。
  *
  * @see https://vueuse.org/useSpeechSynthesis
  * @see https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis SpeechSynthesis
@@ -88,18 +97,5 @@ export interface UseSpeechSynthesisOptions extends ConfigurableWindow {
 export declare function useSpeechSynthesis(
   text: MaybeRefOrGetter<string>,
   options?: UseSpeechSynthesisOptions,
-): {
-  isSupported: ComputedRef<boolean>
-  isPlaying: ShallowRef<boolean, boolean>
-  status: ShallowRef<UseSpeechSynthesisStatus, UseSpeechSynthesisStatus>
-  utterance: ComputedRef<SpeechSynthesisUtterance>
-  error: ShallowRef<
-    SpeechSynthesisErrorEvent | undefined,
-    SpeechSynthesisErrorEvent | undefined
-  >
-  stop: () => void
-  toggle: (value?: boolean) => void
-  speak: () => void
-}
-export type UseSpeechSynthesisReturn = ReturnType<typeof useSpeechSynthesis>
+): UseSpeechSynthesisReturn
 ```

@@ -8,9 +8,6 @@ category: Reactivity
 
 ## 用法
 
-<!-- eslint-disable array-bracket-spacing -->
-<!-- eslint-disable ts/no-redeclare -->
-
 ```ts
 import { toRefs } from '@vueuse/core'
 import { reactive, ref } from 'vue'

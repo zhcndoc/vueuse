@@ -8,11 +8,11 @@ related:
 
 # useDark
 
-Reactive dark mode with auto data persistence.
+带自动数据持久化的响应式深色模式。
 
-<CourseLink href="https://vueschool.io/lessons/theming-with-vueuse-usedark-and-usecolormode?friend=vueuse">Learn useDark with this FREE video lesson from Vue School!</CourseLink>
+<CourseLink href="https://vueschool.io/lessons/theming-with-vueuse-usedark-and-usecolormode?friend=vue">通过 Vue School 的这节免费视频课程学习 useDark！</CourseLink>
 
-## Basic Usage
+## 基本用法
 
 ```ts
 import { useDark, useToggle } from '@vueuse/core'
@@ -21,31 +21,31 @@ const isDark = useDark()
 const toggleDark = useToggle(isDark)
 ```
 
-## Behavior
+## 行为
 
-`useDark` combines with `usePreferredDark` and `useStorage`. On start up, it reads the value from localStorage/sessionStorage (the key is configurable) to see if there is a user configured color scheme, if not, it will use users' system preferences. When you change the `isDark` ref, it will update the corresponding element's attribute and then store the preference to storage (default key: `vueuse-color-scheme`) for persistence.
+`useDark` 结合了 `usePreferredDark` 和 `useStorage`。启动时，它会从 localStorage/sessionStorage 中读取值（key 可配置），以查看是否存在用户配置的配色方案；如果没有，则使用用户的系统偏好。当你更改 `isDark` ref 时，它会更新对应元素的属性，然后将该偏好存储到 storage 中以实现持久化（默认 key：`vueuse-color-scheme`）。
 
-> Please note `useDark` only handles the DOM attribute changes for you to apply proper selector in your CSS. It does NOT handle the actual style, theme or CSS for you.
+> 请注意，`useDark` 只会帮你处理 DOM 属性的变化，以便你在 CSS 中应用合适的选择器。它**不会**为你处理实际的样式、主题或 CSS。
 
-## Configuration
+## 配置
 
-By default, it uses [Tailwind CSS favored dark mode](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually), which enables dark mode when class `dark` is applied to the `html` tag, for example:
+默认情况下，它使用 [Tailwind CSS 偏好的深色模式](https://tailwindcss.com/docs/dark-mode#toggling-dark-mode-manually)，即当将 class `dark` 应用于 `html` 标签时启用深色模式，例如：
 
 ```html
-<!--light-->
+<!--浅色-->
 <html>
   ...
 </html>
 
-<!--dark-->
+<!--深色-->
 <html class="dark">
   ...
 </html>
 ```
 
-Still, you can also customize it to make it work with most CSS frameworks.
+不过，你也可以自定义它，使其适配大多数 CSS 框架。
 
-For example:
+例如：
 
 ```ts
 import { useDark } from '@vueuse/core'
@@ -58,17 +58,17 @@ const isDark = useDark({
 })
 ```
 
-will work like
+将会如下工作：
 
 ```html
-<!--light-->
+<!--浅色-->
 <html>
   <body color-scheme="light">
     ...
   </body>
 </html>
 
-<!--dark-->
+<!--深色-->
 <html>
   <body color-scheme="dark">
     ...
@@ -76,31 +76,31 @@ will work like
 </html>
 ```
 
-If the configuration above still does not fit your needs, you can use the`onChanged` option to take full control over how you handle updates.
+如果上面的配置仍然不符合你的需求，你可以使用 `onChanged` 选项来完全控制你如何处理更新。
 
 ```ts
 import { useDark } from '@vueuse/core'
 // ---cut---
 const isDark = useDark({
   onChanged(dark) {
-    // update the dom, call the API or something
+    // 更新 DOM，调用 API 或其他操作
   },
 })
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseDark v-slot="{ isDark, toggleDark }">
     <button @click="toggleDark()">
-      Is Dark: {{ isDark }}
+      是否深色：{{ isDark }}
     </button>
   </UseDark>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseDarkOptions extends Omit<
@@ -108,20 +108,20 @@ export interface UseDarkOptions extends Omit<
   "modes" | "onChanged"
 > {
   /**
-   * Value applying to the target element when isDark=true
+   * 当 isDark=true 时应用到目标元素上的值
    *
    * @default 'dark'
    */
   valueDark?: string
   /**
-   * Value applying to the target element when isDark=false
+   * 当 isDark=false 时应用到目标元素上的值
    *
    * @default ''
    */
   valueLight?: string
   /**
-   * A custom handler for handle the updates.
-   * When specified, the default behavior will be overridden.
+   * 用于处理更新的自定义处理器。
+   * 指定后，将覆盖默认行为。
    *
    * @default undefined
    */
@@ -131,14 +131,12 @@ export interface UseDarkOptions extends Omit<
     mode: BasicColorSchema,
   ) => void
 }
+export type UseDarkReturn = WritableComputedRef<boolean>
 /**
- * Reactive dark mode with auto data persistence.
+ * 带自动数据持久化的响应式深色模式。
  *
  * @see https://vueuse.org/useDark
  * @param options
  */
-export declare function useDark(
-  options?: UseDarkOptions,
-): WritableComputedRef<boolean, boolean>
-export type UseDarkReturn = ReturnType<typeof useDark>
+export declare function useDark(options?: UseDarkOptions): UseDarkReturn
 ```

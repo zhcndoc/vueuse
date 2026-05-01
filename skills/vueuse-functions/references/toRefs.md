@@ -4,12 +4,9 @@ category: Reactivity
 
 # toRefs
 
-Extended [`toRefs`](https://vuejs.org/api/reactivity-utilities.html#torefs) that also accepts refs of an object.
+扩展版 [`toRefs`](https://vuejs.org/api/reactivity-utilities.html#torefs)，也接受对象的 ref。
 
-## Usage
-
-<!-- eslint-disable array-bracket-spacing -->
-<!-- eslint-disable ts/no-redeclare -->
+## 用法
 
 ```ts
 import { toRefs } from '@vueuse/core'
@@ -28,9 +25,9 @@ const { a, b } = toRefs(obj)
 const [a, b] = toRefs(arr)
 ```
 
-## Use-cases
+## 使用场景
 
-### Destructuring a props object
+### 解构 props 对象
 
 ```vue
 <script lang="ts">
@@ -56,23 +53,23 @@ export default {
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface ToRefsOptions {
   /**
-   * Replace the original ref with a copy on property update.
+   * 在属性更新时，用副本替换原始 ref。
    *
    * @default true
    */
   replaceRef?: MaybeRefOrGetter<boolean>
 }
 /**
- * Extended `toRefs` that also accepts refs of an object.
+ * 扩展版 `toRefs`，也接受对象的 ref。
  *
  * @see https://vueuse.org/toRefs
- * @param objectRef A ref or normal object or array.
- * @param options Options
+ * @param objectRef 一个 ref、普通对象或数组。
+ * @param options 选项
  */
 export declare function toRefs<T extends object>(
   objectRef: MaybeRef<T>,

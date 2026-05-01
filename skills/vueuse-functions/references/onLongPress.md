@@ -2,11 +2,11 @@
 category: Sensors
 ---
 
-# onLongPress
+# 长按
 
-Listen for a long press on an element. Returns a stop function.
+监听元素上的长按。返回一个停止函数。
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -35,73 +35,73 @@ onLongPress(
 </script>
 
 <template>
-  <p>Long Pressed: {{ longPressedHook }}</p>
+  <p>已长按：{{ longPressedHook }}</p>
 
   <button ref="htmlRefHook" class="ml-2 button small">
-    Press long
+    长按
   </button>
 
   <button class="ml-2 button small" @click="resetHook">
-    Reset
+    重置
   </button>
 </template>
 ```
 
-### Custom Delay
+### 自定义延迟
 
-By default, the handler fires after 500ms. You can customize this with the `delay` option. It can be a number or a function that receives the `PointerEvent`.
+默认情况下，处理函数会在 500ms 后触发。你可以使用 `delay` 选项来自定义它。它可以是一个数字，也可以是一个接收 `PointerEvent` 的函数。
 
 ```ts
 import { onLongPress } from '@vueuse/core'
 
-// Fixed delay
+// 固定延迟
 onLongPress(target, handler, { delay: 1000 })
 
-// Dynamic delay based on event
+// 根据事件动态设置延迟
 onLongPress(target, handler, {
   delay: ev => ev.pointerType === 'touch' ? 800 : 500,
 })
 ```
 
-### Distance Threshold
+### 距离阈值
 
-The long press will be canceled if the pointer moves more than the threshold (default: 10 pixels). Set to `false` to disable movement detection.
+如果指针移动超过阈值，长按将被取消（默认：10 像素）。设为 `false` 可禁用移动检测。
 
 ```ts
 import { onLongPress } from '@vueuse/core'
 
-// Custom threshold
+// 自定义阈值
 onLongPress(target, handler, { distanceThreshold: 20 })
 
-// Disable movement detection
+// 禁用移动检测
 onLongPress(target, handler, { distanceThreshold: false })
 ```
 
-### On Mouse Up Callback
+### 鼠标抬起回调
 
-You can provide an `onMouseUp` callback to be notified when the pointer is released.
+你可以提供一个 `onMouseUp` 回调，以便在指针释放时收到通知。
 
 ```ts
 import { onLongPress } from '@vueuse/core'
 
 onLongPress(target, handler, {
-  onMouseUp(duration, distance, isLongPress) {
-    console.log(`Held for ${duration}ms, moved ${distance}px, long press: ${isLongPress}`)
+  onMouseUp(duration, distance, isLongPress, pointerEvent) {
+    console.log(`持续了 ${duration}ms，移动了 ${distance}px，长按：${isLongPress}，x：${pointerEvent.clientX}`)
   },
 })
 ```
 
-### Modifiers
+### 修饰符
 
-The following modifiers are available:
+可用的修饰符如下：
 
-| Modifier  | Description                                  |
-| --------- | -------------------------------------------- |
-| `stop`    | Calls `event.stopPropagation()`              |
-| `once`    | Removes event listener after first trigger   |
-| `prevent` | Calls `event.preventDefault()`               |
-| `capture` | Uses capture mode for event listener         |
-| `self`    | Only trigger if target is the element itself |
+| 修饰符    | 描述                                   |
+| --------- | -------------------------------------- |
+| `stop`    | 调用 `event.stopPropagation()`          |
+| `once`    | 在第一次触发后移除事件监听器            |
+| `prevent` | 调用 `event.preventDefault()`           |
+| `capture` | 为事件监听器使用捕获模式                |
+| `self`    | 仅当目标元素本身触发时才生效            |
 
 ```ts
 onLongPress(target, handler, {
@@ -112,7 +112,7 @@ onLongPress(target, handler, {
 })
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <script setup lang="ts">
@@ -130,23 +130,23 @@ function resetComponent() {
 </script>
 
 <template>
-  <p>Long Pressed: {{ longPressedComponent }}</p>
+  <p>已长按：{{ longPressedComponent }}</p>
 
   <OnLongPress
     as="button"
     class="ml-2 button small"
     @trigger="onLongPressCallbackComponent"
   >
-    Press long
+    长按
   </OnLongPress>
 
   <button class="ml-2 button small" @click="resetComponent">
-    Reset
+    重置
   </button>
 </template>
 ```
 
-## Directive Usage
+## 指令用法
 
 ```vue
 <script setup lang="ts">
@@ -164,52 +164,58 @@ function resetDirective() {
 </script>
 
 <template>
-  <p>Long Pressed: {{ longPressedDirective }}</p>
+  <p>已长按：{{ longPressedDirective }}</p>
 
   <button
     v-on-long-press.prevent="onLongPressCallbackDirective"
     class="ml-2 button small"
   >
-    Press long
+    长按
   </button>
 
   <button
     v-on-long-press="[onLongPressCallbackDirective, { delay: 1000, modifiers: { stop: true } }]"
     class="ml-2 button small"
   >
-    Press long (with options)
+    长按（带选项）
   </button>
 
   <button class="ml-2 button small" @click="resetDirective">
-    Reset
+    重置
   </button>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface OnLongPressOptions {
   /**
-   * Time in ms till `longpress` gets called
+   * 距离 `longpress` 被调用的时间，单位为 ms
    *
    * @default 500
    */
   delay?: number | ((ev: PointerEvent) => number)
   modifiers?: OnLongPressModifiers
   /**
-   * Allowance of moving distance in pixels,
-   * The action will get canceled When moving too far from the pointerdown position.
+   * 允许移动的距离，单位为像素，
+   * 当距离 pointerdown 位置过远时，动作将被取消。
    * @default 10
    */
   distanceThreshold?: number | false
   /**
-   * Function called when the ref element is released.
-   * @param duration how long the element was pressed in ms
-   * @param distance distance from the pointerdown position
-   * @param isLongPress whether the action was a long press or not
+   * 当 ref 元素被释放时调用的函数。
+   * @param duration 元素被按住的时长，单位为 ms
+   * @param distance 距离 pointerdown 位置的距离
+   * @param isLongPress 是否为长按
+   * @param pointerEvent 浏览器触发的原生 {@link PointerEvent}
    */
-  onMouseUp?: (duration: number, distance: number, isLongPress: boolean) => void
+  onMouseUp?: (
+    duration: number,
+    distance: number,
+    isLongPress: boolean,
+    pointerEvent: PointerEvent,
+  ) => void
 }
 export interface OnLongPressModifiers {
   stop?: boolean
@@ -218,10 +224,12 @@ export interface OnLongPressModifiers {
   capture?: boolean
   self?: boolean
 }
+export type OnLongPressReturn = () => void
+/** @deprecated 请改用 {@link OnLongPressReturn} */
+export type UseOnLongPressReturn = OnLongPressReturn
 export declare function onLongPress(
   target: MaybeElementRef,
   handler: (evt: PointerEvent) => void,
   options?: OnLongPressOptions,
-): () => void
-export type UseOnLongPressReturn = ReturnType<typeof onLongPress>
+): OnLongPressReturn
 ```

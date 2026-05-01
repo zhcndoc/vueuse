@@ -4,11 +4,11 @@ category: Browser
 
 # useMediaControls
 
-Reactive media controls for both `audio` and `video` elements
+适用于 `audio` 和 `video` 元素的响应式媒体控制
 
-## Usage
+## 用法
 
-### Basic Usage
+### 基本用法
 
 ```vue
 <script setup lang="ts">
@@ -20,7 +20,7 @@ const { playing, currentTime, duration, volume } = useMediaControls(video, {
   src: 'video.mp4',
 })
 
-// Change initial media properties
+// 更改初始媒体属性
 onMounted(() => {
   volume.value = 0.5
   currentTime.value = 60
@@ -30,19 +30,17 @@ onMounted(() => {
 <template>
   <video ref="video" />
   <button @click="playing = !playing">
-    Play / Pause
+    播放 / 暂停
   </button>
   <span>{{ currentTime }} / {{ duration }}</span>
 </template>
 ```
 
-### Providing Captions, Subtitles, etc...
+### 提供字幕、标题等...
 
-You can provide captions, subtitles, etc in the `tracks` options of the
-`useMediaControls` function. The function will return an array of tracks
-along with two functions for controlling them, `enableTrack`, `disableTrack`, and `selectedTrack`.
-Using these you can manage the currently selected track. `selectedTrack` will
-be `-1` if there is no selected track.
+你可以在 `useMediaControls` 函数的 `tracks` 选项中提供字幕、标题等。
+该函数将返回一个轨道数组，以及两个用于控制它们的函数 `enableTrack`、`disableTrack` 和 `selectedTrack`。
+使用这些，你可以管理当前选中的轨道。若没有选中的轨道，`selectedTrack` 将为 `-1`。
 
 ```vue
 <script setup lang="ts">
@@ -75,497 +73,127 @@ const {
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 /**
- * Many of the jsdoc definitions here are modified version of the
- * documentation from MDN(https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement)
+ * 这里的许多 jsdoc 定义都是基于
+ * MDN(https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement) 文档修改而来
  */
 export interface UseMediaSource {
   /**
-   * The source url for the media
+   * 媒体的源 URL
    */
   src: string
   /**
-   * The media codec type
+   * 媒体编解码器类型
    */
   type?: string
   /**
-   * Specifies the media query for the resource's intended media.
+   * 指定资源预期媒体的媒体查询。
    */
   media?: string
 }
 export interface UseMediaTextTrackSource {
   /**
-   * Indicates that the track should be enabled unless the user's preferences indicate
-   * that another track is more appropriate
+   * 表示该轨道应被启用，除非用户的偏好表明
+   * 另一个轨道更合适
    */
   default?: boolean
   /**
-   * How the text track is meant to be used. If omitted the default kind is subtitles.
+   * 文本轨道的用途。如果省略，默认 kind 为 subtitles。
    */
   kind: TextTrackKind
   /**
-   * A user-readable title of the text track which is used by the browser
-   * when listing available text tracks.
+   * 浏览器在列出可用文本轨道时使用的、
+   * 人类可读的文本轨道标题。
    */
   label: string
   /**
-   * Address of the track (.vtt file). Must be a valid URL. This attribute
-   * must be specified and its URL value must have the same origin as the document
+   * 轨道地址（.vtt 文件）。必须是有效 URL。此属性
+   * 必须被指定，并且其 URL 值必须与文档同源
    */
   src: string
   /**
-   * Language of the track text data. It must be a valid BCP 47 language tag.
-   * If the kind attribute is set to subtitles, then srclang must be defined.
+   * 轨道文本数据的语言。它必须是有效的 BCP 47 语言标签。
+   * 如果 kind 属性设置为 subtitles，那么必须定义 srclang。
    */
   srcLang: string
 }
 interface UseMediaControlsOptions extends ConfigurableDocument {
   /**
-   * The source for the media, may either be a string, a `UseMediaSource` object, or a list
-   * of `UseMediaSource` objects.
+   * 媒体源，可以是字符串、`UseMediaSource` 对象，或
+   * `UseMediaSource` 对象列表。
    */
   src?: MaybeRefOrGetter<string | UseMediaSource | UseMediaSource[]>
   /**
-   * A list of text tracks for the media
+   * 媒体文本轨道列表
    */
   tracks?: MaybeRefOrGetter<UseMediaTextTrackSource[]>
 }
 export interface UseMediaTextTrack {
   /**
-   * The index of the text track
+   * 文本轨道的索引
    */
   id: number
   /**
-   * The text track label
+   * 文本轨道标签
    */
   label: string
   /**
-   * Language of the track text data. It must be a valid BCP 47 language tag.
-   * If the kind attribute is set to subtitles, then srclang must be defined.
+   * 轨道文本数据的语言。它必须是有效的 BCP 47 语言标签。
+   * 如果 kind 属性设置为 subtitles，那么必须定义 srclang。
    */
   language: string
   /**
-   * Specifies the display mode of the text track, either `disabled`,
-   * `hidden`, or `showing`
+   * 指定文本轨道的显示模式，可以是 `disabled`、
+   * `hidden` 或 `showing`
    */
   mode: TextTrackMode
   /**
-   * How the text track is meant to be used. If omitted the default kind is subtitles.
+   * 文本轨道的用途。如果省略，默认 kind 为 subtitles。
    */
   kind: TextTrackKind
   /**
-   * Indicates the track's in-band metadata track dispatch type.
+   * 指示轨道的带内元数据轨道分发类型。
    */
   inBandMetadataTrackDispatchType: string
   /**
-   * A list of text track cues
+   * 文本轨道 cue 列表
    */
   cues: TextTrackCueList | null
   /**
-   * A list of active text track cues
+   * 活动文本轨道 cue 列表
    */
   activeCues: TextTrackCueList | null
 }
-export declare function useMediaControls(
-  target: MaybeRef<HTMLMediaElement | null | undefined>,
-  options?: UseMediaControlsOptions,
-): {
-  currentTime: ShallowRef<number, number>
-  duration: ShallowRef<number, number>
-  waiting: ShallowRef<boolean, boolean>
-  seeking: ShallowRef<boolean, boolean>
-  ended: ShallowRef<boolean, boolean>
-  stalled: ShallowRef<boolean, boolean>
-  buffered: Ref<[number, number][], [number, number][]>
-  playing: ShallowRef<boolean, boolean>
-  rate: ShallowRef<number, number>
-  volume: ShallowRef<number, number>
-  muted: ShallowRef<boolean, boolean>
-  tracks: Ref<
-    {
-      id: number
-      label: string
-      language: string
-      mode: TextTrackMode
-      kind: TextTrackKind
-      inBandMetadataTrackDispatchType: string
-      cues: {
-        [x: number]: {
-          endTime: number
-          id: string
-          onenter: ((this: TextTrackCue, ev: Event) => any) | null
-          onexit: ((this: TextTrackCue, ev: Event) => any) | null
-          pauseOnExit: boolean
-          startTime: number
-          readonly track: {
-            readonly activeCues: /*elided*/ any | null
-            readonly cues: /*elided*/ any | null
-            readonly id: string
-            readonly inBandMetadataTrackDispatchType: string
-            readonly kind: TextTrackKind
-            readonly label: string
-            readonly language: string
-            mode: TextTrackMode
-            oncuechange: ((this: TextTrack, ev: Event) => any) | null
-            addCue: (cue: TextTrackCue) => void
-            removeCue: (cue: TextTrackCue) => void
-            addEventListener: {
-              <K extends keyof TextTrackEventMap>(
-                type: K,
-                listener: (this: TextTrack, ev: TextTrackEventMap[K]) => any,
-                options?: boolean | AddEventListenerOptions,
-              ): void
-              (
-                type: string,
-                listener: EventListenerOrEventListenerObject,
-                options?: boolean | AddEventListenerOptions,
-              ): void
-            }
-            removeEventListener: {
-              <K extends keyof TextTrackEventMap>(
-                type: K,
-                listener: (this: TextTrack, ev: TextTrackEventMap[K]) => any,
-                options?: boolean | EventListenerOptions,
-              ): void
-              (
-                type: string,
-                listener: EventListenerOrEventListenerObject,
-                options?: boolean | EventListenerOptions,
-              ): void
-            }
-            dispatchEvent: {
-              (event: Event): boolean
-              (event: Event): boolean
-            }
-          } | null
-          addEventListener: {
-            <K extends keyof TextTrackCueEventMap>(
-              type: K,
-              listener: (
-                this: TextTrackCue,
-                ev: TextTrackCueEventMap[K],
-              ) => any,
-              options?: boolean | AddEventListenerOptions,
-            ): void
-            (
-              type: string,
-              listener: EventListenerOrEventListenerObject,
-              options?: boolean | AddEventListenerOptions,
-            ): void
-          }
-          removeEventListener: {
-            <K extends keyof TextTrackCueEventMap>(
-              type: K,
-              listener: (
-                this: TextTrackCue,
-                ev: TextTrackCueEventMap[K],
-              ) => any,
-              options?: boolean | EventListenerOptions,
-            ): void
-            (
-              type: string,
-              listener: EventListenerOrEventListenerObject,
-              options?: boolean | EventListenerOptions,
-            ): void
-          }
-          dispatchEvent: {
-            (event: Event): boolean
-            (event: Event): boolean
-          }
-        }
-        readonly length: number
-        getCueById: (id: string) => TextTrackCue | null
-        [Symbol.iterator]: () => ArrayIterator<TextTrackCue>
-      } | null
-      activeCues: {
-        [x: number]: {
-          endTime: number
-          id: string
-          onenter: ((this: TextTrackCue, ev: Event) => any) | null
-          onexit: ((this: TextTrackCue, ev: Event) => any) | null
-          pauseOnExit: boolean
-          startTime: number
-          readonly track: {
-            readonly activeCues: /*elided*/ any | null
-            readonly cues: /*elided*/ any | null
-            readonly id: string
-            readonly inBandMetadataTrackDispatchType: string
-            readonly kind: TextTrackKind
-            readonly label: string
-            readonly language: string
-            mode: TextTrackMode
-            oncuechange: ((this: TextTrack, ev: Event) => any) | null
-            addCue: (cue: TextTrackCue) => void
-            removeCue: (cue: TextTrackCue) => void
-            addEventListener: {
-              <K extends keyof TextTrackEventMap>(
-                type: K,
-                listener: (this: TextTrack, ev: TextTrackEventMap[K]) => any,
-                options?: boolean | AddEventListenerOptions,
-              ): void
-              (
-                type: string,
-                listener: EventListenerOrEventListenerObject,
-                options?: boolean | AddEventListenerOptions,
-              ): void
-            }
-            removeEventListener: {
-              <K extends keyof TextTrackEventMap>(
-                type: K,
-                listener: (this: TextTrack, ev: TextTrackEventMap[K]) => any,
-                options?: boolean | EventListenerOptions,
-              ): void
-              (
-                type: string,
-                listener: EventListenerOrEventListenerObject,
-                options?: boolean | EventListenerOptions,
-              ): void
-            }
-            dispatchEvent: {
-              (event: Event): boolean
-              (event: Event): boolean
-            }
-          } | null
-          addEventListener: {
-            <K extends keyof TextTrackCueEventMap>(
-              type: K,
-              listener: (
-                this: TextTrackCue,
-                ev: TextTrackCueEventMap[K],
-              ) => any,
-              options?: boolean | AddEventListenerOptions,
-            ): void
-            (
-              type: string,
-              listener: EventListenerOrEventListenerObject,
-              options?: boolean | AddEventListenerOptions,
-            ): void
-          }
-          removeEventListener: {
-            <K extends keyof TextTrackCueEventMap>(
-              type: K,
-              listener: (
-                this: TextTrackCue,
-                ev: TextTrackCueEventMap[K],
-              ) => any,
-              options?: boolean | EventListenerOptions,
-            ): void
-            (
-              type: string,
-              listener: EventListenerOrEventListenerObject,
-              options?: boolean | EventListenerOptions,
-            ): void
-          }
-          dispatchEvent: {
-            (event: Event): boolean
-            (event: Event): boolean
-          }
-        }
-        readonly length: number
-        getCueById: (id: string) => TextTrackCue | null
-        [Symbol.iterator]: () => ArrayIterator<TextTrackCue>
-      } | null
-    }[],
-    | UseMediaTextTrack[]
-    | {
-        id: number
-        label: string
-        language: string
-        mode: TextTrackMode
-        kind: TextTrackKind
-        inBandMetadataTrackDispatchType: string
-        cues: {
-          [x: number]: {
-            endTime: number
-            id: string
-            onenter: ((this: TextTrackCue, ev: Event) => any) | null
-            onexit: ((this: TextTrackCue, ev: Event) => any) | null
-            pauseOnExit: boolean
-            startTime: number
-            readonly track: {
-              readonly activeCues: /*elided*/ any | null
-              readonly cues: /*elided*/ any | null
-              readonly id: string
-              readonly inBandMetadataTrackDispatchType: string
-              readonly kind: TextTrackKind
-              readonly label: string
-              readonly language: string
-              mode: TextTrackMode
-              oncuechange: ((this: TextTrack, ev: Event) => any) | null
-              addCue: (cue: TextTrackCue) => void
-              removeCue: (cue: TextTrackCue) => void
-              addEventListener: {
-                <K extends keyof TextTrackEventMap>(
-                  type: K,
-                  listener: (this: TextTrack, ev: TextTrackEventMap[K]) => any,
-                  options?: boolean | AddEventListenerOptions,
-                ): void
-                (
-                  type: string,
-                  listener: EventListenerOrEventListenerObject,
-                  options?: boolean | AddEventListenerOptions,
-                ): void
-              }
-              removeEventListener: {
-                <K extends keyof TextTrackEventMap>(
-                  type: K,
-                  listener: (this: TextTrack, ev: TextTrackEventMap[K]) => any,
-                  options?: boolean | EventListenerOptions,
-                ): void
-                (
-                  type: string,
-                  listener: EventListenerOrEventListenerObject,
-                  options?: boolean | EventListenerOptions,
-                ): void
-              }
-              dispatchEvent: {
-                (event: Event): boolean
-                (event: Event): boolean
-              }
-            } | null
-            addEventListener: {
-              <K extends keyof TextTrackCueEventMap>(
-                type: K,
-                listener: (
-                  this: TextTrackCue,
-                  ev: TextTrackCueEventMap[K],
-                ) => any,
-                options?: boolean | AddEventListenerOptions,
-              ): void
-              (
-                type: string,
-                listener: EventListenerOrEventListenerObject,
-                options?: boolean | AddEventListenerOptions,
-              ): void
-            }
-            removeEventListener: {
-              <K extends keyof TextTrackCueEventMap>(
-                type: K,
-                listener: (
-                  this: TextTrackCue,
-                  ev: TextTrackCueEventMap[K],
-                ) => any,
-                options?: boolean | EventListenerOptions,
-              ): void
-              (
-                type: string,
-                listener: EventListenerOrEventListenerObject,
-                options?: boolean | EventListenerOptions,
-              ): void
-            }
-            dispatchEvent: {
-              (event: Event): boolean
-              (event: Event): boolean
-            }
-          }
-          readonly length: number
-          getCueById: (id: string) => TextTrackCue | null
-          [Symbol.iterator]: () => ArrayIterator<TextTrackCue>
-        } | null
-        activeCues: {
-          [x: number]: {
-            endTime: number
-            id: string
-            onenter: ((this: TextTrackCue, ev: Event) => any) | null
-            onexit: ((this: TextTrackCue, ev: Event) => any) | null
-            pauseOnExit: boolean
-            startTime: number
-            readonly track: {
-              readonly activeCues: /*elided*/ any | null
-              readonly cues: /*elided*/ any | null
-              readonly id: string
-              readonly inBandMetadataTrackDispatchType: string
-              readonly kind: TextTrackKind
-              readonly label: string
-              readonly language: string
-              mode: TextTrackMode
-              oncuechange: ((this: TextTrack, ev: Event) => any) | null
-              addCue: (cue: TextTrackCue) => void
-              removeCue: (cue: TextTrackCue) => void
-              addEventListener: {
-                <K extends keyof TextTrackEventMap>(
-                  type: K,
-                  listener: (this: TextTrack, ev: TextTrackEventMap[K]) => any,
-                  options?: boolean | AddEventListenerOptions,
-                ): void
-                (
-                  type: string,
-                  listener: EventListenerOrEventListenerObject,
-                  options?: boolean | AddEventListenerOptions,
-                ): void
-              }
-              removeEventListener: {
-                <K extends keyof TextTrackEventMap>(
-                  type: K,
-                  listener: (this: TextTrack, ev: TextTrackEventMap[K]) => any,
-                  options?: boolean | EventListenerOptions,
-                ): void
-                (
-                  type: string,
-                  listener: EventListenerOrEventListenerObject,
-                  options?: boolean | EventListenerOptions,
-                ): void
-              }
-              dispatchEvent: {
-                (event: Event): boolean
-                (event: Event): boolean
-              }
-            } | null
-            addEventListener: {
-              <K extends keyof TextTrackCueEventMap>(
-                type: K,
-                listener: (
-                  this: TextTrackCue,
-                  ev: TextTrackCueEventMap[K],
-                ) => any,
-                options?: boolean | AddEventListenerOptions,
-              ): void
-              (
-                type: string,
-                listener: EventListenerOrEventListenerObject,
-                options?: boolean | AddEventListenerOptions,
-              ): void
-            }
-            removeEventListener: {
-              <K extends keyof TextTrackCueEventMap>(
-                type: K,
-                listener: (
-                  this: TextTrackCue,
-                  ev: TextTrackCueEventMap[K],
-                ) => any,
-                options?: boolean | EventListenerOptions,
-              ): void
-              (
-                type: string,
-                listener: EventListenerOrEventListenerObject,
-                options?: boolean | EventListenerOptions,
-              ): void
-            }
-            dispatchEvent: {
-              (event: Event): boolean
-              (event: Event): boolean
-            }
-          }
-          readonly length: number
-          getCueById: (id: string) => TextTrackCue | null
-          [Symbol.iterator]: () => ArrayIterator<TextTrackCue>
-        } | null
-      }[]
-  >
-  selectedTrack: ShallowRef<number, number>
+export interface UseMediaControlsReturn {
+  currentTime: ShallowRef<number>
+  duration: ShallowRef<number>
+  waiting: ShallowRef<boolean>
+  seeking: ShallowRef<boolean>
+  ended: ShallowRef<boolean>
+  stalled: ShallowRef<boolean>
+  buffered: ShallowRef<[number, number][]>
+  playing: ShallowRef<boolean>
+  rate: ShallowRef<number>
+  volume: ShallowRef<number>
+  muted: ShallowRef<boolean>
+  tracks: ShallowRef<UseMediaTextTrack[]>
+  selectedTrack: ShallowRef<number>
   enableTrack: (
     track: number | UseMediaTextTrack,
     disableTracks?: boolean,
   ) => void
   disableTrack: (track?: number | UseMediaTextTrack) => void
-  supportsPictureInPicture: boolean | undefined
-  togglePictureInPicture: () => Promise<unknown>
-  isPictureInPicture: ShallowRef<boolean, boolean>
+  supportsPictureInPicture: boolean
+  togglePictureInPicture: () => Promise<PictureInPictureWindow | void>
+  isPictureInPicture: ShallowRef<boolean>
   onSourceError: EventHookOn<Event>
   onPlaybackError: EventHookOn<Event>
 }
-export type UseMediaControlsReturn = ReturnType<typeof useMediaControls>
+export declare function useMediaControls(
+  target: MaybeRef<HTMLMediaElement | null | undefined>,
+  options?: UseMediaControlsOptions,
+): UseMediaControlsReturn
 ```

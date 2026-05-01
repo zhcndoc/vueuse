@@ -1,13 +1,13 @@
 ---
-category: State
+category: 状态
 related: useRefHistory
 ---
 
 # useManualRefHistory
 
-Manually track the change history of a ref when the using calls `commit()`, also provides undo and redo functionality
+在用户调用 `commit()` 时手动跟踪 ref 的变更历史，并提供撤销和重做功能
 
-## Usage
+## 用法
 
 ```ts {5} twoslash include usage
 import { useManualRefHistory } from '@vueuse/core'
@@ -26,7 +26,7 @@ console.log(history.value)
 ] */
 ```
 
-You can use `undo` to reset the ref value to the last history point.
+你可以使用 `undo` 将 ref 的值重置为上一个历史点。
 
 ```ts
 // @include: usage
@@ -36,9 +36,9 @@ undo()
 console.log(counter.value) // 0
 ```
 
-#### History of mutable objects
+#### 可变对象的历史记录
 
-If you are going to mutate the source, you need to pass a custom clone function or use `clone` `true` as a param, that is a shortcut for a minimal clone function `x => JSON.parse(JSON.stringify(x))` that will be used in both `dump` and `parse`.
+如果你打算修改源数据，你需要传入一个自定义的克隆函数，或者将 `clone` 设为 `true` 作为参数，它是一个最小克隆函数 `x => JSON.parse(JSON.stringify(x))` 的快捷方式，这个函数会同时用于 `dump` 和 `parse`。
 
 ```ts {5}
 import { useManualRefHistory } from '@vueuse/core'
@@ -51,11 +51,11 @@ counter.value.foo += 1
 commit()
 ```
 
-#### Custom Clone Function
+#### 自定义克隆函数
 
-To use a full featured or custom clone function, you can set up via the `clone` options.
+要使用功能完整或自定义的克隆函数，你可以通过 `clone` 选项进行设置。
 
-For example, using [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone):
+例如，使用 [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone)：
 
 ```ts
 import { useManualRefHistory } from '@vueuse/core'
@@ -63,7 +63,7 @@ import { useManualRefHistory } from '@vueuse/core'
 const refHistory = useManualRefHistory(target, { clone: structuredClone })
 ```
 
-Or by using [lodash's `cloneDeep`](https://lodash.com/docs/4.17.15#cloneDeep):
+或者使用 [lodash 的 `cloneDeep`](https://lodash.com/docs/4.17.15#cloneDeep)：
 
 ```ts
 import { useManualRefHistory } from '@vueuse/core'
@@ -72,7 +72,7 @@ import { cloneDeep } from 'lodash-es'
 const refHistory = useManualRefHistory(target, { clone: cloneDeep })
 ```
 
-Or a more lightweight [`klona`](https://github.com/lukeed/klona):
+或者使用更轻量的 [`klona`](https://github.com/lukeed/klona)：
 
 ```ts
 import { useManualRefHistory } from '@vueuse/core'
@@ -81,9 +81,9 @@ import { klona } from 'klona'
 const refHistory = useManualRefHistory(target, { clone: klona })
 ```
 
-#### Custom Dump and Parse Function
+#### 自定义 Dump 和 Parse 函数
 
-Instead of using the `clone` options, you can pass custom functions to control the serialization and parsing. In case you do not need history values to be objects, this can save an extra clone when undoing. It is also useful in case you want to have the snapshots already stringified to be saved to local storage for example.
+你也可以不使用 `clone` 选项，而是传入自定义函数来控制序列化和解析。如果你不需要历史值是对象，这样可以在撤销时节省一次额外的克隆。如果你希望快照在保存到本地存储之前就已经是字符串化的，这也很有用。
 
 ```ts
 import { useManualRefHistory } from '@vueuse/core'
@@ -94,21 +94,21 @@ const refHistory = useManualRefHistory(target, {
 })
 ```
 
-### History Capacity
+### 历史容量
 
-We will keep all the history by default (unlimited) until you explicitly clear them up, you can set the maximal amount of history to be kept by `capacity` options.
+默认情况下，我们会保留所有历史记录（无限制），直到你显式清除它们；你可以通过 `capacity` 选项设置要保留的最大历史数量。
 
 ```ts
 import { useManualRefHistory } from '@vueuse/core'
 
 const refHistory = useManualRefHistory(target, {
-  capacity: 15, // limit to 15 history records
+  capacity: 15, // 限制为 15 条历史记录
 })
 
-refHistory.clear() // explicitly clear all the history
+refHistory.clear() // 显式清除所有历史
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseRefHistoryRecord<T> {
@@ -117,81 +117,81 @@ export interface UseRefHistoryRecord<T> {
 }
 export interface UseManualRefHistoryOptions<Raw, Serialized = Raw> {
   /**
-   * Maximum number of history to be kept. Default to unlimited.
+   * 要保留的最大历史数量。默认为无限制。
    */
   capacity?: number
   /**
-   * Clone when taking a snapshot, shortcut for dump: JSON.parse(JSON.stringify(value)).
-   * Default to false
+   * 在创建快照时进行克隆，`dump: JSON.parse(JSON.stringify(value))` 的快捷方式。
+   * 默认为 false
    *
    * @default false
    */
   clone?: boolean | CloneFn<Raw>
   /**
-   * Serialize data into the history
+   * 将数据序列化到历史记录中
    */
   dump?: (v: Raw) => Serialized
   /**
-   * Deserialize data from the history
+   * 从历史记录中反序列化数据
    */
   parse?: (v: Serialized) => Raw
   /**
-   * set data source
+   * 设置数据源
    */
   setSource?: (source: Ref<Raw>, v: Raw) => void
 }
 export interface UseManualRefHistoryReturn<Raw, Serialized> {
   /**
-   * Bypassed tracking ref from the argument
+   * 从参数中绕过跟踪得到的 ref
    */
   source: Ref<Raw>
   /**
-   * An array of history records for undo, newest comes to first
+   * 用于撤销的历史记录数组，最新的排在最前面
    */
-  history: Ref<UseRefHistoryRecord<Serialized>[]>
+  history: ComputedRef<UseRefHistoryRecord<Serialized>[]>
   /**
-   * Last history point, source can be different if paused
+   * 最后一个历史点；如果处于暂停状态，源可能会不同
    */
   last: Ref<UseRefHistoryRecord<Serialized>>
   /**
-   * Same as {@link UseManualRefHistoryReturn.history | history}
+   * 与 {@link UseManualRefHistoryReturn.history | history} 相同
    */
   undoStack: Ref<UseRefHistoryRecord<Serialized>[]>
   /**
-   * Records array for redo
+   * 用于重做的记录数组
    */
   redoStack: Ref<UseRefHistoryRecord<Serialized>[]>
   /**
-   * A ref representing if undo is possible (non empty undoStack)
+   * 表示是否可以撤销的 ref（undoStack 非空）
    */
   canUndo: ComputedRef<boolean>
   /**
-   * A ref representing if redo is possible (non empty redoStack)
+   * 表示是否可以重做的 ref（redoStack 非空）
    */
   canRedo: ComputedRef<boolean>
   /**
-   * Undo changes
+   * 撤销更改
    */
   undo: () => void
   /**
-   * Redo changes
+   * 重做更改
    */
   redo: () => void
   /**
-   * Clear all the history
+   * 清除所有历史
    */
   clear: () => void
   /**
-   * Create a new history record
+   * 创建一条新的历史记录
    */
   commit: () => void
   /**
-   * Reset ref's value with latest history
+   * 使用最新历史记录重置 ref 的值
    */
   reset: () => void
 }
 /**
- * Track the change history of a ref, also provides undo and redo functionality.
+ * 跟踪 ref 的变更历史，并提供撤销和重做功能。
  *
  * @see https://vueuse.org/useManualRefHistory
  * @param source

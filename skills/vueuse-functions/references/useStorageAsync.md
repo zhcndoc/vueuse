@@ -4,43 +4,42 @@ category: State
 
 # useStorageAsync
 
-Reactive Storage in with async support.
+支持异步的响应式存储。
 
-## Usage
+## 用法
 
-The basic usage please refer to `useStorage`.
+基础用法请参考 `useStorage`。
 
-## Wait First Loaded
+## 等待首次加载
 
-When user entering your app, `useStorageAsync()` will start loading value from an async storage,
-sometimes you may get the default initial value, not the real value stored in storage at the very
-beginning.
+当用户进入你的应用时，`useStorageAsync()` 会开始从异步存储中加载值，
+有时在一开始你可能会拿到默认初始值，而不是存储中实际保存的值。
 
 ```ts
 import { useStorageAsync } from '@vueuse/core'
 
 const accessToken = useStorageAsync('access.token', '', SomeAsyncStorage)
 
-// accessToken.value may be empty before the async storage is ready
+// accessToken.value 可能在异步存储就绪之前为空
 console.log(accessToken.value) // ""
 
 setTimeout(() => {
-  // After some time, the async storage is ready
-  console.log(accessToken.value) // "the real value stored in storage"
+  // 一段时间后，异步存储已就绪
+  console.log(accessToken.value) // "存储中实际保存的值"
 }, 500)
 ```
 
-In this case, you can wait the storage prepared, the returned value is also a `Promise`,
-so you can wait it resolved in your template or script.
+在这种情况下，你可以等待存储准备完成，返回值也是一个 `Promise`，
+因此你可以在模板或脚本中等待它解析。
 
 ```ts
-// Use top-level await if your environment supports it
+// 如果你的环境支持，请使用顶层 await
 const accessToken = await useStorageAsync('access.token', '', SomeAsyncStorage)
 
-console.log(accessToken.value) // "the real value stored in storage"
+console.log(accessToken.value) // "存储中实际保存的值"
 ```
 
-If you must wait multiple storages, put them into a `Promise.allSettled()`
+如果你必须等待多个存储，请把它们放进 `Promise.allSettled()`
 
 ```ts
 router.onReady(async () => {
@@ -54,12 +53,12 @@ router.onReady(async () => {
 })
 ```
 
-There is a callback named `onReady` in options:
+在选项中有一个名为 `onReady` 的回调：
 
 ```ts
 import { useStorageAsync } from '@vueuse/core'
 
-// Use ES2024 Promise.withResolvers, you may use any Deferred object or EventBus to do same thing.
+// 使用 ES2024 的 Promise.withResolvers，你也可以使用任何 Deferred 对象或 EventBus 来做同样的事。
 const { promise, resolve } = Promise.withResolvers()
 
 const accessToken = useStorageAsync('access.token', '', SomeAsyncStorage, {
@@ -68,18 +67,18 @@ const accessToken = useStorageAsync('access.token', '', SomeAsyncStorage, {
   }
 })
 
-// At main.ts
+// 在 main.ts 中
 router.onReady(async () => {
-  // Let's wait accessToken loaded
+  // 让我们等待 accessToken 加载完成
   await promise
 
-  // Now accessToken has loaded, we can safely mount our app
+  // 现在 accessToken 已加载完成，我们可以安全地挂载应用
 
   app.mount('app')
 })
 ```
 
-Simply use `resolve` as callback:
+也可以直接将 `resolve` 作为回调：
 
 ```ts
 const accessToken = useStorageAsync('access.token', '', SomeAsyncStorage, {
@@ -87,7 +86,7 @@ const accessToken = useStorageAsync('access.token', '', SomeAsyncStorage, {
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseStorageAsyncOptions<T> extends Omit<
@@ -95,11 +94,11 @@ export interface UseStorageAsyncOptions<T> extends Omit<
   "serializer"
 > {
   /**
-   * Custom data serialization
+   * 自定义数据序列化
    */
   serializer?: SerializerAsync<T>
   /**
-   * On first value loaded hook.
+   * 首次值加载完成时的钩子。
    */
   onReady?: (value: T) => void
 }

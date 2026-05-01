@@ -4,9 +4,9 @@ category: Elements
 
 # useElementSize
 
-Reactive size of an HTML element. [ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
+HTML 元素的响应式尺寸。[ResizeObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -19,23 +19,23 @@ const { width, height } = useElementSize(el)
 
 <template>
   <div ref="el">
-    Height: {{ height }}
-    Width: {{ width }}
+    高度：{{ height }}
+    宽度：{{ width }}
   </div>
 </template>
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseElementSize v-slot="{ width, height }">
-    Width: {{ width }} Height: {{ height }}
+    宽度：{{ width }} 高度：{{ height }}
   </UseElementSize>
 </template>
 ```
 
-## Directive Usage
+## 指令用法
 
 ```vue
 <script setup lang="ts">
@@ -48,31 +48,32 @@ function onResize({ width, height }: { width: number, height: number }) {
 
 <template>
   <textarea v-element-size="onResize" />
-  <!-- with options -->
+  <!-- 带选项 -->
   <textarea v-element-size="[onResize, { width: 100, height: 100 }, { box: 'content-box' }]" />
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface ElementSize {
   width: number
   height: number
 }
+export interface UseElementSizeOptions extends UseResizeObserverOptions {}
+export interface UseElementSizeReturn {
+  width: ShallowRef<number>
+  height: ShallowRef<number>
+  stop: () => void
+}
 /**
- * Reactive size of an HTML element.
+ * HTML 元素的响应式尺寸。
  *
  * @see https://vueuse.org/useElementSize
  */
 export declare function useElementSize(
   target: MaybeComputedElementRef,
   initialSize?: ElementSize,
-  options?: UseResizeObserverOptions,
-): {
-  width: ShallowRef<number, number>
-  height: ShallowRef<number, number>
-  stop: () => void
-}
-export type UseElementSizeReturn = ReturnType<typeof useElementSize>
+  options?: UseElementSizeOptions,
+): UseElementSizeReturn
 ```

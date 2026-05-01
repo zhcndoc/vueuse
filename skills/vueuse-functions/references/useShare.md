@@ -4,11 +4,11 @@ category: Browser
 
 # useShare
 
-Reactive [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share). The Browser provides features that can share content in text or file.
+响应式 [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share)。浏览器提供了可共享文本或文件内容的功能。
 
-> The `share` method has to be called following a user gesture like a button click. It can’t simply be called on page load for example. That’s in place to help prevent abuse.
+> `share` 方法必须在用户手势之后调用，例如按钮点击。不能像在页面加载时那样直接调用。这样做是为了帮助防止滥用。
 
-## Usage
+## 用法
 
 ```ts
 import { useShare } from '@vueuse/core'
@@ -17,16 +17,16 @@ const { share, isSupported } = useShare()
 
 function startShare() {
   share({
-    title: 'Hello',
-    text: 'Hello my friend!',
+    title: '你好',
+    text: '你好，我的朋友！',
     url: location.href,
   })
 }
 ```
 
-### Passing a source ref
+### 传入源 ref
 
-You can pass a `ref` to it, changes from the source ref will be reflected to your sharing options.
+你可以向其中传入一个 `ref`，源 ref 的变化会反映到你的共享选项中。
 
 ```ts {6}
 import { ref } from 'vue'
@@ -39,7 +39,7 @@ shareOptions.value.text = 'bar'
 share()
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseShareOptions {
@@ -48,8 +48,11 @@ export interface UseShareOptions {
   text?: string
   url?: string
 }
+export interface UseShareReturn extends Supportable {
+  share: (overrideOptions?: MaybeRefOrGetter<UseShareOptions>) => Promise<void>
+}
 /**
- * Reactive Web Share API.
+ * 响应式 Web Share API。
  *
  * @see https://vueuse.org/useShare
  * @param shareOptions
@@ -60,9 +63,5 @@ export interface UseShareOptions {
 export declare function useShare(
   shareOptions?: MaybeRefOrGetter<UseShareOptions>,
   options?: ConfigurableNavigator,
-): {
-  isSupported: ComputedRef<boolean>
-  share: (overrideOptions?: MaybeRefOrGetter<UseShareOptions>) => Promise<void>
-}
-export type UseShareReturn = ReturnType<typeof useShare>
+): UseShareReturn
 ```

@@ -4,9 +4,9 @@ category: Sensors
 
 # usePointer
 
-Reactive [pointer state](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events).
+响应式 [指针状态](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events)。
 
-## Basic Usage
+## 基本用法
 
 ```ts
 import { usePointer } from '@vueuse/core'
@@ -14,9 +14,9 @@ import { usePointer } from '@vueuse/core'
 const { x, y, pressure, pointerType } = usePointer()
 ```
 
-## Component Usage
+## 组件用法
 
-By default, the component will track the pointer on `window`
+默认情况下，组件会在 `window` 上跟踪指针
 
 ```vue
 <template>
@@ -27,7 +27,7 @@ By default, the component will track the pointer on `window`
 </template>
 ```
 
-To track local position in the element, set `target="self"`:
+要跟踪元素内的局部位置，请设置 `target="self"`：
 
 ```vue
 <template>
@@ -37,7 +37,7 @@ To track local position in the element, set `target="self"`:
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UsePointerState extends Position {
@@ -52,13 +52,13 @@ export interface UsePointerState extends Position {
 }
 export interface UsePointerOptions extends ConfigurableWindow {
   /**
-   * Pointer types that listen to.
+   * 监听的指针类型。
    *
    * @default ['mouse', 'touch', 'pen']
    */
   pointerTypes?: PointerType[]
   /**
-   * Initial values
+   * 初始值
    */
   initialValue?: MaybeRef<Partial<UsePointerState>>
   /**
@@ -66,24 +66,26 @@ export interface UsePointerOptions extends ConfigurableWindow {
    */
   target?: MaybeRef<EventTarget | null | undefined> | Document | Window
 }
+export interface UsePointerReturn {
+  pressure: Ref<number>
+  pointerId: Ref<number>
+  tiltX: Ref<number>
+  tiltY: Ref<number>
+  width: Ref<number>
+  height: Ref<number>
+  twist: Ref<number>
+  pointerType: Ref<PointerType | null>
+  x: Ref<number>
+  y: Ref<number>
+  isInside: ShallowRef<boolean>
+}
 /**
- * Reactive pointer state.
+ * 响应式指针状态。
  *
  * @see https://vueuse.org/usePointer
  * @param options
  */
-export declare function usePointer(options?: UsePointerOptions): {
-  isInside: ShallowRef<boolean, boolean>
-  pressure: Ref<number, number>
-  pointerId: Ref<number, number>
-  tiltX: Ref<number, number>
-  tiltY: Ref<number, number>
-  width: Ref<number, number>
-  height: Ref<number, number>
-  twist: Ref<number, number>
-  pointerType: Ref<PointerType | null, PointerType | null>
-  x: Ref<number, number>
-  y: Ref<number, number>
-}
-export type UsePointerReturn = ReturnType<typeof usePointer>
+export declare function usePointer(
+  options?: UsePointerOptions,
+): UsePointerReturn
 ```

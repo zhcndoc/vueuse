@@ -1,12 +1,12 @@
 ---
-category: Browser
+category: 浏览器
 ---
 
 # usePerformanceObserver
 
-Observe performance metrics.
+观察性能指标。
 
-## Usage
+## 使用
 
 ```ts
 import { usePerformanceObserver } from '@vueuse/core'
@@ -19,20 +19,20 @@ usePerformanceObserver({
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export type UsePerformanceObserverOptions = PerformanceObserverInit &
   ConfigurableWindow & {
     /**
-     * Start the observer immediate.
+     * 立即启动观察器。
      *
      * @default true
      */
     immediate?: boolean
   }
 /**
- * Observe performance metrics.
+ * 观察性能指标。
  *
  * @see https://vueuse.org/usePerformanceObserver
  * @param options
@@ -41,7 +41,7 @@ export declare function usePerformanceObserver(
   options: UsePerformanceObserverOptions,
   callback: PerformanceObserverCallback,
 ): {
-  isSupported: ComputedRef<boolean>
+  isSupported: UseSupportedReturn
   start: () => void
   stop: () => void
 }

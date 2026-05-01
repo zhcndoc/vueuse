@@ -4,11 +4,11 @@ category: Browser
 
 # useBrowserLocation
 
-Reactive browser location
+响应式浏览器位置
 
-> NOTE: If you're using Vue Router, use [`useRoute`](https://router.vuejs.org/guide/advanced/composition-api.html) provided by Vue Router instead.
+> 注意：如果你正在使用 Vue Router，请改用 Vue Router 提供的 [`useRoute`](https://router.vuejs.org/guide/advanced/composition-api.html)。
 
-## Usage
+## 用法
 
 ```ts
 import { useBrowserLocation } from '@vueuse/core'
@@ -16,17 +16,18 @@ import { useBrowserLocation } from '@vueuse/core'
 const location = useBrowserLocation()
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <UseBrowserLocation v-slot="location">
-  Browser Location: {{ location }}
+  浏览器位置：{{ location }}
 </UseBrowserLocation>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
+export interface UseBrowserLocationOptions extends ConfigurableWindow {}
 export interface BrowserLocationState {
   readonly trigger: string
   readonly state?: any
@@ -41,43 +42,15 @@ export interface BrowserLocationState {
   protocol?: string
   search?: string
 }
+export type UseBrowserLocationReturn = Ref<BrowserLocationState>
 /**
- * Reactive browser location.
+ * 响应式浏览器位置。
  *
  * @see https://vueuse.org/useBrowserLocation
  *
  * @__NO_SIDE_EFFECTS__
  */
-export declare function useBrowserLocation(options?: ConfigurableWindow): Ref<
-  {
-    readonly trigger: string
-    readonly state?: any
-    readonly length?: number | undefined
-    readonly origin?: string | undefined
-    hash?: string | undefined
-    host?: string | undefined
-    hostname?: string | undefined
-    href?: string | undefined
-    pathname?: string | undefined
-    port?: string | undefined
-    protocol?: string | undefined
-    search?: string | undefined
-  },
-  | BrowserLocationState
-  | {
-      readonly trigger: string
-      readonly state?: any
-      readonly length?: number | undefined
-      readonly origin?: string | undefined
-      hash?: string | undefined
-      host?: string | undefined
-      hostname?: string | undefined
-      href?: string | undefined
-      pathname?: string | undefined
-      port?: string | undefined
-      protocol?: string | undefined
-      search?: string | undefined
-    }
->
-export type UseBrowserLocationReturn = ReturnType<typeof useBrowserLocation>
+export declare function useBrowserLocation(
+  options?: UseBrowserLocationOptions,
+): UseBrowserLocationReturn
 ```

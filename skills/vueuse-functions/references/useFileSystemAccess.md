@@ -4,9 +4,9 @@ category: Browser
 
 # useFileSystemAccess
 
-Create and read and write local files with [FileSystemAccessAPI](https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API)
+使用 [FileSystemAccessAPI](https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API) 创建、读取和写入本地文件
 
-## Usage
+## 用法
 
 ```ts
 import { useFileSystemAccess } from '@vueuse/core'
@@ -27,11 +27,11 @@ const {
 } = useFileSystemAccess()
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 /**
- * window.showOpenFilePicker parameters
+ * window.showOpenFilePicker 参数
  * @see https://developer.mozilla.org/en-US/docs/Web/API/window/showOpenFilePicker#parameters
  */
 export interface FileSystemAccessShowOpenFileOptions {
@@ -43,7 +43,7 @@ export interface FileSystemAccessShowOpenFileOptions {
   excludeAcceptAllOption?: boolean
 }
 /**
- * window.showSaveFilePicker parameters
+ * window.showSaveFilePicker 参数
  * @see https://developer.mozilla.org/en-US/docs/Web/API/window/showSaveFilePicker#parameters
  */
 export interface FileSystemAccessShowSaveFileOptions {
@@ -116,12 +116,12 @@ export type UseFileSystemAccessShowSaveFileOptions = Pick<
 export type UseFileSystemAccessOptions = ConfigurableWindow &
   UseFileSystemAccessCommonOptions & {
     /**
-     * file data type
+     * 文件数据类型
      */
     dataType?: MaybeRefOrGetter<"Text" | "ArrayBuffer" | "Blob">
   }
 /**
- * Create and read and write local files.
+ * 创建、读取和写入本地文件。
  * @see https://vueuse.org/useFileSystemAccess
  */
 export declare function useFileSystemAccess(): UseFileSystemAccessReturn<
@@ -145,8 +145,7 @@ export declare function useFileSystemAccess(
 export declare function useFileSystemAccess(
   options: UseFileSystemAccessOptions,
 ): UseFileSystemAccessReturn<string | ArrayBuffer | Blob>
-export interface UseFileSystemAccessReturn<T = string> {
-  isSupported: ComputedRef<boolean>
+export interface UseFileSystemAccessReturn<T = string> extends Supportable {
   data: ShallowRef<T | undefined>
   file: ShallowRef<File | undefined>
   fileName: ComputedRef<string>

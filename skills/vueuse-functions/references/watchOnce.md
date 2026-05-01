@@ -4,33 +4,33 @@ category: Watch
 
 # watchOnce
 
-Shorthand for watching value with `{ once: true }`. Once the callback fires once, the watcher will be stopped.
-See [Vue's docs](https://vuejs.org/guide/essentials/watchers.html#once-watchers) for full details.
+带有 `{ once: true }` 的监听值的简写。一旦回调触发一次，watcher 就会停止。
+完整细节请参阅 [Vue's docs](https://vuejs.org/guide/essentials/watchers.html#once-watchers)。
 
-## Usage
+## 用法
 
-Similar to `watch`, but with `{ once: true }`
+类似于 `watch`，但带有 `{ once: true }`
 
 ```ts
 import { watchOnce } from '@vueuse/core'
 
 watchOnce(source, () => {
-  // triggers only once
+  // 仅触发一次
   console.log('source changed!')
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
-export declare function watchOnce<T extends Readonly<MultiWatchSources>>(
-  source: [...T],
-  cb: WatchCallback<MapSources<T>, MapOldSources<T, true>>,
-  options?: Omit<WatchOptions<true>, "once">,
-): WatchHandle
 export declare function watchOnce<T>(
   source: WatchSource<T>,
   cb: WatchCallback<T, T | undefined>,
+  options?: Omit<WatchOptions<true>, "once">,
+): WatchHandle
+export declare function watchOnce<T extends Readonly<MultiWatchSources>>(
+  source: [...T],
+  cb: WatchCallback<MapSources<T>, MapOldSources<T, true>>,
   options?: Omit<WatchOptions<true>, "once">,
 ): WatchHandle
 export declare function watchOnce<T extends object>(

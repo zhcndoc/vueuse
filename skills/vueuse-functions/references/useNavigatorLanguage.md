@@ -4,9 +4,9 @@ category: Sensors
 
 # useNavigatorLanguage
 
-Reactive [navigator.language](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language).
+响应式的 [navigator.language](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/language)。
 
-## Usage
+## 用法
 
 ```ts
 import { useNavigatorLanguage } from '@vueuse/core'
@@ -14,25 +14,24 @@ import { useNavigatorLanguage } from '@vueuse/core'
 const { language } = useNavigatorLanguage()
 
 watch(language, () => {
-  // Listen to the value changing
+  // 监听值的变化
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
-export interface NavigatorLanguageState {
-  isSupported: ComputedRef<boolean>
+export interface NavigatorLanguageState extends Supportable {
   /**
    *
-   * ISO 639-1 standard Language Code
+   * ISO 639-1 标准语言代码
    *
-   * @info The detected user agent language preference as a language tag
-   * (which is sometimes referred to as a "locale identifier").
-   * This consists of a 2-3 letter base language tag that indicates a
-   * language, optionally followed by additional subtags separated by
-   * '-'. The most common extra information is the country or region
-   * variant (like 'en-US' or 'fr-CA').
+   * @info 检测到的用户代理语言偏好，作为语言标签
+   * （有时也称为“区域设置标识符”）。
+   * 这由一个 2-3 个字母的基础语言标签组成，用于表示一种
+   * 语言，后面可选地跟随由
+   * '-' 分隔的附加子标签。最常见的额外信息是国家或地区
+   * 变体（如 'en-US' 或 'fr-CA'）。
    *
    *
    * @see https://www.iso.org/iso-639-language-codes.html
@@ -41,17 +40,18 @@ export interface NavigatorLanguageState {
    */
   language: ShallowRef<string | undefined>
 }
+export interface UseNavigatorLanguageOptions extends ConfigurableWindow {}
+export type UseNavigatorLanguageReturn = Readonly<NavigatorLanguageState>
 /**
  *
- * Reactive useNavigatorLanguage
+ * 响应式的 useNavigatorLanguage
  *
- * Detects the currently selected user language and returns a reactive language
+ * 检测当前选中的用户语言并返回一个响应式语言
  * @see https://vueuse.org/useNavigatorLanguage
  *
  * @__NO_SIDE_EFFECTS__
  */
 export declare function useNavigatorLanguage(
-  options?: ConfigurableWindow,
-): Readonly<NavigatorLanguageState>
-export type UseNavigatorLanguageReturn = ReturnType<typeof useNavigatorLanguage>
+  options?: UseNavigatorLanguageOptions,
+): UseNavigatorLanguageReturn
 ```

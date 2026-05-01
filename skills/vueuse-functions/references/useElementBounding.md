@@ -4,9 +4,9 @@ category: Elements
 
 # useElementBounding
 
-Reactive [bounding box](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) of an HTML element
+HTML 元素的响应式 [边界框](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -22,17 +22,17 @@ const { x, y, top, right, bottom, left, width, height } = useElementBounding(el)
 </template>
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseElementBounding v-slot="{ width, height }">
-    Width: {{ width }} Height: {{ height }}
+    宽度：{{ width }} 高度：{{ height }}
   </UseElementBounding>
 </template>
 ```
 
-## Directive Usage
+## 指令用法
 
 ```vue
 <script setup lang="ts">
@@ -64,51 +64,62 @@ const options = {
 
 <template>
   <textarea v-element-bounding="onBounding" />
-  <!-- with options -->
+  <!-- 使用选项 -->
   <textarea v-element-bounding="[onBounding, options]" />
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseElementBoundingOptions {
   /**
-   * Reset values to 0 on component unmounted
+   * 组件卸载时将值重置为 0
    *
    * @default true
    */
   reset?: boolean
   /**
-   * Listen to window resize event
+   * 监听 window resize 事件
    *
    * @default true
    */
   windowResize?: boolean
   /**
-   * Listen to window scroll event
+   * 监听 window scroll 事件
    *
    * @default true
    */
   windowScroll?: boolean
   /**
-   * Immediately call update on component mounted
+   * 在组件挂载后立即调用 update
    *
    * @default true
    */
   immediate?: boolean
   /**
-   * Timing to recalculate the bounding box
+   * 重新计算边界框的时机
    *
-   * Setting to `next-frame` can be useful when using this together with something like {@link useBreakpoints}
-   * and therefore the layout (which influences the bounding box of the observed element) is not updated on the current tick.
+   * 将其设置为 `next-frame` 在与 {@link useBreakpoints} 之类的内容一起使用时可能很有用，
+   * 因此当前 tick 上不会更新布局（这会影响被观察元素的边界框）。
    *
    * @default 'sync'
    */
   updateTiming?: "sync" | "next-frame"
 }
+export interface UseElementBoundingReturn {
+  height: ShallowRef<number>
+  bottom: ShallowRef<number>
+  left: ShallowRef<number>
+  right: ShallowRef<number>
+  top: ShallowRef<number>
+  width: ShallowRef<number>
+  x: ShallowRef<number>
+  y: ShallowRef<number>
+  update: () => void
+}
 /**
- * Reactive bounding box of an HTML element.
+ * HTML 元素的响应式边界框。
  *
  * @see https://vueuse.org/useElementBounding
  * @param target
@@ -116,16 +127,5 @@ export interface UseElementBoundingOptions {
 export declare function useElementBounding(
   target: MaybeComputedElementRef,
   options?: UseElementBoundingOptions,
-): {
-  height: ShallowRef<number, number>
-  bottom: ShallowRef<number, number>
-  left: ShallowRef<number, number>
-  right: ShallowRef<number, number>
-  top: ShallowRef<number, number>
-  width: ShallowRef<number, number>
-  x: ShallowRef<number, number>
-  y: ShallowRef<number, number>
-  update: () => void
-}
-export type UseElementBoundingReturn = ReturnType<typeof useElementBounding>
+): UseElementBoundingReturn
 ```

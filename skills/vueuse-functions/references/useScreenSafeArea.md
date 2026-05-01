@@ -4,19 +4,19 @@ category: Browser
 
 # useScreenSafeArea
 
-Reactive `env(safe-area-inset-*)`
+响应式 `env(safe-area-inset-*)`
 
 ![image](https://webkit.org/wp-content/uploads/safe-areas-1.png)
 
-## Usage
+## 用法
 
-In order to make the page to be fully rendered in the screen, the additional attribute `viewport-fit=cover` within `viewport` meta tag must be set firstly, the viewport meta tag may look like this:
+为了让页面能够在屏幕中完整渲染，必须先在 `viewport` meta 标签中设置额外的属性 `viewport-fit=cover`，viewport meta 标签可以像这样：
 
 ```html
 <meta name="viewport" content="initial-scale=1, viewport-fit=cover" />
 ```
 
-Then we could use `useScreenSafeArea` in the component as shown below:
+然后我们就可以在组件中使用 `useScreenSafeArea`，如下所示：
 
 ```ts
 import { useScreenSafeArea } from '@vueuse/core'
@@ -29,9 +29,9 @@ const {
 } = useScreenSafeArea()
 ```
 
-For further details, you may refer to this documentation: [Designing Websites for iPhone X](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
+更多详情，你可以参考这份文档：[为 iPhone X 设计网站](https://webkit.org/blog/7929/designing-websites-for-iphone-x/)
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
@@ -41,20 +41,20 @@ For further details, you may refer to this documentation: [Designing Websites fo
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
+export interface UseScreenSafeAreaReturn {
+  top: ShallowRef<string>
+  right: ShallowRef<string>
+  bottom: ShallowRef<string>
+  left: ShallowRef<string>
+  update: () => void
+}
 /**
- * Reactive `env(safe-area-inset-*)`
+ * 响应式 `env(safe-area-inset-*)`
  *
  * @see https://vueuse.org/useScreenSafeArea
  */
-export declare function useScreenSafeArea(): {
-  top: ShallowRef<string, string>
-  right: ShallowRef<string, string>
-  bottom: ShallowRef<string, string>
-  left: ShallowRef<string, string>
-  update: () => void
-}
-export type UseScreenSafeAreaReturn = ReturnType<typeof useScreenSafeArea>
+export declare function useScreenSafeArea(): UseScreenSafeAreaReturn
 ```

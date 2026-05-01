@@ -4,11 +4,11 @@ category: Sensors
 
 # useSpeechRecognition
 
-Reactive [SpeechRecognition](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition).
+响应式 [SpeechRecognition](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition)。
 
 > [Can I use?](https://caniuse.com/mdn-api_speechrecognitionevent)
 
-## Usage
+## 用法
 
 ```ts
 import { useSpeechRecognition } from '@vueuse/core'
@@ -23,9 +23,9 @@ const {
 } = useSpeechRecognition()
 ```
 
-### Options
+### 选项
 
-The following shows the default values of the options, they will be directly passed to [SpeechRecognition API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition).
+以下显示的是选项的默认值，它们会直接传递给 [SpeechRecognition API](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition)。
 
 ```ts
 import { useSpeechRecognition } from '@vueuse/core'
@@ -37,38 +37,48 @@ useSpeechRecognition({
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseSpeechRecognitionOptions extends ConfigurableWindow {
   /**
-   * Controls whether continuous results are returned for each recognition, or only a single result.
+   * 控制是否为每次识别返回连续结果，或者只返回单个结果。
    *
    * @default true
    */
   continuous?: boolean
   /**
-   * Controls whether interim results should be returned (true) or not (false.) Interim results are results that are not yet final
+   * 控制是否应返回中间结果（true）或不返回（false）。中间结果是尚未最终确定的结果
    *
    * @default true
    */
   interimResults?: boolean
   /**
-   * Language for SpeechRecognition
+   * SpeechRecognition 的语言
    *
    * @default 'en-US'
    */
   lang?: MaybeRefOrGetter<string>
   /**
-   * A number representing the maximum returned alternatives for each result.
+   * 表示每个结果允许返回的最大备选数量。
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition/maxAlternatives
    * @default 1
    */
   maxAlternatives?: number
 }
+export interface UseSpeechRecognitionReturn extends Supportable {
+  isListening: ShallowRef<boolean>
+  isFinal: ShallowRef<boolean>
+  recognition: SpeechRecognition | undefined
+  result: ShallowRef<string>
+  error: ShallowRef<SpeechRecognitionErrorEvent | Error | undefined>
+  toggle: (value?: boolean) => void
+  start: () => void
+  stop: () => void
+}
 /**
- * Reactive SpeechRecognition.
+ * 响应式 SpeechRecognition。
  *
  * @see https://vueuse.org/useSpeechRecognition
  * @see https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition SpeechRecognition
@@ -76,19 +86,5 @@ export interface UseSpeechRecognitionOptions extends ConfigurableWindow {
  */
 export declare function useSpeechRecognition(
   options?: UseSpeechRecognitionOptions,
-): {
-  isSupported: ComputedRef<boolean>
-  isListening: ShallowRef<boolean, boolean>
-  isFinal: ShallowRef<boolean, boolean>
-  recognition: SpeechRecognition | undefined
-  result: ShallowRef<string, string>
-  error: ShallowRef<
-    Error | SpeechRecognitionErrorEvent | undefined,
-    Error | SpeechRecognitionErrorEvent | undefined
-  >
-  toggle: (value?: boolean) => void
-  start: () => void
-  stop: () => void
-}
-export type UseSpeechRecognitionReturn = ReturnType<typeof useSpeechRecognition>
+): UseSpeechRecognitionReturn
 ```

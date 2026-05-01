@@ -4,9 +4,9 @@ category: Sensors
 
 # usePointerLock
 
-Reactive [pointer lock](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API).
+响应式 [指针锁定](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API)。
 
-## Basic Usage
+## 基本用法
 
 ```ts
 import { usePointerLock } from '@vueuse/core'
@@ -20,25 +20,31 @@ const {
 } = usePointerLock()
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UsePointerLock v-slot="{ lock }">
     <canvas />
     <button @click="lock">
-      Lock Pointer on Canvas
+      在 Canvas 上锁定指针
     </button>
   </UsePointerLock>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UsePointerLockOptions extends ConfigurableDocument {}
+export interface UsePointerLockReturn extends Supportable {
+  element: ShallowRef<MaybeElement>
+  triggerElement: ShallowRef<MaybeElement>
+  lock: (e: MaybeElementRef | Event) => Promise<MaybeElement>
+  unlock: () => Promise<boolean>
+}
 /**
- * Reactive pointer lock.
+ * 响应式指针锁定。
  *
  * @see https://vueuse.org/usePointerLock
  * @param target
@@ -49,12 +55,5 @@ export interface UsePointerLockOptions extends ConfigurableDocument {}
 export declare function usePointerLock(
   target?: MaybeElementRef,
   options?: UsePointerLockOptions,
-): {
-  isSupported: ComputedRef<boolean>
-  element: ShallowRef<MaybeElement, MaybeElement>
-  triggerElement: ShallowRef<MaybeElement, MaybeElement>
-  lock: (e: MaybeElementRef | Event) => Promise<HTMLElement | SVGElement>
-  unlock: () => Promise<boolean>
-}
-export type UsePointerLockReturn = ReturnType<typeof usePointerLock>
+): UsePointerLockReturn
 ```

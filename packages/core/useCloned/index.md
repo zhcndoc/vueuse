@@ -20,6 +20,17 @@ original.value.key = 'some new value'
 console.log(cloned.value.key) // 'value'
 ```
 
+对源对象的更改不会立即反映到克隆的 ref 中。
+使用 `{ flush: 'sync' }` 可在不延迟的情况下获取更新后的值。
+
+```ts
+const { cloned } = useCloned(original, { flush: 'sync' })
+
+original.value.key = 'some new value'
+
+console.log(cloned.value.key) // 'some new value'
+```
+
 ## 手动克隆
 
 ```ts

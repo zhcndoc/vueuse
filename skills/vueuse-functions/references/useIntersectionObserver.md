@@ -4,9 +4,9 @@ category: Elements
 
 # useIntersectionObserver
 
-Detects that a target element's visibility.
+检测目标元素可见性的变化。
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -31,7 +31,7 @@ const { stop } = useIntersectionObserver(
 </template>
 ```
 
-## Directive Usage
+## 指令用法
 
 ```vue
 <script setup lang="ts">
@@ -50,17 +50,17 @@ function onIntersectionObserver([entry]: IntersectionObserverEntry[]) {
 <template>
   <div>
     <p>
-      Scroll me down!
+      向下滚动！
     </p>
     <div v-intersection-observer="onIntersectionObserver">
       <p>Hello world!</p>
     </div>
   </div>
 
-  <!-- with options -->
+  <!-- 带选项 -->
   <div ref="root">
     <p>
-      Scroll me down!
+      向下滚动！
     </p>
     <div v-intersection-observer="[onIntersectionObserver, { root }]">
       <p>Hello world!</p>
@@ -71,36 +71,35 @@ function onIntersectionObserver([entry]: IntersectionObserverEntry[]) {
 
 [IntersectionObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver)
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseIntersectionObserverOptions extends ConfigurableWindow {
   /**
-   * Start the IntersectionObserver immediately on creation
+   * 创建时立即启动 IntersectionObserver
    *
    * @default true
    */
   immediate?: boolean
   /**
-   * The Element or Document whose bounds are used as the bounding box when testing for intersection.
+   * 用作测试交叉时边界框的元素或文档。
    */
   root?: MaybeComputedElementRef | Document
   /**
-   * A string which specifies a set of offsets to add to the root's bounding_box when calculating intersections.
+   * 一个字符串，用于指定在计算交叉时添加到根边界框的偏移量集合。
    */
   rootMargin?: MaybeRefOrGetter<string>
   /**
-   * Either a single number or an array of numbers between 0.0 and 1.
+   * 单个数字或介于 0.0 和 1 之间的数字数组。
    * @default 0
    */
   threshold?: number | number[]
 }
-export interface UseIntersectionObserverReturn extends Pausable {
-  isSupported: ComputedRef<boolean>
+export interface UseIntersectionObserverReturn extends Supportable, Pausable {
   stop: () => void
 }
 /**
- * Detects that a target element's visibility.
+ * 检测目标元素可见性的变化。
  *
  * @see https://vueuse.org/useIntersectionObserver
  * @param target

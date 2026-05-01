@@ -4,15 +4,15 @@ category: '@Integrations'
 
 # useNProgress
 
-Reactive wrapper for [`nprogress`](https://github.com/rstacruz/nprogress).
+[`nprogress`](https://github.com/rstacruz/nprogress) 的响应式包装器。
 
-## Install
+## 安装
 
 ```bash
 npm i nprogress@^0
 ```
 
-## Usage
+## 用法
 
 ```ts {6}
 import { useNProgress } from '@vueuse/integrations/useNProgress'
@@ -24,9 +24,9 @@ function toggle() {
 }
 ```
 
-### Passing a progress percentage
+### 传入进度百分比
 
-You can pass a percentage to indicate where the bar should start from.
+你可以传入一个百分比来指定进度条从哪里开始。
 
 ```ts {3}
 import { useNProgress } from '@vueuse/integrations/useNProgress'
@@ -38,13 +38,13 @@ function done() {
 }
 ```
 
-> To change the progress percentage, set `progress.value = n`, where n is a number between 0..1.
+> 要更改进度百分比，请设置 `progress.value = n`，其中 n 是一个介于 0..1 之间的数字。
 
-### Customization
+### 自定义
 
-Just edit [nprogress.css](https://github.com/rstacruz/nprogress/blob/master/nprogress.css) to your liking. Tip: you probably only want to find and replace occurrences of #29d.
+只需按你的喜好编辑 [nprogress.css](https://github.com/rstacruz/nprogress/blob/master/nprogress.css) 即可。提示：你可能只需要查找并替换 #29d 的出现位置。
 
-You can [configure](https://github.com/rstacruz/nprogress#configuration) it by passing an object as a second parameter.
+你可以通过传入一个对象作为第二个参数来[配置](https://github.com/rstacruz/nprogress#configuration)它。
 
 ```ts {4}
 import { useNProgress } from '@vueuse/integrations/useNProgress'
@@ -55,24 +55,24 @@ useNProgress(null, {
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export type UseNProgressOptions = Partial<NProgressOptions>
+export interface UseNProgressReturn {
+  isLoading: WritableComputedRef<boolean, boolean>
+  progress: Ref<number | null | undefined>
+  start: () => NProgress
+  done: (force?: boolean) => NProgress
+  remove: () => void
+}
 /**
- * Reactive progress bar.
+ * 响应式进度条。
  *
  * @see https://vueuse.org/useNProgress
  */
 export declare function useNProgress(
   currentProgress?: MaybeRefOrGetter<number | null | undefined>,
   options?: UseNProgressOptions,
-): {
-  isLoading: WritableComputedRef<boolean, boolean>
-  progress: Ref<number | null | undefined, number | null | undefined>
-  start: () => nprogress.NProgress
-  done: (force?: boolean) => nprogress.NProgress
-  remove: () => void
-}
-export type UseNProgressReturn = ReturnType<typeof useNProgress>
+): UseNProgressReturn
 ```

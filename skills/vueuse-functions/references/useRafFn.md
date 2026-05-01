@@ -4,9 +4,9 @@ category: Animation
 
 # useRafFn
 
-Call function on every `requestAnimationFrame`. With controls of pausing and resuming.
+在每次 `requestAnimationFrame` 时调用函数。支持暂停和恢复控制。
 
-## Usage
+## 用法
 
 ```ts
 import { useRafFn } from '@vueuse/core'
@@ -20,42 +20,42 @@ const { pause, resume } = useRafFn(() => {
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseRafFnCallbackArguments {
   /**
-   * Time elapsed between this and the last frame.
+   * 此帧与上一帧之间经过的时间。
    */
   delta: number
   /**
-   * Time elapsed since the creation of the web page. See {@link https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#the_time_origin Time origin}.
+   * 自网页创建以来经过的时间。参见 {@link https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#the_time_origin 时间原点}。
    */
   timestamp: DOMHighResTimeStamp
 }
 export interface UseRafFnOptions extends ConfigurableWindow {
   /**
-   * Start the requestAnimationFrame loop immediately on creation
+   * 在创建时立即启动 requestAnimationFrame 循环
    *
    * @default true
    */
   immediate?: boolean
   /**
-   * The maximum frame per second to execute the function.
-   * Set to `undefined` to disable the limit.
+   * 函数执行的最大帧率。
+   * 设置为 `null` 可禁用限制。
    *
-   * @default undefined
+   * @default null
    */
-  fpsLimit?: MaybeRefOrGetter<number>
+  fpsLimit?: MaybeRefOrGetter<number | null>
   /**
-   * After the requestAnimationFrame loop executed once, it will be automatically stopped.
+   * requestAnimationFrame 循环执行一次后，将自动停止。
    *
    * @default false
    */
   once?: boolean
 }
 /**
- * Call function on every `requestAnimationFrame`. With controls of pausing and resuming.
+ * 在每次 `requestAnimationFrame` 时调用函数。支持暂停和恢复控制。
  *
  * @see https://vueuse.org/useRafFn
  * @param fn

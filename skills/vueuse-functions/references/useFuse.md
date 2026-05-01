@@ -4,15 +4,15 @@ category: '@Integrations'
 
 # useFuse
 
-Easily implement fuzzy search using a composable with [Fuse.js](https://github.com/krisk/fuse).
+使用一个组合式函数，借助 [Fuse.js](https://github.com/krisk/fuse) 轻松实现模糊搜索。
 
-From the Fuse.js website:
+来自 Fuse.js 官网：
 
-> What is fuzzy searching?
+> 什么是模糊搜索？
 >
-> Generally speaking, fuzzy searching (more formally known as approximate string matching) is the technique of finding strings that are approximately equal to a given pattern (rather than exactly).
+> 一般来说，模糊搜索（更正式地称为近似字符串匹配）是一种查找与给定模式大致相等的字符串的技术（而不是完全相同）。
 
-## Install Fuse.js as a peer dependency
+## 将 Fuse.js 作为 peer 依赖安装
 
 ### NPM
 
@@ -26,7 +26,7 @@ npm install fuse.js@^7
 yarn add fuse.js
 ```
 
-## Usage
+## 使用
 
 ```ts
 import { useFuse } from '@vueuse/integrations/useFuse'
@@ -45,7 +45,7 @@ const input = shallowRef('Jhon D')
 const { results } = useFuse(input, data)
 
 /*
- * Results:
+ * 结果：
  *
  * { "item": "John Doe", "index": 1 }
  * { "item": "John Smith", "index": 0 }
@@ -54,7 +54,7 @@ const { results } = useFuse(input, data)
  */
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export type FuseOptions<T> = IFuseOptions<T>
@@ -63,45 +63,13 @@ export interface UseFuseOptions<T> {
   resultLimit?: number
   matchAllWhenSearchEmpty?: boolean
 }
+export interface UseFuseReturn<DataItem> {
+  fuse: Ref<Fuse<DataItem>>
+  results: ComputedRef<FuseResult<DataItem>[]>
+}
 export declare function useFuse<DataItem>(
   search: MaybeRefOrGetter<string>,
   data: MaybeRefOrGetter<DataItem[]>,
   options?: MaybeRefOrGetter<UseFuseOptions<DataItem>>,
-): {
-  fuse: Ref<
-    {
-      search: <R = DataItem>(
-        pattern: string | Expression,
-        options?: FuseSearchOptions,
-      ) => FuseResult<R>[]
-      setCollection: (
-        docs: readonly DataItem[],
-        index?: FuseIndex<DataItem> | undefined,
-      ) => void
-      add: (doc: DataItem) => void
-      remove: (predicate: (doc: DataItem, idx: number) => boolean) => DataItem[]
-      removeAt: (idx: number) => void
-      getIndex: () => FuseIndex<DataItem>
-    },
-    | Fuse<DataItem>
-    | {
-        search: <R = DataItem>(
-          pattern: string | Expression,
-          options?: FuseSearchOptions,
-        ) => FuseResult<R>[]
-        setCollection: (
-          docs: readonly DataItem[],
-          index?: FuseIndex<DataItem> | undefined,
-        ) => void
-        add: (doc: DataItem) => void
-        remove: (
-          predicate: (doc: DataItem, idx: number) => boolean,
-        ) => DataItem[]
-        removeAt: (idx: number) => void
-        getIndex: () => FuseIndex<DataItem>
-      }
-  >
-  results: ComputedRef<FuseResult<DataItem>[]>
-}
-export type UseFuseReturn = ReturnType<typeof useFuse>
+): UseFuseReturn<DataItem>
 ```

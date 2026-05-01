@@ -1,12 +1,12 @@
 ---
-category: Elements
+category: 元素
 ---
 
 # useMouseInElement
 
-Reactive mouse position related to an element
+与元素相关的响应式鼠标位置
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -20,24 +20,24 @@ const { x, y, isOutside } = useMouseInElement(target)
 
 <template>
   <div ref="target">
-    <h1>Hello world</h1>
+    <h1>你好，世界</h1>
   </div>
 </template>
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseMouseInElement v-slot="{ elementX, elementY, isOutside }">
     x: {{ elementX }}
     y: {{ elementY }}
-    Is Outside: {{ isOutside }}
+    是否在外部：{{ isOutside }}
   </UseMouseInElement>
 </template>
 ```
 
-## Directive Usage
+## 指令用法
 
 ```vue
 <script setup lang="ts">
@@ -67,37 +67,47 @@ function onMouseInElement({ x, y, sourceType, elementX, elementY, elementPositio
 
 <template>
   <textarea v-mouse-in-element="onMouseInElement" />
-  <!-- with options -->
+  <!-- 带选项 -->
   <textarea v-mouse-in-element="[onMouseInElement, options]" />
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface MouseInElementOptions extends UseMouseOptions {
   /**
-   * Whether to handle mouse events when the cursor is outside the target element.
-   * When enabled, mouse position will continue to be tracked even when outside the element bounds.
+   * 当光标位于目标元素外部时，是否处理鼠标事件。
+   * 启用后，即使在元素边界之外，鼠标位置也会继续被追踪。
    *
    * @default true
    */
   handleOutside?: boolean
   /**
-   * Listen to window resize event
+   * 监听 window resize 事件
    *
    * @default true
    */
   windowScroll?: boolean
   /**
-   * Listen to window scroll event
+   * 监听 window scroll 事件
    *
    * @default true
    */
   windowResize?: boolean
 }
+export interface UseMouseInElementReturn extends UseMouseReturn {
+  elementX: ShallowRef<number>
+  elementY: ShallowRef<number>
+  elementPositionX: ShallowRef<number>
+  elementPositionY: ShallowRef<number>
+  elementHeight: ShallowRef<number>
+  elementWidth: ShallowRef<number>
+  isOutside: ShallowRef<boolean>
+  stop: () => void
+}
 /**
- * Reactive mouse position related to an element.
+ * 与元素相关的响应式鼠标位置。
  *
  * @see https://vueuse.org/useMouseInElement
  * @param target
@@ -107,9 +117,9 @@ export declare function useMouseInElement(
   target?: MaybeElementRef,
   options?: MouseInElementOptions,
 ): {
-  x: ShallowRef<number, number>
-  y: ShallowRef<number, number>
-  sourceType: ShallowRef<UseMouseSourceType, UseMouseSourceType>
+  x: ShallowRef<number>
+  y: ShallowRef<number>
+  sourceType: ShallowRef<UseMouseSourceType>
   elementX: ShallowRef<number, number>
   elementY: ShallowRef<number, number>
   elementPositionX: ShallowRef<number, number>
@@ -119,5 +129,4 @@ export declare function useMouseInElement(
   isOutside: ShallowRef<boolean, boolean>
   stop: () => void
 }
-export type UseMouseInElementReturn = ReturnType<typeof useMouseInElement>
 ```

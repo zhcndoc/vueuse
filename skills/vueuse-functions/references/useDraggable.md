@@ -1,12 +1,12 @@
 ---
-category: Elements
+category: 元素
 ---
 
 # useDraggable
 
-Make elements draggable.
+使元素可拖拽。
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -15,7 +15,7 @@ import { useTemplateRef } from 'vue'
 
 const el = useTemplateRef('el')
 
-// `style` will be a helper computed for `left: ?px; top: ?px;`
+// `style` 将是一个辅助计算属性，用于 `left: ?px; top: ?px;`
 const { x, y, style } = useDraggable(el, {
   initialValue: { x: 40, y: 40 },
 })
@@ -23,61 +23,61 @@ const { x, y, style } = useDraggable(el, {
 
 <template>
   <div ref="el" :style="style" style="position: fixed">
-    Drag me! I am at {{ x }}, {{ y }}
+    拖我！我现在在 {{ x }}, {{ y }}
   </div>
 </template>
 ```
 
-### Return Values
+### 返回值
 
-| Property     | Type                   | Description                             |
+| 属性         | 类型                   | 描述                                 |
 | ------------ | ---------------------- | --------------------------------------- |
-| `x`          | `Ref<number>`          | Current x position                      |
-| `y`          | `Ref<number>`          | Current y position                      |
-| `position`   | `Ref<{x, y}>`          | Current position object                 |
-| `isDragging` | `ComputedRef<boolean>` | Whether currently dragging              |
-| `style`      | `ComputedRef<string>`  | CSS style string `left: ?px; top: ?px;` |
+| `x`          | `Ref<number>`          | 当前 x 位置                            |
+| `y`          | `Ref<number>`          | 当前 y 位置                            |
+| `position`   | `Ref<{x, y}>`          | 当前位置信息对象                       |
+| `isDragging` | `ComputedRef<boolean>` | 当前是否正在拖拽                       |
+| `style`      | `ComputedRef<string>`  | CSS 样式字符串 `left: ?px; top: ?px;` |
 
-### Options
+### 选项
 
 ```ts
 useDraggable(el, {
-  // Initial position (default: { x: 0, y: 0 })
+  // 初始位置（默认：{ x: 0, y: 0 }）
   initialValue: { x: 40, y: 40 },
-  // Restrict dragging to specific axis: 'x', 'y', or 'both' (default)
+  // 将拖拽限制在特定轴上：'x'、'y' 或 'both'（默认）
   axis: 'both',
-  // Only trigger when clicking directly on the element (default: false)
+  // 仅在直接点击元素时触发（默认：false）
   exact: false,
-  // Prevent default browser behavior (default: false)
+  // 阻止浏览器默认行为（默认：false）
   preventDefault: true,
-  // Stop event propagation (default: false)
+  // 阻止事件冒泡（默认：false）
   stopPropagation: false,
-  // Use capture phase for events (default: true)
+  // 为事件使用捕获阶段（默认：true）
   capture: true,
-  // Disable dragging (default: false)
+  // 禁用拖拽（默认：false）
   disabled: false,
-  // Mouse buttons that trigger drag (default: [0] - left button)
+  // 触发拖拽的鼠标按键（默认：[0] - 左键）
   buttons: [0],
-  // Pointer types to listen to (default: ['mouse', 'touch', 'pen'])
+  // 监听的指针类型（默认：['mouse', 'touch', 'pen']）
   pointerTypes: ['mouse', 'touch', 'pen'],
-  // Custom drag handle element (default: target element)
+  // 自定义拖拽手柄元素（默认：目标元素）
   handle: handleRef,
-  // Container element for bounds (default: none)
+  // 用于边界限制的容器元素（默认：无）
   containerElement: containerRef,
-  // Element to attach pointermove/pointerup events (default: window)
+  // 绑定 pointermove/pointerup 事件的元素（默认：window）
   draggingElement: window,
-  // Callbacks
+  // 回调
   onStart: (position, event) => {
-    // Return false to prevent dragging
+    // 返回 false 以阻止拖拽
   },
   onMove: (position, event) => {},
   onEnd: (position, event) => {},
 })
 ```
 
-### Prevent Default
+### 阻止默认行为
 
-Set `preventDefault: true` to override the default drag-and-drop behavior of certain elements in the browser (e.g., images).
+设置 `preventDefault: true` 以覆盖浏览器中某些元素（例如图片）的默认拖放行为。
 
 ```ts
 import { useDraggable } from '@vueuse/core'
@@ -87,9 +87,9 @@ const { x, y, style } = useDraggable(el, {
 })
 ```
 
-### Container Bounds
+### 容器边界
 
-Use `containerElement` to constrain dragging within a container.
+使用 `containerElement` 将拖拽限制在容器内。
 
 ```ts
 import { useDraggable } from '@vueuse/core'
@@ -99,68 +99,68 @@ const { x, y } = useDraggable(el, {
 })
 ```
 
-Set `autoScroll: true` to enable auto-scroll when dragging near the edges.
+设置 `autoScroll: true` 可在拖拽靠近边缘时启用自动滚动。
 
 ```ts
 const { x, y, style } = useDraggable(el, {
   autoScroll: {
-    speed: 2, // Control the speed of auto-scroll.
-    margin: 30, // Set the margin from the edge that triggers auto-scroll.
-    direction: 'both' // Determine the direction of auto-scroll.
+    speed: 2, // 控制自动滚动速度。
+    margin: 30, // 设置触发自动滚动的边缘距离。
+    direction: 'both' // 确定自动滚动方向。
   },
 })
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseDraggable v-slot="{ x, y }" :initial-value="{ x: 10, y: 10 }">
-    Drag me! I am at {{ x }}, {{ y }}
+    拖我！我现在在 {{ x }}, {{ y }}
   </UseDraggable>
 </template>
 ```
 
-For component usage, additional props `storageKey` and `storageType` can be passed to the component and enable the persistence of the element position.
+在组件用法中，可以向组件传递额外的 `storageKey` 和 `storageType` 属性，以启用元素位置的持久化。
 
 ```vue
 <template>
   <UseDraggable storage-key="vueuse-draggable" storage-type="session">
-    Refresh the page and I am still in the same position!
+    刷新页面后，我仍然在相同的位置！
   </UseDraggable>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseDraggableOptions {
   /**
-   * Only start the dragging when click on the element directly
+   * 仅在直接点击元素时开始拖拽
    *
    * @default false
    */
   exact?: MaybeRefOrGetter<boolean>
   /**
-   * Prevent events defaults
+   * 阻止事件默认行为
    *
    * @default false
    */
   preventDefault?: MaybeRefOrGetter<boolean>
   /**
-   * Prevent events propagation
+   * 阻止事件传播
    *
    * @default false
    */
   stopPropagation?: MaybeRefOrGetter<boolean>
   /**
-   * Whether dispatch events in capturing phase
+   * 是否在捕获阶段分发事件
    *
    * @default true
    */
   capture?: boolean
   /**
-   * Element to attach `pointermove` and `pointerup` events to.
+   * 用于绑定 `pointermove` 和 `pointerup` 事件的元素。
    *
    * @default window
    */
@@ -168,7 +168,7 @@ export interface UseDraggableOptions {
     HTMLElement | SVGElement | Window | Document | null | undefined
   >
   /**
-   * Element for calculating bounds (If not set, it will use the event's target).
+   * 用于计算边界的元素（如果未设置，则使用事件目标）。
    *
    * @default undefined
    */
@@ -176,71 +176,71 @@ export interface UseDraggableOptions {
     HTMLElement | SVGElement | null | undefined
   >
   /**
-   * Handle that triggers the drag event
+   * 触发拖拽事件的手柄
    *
    * @default target
    */
   handle?: MaybeRefOrGetter<HTMLElement | SVGElement | null | undefined>
   /**
-   * Pointer types that listen to.
+   * 要监听的指针类型。
    *
    * @default ['mouse', 'touch', 'pen']
    */
   pointerTypes?: PointerType[]
   /**
-   * Initial position of the element.
+   * 元素的初始位置。
    *
    * @default { x: 0, y: 0 }
    */
   initialValue?: MaybeRefOrGetter<Position>
   /**
-   * Callback when the dragging starts. Return `false` to prevent dragging.
+   * 拖拽开始时的回调。返回 `false` 以阻止拖拽。
    */
   onStart?: (position: Position, event: PointerEvent) => void | false
   /**
-   * Callback during dragging.
+   * 拖拽过程中回调。
    */
   onMove?: (position: Position, event: PointerEvent) => void
   /**
-   * Callback when dragging end.
+   * 拖拽结束时回调。
    */
   onEnd?: (position: Position, event: PointerEvent) => void
   /**
-   * Axis to drag on.
+   * 拖拽轴向。
    *
    * @default 'both'
    */
   axis?: "x" | "y" | "both"
   /**
-   * Disabled drag and drop.
+   * 禁用拖放。
    *
    * @default false
    */
   disabled?: MaybeRefOrGetter<boolean>
   /**
-   * Mouse buttons that are allowed to trigger drag events.
+   * 允许触发拖拽事件的鼠标按键。
    *
-   * - `0`: Main button, usually the left button or the un-initialized state
-   * - `1`: Auxiliary button, usually the wheel button or the middle button (if present)
-   * - `2`: Secondary button, usually the right button
-   * - `3`: Fourth button, typically the Browser Back button
-   * - `4`: Fifth button, typically the Browser Forward button
+   * - `0`：主按键，通常是左键或未初始化状态
+   * - `1`：辅助按键，通常是滚轮按钮或中键（如果有）
+   * - `2`：次按键，通常是右键
+   * - `3`：第四按键，通常是浏览器后退按钮
+   * - `4`：第五按键，通常是浏览器前进按钮
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button#value
    * @default [0]
    */
   buttons?: MaybeRefOrGetter<number[]>
   /**
-   * Whether to restrict dragging within the visible area of the container.
+   * 是否将拖拽限制在容器的可见区域内。
    *
-   * If enabled, the draggable element will not leave the visible area of its container,
-   * ensuring it remains within the viewport of the container during the drag.
+   * 启用后，可拖拽元素不会离开其容器的可见区域，
+   * 确保在拖拽过程中始终保持在容器的视口内。
    *
    * @default false
    */
   restrictInView?: MaybeRefOrGetter<boolean>
   /**
-   * Whether to enable auto-scroll when dragging near the edges.
+   * 是否在拖拽靠近边缘时启用自动滚动。
    *
    * @default false
    */
@@ -248,19 +248,19 @@ export interface UseDraggableOptions {
     | boolean
     | {
         /**
-         * Speed of auto-scroll.
+         * 自动滚动速度。
          *
          * @default 2
          */
         speed?: MaybeRefOrGetter<number | Position>
         /**
-         * Margin from the edge to trigger auto-scroll.
+         * 触发自动滚动的边缘距离。
          *
          * @default 30
          */
         margin?: MaybeRefOrGetter<number | Position>
         /**
-         * Direction of auto-scroll.
+         * 自动滚动方向。
          *
          * @default 'both'
          */
@@ -268,8 +268,15 @@ export interface UseDraggableOptions {
       }
   >
 }
+export interface UseDraggableReturn {
+  x: Ref<number>
+  y: Ref<number>
+  position: Ref<Position>
+  isDragging: ComputedRef<boolean>
+  style: ComputedRef<string>
+}
 /**
- * Make elements draggable.
+ * 使元素可拖拽。
  *
  * @see https://vueuse.org/useDraggable
  * @param target
@@ -278,40 +285,5 @@ export interface UseDraggableOptions {
 export declare function useDraggable(
   target: MaybeRefOrGetter<HTMLElement | SVGElement | null | undefined>,
   options?: UseDraggableOptions,
-):
-  | {
-      position: Ref<
-        {
-          x: number
-          y: number
-        },
-        | Position
-        | {
-            x: number
-            y: number
-          }
-      >
-      isDragging: ComputedRef<boolean>
-      style: ComputedRef<string>
-      x: Ref<number, number>
-      y: Ref<number, number>
-    }
-  | {
-      position: Ref<
-        {
-          x: number
-          y: number
-        },
-        | Position
-        | {
-            x: number
-            y: number
-          }
-      >
-      isDragging: ComputedRef<boolean>
-      style: ComputedRef<string>
-      x: Ref<number, number>
-      y: Ref<number, number>
-    }
-export type UseDraggableReturn = ReturnType<typeof useDraggable>
+): UseDraggableReturn
 ```

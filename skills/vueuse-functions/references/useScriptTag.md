@@ -1,32 +1,32 @@
 ---
-category: Browser
+category: 浏览器
 ---
 
 # useScriptTag
 
-Creates a script tag, with support for automatically unloading (deleting) the script tag on unmount.
+创建一个 script 标签，并支持在卸载时自动卸载（删除）该 script 标签。
 
-If a script tag already exists for the given URL, `useScriptTag()` will not create another script tag, but keep in mind that depending on how you use it, `useScriptTag()` might have already loaded then unloaded that particular JS file from a previous call of `useScriptTag()`.
+如果给定的 URL 已经存在一个 script 标签，`useScriptTag()` 不会再创建另一个 script 标签，但请注意，根据你的使用方式，`useScriptTag()` 可能已经在之前某次调用中加载过，然后又卸载了那个特定的 JS 文件。
 
-## Usage
+## 用法
 
 ```ts
 import { useScriptTag } from '@vueuse/core'
 
 useScriptTag(
   'https://player.twitch.tv/js/embed/v1.js',
-  // on script tag loaded.
+  // 当 script 标签加载完成时。
   (el: HTMLScriptElement) => {
-    // do something
+    // 执行一些操作
   },
 )
 ```
 
-The script will be automatically loaded when the component is mounted and removed when the component is unmounted.
+组件挂载时脚本会自动加载，组件卸载时会自动移除。
 
-## Configuration
+## 配置
 
-Set `manual: true` to have manual control over the timing to load the script.
+设置 `manual: true` 以手动控制脚本加载的时机。
 
 ```ts
 import { useScriptTag } from '@vueuse/core'
@@ -34,40 +34,40 @@ import { useScriptTag } from '@vueuse/core'
 const { scriptTag, load, unload } = useScriptTag(
   'https://player.twitch.tv/js/embed/v1.js',
   () => {
-    // do something
+    // 执行一些操作
   },
   { manual: true },
 )
 
-// manual controls
+// 手动控制
 await load()
 await unload()
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseScriptTagOptions extends ConfigurableDocument {
   /**
-   * Load the script immediately
+   * 立即加载脚本
    *
    * @default true
    */
   immediate?: boolean
   /**
-   * Add `async` attribute to the script tag
+   * 为 script 标签添加 `async` 属性
    *
    * @default true
    */
   async?: boolean
   /**
-   * Script type
+   * 脚本类型
    *
    * @default 'text/javascript'
    */
   type?: string
   /**
-   * Manual controls the timing of loading and unloading
+   * 手动控制加载和卸载的时机
    *
    * @default false
    */
@@ -85,18 +85,23 @@ export interface UseScriptTagOptions extends ConfigurableDocument {
   noModule?: boolean
   defer?: boolean
   /**
-   * Add custom attribute to the script tag
+   * 为 script 标签添加自定义属性
    *
    */
   attrs?: Record<string, string>
   /**
-   * Nonce value for CSP (Content Security Policy)
+   * CSP（内容安全策略）的 nonce 值
    * @default undefined
    */
   nonce?: string
 }
+export interface UseScriptTagReturn {
+  scriptTag: ShallowRef<HTMLScriptElement | null>
+  load: (waitForScriptLoad?: boolean) => Promise<HTMLScriptElement | boolean>
+  unload: () => void
+}
 /**
- * Async script tag loading.
+ * 异步加载 script 标签。
  *
  * @see https://vueuse.org/useScriptTag
  * @param src
@@ -107,10 +112,5 @@ export declare function useScriptTag(
   src: MaybeRefOrGetter<string>,
   onLoaded?: (el: HTMLScriptElement) => void,
   options?: UseScriptTagOptions,
-): {
-  scriptTag: ShallowRef<HTMLScriptElement | null, HTMLScriptElement | null>
-  load: (waitForScriptLoad?: boolean) => Promise<HTMLScriptElement | boolean>
-  unload: () => void
-}
-export type UseScriptTagReturn = ReturnType<typeof useScriptTag>
+): UseScriptTagReturn
 ```

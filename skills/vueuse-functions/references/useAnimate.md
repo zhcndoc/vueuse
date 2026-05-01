@@ -4,13 +4,13 @@ category: Animation
 
 # useAnimate
 
-Reactive [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).
+响应式 [Web 动画 API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API)。
 
-## Usage
+## 用法
 
-### Basic Usage
+### 基本用法
 
-The `useAnimate` function returns the animation instance and control functions.
+`useAnimate` 函数返回动画实例和控制函数。
 
 ```vue
 <script setup lang="ts">
@@ -22,14 +22,14 @@ const {
   isSupported,
   animate,
 
-  // actions
+  // 动作
   play,
   pause,
   reverse,
   finish,
   cancel,
 
-  // states
+  // 状态
   pending,
   playState,
   replaceState,
@@ -45,9 +45,9 @@ const {
 </template>
 ```
 
-### Custom Keyframes
+### 自定义关键帧
 
-Either an array of keyframe objects, or a keyframe object, or a `ref`. See [Keyframe Formats](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats) for more details.
+可以是关键帧对象数组、单个关键帧对象，或者 `ref`。更多详情请参见 [关键帧格式](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Keyframe_Formats)。
 
 ```ts
 import { useAnimate } from '@vueuse/core'
@@ -56,12 +56,12 @@ import { useTemplateRef } from 'vue'
 const el = useTemplateRef('el')
 // ---cut---
 const keyframes = { transform: 'rotate(360deg)' }
-// Or
+// 或者
 const keyframes = [
   { transform: 'rotate(0deg)' },
   { transform: 'rotate(360deg)' },
 ]
-// Or
+// 或者
 const keyframes = ref([
   { clipPath: 'circle(20% at 0% 30%)' },
   { clipPath: 'circle(20% at 50% 80%)' },
@@ -71,35 +71,35 @@ const keyframes = ref([
 useAnimate(el, keyframes, 1000)
 ```
 
-### Options
+### 选项
 
-The third argument accepts a duration number or an options object with the following additional properties on top of [KeyframeAnimationOptions](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate#parameters):
+第三个参数接受一个持续时间数字，或一个选项对象，在 [KeyframeAnimationOptions](https://developer.mozilla.org/en-US/docs/Web/API/Element/animate#parameters) 的基础上增加以下属性：
 
 ```ts
 import { useAnimate } from '@vueuse/core'
 
 useAnimate(el, keyframes, {
   duration: 1000,
-  // Start playing immediately (default: true)
+  // 立即开始播放（默认值：true）
   immediate: true,
-  // Commit the end styling state to the element (default: false)
+  // 将动画结束时的样式状态提交到元素（默认值：false）
   commitStyles: false,
-  // Persist the animation (default: false)
+  // 保留动画（默认值：false）
   persist: false,
-  // Callback when animation is initialized
+  // 动画初始化完成时的回调
   onReady(animate) {
-    console.log('Animation ready', animate)
+    console.log('动画已准备就绪', animate)
   },
-  // Callback when an error occurs
+  // 发生错误时的回调
   onError(e) {
-    console.error('Animation error', e)
+    console.error('动画错误', e)
   },
 })
 ```
 
-### Delaying Start
+### 延迟开始
 
-Set `immediate: false` to prevent the animation from starting automatically.
+设置 `immediate: false` 可阻止动画自动开始。
 
 ```ts
 import { useAnimate } from '@vueuse/core'
@@ -109,48 +109,47 @@ const { play } = useAnimate(el, keyframes, {
   immediate: false,
 })
 
-// Start the animation manually
+// 手动开始动画
 play()
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseAnimateOptions
   extends KeyframeAnimationOptions, ConfigurableWindow {
   /**
-   * Will automatically run play when `useAnimate` is used
+   * 使用 `useAnimate` 时会自动运行 play
    *
    * @default true
    */
   immediate?: boolean
   /**
-   * Whether to commits the end styling state of an animation to the element being animated
-   * In general, you should use `fill` option with this.
+   * 是否将动画结束时的样式状态提交到正在被动画化的元素
+   * 通常情况下，你应该配合 `fill` 选项一起使用。
    *
    * @default false
    */
   commitStyles?: boolean
   /**
-   * Whether to persists the animation
+   * 是否保留动画
    *
    * @default false
    */
   persist?: boolean
   /**
-   * Executed after animation initialization
+   * 动画初始化后执行
    */
   onReady?: (animate: Animation) => void
   /**
-   * Callback when error is caught.
+   * 捕获错误时的回调。
    */
   onError?: (e: unknown) => void
 }
 export type UseAnimateKeyframes = MaybeRef<
   Keyframe[] | PropertyIndexedKeyframes | null
 >
-export interface UseAnimateReturn {
-  isSupported: ComputedRef<boolean>
+export interface UseAnimateReturn extends Supportable {
   animate: ShallowRef<Animation | undefined>
   play: () => void
   pause: () => void
@@ -166,7 +165,7 @@ export interface UseAnimateReturn {
   playbackRate: WritableComputedRef<number>
 }
 /**
- * Reactive Web Animations API
+ * 响应式 Web 动画 API
  *
  * @see https://vueuse.org/useAnimate
  * @param target

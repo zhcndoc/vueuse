@@ -5,9 +5,9 @@ related: useWebWorkerFn
 
 # useWebWorker
 
-Simple [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) registration and communication.
+简单的 [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) 注册和通信。
 
-## Usage
+## 用法
 
 ```ts
 import { useWebWorker } from '@vueuse/core'
@@ -15,29 +15,29 @@ import { useWebWorker } from '@vueuse/core'
 const { data, post, terminate, worker } = useWebWorker('/path/to/worker.js')
 ```
 
-| State  | Type                              | Description                                                                                          |
+| 状态  | 类型                              | 描述                                                                                          |
 | ------ | --------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| data   | `Ref<any>`                        | Reference to the latest data received via the worker, can be watched to respond to incoming messages |
-| worker | `ShallowRef<Worker \| undefined>` | Reference to the instance of the WebWorker                                                           |
+| data   | `Ref<any>`                        | 对通过 worker 接收到的最新数据的引用，可用于监听以响应传入消息 |
+| worker | `ShallowRef<Worker \| undefined>` | 对 WebWorker 实例的引用                                                           |
 
-| Method    | Signature                                                                                                                     | Description                      |
+| 方法    | 签名                                                                                                                     | 描述                      |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| post      | `(message: any, transfer: Transferable[]): void`<br>`(message: any, options?: StructuredSerializeOptions \| undefined): void` | Sends data to the worker thread. |
-| terminate | `() => void`                                                                                                                  | Stops and terminates the worker. |
+| post      | `(message: any, transfer: Transferable[]): void`<br>`(message: any, options?: StructuredSerializeOptions \| undefined): void` | 向 worker 线程发送数据。 |
+| terminate | `() => void`                                                                                                                  | 停止并终止 worker。 |
 
-## Type Declarations
+## 类型声明
 
 ```ts
 type PostMessage = (typeof Worker.prototype)["postMessage"]
 export interface UseWebWorkerReturn<Data = any> {
-  data: Ref<Data>
+  data: ShallowRef<Data>
   post: PostMessage
   terminate: () => void
   worker: ShallowRef<Worker | undefined>
 }
 type WorkerFn = (...args: unknown[]) => Worker
 /**
- * Simple Web Workers registration and communication.
+ * 简单的 Web Workers 注册和通信。
  *
  * @see https://vueuse.org/useWebWorker
  * @param url
@@ -50,7 +50,7 @@ export declare function useWebWorker<T = any>(
   options?: ConfigurableWindow,
 ): UseWebWorkerReturn<T>
 /**
- * Simple Web Workers registration and communication.
+ * 简单的 Web Workers 注册和通信。
  *
  * @see https://vueuse.org/useWebWorker
  */

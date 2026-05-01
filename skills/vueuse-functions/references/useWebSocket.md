@@ -4,9 +4,9 @@ category: Network
 
 # useWebSocket
 
-Reactive [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket) client.
+响应式 [WebSocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket/WebSocket) 客户端。
 
-## Usage
+## 用法
 
 ```ts
 import { useWebSocket } from '@vueuse/core'
@@ -14,59 +14,59 @@ import { useWebSocket } from '@vueuse/core'
 const { status, data, send, open, close, ws } = useWebSocket('ws://websocketurl')
 ```
 
-### Return Values
+### 返回值
 
-| Property | Type                                      | Description                          |
-| -------- | ----------------------------------------- | ------------------------------------ |
-| `data`   | `Ref<any>`                                | Latest received data                 |
-| `status` | `Ref<'OPEN' \| 'CONNECTING' \| 'CLOSED'>` | Connection status                    |
-| `ws`     | `Ref<WebSocket>`                          | WebSocket instance                   |
-| `send`   | `(data, useBuffer?) => boolean`           | Send data (buffers if not connected) |
-| `open`   | `() => void`                              | Open/reconnect the connection        |
-| `close`  | `(code?, reason?) => void`                | Close the connection                 |
+| 属性     | 类型                                      | 描述                         |
+| -------- | ----------------------------------------- | ---------------------------- |
+| `data`   | `Ref<any>`                                | 最近接收到的数据             |
+| `status` | `Ref<'OPEN' \| 'CONNECTING' \| 'CLOSED'>` | 连接状态                     |
+| `ws`     | `Ref<WebSocket>`                          | WebSocket 实例               |
+| `send`   | `(data, useBuffer?) => boolean`           | 发送数据（未连接时会缓冲）   |
+| `open`   | `() => void`                              | 打开/重新连接                |
+| `close`  | `(code?, reason?) => void`                | 关闭连接                     |
 
-### Callbacks
+### 回调
 
 ```ts
 const { data } = useWebSocket('ws://websocketurl', {
   onConnected(ws) {
-    console.log('Connected!')
+    console.log('已连接！')
   },
   onDisconnected(ws, event) {
-    console.log('Disconnected!', event.code)
+    console.log('已断开连接！', event.code)
   },
   onError(ws, event) {
-    console.error('Error:', event)
+    console.error('错误：', event)
   },
   onMessage(ws, event) {
-    console.log('Message:', event.data)
+    console.log('消息：', event.data)
   },
 })
 ```
 
-See the [Type Declarations](#type-declarations) for more options.
+更多选项请参见 [类型声明](#type-declarations)。
 
 ### immediate
 
-Enable by default.
+默认启用。
 
-Establish the connection immediately when the composable is called.
+在调用该组合式函数时立即建立连接。
 
 ### autoConnect
 
-Enable by default.
+默认启用。
 
-If a URL is provided as a ref, when the URL changes, it will automatically reconnect to the new URL.
+如果提供的 URL 是一个 ref，当 URL 变化时，会自动重新连接到新的 URL。
 
 ### autoClose
 
-Enable by default.
+默认启用。
 
-This will call `close()` automatically when the `beforeunload` event is triggered or the associated effect scope is stopped.
+当触发 `beforeunload` 事件或关联的 effect scope 停止时，会自动调用 `close()`。
 
 ### autoReconnect
 
-Reconnect on errors automatically (disabled by default).
+在出错时自动重连（默认禁用）。
 
 ```ts
 import { useWebSocket } from '@vueuse/core'
@@ -76,7 +76,7 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 })
 ```
 
-Or with more controls over its behavior:
+或者对其行为进行更多控制：
 
 ```ts
 import { useWebSocket } from '@vueuse/core'
@@ -86,13 +86,13 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
     retries: 3,
     delay: 1000,
     onFailed() {
-      alert('Failed to connect WebSocket after 3 retries')
+      alert('在 3 次重试后仍无法连接 WebSocket')
     },
   },
 })
 ```
 
-You can also pass a function to `delay` to calculate the delay based on the number of retries. This is useful for implementing exponential backoff:
+你也可以向 `delay` 传入一个函数，根据重试次数计算延迟时间。这对于实现指数退避很有用：
 
 ```ts
 import { useWebSocket } from '@vueuse/core'
@@ -100,7 +100,7 @@ import { useWebSocket } from '@vueuse/core'
 const { status, data, close } = useWebSocket('ws://websocketurl', {
   autoReconnect: {
     retries: 5,
-    // Exponential backoff: 1s, 2s, 4s, 8s, 16s
+    // 指数退避：1秒、2秒、4秒、8秒、16秒
     delay: retries => Math.min(1000 * 2 ** (retries - 1), 30000),
   },
 })
@@ -112,17 +112,17 @@ import { useWebSocket } from '@vueuse/core'
 const { status, data, close } = useWebSocket('ws://websocketurl', {
   autoReconnect: {
     retries: 5,
-    // Linear backoff: 1s, 2s, 3s, 4s, 5s
+    // 线性退避：1秒、2秒、3秒、4秒、5秒
     delay: retries => retries * 1000,
   },
 })
 ```
 
-Explicitly calling `close()` won't trigger the auto reconnection.
+显式调用 `close()` 不会触发自动重连。
 
 ### heartbeat
 
-It's common practice to send a small message (heartbeat) for every given time passed to keep the connection active. In this function we provide a convenient helper to do it:
+通常做法是在每隔一段时间发送一条小消息（心跳）来保持连接活跃。在这个函数中，我们提供了一个方便的辅助方法来实现它：
 
 ```ts
 import { useWebSocket } from '@vueuse/core'
@@ -132,7 +132,7 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 })
 ```
 
-Or with more controls:
+或者使用更多控制：
 
 ```ts
 import { useWebSocket } from '@vueuse/core'
@@ -146,9 +146,9 @@ const { status, data, close } = useWebSocket('ws://websocketurl', {
 })
 ```
 
-### Sub-protocols
+### 子协议
 
-List of one or more subprotocols to use, in this case SOAP and WAMP.
+要使用的一个或多个子协议列表，在此示例中为 SOAP 和 WAMP。
 
 ```ts
 import { useWebSocket } from '@vueuse/core'
@@ -158,7 +158,7 @@ const { status, data, send, open, close } = useWebSocket('ws://websocketurl', {
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export type WebSocketStatus = "OPEN" | "CONNECTING" | "CLOSED"
@@ -169,7 +169,7 @@ export interface UseWebSocketOptions {
   onError?: (ws: WebSocket, event: Event) => void
   onMessage?: (ws: WebSocket, event: MessageEvent) => void
   /**
-   * Send heartbeat for every x milliseconds passed
+   * 每隔 x 毫秒发送一次心跳
    *
    * @default false
    */
@@ -177,31 +177,31 @@ export interface UseWebSocketOptions {
     | boolean
     | (ConfigurableScheduler & {
         /**
-         * Message for the heartbeat
+         * 心跳消息
          *
          * @default 'ping'
          */
         message?: MaybeRefOrGetter<WebSocketHeartbeatMessage>
         /**
-         * Response message for the heartbeat, if undefined the message will be used
+         * 心跳响应消息，如果未定义则会使用 message
          */
         responseMessage?: MaybeRefOrGetter<WebSocketHeartbeatMessage>
         /**
-         * Interval, in milliseconds
+         * 间隔（毫秒）
          *
-         * @deprecated Please use `scheduler` option instead
+         * @deprecated 请改用 `scheduler` 选项
          * @default 1000
          */
         interval?: number
         /**
-         * Heartbeat response timeout, in milliseconds
+         * 心跳响应超时时间（毫秒）
          *
          * @default 1000
          */
         pongTimeout?: number
       })
   /**
-   * Enabled auto reconnect
+   * 启用自动重连
    *
    * @default false
    */
@@ -209,46 +209,46 @@ export interface UseWebSocketOptions {
     | boolean
     | {
         /**
-         * Maximum retry times.
+         * 最大重试次数。
          *
-         * Or you can pass a predicate function (which returns true if you want to retry).
+         * 你也可以传入一个谓词函数（如果你希望重试，则返回 true）。
          *
          * @default -1
          */
         retries?: number | ((retried: number) => boolean)
         /**
-         * Delay for reconnect, in milliseconds
+         * 重连延迟（毫秒）
          *
-         * Or you can pass a function to calculate the delay based on the number of retries.
+         * 你也可以传入一个函数，根据重试次数计算延迟时间。
          *
          * @default 1000
          */
         delay?: number | ((retries: number) => number)
         /**
-         * On maximum retry times reached.
+         * 达到最大重试次数时触发。
          */
         onFailed?: Fn
       }
   /**
-   * Immediately open the connection when calling this composable
+   * 调用此组合式函数时立即打开连接
    *
    * @default true
    */
   immediate?: boolean
   /**
-   * Automatically connect to the websocket when URL changes
+   * 当 URL 变化时自动连接到 websocket
    *
    * @default true
    */
   autoConnect?: boolean
   /**
-   * Automatically close a connection
+   * 自动关闭连接
    *
    * @default true
    */
   autoClose?: boolean
   /**
-   * List of one or more sub-protocol strings
+   * 一个或多个子协议字符串的列表
    *
    * @default []
    */
@@ -256,38 +256,38 @@ export interface UseWebSocketOptions {
 }
 export interface UseWebSocketReturn<T> {
   /**
-   * Reference to the latest data received via the websocket,
-   * can be watched to respond to incoming messages
+   * 对通过 websocket 接收到的最新数据的引用，
+   * 可通过监听它来响应传入消息
    */
-  data: Ref<T | null>
+  data: ShallowRef<T | null>
   /**
-   * The current websocket status, can be only one of:
-   * 'OPEN', 'CONNECTING', 'CLOSED'
+   * 当前 websocket 状态，只能是以下之一：
+   * 'OPEN'、'CONNECTING'、'CLOSED'
    */
   status: ShallowRef<WebSocketStatus>
   /**
-   * Closes the websocket connection gracefully.
+   * 优雅地关闭 websocket 连接。
    */
   close: WebSocket["close"]
   /**
-   * Reopen the websocket connection.
-   * If there the current one is active, will close it before opening a new one.
+   * 重新打开 websocket 连接。
+   * 如果当前连接处于活动状态，会先将其关闭，再打开新的连接。
    */
   open: Fn
   /**
-   * Sends data through the websocket connection.
+   * 通过 websocket 连接发送数据。
    *
    * @param data
-   * @param useBuffer when the socket is not yet open, store the data into the buffer and sent them one connected. Default to true.
+   * @param useBuffer 当 socket 尚未打开时，将数据存入缓冲区，并在连接建立后发送。默认为 true。
    */
   send: (data: string | ArrayBuffer | Blob, useBuffer?: boolean) => boolean
   /**
-   * Reference to the WebSocket instance.
+   * WebSocket 实例的引用。
    */
-  ws: Ref<WebSocket | undefined>
+  ws: ShallowRef<WebSocket | undefined>
 }
 /**
- * Reactive WebSocket client.
+ * 响应式 WebSocket 客户端。
  *
  * @see https://vueuse.org/useWebSocket
  * @param url

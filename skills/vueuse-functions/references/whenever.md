@@ -1,12 +1,12 @@
 ---
-category: Watch
+category: 监听
 ---
 
 # whenever
 
-Shorthand for watching value to be truthy.
+用于监听值变为 truthy 的简写。
 
-## Usage
+## 用法
 
 ```js
 import { useAsyncState, whenever } from '@vueuse/core'
@@ -22,79 +22,87 @@ whenever(isReady, () => console.log(state))
 ```ts
 import { whenever } from '@vueuse/core'
 // ---cut---
-// this
+// 这里
 whenever(ready, () => console.log(state))
 
-// is equivalent to:
+// 等价于：
 watch(ready, (isReady) => {
   if (isReady)
     console.log(state)
 })
 ```
 
-### Callback Function
+### 回调函数
 
-Same as `watch`, the callback will be called with `cb(value, oldValue, onInvalidate)`.
+与 `watch` 相同，回调将以 `cb(value, oldValue, onInvalidate)` 的形式被调用。
 
 ```ts
 import { whenever } from '@vueuse/core'
 // ---cut---
 whenever(height, (current, lastHeight) => {
   if (current > lastHeight)
-    console.log(`Increasing height by ${current - lastHeight}`)
+    console.log(`高度增加了 ${current - lastHeight}`)
 })
 ```
 
-### Computed
+### 计算值
 
-Same as `watch`, you can pass a getter function to calculate on each change.
+与 `watch` 相同，你可以传入一个 getter 函数来在每次变化时进行计算。
 
 ```ts
 import { whenever } from '@vueuse/core'
 // ---cut---
-// this
+// 这里
 whenever(
   () => counter.value === 7,
-  () => console.log('counter is 7 now!'),
+  () => console.log('counter 现在是 7！'),
 )
 ```
 
-### Options
+### 选项
 
-Options and defaults are same with `watch`.
+选项及默认值与 `watch` 相同。
 
 ```ts
 import { whenever } from '@vueuse/core'
 // ---cut---
-// this
+// 这里
 whenever(
   () => counter.value === 7,
-  () => console.log('counter is 7 now!'),
+  () => console.log('counter 现在是 7！'),
   { flush: 'sync' },
 )
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
-export interface WheneverOptions extends WatchOptions {
+type Truthy<T> = T extends false | null | undefined ? never : T
+export interface WheneverOptions<
+  Immediate = boolean,
+> extends WatchOptions<Immediate> {
   /**
-   * Only trigger once when the condition is met
+   * 仅在条件满足时触发一次
    *
-   * Override the `once` option in `WatchOptions`
+   * 覆盖 `WatchOptions` 中的 `once` 选项
    *
    * @default false
    */
   once?: boolean
 }
 /**
- * Shorthand for watching value to be truthy
+ * 监听值变为 truthy 的简写
  *
  * @see https://vueuse.org/whenever
  */
 export declare function whenever<T>(
-  source: WatchSource<T | false | null | undefined>,
-  cb: WatchCallback<T>,
-  options?: WheneverOptions,
+  source: WatchSource<T>,
+  cb: WatchCallback<Truthy<T>, T | undefined>,
+  options?: WheneverOptions<true>,
+): WatchHandle
+export declare function whenever<T>(
+  source: WatchSource<T>,
+  cb: WatchCallback<Truthy<T>, T>,
+  options?: WheneverOptions<false>,
 ): WatchHandle
 ```

@@ -4,9 +4,9 @@ category: Utilities
 
 # useSupported
 
-SSR compatibility `isSupported`
+SSR 兼容性 `isSupported`
 
-## Usage
+## 用法
 
 ```ts
 import { useSupported } from '@vueuse/core'
@@ -14,16 +14,16 @@ import { useSupported } from '@vueuse/core'
 const isSupported = useSupported(() => navigator && 'getBattery' in navigator)
 
 if (isSupported.value) {
-  // do something
+  // 执行某些操作
   navigator.getBattery
 }
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
+export type UseSupportedReturn = ComputedRef<boolean>
 export declare function useSupported(
   callback: () => unknown,
-): ComputedRef<boolean>
-export type UseSupportedReturn = ReturnType<typeof useSupported>
+): UseSupportedReturn
 ```

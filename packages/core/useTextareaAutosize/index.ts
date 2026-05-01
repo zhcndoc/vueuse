@@ -11,7 +11,9 @@ export interface UseTextareaAutosizeOptions extends ConfigurableWindow {
   element?: MaybeRef<HTMLTextAreaElement | undefined | null>
   /** 文本区域的内容。 */
   input?: MaybeRef<string>
-  /** 监听应触发文本区域大小调整的源。 */
+  /** Maximum autosized height in pixels. */
+  maxHeight?: number
+  /** Watch sources that should trigger a textarea resize. */
   watch?: WatchSource | MultiWatchSources
   /** 当文本区域大小发生变化时调用的函数。 */
   onResize?: () => void
@@ -58,16 +60,21 @@ export function useTextareaAutosize(options: UseTextareaAutosizeOptions = {}): U
       return
 
     let height = ''
+    const maxHeight = options?.maxHeight
 
     textarea.value.style[styleProp] = '1px'
     textareaScrollHeight.value = textarea.value?.scrollHeight
     const _styleTarget = toValue(options?.styleTarget)
+    const styleHeight = maxHeight != null
+      ? `${Math.min(textareaScrollHeight.value, maxHeight)}px`
+      : `${textareaScrollHeight.value}px`
+
     // If style target is provided update its height
     if (_styleTarget)
-      _styleTarget.style[styleProp] = `${textareaScrollHeight.value}px`
+      _styleTarget.style[styleProp] = styleHeight
     // else update textarea's height by updating height variable
     else
-      height = `${textareaScrollHeight.value}px`
+      height = styleHeight
 
     textarea.value.style[styleProp] = height
   }

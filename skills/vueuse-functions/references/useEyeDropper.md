@@ -1,12 +1,12 @@
 ---
-category: Browser
+category: 浏览器
 ---
 
 # useEyeDropper
 
-Reactive [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API)
+响应式 [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API)
 
-## Usage
+## 用法
 
 ```ts
 import { useEyeDropper } from '@vueuse/core'
@@ -14,7 +14,7 @@ import { useEyeDropper } from '@vueuse/core'
 const { isSupported, open, sRGBHex } = useEyeDropper()
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
@@ -26,7 +26,7 @@ const { isSupported, open, sRGBHex } = useEyeDropper()
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface EyeDropperOpenOptions {
@@ -44,22 +44,14 @@ export interface EyeDropper {
 }
 export interface UseEyeDropperOptions {
   /**
-   * Initial sRGBHex.
+   * 初始 sRGBHex。
    *
    * @default ''
    */
   initialValue?: string
 }
-/**
- * Reactive [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API)
- *
- * @see https://vueuse.org/useEyeDropper
- *
- * @__NO_SIDE_EFFECTS__
- */
-export declare function useEyeDropper(options?: UseEyeDropperOptions): {
-  isSupported: ComputedRef<boolean>
-  sRGBHex: ShallowRef<string, string>
+export interface UseEyeDropperReturn extends Supportable {
+  sRGBHex: ShallowRef<string>
   open: (openOptions?: EyeDropperOpenOptions) => Promise<
     | {
         sRGBHex: string
@@ -67,5 +59,14 @@ export declare function useEyeDropper(options?: UseEyeDropperOptions): {
     | undefined
   >
 }
-export type UseEyeDropperReturn = ReturnType<typeof useEyeDropper>
+/**
+ * 响应式 [EyeDropper API](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API)
+ *
+ * @see https://vueuse.org/useEyeDropper
+ *
+ * @__NO_SIDE_EFFECTS__
+ */
+export declare function useEyeDropper(
+  options?: UseEyeDropperOptions,
+): UseEyeDropperReturn
 ```

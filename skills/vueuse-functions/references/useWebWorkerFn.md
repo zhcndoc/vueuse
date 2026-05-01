@@ -4,21 +4,21 @@ category: Browser
 
 # useWebWorkerFn
 
-Run expensive functions without blocking the UI, using a simple syntax that makes use of Promise. A port of [alewin/useWorker](https://github.com/alewin/useWorker).
+使用简单的基于 Promise 的语法，在不阻塞 UI 的情况下运行耗费性能的函数。是 [alewin/useWorker](https://github.com/alewin/useWorker) 的 Vue 版本移植。
 
-## Usage
+## 用法
 
-### Basic example
+### 基本示例
 
 ```ts
 import { useWebWorkerFn } from '@vueuse/core'
 
 const { workerFn } = useWebWorkerFn(() => {
-  // some heavy works to do in web worker
+  // 在 web worker 中执行一些繁重的工作
 })
 ```
 
-### With dependencies
+### 使用依赖项
 
 ```ts {7-9}
 import { useWebWorkerFn } from '@vueuse/core'
@@ -34,7 +34,7 @@ const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn(
 )
 ```
 
-### With local dependencies
+### 使用本地依赖项
 
 ```ts {9-9}
 import { useWebWorkerFn } from '@vueuse/core'
@@ -52,13 +52,13 @@ const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn(
 
 ## Web Worker
 
-Before you start using this function, we suggest you read the [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) documentation.
+在开始使用此函数之前，我们建议你阅读 [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) 文档。
 
-## Credit
+## 贡献者
 
-This function is a Vue port of https://github.com/alewin/useWorker by Alessio Koci, with the help of [@Donskelle](https://github.com/Donskelle) to migration.
+此函数是 Alessio Koci 编写的 https://github.com/alewin/useWorker 的 Vue 版本移植，在 [@Donskelle](https://github.com/Donskelle) 的帮助下完成迁移。
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export type WebWorkerStatus =
@@ -69,22 +69,27 @@ export type WebWorkerStatus =
   | "TIMEOUT_EXPIRED"
 export interface UseWebWorkerOptions extends ConfigurableWindow {
   /**
-   * Number of milliseconds before killing the worker
+   * 终止 worker 前的毫秒数
    *
    * @default undefined
    */
   timeout?: number
   /**
-   * An array that contains the external dependencies needed to run the worker
+   * 包含运行 worker 所需外部依赖项的数组
    */
   dependencies?: string[]
   /**
-   * An array that contains the local dependencies needed to run the worker
+   * 包含运行 worker 所需本地依赖项的数组
    */
   localDependencies?: Function[]
 }
+export interface UseWebWorkerFnReturn<T extends (...fnArgs: any[]) => any> {
+  workerFn: (...fnArgs: Parameters<T>) => Promise<ReturnType<T>>
+  workerStatus: ShallowRef<WebWorkerStatus>
+  workerTerminate: (status?: WebWorkerStatus) => void
+}
 /**
- * Run expensive function without blocking the UI, using a simple syntax that makes use of Promise.
+ * 使用简单的基于 Promise 的语法，在不阻塞 UI 的情况下运行耗费性能的函数。
  *
  * @see https://vueuse.org/useWebWorkerFn
  * @param fn
@@ -93,10 +98,5 @@ export interface UseWebWorkerOptions extends ConfigurableWindow {
 export declare function useWebWorkerFn<T extends (...fnArgs: any[]) => any>(
   fn: T,
   options?: UseWebWorkerOptions,
-): {
-  workerFn: (...fnArgs: Parameters<T>) => Promise<ReturnType<T>>
-  workerStatus: ShallowRef<WebWorkerStatus, WebWorkerStatus>
-  workerTerminate: (status?: WebWorkerStatus) => void
-}
-export type UseWebWorkerFnReturn = ReturnType<typeof useWebWorkerFn>
+): UseWebWorkerFnReturn<T>
 ```

@@ -6,13 +6,13 @@ related:
 
 # useClipboardItems
 
-Reactive [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API). Provides the ability to respond to clipboard commands (cut, copy, and paste) as well as to asynchronously read from and write to the system clipboard. Access to the contents of the clipboard is gated behind the [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API). Without user permission, reading or altering the clipboard contents is not permitted.
+响应式 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)。提供响应剪贴板命令（剪切、复制和粘贴）以及异步读取和写入系统剪贴板的能力。对剪贴板内容的访问受到 [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) 的限制。没有用户许可，不允许读取或修改剪贴板内容。
 
-## Difference from `useClipboard`
+## 与 `useClipboard` 的区别
 
-`useClipboard` is a "text-only" function, while `useClipboardItems` is a [ClipboardItem](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem) based function. You can use `useClipboardItems` to copy any content supported by [ClipboardItem](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem).
+`useClipboard` 是一个“仅文本”的函数，而 `useClipboardItems` 是一个基于 [ClipboardItem](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem) 的函数。你可以使用 `useClipboardItems` 复制任何 [ClipboardItem](https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem) 支持的内容。
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -31,45 +31,44 @@ const { content, copy, copied, isSupported } = useClipboardItems({ source })
 <template>
   <div v-if="isSupported">
     <button @click="copy(source)">
-      <!-- by default, `copied` will be reset in 1.5s -->
+      <!-- 默认情况下，`copied` 将在 1.5 秒后重置 -->
       <span v-if="!copied">Copy</span>
       <span v-else>Copied!</span>
     </button>
     <p>
-      Current copied: <code>{{ content || 'none' }}</code>
+      当前复制内容：<code>{{ content || 'none' }}</code>
     </p>
   </div>
   <p v-else>
-    Your browser does not support Clipboard API
+    你的浏览器不支持 Clipboard API
   </p>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseClipboardItemsOptions<
   Source,
 > extends ConfigurableNavigator {
   /**
-   * Enabled reading for clipboard
+   * 启用剪贴板读取
    *
    * @default false
    */
   read?: boolean
   /**
-   * Copy source
+   * 复制源
    */
   source?: Source
   /**
-   * Milliseconds to reset state of `copied` ref
+   * 重置 `copied` ref 状态的毫秒数
    *
    * @default 1500
    */
   copiedDuring?: number
 }
-export interface UseClipboardItemsReturn<Optional> {
-  isSupported: ComputedRef<boolean>
+export interface UseClipboardItemsReturn<Optional> extends Supportable {
   content: Readonly<Ref<ClipboardItems>>
   copied: Readonly<ShallowRef<boolean>>
   copy: Optional extends true
@@ -78,7 +77,7 @@ export interface UseClipboardItemsReturn<Optional> {
   read: () => void
 }
 /**
- * Reactive Clipboard API.
+ * 响应式 Clipboard API.
  *
  * @see https://vueuse.org/useClipboardItems
  * @param options

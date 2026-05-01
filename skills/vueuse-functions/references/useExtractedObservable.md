@@ -4,15 +4,13 @@ category: '@RxJS'
 
 # useExtractedObservable
 
-Use an RxJS [`Observable`](https://rxjs.dev/guide/observable) as extracted from one or more composables, return a `ref`,
-and automatically unsubscribe from it when the component is unmounted.
+将一个或多个 composable 中提取出的 RxJS [`Observable`](https://rxjs.dev/guide/observable) 用作输入，返回一个 `ref`，并在组件卸载时自动取消订阅。
 
-Automatically unsubscribe on observable change, and automatically unsubscribe from it when the component is unmounted.
+在 observable 变更时自动取消订阅，并在组件卸载时自动取消订阅。
 
-Supports signatures that match all overloads
-of [`watch`](https://vuejs.org/guide/essentials/watchers.html#basic-example).
+支持与 [`watch`](https://vuejs.org/guide/essentials/watchers.html#basic-example) 的所有重载相匹配的签名。
 
-## Usage
+## 用法
 
 <!-- TODO: import rxjs error if enable twoslash -->
 
@@ -27,9 +25,7 @@ const user = useUser()
 const lastMessage = useExtractedObservable(user, u => ObservableSocket.create(makeSocket(u.id)).down)
 ```
 
-If you want to add custom error handling to an `Observable` that might error, you can supply an optional `onError`
-configuration. Without this, RxJS will treat any error in the supplied `Observable` as an "unhandled error" and it will
-be thrown in a new call stack and reported to `window.onerror` (or `process.on('error')` if you happen to be in Node).
+如果你想为一个可能出错的 `Observable` 添加自定义错误处理，可以提供可选的 `onError` 配置。若不提供，RxJS 会将传入 `Observable` 中的任何错误视为“未处理错误”，并在新的调用栈中抛出，且报告给 `window.onerror`（如果你恰好在 Node 中，则为 `process.on('error')`）。
 
 ```ts no-twoslash
 import { useExtractedObservable } from '@vueuse/rxjs'
@@ -61,8 +57,7 @@ const count = useExtractedObservable(
 )
 ```
 
-You can also supply an optional `onComplete` configuration if you need to attach special behavior when the watched
-observable completes.
+如果你需要在被监听的 observable 完成时附加特殊行为，也可以提供可选的 `onComplete` 配置。
 
 ```ts no-twoslash
 import { useExtractedObservable } from '@vueuse/rxjs'
@@ -85,13 +80,13 @@ const count = useExtractedObservable(
   },
   {
     onComplete: () => {
-      console.log('Done!')
+      console.log('完成！')
     },
   }
 )
 ```
 
-If you want, you can also pass `watch` options as the last argument:
+如果你愿意，也可以将 `watch` 选项作为最后一个参数传入：
 
 ```ts no-twoslash
 import { useExtractedObservable } from '@vueuse/rxjs'
@@ -119,19 +114,19 @@ const count = useExtractedObservable(
 )
 ```
 
-## Options
+## 选项
 
-| Option         | Type                 | Description                              |
-| -------------- | -------------------- | ---------------------------------------- |
-| `initialValue` | `T`                  | Value to use before the Observable emits |
-| `onError`      | `(err: any) => void` | Error handler for Observable errors      |
-| `onComplete`   | `() => void`         | Called when the Observable completes     |
+| 选项           | 类型                 | 描述                               |
+| -------------- | -------------------- | ---------------------------------- |
+| `initialValue` | `T`                  | 在 Observable 发出值之前使用的值   |
+| `onError`      | `(err: any) => void` | Observable 错误的错误处理器        |
+| `onComplete`   | `() => void`         | Observable 完成时调用             |
 
-## Return Value
+## 返回值
 
-Returns a readonly `ShallowRef` containing the latest value emitted by the extracted Observable.
+返回一个只读的 `ShallowRef`，其中包含从提取出的 Observable 发出的最新值。
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseExtractedObservableOptions<
@@ -152,7 +147,7 @@ export declare function useExtractedObservable<
   >,
   options?: UseExtractedObservableOptions<E>,
   watchOptions?: WatchOptions<Immediate>,
-): Readonly<ShallowRef<E>>
+): DeepReadonly<ShallowRef<E>>
 export declare function useExtractedObservable<
   T extends Readonly<MultiWatchSources>,
   E,
@@ -166,7 +161,7 @@ export declare function useExtractedObservable<
   >,
   options?: UseExtractedObservableOptions<E>,
   watchOptions?: WatchOptions<Immediate>,
-): Readonly<ShallowRef<E>>
+): DeepReadonly<ShallowRef<E>>
 export declare function useExtractedObservable<
   T,
   E,
@@ -180,7 +175,7 @@ export declare function useExtractedObservable<
   >,
   options?: UseExtractedObservableOptions<E>,
   watchOptions?: WatchOptions<Immediate>,
-): Readonly<ShallowRef<E>>
+): DeepReadonly<ShallowRef<E>>
 export declare function useExtractedObservable<
   T extends object,
   E,
@@ -194,5 +189,5 @@ export declare function useExtractedObservable<
   >,
   options?: UseExtractedObservableOptions<E>,
   watchOptions?: WatchOptions<Immediate>,
-): Readonly<ShallowRef<E>>
+): DeepReadonly<ShallowRef<E>>
 ```

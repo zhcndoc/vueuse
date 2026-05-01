@@ -4,9 +4,9 @@ category: Sensors
 
 # useGeolocation
 
-Reactive [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API). It allows the user to provide their location to web applications if they so desire. For privacy reasons, the user is asked for permission to report location information.
+响应式 [Geolocation API](https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API)。它允许用户在愿意的情况下向 Web 应用程序提供自己的位置。出于隐私原因，系统会请求用户允许报告位置信息。
 
-## Usage
+## 用法
 
 ```ts
 import { useGeolocation } from '@vueuse/core'
@@ -14,72 +14,50 @@ import { useGeolocation } from '@vueuse/core'
 const { coords, locatedAt, error, resume, pause } = useGeolocation()
 ```
 
-| State     | Type                                                                          | Description                                                              |
-| --------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| coords    | [`Coordinates`](https://developer.mozilla.org/en-US/docs/Web/API/Coordinates) | information about the position retrieved like the latitude and longitude |
-| locatedAt | `Date`                                                                        | The time of the last geolocation call                                    |
-| error     | `string`                                                                      | An error message in case geolocation API fails.                          |
-| resume    | `function`                                                                    | Control function to resume updating geolocation                          |
-| pause     | `function`                                                                    | Control function to pause updating geolocation                           |
+| 状态      | 类型                                                                          | 描述                                                             |
+| --------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| coords    | [`Coordinates`](https://developer.mozilla.org/en-US/docs/Web/API/Coordinates) | 检索到的位置信息，例如纬度和经度                                   |
+| locatedAt | `Date`                                                                        | 上一次地理定位调用的时间                                           |
+| error     | `string`                                                                      | 当地理定位 API 失败时的错误消息。                                 |
+| resume    | `function`                                                                    | 用于恢复更新地理位置的控制函数                                     |
+| pause     | `function`                                                                    | 用于暂停更新地理位置的控制函数                                     |
 
-## Config
+## 配置
 
-`useGeolocation` function takes [PositionOptions](https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions) object as an optional parameter.
+`useGeolocation` 函数接受 [PositionOptions](https://developer.mozilla.org/en-US/docs/Web/API/PositionOptions) 对象作为可选参数。
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseGeolocation v-slot="{ coords: { latitude, longitude } }">
-    Latitude: {{ latitude }}
-    Longitude: {{ longitude }}
+    纬度: {{ latitude }}
+    经度: {{ longitude }}
   </UseGeolocation>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseGeolocationOptions
   extends Partial<PositionOptions>, ConfigurableNavigator {
   immediate?: boolean
 }
+export interface UseGeolocationReturn extends Supportable {
+  coords: ShallowRef<Omit<GeolocationPosition["coords"], "toJSON">>
+  locatedAt: ShallowRef<number | null>
+  error: ShallowRef<GeolocationPositionError | null>
+  resume: () => void
+  pause: () => void
+}
 /**
- * Reactive Geolocation API.
+ * 响应式 Geolocation API。
  *
  * @see https://vueuse.org/useGeolocation
  * @param options
  */
-export declare function useGeolocation(options?: UseGeolocationOptions): {
-  isSupported: ComputedRef<boolean>
-  coords: Ref<
-    {
-      readonly accuracy: number
-      readonly altitude: number | null
-      readonly altitudeAccuracy: number | null
-      readonly heading: number | null
-      readonly latitude: number
-      readonly longitude: number
-      readonly speed: number | null
-    },
-    | Omit<GeolocationCoordinates, "toJSON">
-    | {
-        readonly accuracy: number
-        readonly altitude: number | null
-        readonly altitudeAccuracy: number | null
-        readonly heading: number | null
-        readonly latitude: number
-        readonly longitude: number
-        readonly speed: number | null
-      }
-  >
-  locatedAt: ShallowRef<number | null, number | null>
-  error: ShallowRef<
-    GeolocationPositionError | null,
-    GeolocationPositionError | null
-  >
-  resume: () => void
-  pause: () => void
-}
-export type UseGeolocationReturn = ReturnType<typeof useGeolocation>
+export declare function useGeolocation(
+  options?: UseGeolocationOptions,
+): UseGeolocationReturn
 ```

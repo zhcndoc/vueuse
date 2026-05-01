@@ -4,9 +4,9 @@ category: Browser
 
 # useFullscreen
 
-Reactive [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API). It adds methods to present a specific Element (and its descendants) in full-screen mode, and to exit full-screen mode once it is no longer needed. This makes it possible to present desired content—such as an online game—using the user's entire screen, removing all browser user interface elements and other applications from the screen until full-screen mode is shut off.
+响应式 [Fullscreen API](https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API)。它添加了方法，用于将特定元素（及其后代）以全屏模式展示，并在不再需要时退出全屏模式。这使得可以使用用户的整个屏幕来展示所需内容——例如在线游戏——在关闭全屏模式之前，会移除屏幕上的所有浏览器界面元素和其他应用程序。
 
-## Usage
+## 用法
 
 ```ts
 import { useFullscreen } from '@vueuse/core'
@@ -14,7 +14,7 @@ import { useFullscreen } from '@vueuse/core'
 const { isFullscreen, enter, exit, toggle } = useFullscreen()
 ```
 
-Fullscreen specified element. Some platforms (like iOS's Safari) only allow fullscreen on video elements.
+全屏显示指定元素。某些平台（如 iOS 的 Safari）只允许在视频元素上使用全屏。
 
 ```vue
 <script setup lang="ts">
@@ -30,32 +30,38 @@ const { isFullscreen, enter, exit, toggle } = useFullscreen(el)
 </template>
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseFullscreen v-slot="{ toggle }">
     <video />
     <button @click="toggle">
-      Go Fullscreen
+      进入全屏
     </button>
   </UseFullscreen>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseFullscreenOptions extends ConfigurableDocument {
   /**
-   * Automatically exit fullscreen when component is unmounted
+   * 当组件卸载时自动退出全屏
    *
    * @default false
    */
   autoExit?: boolean
 }
+export interface UseFullscreenReturn extends Supportable {
+  isFullscreen: ShallowRef<boolean>
+  enter: () => Promise<void>
+  exit: () => Promise<void>
+  toggle: () => Promise<void>
+}
 /**
- * Reactive Fullscreen API.
+ * 响应式 Fullscreen API。
  *
  * @see https://vueuse.org/useFullscreen
  * @param target
@@ -64,12 +70,5 @@ export interface UseFullscreenOptions extends ConfigurableDocument {
 export declare function useFullscreen(
   target?: MaybeElementRef,
   options?: UseFullscreenOptions,
-): {
-  isSupported: ComputedRef<boolean>
-  isFullscreen: ShallowRef<boolean, boolean>
-  enter: () => Promise<void>
-  exit: () => Promise<void>
-  toggle: () => Promise<void>
-}
-export type UseFullscreenReturn = ReturnType<typeof useFullscreen>
+): UseFullscreenReturn
 ```

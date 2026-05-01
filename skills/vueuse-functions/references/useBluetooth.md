@@ -4,17 +4,17 @@ category: Browser
 
 # useBluetooth
 
-Reactive [Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API). Provides the ability to connect and interact with Bluetooth Low Energy peripherals.
+响应式 [Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API)。提供连接并与低功耗蓝牙外设交互的能力。
 
-The Web Bluetooth API lets websites discover and communicate with devices over the Bluetooth 4 wireless standard using the Generic Attribute Profile (GATT).
+Web Bluetooth API 允许网站使用通用属性规范（GATT）通过 Bluetooth 4 无线标准发现设备并与之通信。
 
-N.B. It is currently partially implemented in Android M, Chrome OS, Mac, and Windows 10. For a full overview of browser compatibility please see [Web Bluetooth API Browser Compatibility](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API#browser_compatibility)
+N.B. 它目前在 Android M、Chrome OS、Mac 和 Windows 10 上有部分实现。有关浏览器兼容性的完整概览，请参阅 [Web Bluetooth API 浏览器兼容性](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API#browser_compatibility)
 
-N.B. There are a number of caveats to be aware of with the web bluetooth API specification. Please refer to the [Web Bluetooth W3C Draft Report](https://webbluetoothcg.github.io/web-bluetooth/) for numerous caveats around device detection and connection.
+N.B. Web Bluetooth API 规范有许多需要注意的限制。有关设备检测和连接方面的诸多限制，请参阅 [Web Bluetooth W3C Draft Report](https://webbluetoothcg.github.io/web-bluetooth/)。
 
-N.B. This API is not available in Web Workers (not exposed via WorkerNavigator).
+N.B. 该 API 在 Web Workers 中不可用（不会通过 WorkerNavigator 暴露）。
 
-## Usage Default
+## 用法 默认
 
 ```vue
 <script setup lang="ts">
@@ -34,32 +34,32 @@ const {
 
 <template>
   <button @click="requestDevice()">
-    Request Bluetooth Device
+    请求蓝牙设备
   </button>
   <div v-if="error">
-    Error: {{ error }}
+    错误：{{ error }}
   </div>
 </template>
 ```
 
-### Return Values
+### 返回值
 
-| Property        | Type                             | Description                                |
-| --------------- | -------------------------------- | ------------------------------------------ |
-| `isSupported`   | `ComputedRef<boolean>`           | Whether the Web Bluetooth API is supported |
-| `isConnected`   | `Ref<boolean>`                   | Whether a device is currently connected    |
-| `device`        | `Ref<BluetoothDevice>`           | The connected Bluetooth device             |
-| `server`        | `Ref<BluetoothRemoteGATTServer>` | The GATT server for the connected device   |
-| `error`         | `Ref<unknown>`                   | Any error that occurred during connection  |
-| `requestDevice` | `() => Promise<void>`            | Function to request a Bluetooth device     |
+| 属性            | 类型                            | 描述                           |
+| --------------- | ------------------------------- | ------------------------------ |
+| `isSupported`   | `ComputedRef<boolean>`          | Web Bluetooth API 是否受支持   |
+| `isConnected`   | `Ref<boolean>`                  | 设备当前是否已连接             |
+| `device`        | `Ref<BluetoothDevice>`          | 已连接的蓝牙设备               |
+| `server`        | `Ref<BluetoothRemoteGATTServer>` | 已连接设备的 GATT 服务器       |
+| `error`         | `Ref<unknown>`                  | 连接过程中发生的任何错误       |
+| `requestDevice` | `() => Promise<void>`           | 请求蓝牙设备的函数             |
 
-When the device has paired and is connected, you can then work with the server object as you wish.
+当设备已配对并连接后，你就可以按需使用 server 对象进行操作。
 
-## Usage Battery Level Example
+## 用法 电池电量示例
 
-This sample illustrates the use of the Web Bluetooth API to read battery level and be notified of changes from a nearby Bluetooth Device advertising Battery information with Bluetooth Low Energy.
+此示例演示了如何使用 Web Bluetooth API 读取电池电量，并在附近广播电池信息的蓝牙低功耗设备发生变化时接收通知。
 
-Here, we use the characteristicvaluechanged event listener to handle reading battery level characteristic value. This event listener will optionally handle upcoming notifications as well.
+这里我们使用 characteristicvaluechanged 事件监听器来处理电池电量特征值的读取。该事件监听器也会可选地处理后续的通知。
 
 ```vue
 <script setup lang="ts">
@@ -85,20 +85,20 @@ const isGettingBatteryLevels = ref(false)
 async function getBatteryLevels() {
   isGettingBatteryLevels.value = true
 
-  // Get the battery service:
+  // 获取电池服务：
   const batteryService = await server.getPrimaryService('battery_service')
 
-  // Get the current battery level
+  // 获取当前电池电量
   const batteryLevelCharacteristic = await batteryService.getCharacteristic(
     'battery_level',
   )
 
-  // Listen to when characteristic value changes on `characteristicvaluechanged` event:
+  // 监听 `characteristicvaluechanged` 事件中特征值的变化：
   useEventListener(batteryLevelCharacteristic, 'characteristicvaluechanged', (event) => {
     batteryPercent.value = event.target.value.getUint8(0)
   }, { passive: true })
 
-  // Convert received buffer to number:
+  // 将接收到的缓冲区转换为数字：
   const batteryLevel = await batteryLevelCharacteristic.readValue()
 
   batteryPercent.value = await batteryLevel.getUint8(0)
@@ -107,36 +107,36 @@ async function getBatteryLevels() {
 const { stop } = watchPausable(isConnected, (newIsConnected) => {
   if (!newIsConnected || !server.value || isGettingBatteryLevels.value)
     return
-  // Attempt to get the battery levels of the device:
+  // 尝试获取设备的电池电量：
   getBatteryLevels()
-  // We only want to run this on the initial connection, as we will use an event listener to handle updates:
+  // 我们只希望在初次连接时运行此操作，因为后续更新将使用事件监听器处理：
   stop()
 })
 </script>
 
 <template>
   <button @click="requestDevice()">
-    Request Bluetooth Device
+    请求蓝牙设备
   </button>
 </template>
 ```
 
-More samples can be found on [Google Chrome's Web Bluetooth Samples](https://googlechrome.github.io/samples/web-bluetooth/).
+更多示例可见 [Google Chrome 的 Web Bluetooth 示例](https://googlechrome.github.io/samples/web-bluetooth/)。
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseBluetoothRequestDeviceOptions {
   /**
    *
-   * An array of BluetoothScanFilters. This filter consists of an array
-   * of BluetoothServiceUUIDs, a name parameter, and a namePrefix parameter.
+   * BluetoothScanFilters 的数组。此过滤器由 BluetoothServiceUUIDs
+   * 的数组、name 参数以及 namePrefix 参数组成。
    *
    */
   filters?: BluetoothLEScanFilter[] | undefined
   /**
    *
-   * An array of BluetoothServiceUUIDs.
+   * BluetoothServiceUUIDs 的数组。
    *
    * @see https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTService/uuid
    *
@@ -147,14 +147,14 @@ export interface UseBluetoothOptions
   extends UseBluetoothRequestDeviceOptions, ConfigurableNavigator {
   /**
    *
-   * A boolean value indicating that the requesting script can accept all Bluetooth
-   * devices. The default is false.
+   * 一个布尔值，表示请求脚本可以接受所有 Bluetooth
+   * 设备。默认值为 false。
    *
-   * !! This may result in a bunch of unrelated devices being shown
-   * in the chooser and energy being wasted as there are no filters.
+   * !! 这可能会导致一堆无关设备显示在
+   * 选择器中，并且由于没有过滤器而浪费电量。
    *
    *
-   * Use it with caution.
+   * 请谨慎使用。
    *
    * @default false
    *
@@ -164,8 +164,7 @@ export interface UseBluetoothOptions
 export declare function useBluetooth(
   options?: UseBluetoothOptions,
 ): UseBluetoothReturn
-export interface UseBluetoothReturn {
-  isSupported: ComputedRef<boolean>
+export interface UseBluetoothReturn extends Supportable {
   isConnected: Readonly<ShallowRef<boolean>>
   device: ShallowRef<BluetoothDevice | undefined>
   requestDevice: () => Promise<void>
