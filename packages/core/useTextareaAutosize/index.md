@@ -6,6 +6,9 @@ category: Browser
 
 根据内容自动更新 textarea 的高度。
 
+> [!TIP]
+> 你现在可能已经不需要这个函数了。Textarea 自动调整大小现在可以通过 CSS 原生实现，更多信息请参见 [`field-sizing: content`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/field-sizing)。
+
 ## 用法
 
 ### 简单示例

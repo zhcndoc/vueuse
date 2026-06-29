@@ -57,7 +57,6 @@ const sampled = shallowRef<string[]>([])
 // 开始语音识别
 function start() {
   color.value = 'transparent'
-  speech.result.value = ''
   sampled.value = sample(colors, 5)
   speech.start()
 }

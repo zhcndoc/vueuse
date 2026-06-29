@@ -17,7 +17,7 @@ npm i @vueuse/core
 ###### 示例
 
 - [Vite + Vue 3](https://github.com/vueuse/vueuse-vite-starter)
-- [Nuxt 3 + Vue 3](https://github.com/antfu/vitesse-nuxt3)
+- [Nuxt 4 + Vue 3](https://github.com/antfu/vitesse-nuxt)
 - [Webpack + Vue 3](https://github.com/vueuse/vueuse-vue3-example)
 
 ### CDN
@@ -40,7 +40,7 @@ npm i @vueuse/core
 npx nuxt@latest module add vueuse
 ```
 
-或使用 npm：
+或者使用 npm：
 
 ```bash
 npm i -D @vueuse/nuxt @vueuse/core

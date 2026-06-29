@@ -22,14 +22,14 @@ const { state, isReady, isLoading, error } = useAsyncState(
 
 ### 返回值
 
-| 属性               | 说明                                       |
-| ------------------ | ------------------------------------------ |
-| `state`            | 异步函数的结果                             |
-| `isReady`          | 当 promise 至少已解析一次时为 `true`       |
-| `isLoading`        | 当 promise 正在等待时为 `true`             |
-| `error`            | 如果 promise 被拒绝则为错误信息            |
-| `execute`          | 重新执行异步函数，可选延迟                 |
-| `executeImmediate` | 立即重新执行（相当于 `execute(0)` 的简写） |
+| 属性           | 描述                                                                                                                    |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `state`            | 异步函数的结果                                                                                               |
+| `isReady`          | 当最近一次执行成功解析时为 `true`。每次执行时重置为 `false`，如果被拒绝则保持为 `false` |
+| `isLoading`        | 当 Promise 处于等待状态时为 `true`                                                                                            |
+| `error`            | 如果 Promise 被拒绝，则为错误信息                                                                                          |
+| `execute`          | 使用可选延迟重新执行异步函数                                                                              |
+| `executeImmediate` | 立即重新执行（`execute(0)` 的简写）                                                                            |
 
 ### 等待结果
 

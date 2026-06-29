@@ -8,7 +8,7 @@ category: Component
 如果你正在寻找更多功能，请考虑使用 [`@tanstack/vue-virtual`](https://tanstack.com/virtual/v3/docs/framework/vue/vue-virtual)。
 :::
 
-轻松创建虚拟列表。虚拟列表（有时称为 [_virtual scrollers_](https://vue-virtual-scroller-demo.netlify.app/)）允许你高效地渲染大量项目。它们只渲染必要的最小数量的 DOM 节点，以通过使用 `wrapper` 元素模拟容器元素的完整高度来显示 `container` 元素中的项目。
+轻松创建虚拟列表。虚拟列表（有时称为 [_虚拟滚动器_](https://vue-virtual-scroller-demo.netlify.app/)）允许你高效地渲染大量项目。它们只渲染必要的最小数量的 DOM 节点，以通过使用 `wrapper` 元素模拟容器元素的完整高度来显示 `container` 元素中的项目。
 
 ## 用法
 
@@ -29,7 +29,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 ### 配置
 
 | 状态       | 类型     | 描述                                                            |
-| ---------- | -------- | --------------------------------------------------------------- |
+| ---------- | ---------- | --------------------------------------------------------------- |
 | itemHeight | `number` | 确保正确计算 `wrapper` 元素的总高度。\*                         |
 | itemWidth  | `number` | 确保正确计算 `wrapper` 元素的总宽度。\*                         |
 | overscan   | `number` | 预渲染的 DOM 节点数量。如果你快速滚动，可防止项目之间出现空白。 |
@@ -112,4 +112,4 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 </template>
 ```
 
-要滚动到特定元素，组件提供了 `scrollTo(index: number) => void` 方法。
+要滚动到特定元素，该组件提供了 `scrollTo(index: number, options?: { behavior?: ScrollBehavior, block?: ScrollLogicalPosition, inline?: ScrollLogicalPosition }) => void`。

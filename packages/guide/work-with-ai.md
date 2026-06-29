@@ -2,8 +2,8 @@
 
 ## 代理技能
 
-> [!重要]
-> 🧪 实验性质：VueUse 技能目前处于实验阶段，正在积极开发中，欢迎反馈。
+> [!IMPORTANT]
+> 🧪 实验性：VueUse Skills 目前处于实验阶段，并在积极开发中，欢迎反馈。
 
 [VueUse Skills](https://github.com/vueuse/skills) 是由 VueUse 团队维护的 AI 代理技能。
 

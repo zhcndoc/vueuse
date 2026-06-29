@@ -18,8 +18,15 @@ function clickedFn() {
   <button @click="clickedFn">
     点我！
   </button>
-  <note>此演示中延迟设置为 1000ms，最大等待时间设置为 5000ms。</note>
+  <button @click="debouncedFn.cancel()">
+    Cancel
+  </button>
+  <button @click="debouncedFn.flush()">
+    Flush
+  </button>
+  <note>Delay is set to 1000ms and maxWait is set to 5000ms for this demo.</note>
 
-  <p>按钮点击次数：{{ clicked }}</p>
-  <p>事件处理程序调用次数：{{ updated }}</p>
+  <p>Pending: {{ debouncedFn.isPending }}</p>
+  <p>Button clicked: {{ clicked }}</p>
+  <p>Event handler called: {{ updated }}</p>
 </template>

@@ -1,5 +1,6 @@
 ---
-category: Time
+category: 时间
+utils: formatTimeAgo
 ---
 
 # useTimeAgo

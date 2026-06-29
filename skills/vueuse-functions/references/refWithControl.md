@@ -4,13 +4,13 @@ alias: controlledRef
 related: computedWithControl
 ---
 
-# refWithControl
+# 带控制的 ref
 
-Fine-grained controls over ref and its reactivity.
+对 ref 及其响应性进行细粒度控制。
 
-## Usage
+## 用法
 
-`refWithControl` uses `extendRef` to provide two extra functions `get` and `set` to have better control over when it should track/trigger the reactivity.
+`refWithControl` 使用 `extendRef` 提供两个额外函数 `get` 和 `set`，以便更好地控制何时应跟踪/触发响应性。
 
 ```ts
 import { refWithControl } from '@vueuse/core'
@@ -39,7 +39,7 @@ console.log(doubled.value) // 100 (updated again since it's a reactive set)
 
 ### `peek`, `lay`, `untrackedGet`, `silentSet`
 
-We also provide some shorthands for doing the get/set without track/triggering the reactivity system. The following lines are equivalent.
+我们还提供了一些简写方式，可以在不跟踪/触发响应式系统的情况下进行 get/set。下面这些写法是等价的。
 
 ```ts
 import { refWithControl } from '@vueuse/core'
@@ -69,11 +69,11 @@ foo.silentSet('bar')
 foo.lay('bar') // an alias for `silentSet`
 ```
 
-## Configurations
+## 配置
 
 ### `onBeforeChange()`
 
-`onBeforeChange` option is offered to give control over if a new value should be accepted. For example:
+`onBeforeChange` 选项用于控制是否应接受新值。例如：
 
 ```ts
 import { refWithControl } from '@vueuse/core'
@@ -95,7 +95,7 @@ console.log(num.value) // 1 (change been dismissed)
 
 ### `onChanged()`
 
-`onChanged` option offers a similar functionally as Vue's `watch` but being synchronized with less overhead compared to `watch`.
+`onChanged` 选项提供了与 Vue 的 `watch` 类似的功能，但与 `watch` 相比，同步开销更小。
 
 ```ts
 import { refWithControl } from '@vueuse/core'
@@ -107,7 +107,7 @@ const num = refWithControl(0, {
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface ControlledRefOptions<T> {
@@ -132,15 +132,14 @@ export interface ControlledRefOptions<T> {
 export declare function refWithControl<T>(
   initial: T,
   options?: ControlledRefOptions<T>,
-): ShallowUnwrapRef<{
+): {
   get: (tracking?: boolean) => T
   set: (value: T, triggering?: boolean) => void
   untrackedGet: () => T
   silentSet: (v: T) => void
   peek: () => T
   lay: (v: T) => void
-}> &
-  Ref<T, T>
+} & Ref<T, T>
 /** @deprecated use `refWithControl` instead */
 export declare const controlledRef: typeof refWithControl
 ```

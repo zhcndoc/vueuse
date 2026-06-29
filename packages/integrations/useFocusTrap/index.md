@@ -66,7 +66,7 @@ const { hasFocus, activate, deactivate } = useFocusTrap([targetOne, targetTwo])
     </div>
     ...
     <div ref="targetTwo">
-      <p>另一个目标在这里</p>
+      <p>Another target here</p>
       <input type="text">
       <button @click="deactivate()">
         停用

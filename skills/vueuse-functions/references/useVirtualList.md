@@ -5,14 +5,14 @@ category: Component
 # useVirtualList
 
 ::: warning
-Consider using [`@tanstack/vue-virtual`](https://tanstack.com/virtual/v3/docs/framework/vue/vue-virtual) instead, if you are looking for more features.
+如果你正在寻找更多功能，建议改用 [`@tanstack/vue-virtual`](https://tanstack.com/virtual/v3/docs/framework/vue/vue-virtual)。
 :::
 
-Create virtual lists with ease. Virtual lists (sometimes called [_virtual scrollers_](https://vue-virtual-scroller-demo.netlify.app/)) allow you to render a large number of items performantly. They only render the minimum number of DOM nodes necessary to show the items within the `container` element by using the `wrapper` element to emulate the container element's full height.
+轻松创建虚拟列表。虚拟列表（有时也称为 [_虚拟滚动器_](https://vue-virtual-scroller-demo.netlify.app/)）可以让你高性能地渲染大量项目。它们只会渲染必要的最少 DOM 节点，通过使用 `wrapper` 元素来模拟容器元素的完整高度，从而显示 `container` 元素中的项目。
 
-## Usage
+## 用法
 
-### Simple list
+### 简单列表
 
 ```ts
 import { useVirtualList } from '@vueuse/core'
@@ -26,17 +26,17 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 )
 ```
 
-### Config
+### 配置
 
-| State      | Type     | Description                                                                                     |
-| ---------- | -------- | ----------------------------------------------------------------------------------------------- |
-| itemHeight | `number` | ensure that the total height of the `wrapper` element is calculated correctly.\*                |
-| itemWidth  | `number` | ensure that the total width of the `wrapper` element is calculated correctly.\*                 |
-| overscan   | `number` | number of pre-rendered DOM nodes. Prevents whitespace between items if you scroll very quickly. |
+| 状态 | 类型 | 描述 |
+| ---- | ---- | ---- |
+| itemHeight | `number` | 确保正确计算 `wrapper` 元素的总高度。\* |
+| itemWidth  | `number` | 确保正确计算 `wrapper` 元素的总宽度。\* |
+| overscan   | `number` | 预渲染的 DOM 节点数量。如果你滚动得非常快，可防止项目之间出现空白。 |
 
-\* The `itemHeight` or `itemWidth` must be kept in sync with the height of each row rendered. If you are seeing extra whitespace or jitter when scrolling to the bottom of the list, ensure the `itemHeight` or `itemWidth` is the same height as the row.
+\* `itemHeight` 或 `itemWidth` 必须与每一行渲染的高度保持同步。如果你在滚动到列表底部时看到多余的空白或抖动，请确保 `itemHeight` 或 `itemWidth` 的高度与该行相同。
 
-### Reactive list
+### 响应式列表
 
 ```ts
 import { useToggle, useVirtualList } from '@vueuse/core'
@@ -70,7 +70,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 </template>
 ```
 
-### Horizontal list
+### 横向列表
 
 ```ts
 import { useVirtualList } from '@vueuse/core'
@@ -97,7 +97,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 </template>
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
@@ -112,9 +112,9 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 </template>
 ```
 
-To scroll to a specific element, the component exposes `scrollTo(index: number) => void`.
+要滚动到特定元素，该组件公开了 `scrollTo(index: number, options?: { behavior?: ScrollBehavior, block?: ScrollLogicalPosition, inline?: ScrollLogicalPosition }) => void`。
 
-## Type Declarations
+## 类型声明
 
 ```ts
 type UseVirtualListItemSize = number | ((index: number) => number)
@@ -149,9 +149,14 @@ export interface UseVirtualListItem<T> {
   data: T
   index: number
 }
+export interface UseVirtualListScrollToOptions {
+  behavior?: ScrollBehavior
+  block?: ScrollLogicalPosition
+  inline?: ScrollLogicalPosition
+}
 export interface UseVirtualListReturn<T> {
   list: Ref<UseVirtualListItem<T>[]>
-  scrollTo: (index: number) => void
+  scrollTo: (index: number, options?: UseVirtualListScrollToOptions) => void
   containerProps: {
     ref: Ref<HTMLElement | null>
     onScroll: () => void

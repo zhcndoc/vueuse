@@ -6,7 +6,7 @@ import type { ConfigurableWindow } from '../_configurable'
 import type { Supportable } from '../types'
 import type { SpeechRecognition, SpeechRecognitionErrorEvent } from './types'
 import { toRef, tryOnScopeDispose } from '@vueuse/shared'
-import { shallowRef, toValue, watch } from 'vue'
+import { shallowReadonly, shallowRef, toValue, watch } from 'vue'
 import { defaultWindow } from '../_configurable'
 import { useSupported } from '../useSupported'
 
@@ -41,9 +41,15 @@ export interface UseSpeechRecognitionOptions extends ConfigurableWindow {
 
 export interface UseSpeechRecognitionReturn extends Supportable {
   isListening: ShallowRef<boolean>
-  isFinal: ShallowRef<boolean>
+  isFinal: Readonly<ShallowRef<boolean>>
   recognition: SpeechRecognition | undefined
-  result: ShallowRef<string>
+  result: Readonly<ShallowRef<string>>
+  /**
+   * Confidence value of the latest result, between 0 and 1.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognitionAlternative/confidence
+   */
+  confidence: Readonly<ShallowRef<number>>
   error: ShallowRef<SpeechRecognitionErrorEvent | Error | undefined>
   toggle: (value?: boolean) => void
   start: () => void
@@ -69,6 +75,7 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
   const isListening = shallowRef(false)
   const isFinal = shallowRef(false)
   const result = shallowRef('')
+  const confidence = shallowRef(0)
   const error = shallowRef<SpeechRecognitionErrorEvent | Error | undefined>(undefined)
 
   let recognition: SpeechRecognition | undefined
@@ -113,10 +120,11 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
 
     recognition.onresult = (event) => {
       const currentResult = event.results[event.resultIndex]
-      const { transcript } = currentResult[0]
+      const { transcript, confidence: alternativeConfidence } = currentResult[0]
 
       isFinal.value = currentResult.isFinal
       result.value = transcript
+      confidence.value = alternativeConfidence
       error.value = undefined
     }
 
@@ -154,9 +162,10 @@ export function useSpeechRecognition(options: UseSpeechRecognitionOptions = {}):
   return {
     isSupported,
     isListening,
-    isFinal,
+    isFinal: shallowReadonly(isFinal),
     recognition,
-    result,
+    result: shallowReadonly(result),
+    confidence: shallowReadonly(confidence),
     error,
 
     toggle,

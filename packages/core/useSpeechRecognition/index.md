@@ -1,12 +1,12 @@
 ---
-category: Sensors
+category: 传感器
 ---
 
 # useSpeechRecognition
 
 响应式 [SpeechRecognition](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition)。
 
-> [Can I use?](https://caniuse.com/mdn-api_speechrecognitionevent)
+> [我可以使用吗？](https://caniuse.com/mdn-api_speechrecognitionevent)
 
 ## 用法
 
@@ -18,10 +18,13 @@ const {
   isListening,
   isFinal,
   result,
+  confidence,
   start,
   stop,
 } = useSpeechRecognition()
 ```
+
+`confidence` 引用跟踪最新结果的 [置信值](https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognitionAlternative/confidence)，范围在 0 到 1 之间。
 
 ### 选项
 

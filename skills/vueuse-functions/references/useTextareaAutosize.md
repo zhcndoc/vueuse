@@ -6,6 +6,9 @@ category: Browser
 
 根据内容自动更新 textarea 的高度。
 
+> [!TIP]
+> 你可能已经不再需要这个函数了。现在可以直接用 CSS 原生实现 textarea 的自适应高度，更多信息请参见 [`field-sizing: content`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/field-sizing)。
+
 ## 用法
 
 ### 简单示例
@@ -66,6 +69,31 @@ const { textarea, input } = useTextareaAutosize({ styleProp: 'minHeight' })
 </template>
 ```
 
+### 带有 `maxHeight`
+
+使用 `maxHeight` 选项以像素为单位限制 textarea 高度，同时保留自动调整大小的行为。
+
+```vue
+<script setup lang="ts">
+import { useTextareaAutosize } from '@vueuse/core'
+
+const { textarea, input } = useTextareaAutosize({
+  maxHeight: 180,
+  styleProp: 'minHeight',
+})
+</script>
+
+<template>
+  <textarea
+    ref="textarea"
+    v-model="input"
+    class="resize-none"
+    placeholder="What's on your mind?"
+    rows="3"
+  />
+</template>
+```
+
 ## 类型声明
 
 ```ts
@@ -74,7 +102,9 @@ export interface UseTextareaAutosizeOptions extends ConfigurableWindow {
   element?: MaybeRef<HTMLTextAreaElement | undefined | null>
   /** Textarea 内容。 */
   input?: MaybeRef<string>
-  /** 应触发 textarea 调整大小的监听源。 */
+  /** Maximum autosized height in pixels. */
+  maxHeight?: number
+  /** Watch sources that should trigger a textarea resize. */
   watch?: WatchSource | MultiWatchSources
   /** textarea 大小变化时调用的函数。 */
   onResize?: () => void

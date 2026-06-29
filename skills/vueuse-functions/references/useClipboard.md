@@ -4,7 +4,7 @@ category: Browser
 
 # useClipboard
 
-响应式 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)。提供响应剪贴板命令（剪切、复制和粘贴）以及异步读取和写入系统剪贴板的能力。访问剪贴板内容受 [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) 保护。没有用户许可时，不允许读取或修改剪贴板内容。
+响应式 [Clipboard API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API)。提供响应式剪贴板命令（剪切、复制和粘贴）以及异步读取和写入系统剪贴板的能力。访问剪贴板内容受 [Permissions API](https://developer.mozilla.org/en-US/docs/Web/API/Permissions_API) 保护。没有用户许可时，不允许读取或修改剪贴板内容。
 
 <CourseLink href="https://vueschool.io/lessons/reactive-browser-wrappers-in-vueuse-useclipboard?friend=vueuse">了解如何通过 Vue School 的这节免费视频课程，以响应式方式将文本保存到剪贴板！</CourseLink>
 
@@ -37,7 +37,7 @@ const { text, copy, copied, isSupported } = useClipboard({ source })
 
 | 选项           | 类型                       | 默认值 | 描述                                                             |
 | -------------- | -------------------------- | ------ | ---------------------------------------------------------------- |
-| `source`       | `MaybeRefOrGetter<string>` | —      | 在不传参数调用 `copy()` 时要复制的默认内容                            |
+| `source`       | `MaybeRefOrGetter<string>` | —      | 不传参数调用 `copy()` 时要复制的默认内容                            |
 | `read`         | `boolean`                  | `false` | 在复制/剪切事件时启用读取剪贴板内容                                  |
 | `copiedDuring` | `number`                  | `1500` | `copied` 重置为 `false` 前的毫秒数                                 |
 | `legacy`       | `boolean`                  | `false` | 如果 Clipboard API 不可用，则回退到 `document.execCommand`        |
@@ -98,12 +98,14 @@ export interface UseClipboardOptions<Source> extends ConfigurableNavigator {
    */
   legacy?: boolean
 }
+type ClipboardValue = string | (() => Promise<string | undefined>)
 export interface UseClipboardReturn<Optional> extends Supportable {
   text: Readonly<ShallowRef<string>>
   copied: Readonly<ShallowRef<boolean>>
+  copyPending: Readonly<ShallowRef<boolean>>
   copy: Optional extends true
-    ? (text?: string) => Promise<void>
-    : (text: string) => Promise<void>
+    ? (text?: ClipboardValue) => Promise<void>
+    : (text: ClipboardValue) => Promise<void>
 }
 /**
  * 响应式 Clipboard API。

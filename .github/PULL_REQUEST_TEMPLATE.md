@@ -1,29 +1,32 @@
-<!-- Thank you for contributing! -->
+<!-- 感谢你的贡献！ -->
 
-### Before submitting the PR, please make sure you do the following
+### 在提交 PR 之前，请确保你已完成以下事项
 
-- [ ] Read the [Contributing Guidelines](https://github.com/vueuse/vueuse/blob/main/CONTRIBUTING.md).
-- [ ] Read the [Pull Request Guidelines](https://github.com/vueuse/vueuse/blob/main/packages/guidelines.md).
-- [ ] Check that there isn't already a PR that solves the problem the same way to avoid creating a duplicate.
-- [ ] Provide a description in this PR that addresses **what** the PR is solving, or reference the issue that it solves (e.g. `fixes #123`).
-- [ ] Ideally, include relevant tests that fail without this PR but pass with it.
+- [ ] 阅读[贡献指南](https://github.com/vueuse/vueuse/blob/main/CONTRIBUTING.md)。
+- [ ] 阅读[拉取请求指南](https://github.com/vueuse/vueuse/blob/main/packages/guidelines.md)。
+- [ ] 检查是否已经存在一个以相同方式解决该问题的 PR，以避免创建重复项。
+- [ ] 在此 PR 中提供一段描述，说明此 PR 正在解决什么问题，或引用它所解决的问题（例如 `fixes #123`）。
+- [ ] 最好包含相关测试：没有这个 PR 时会失败，而有了这个 PR 后会通过。
+- [ ] 确认此 PR 基于你自己对项目的理解和审查，而不是仅由 AI 工具生成或总结。
+
+> **注意**：如果此 PR 被认为主要由 AI 工具生成，它可能会被关闭。
 
 <details>
-<summary><strong>⚠️ Slowing down new functions</strong></summary>
+<summary><strong>⚠️ 放缓新增功能</strong></summary>
 <br>
 
-> **Warning**: **Slowing down new functions**
+> **警告**：**放缓新增功能**
 >
-> As the VueUse audience continues to grow, we have been inundated with an overwhelming number of feature requests and pull requests. As a result, maintaining the project has become increasingly challenging and has stretched our capacity to its limits. As such, in the near future, we may need to slow down our acceptance of new features and prioritize the stability and quality of existing functions. **Please note that new features for VueUse may not be accepted at this time.** If you have any new ideas, we suggest that you first incorporate them into your own codebase, iterate on them to suit your needs, and assess their generalizability. If you strongly believe that your ideas are beneficial to the community, you may submit a pull request along with your use cases, and we would be happy to review and discuss them. Thank you for your understanding.
+> 随着 VueUse 的受众不断增长，我们收到了大量的功能请求和拉取请求。因此，维护项目变得越来越具有挑战性，并且已经将我们的精力拉到了极限。因此，在不久的将来，我们可能需要放缓对新功能的接受速度，并优先保证现有功能的稳定性和质量。**请注意，VueUse 的新功能目前可能不会被接受。** 如果你有任何新想法，我们建议你先将其纳入自己的代码库中，进行迭代以满足你的需求，并评估其泛化能力。如果你坚信你的想法对社区有益，你可以连同使用场景一起提交拉取请求，我们很乐意审查并讨论它们。感谢你的理解。
 
 </details>
 
 ---
 
-### Description
+### 描述
 
-<!-- Please insert your description here and provide especially info about the "what" this PR is solving -->
+<!-- 请在此处填写你的描述，并特别提供关于此 PR 正在解决什么问题的信息 -->
 
-### Additional context
+### 附加上下文
 
-<!-- e.g. is there anything you'd like reviewers to focus on? -->
+<!-- 例如：是否有希望审阅者重点关注的内容？ -->
