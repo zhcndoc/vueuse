@@ -1,5 +1,5 @@
 ---
-category: Sensors
+category: 传感器
 ---
 
 # useInfiniteScroll
@@ -54,9 +54,9 @@ function resetList() {
 
 不同的滚动方向需要不同的 CSS 样式设置：
 
-| Direction          | 所需 CSS                                              |
+| 方向               | 所需 CSS                                              |
 | ------------------ | ----------------------------------------------------- |
-| `bottom` (default) | 无需特殊设置                                            |
+| `bottom` (默认)    | 无需特殊设置                                            |
 | `top`              | `display: flex;`<br>`flex-direction: column-reverse;` |
 | `left`             | `display: flex;`<br>`flex-direction: row-reverse;`    |
 | `right`            | `display: flex;`                                      |
@@ -105,12 +105,7 @@ function canLoadMore() {
 
 ```ts
 type InfiniteScrollElement =
-  | HTMLElement
-  | SVGElement
-  | Window
-  | Document
-  | null
-  | undefined
+  HTMLElement | SVGElement | Window | Document | null | undefined
 export interface UseInfiniteScrollOptions<
   T extends InfiniteScrollElement = InfiniteScrollElement,
 > extends UseScrollOptions {

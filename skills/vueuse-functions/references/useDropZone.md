@@ -1,18 +1,18 @@
 ---
-category: Elements
+category: 元素
 ---
 
 # useDropZone
 
-Create a zone where files can be dropped.
+创建一个可供文件拖放的区域。
 
 ::: warning
 
-Due to Safari browser limitations, file type validation is only possible during the drop event, not during drag events. As a result, the `isOverDropZone` value will always be `true` during drag operations in Safari, regardless of file type.
+由于 Safari 浏览器的限制，文件类型验证只能在放置事件期间进行，无法在拖动事件期间进行。因此，在 Safari 中进行拖动操作时，无论文件类型如何，`isOverDropZone` 的值始终为 `true`。
 
 :::
 
-## Usage
+## 用法
 
 ```vue
 <script setup lang="ts">
@@ -22,28 +22,28 @@ import { useTemplateRef } from 'vue'
 const dropZoneRef = useTemplateRef('dropZoneRef')
 
 function onDrop(files: File[] | null) {
-  // called when files are dropped on zone
+  // 文件被拖放到区域时调用
 }
 
 const { isOverDropZone } = useDropZone(dropZoneRef, {
   onDrop,
-  // specify the types of data to be received.
+  // 指定要接收的数据类型。
   dataTypes: ['image/jpeg'],
-  // control multi-file drop
+  // 控制多文件拖放
   multiple: true,
-  // whether to prevent default behavior for unhandled events
+  // 是否为未处理的事件阻止默认行为
   preventDefaultForUnhandled: false,
 })
 </script>
 
 <template>
   <div ref="dropZoneRef">
-    Drop files here
+    将文件拖放到此处
   </div>
 </template>
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseDropZoneReturn {
@@ -52,15 +52,14 @@ export interface UseDropZoneReturn {
 }
 export interface UseDropZoneOptions {
   /**
-   * Allowed data types, if not set, all data types are allowed.
-   * Also can be a function to check the data types.
+   * 允许的数据类型；如果未设置，则允许所有数据类型。
+   * 也可以是用于检查数据类型的函数。
    */
   dataTypes?:
-    | MaybeRef<readonly string[]>
-    | ((types: readonly string[]) => boolean)
+    MaybeRef<readonly string[]> | ((types: readonly string[]) => boolean)
   /**
-   * Similar to dataTypes, but exposes the DataTransferItemList for custom validation.
-   * If provided, this function takes precedence over dataTypes.
+   * 类似于 dataTypes，但会提供 DataTransferItemList 以进行自定义验证。
+   * 如果提供了此函数，则优先使用它，而不是 dataTypes。
    */
   checkValidity?: (items: DataTransferItemList) => boolean
   onDrop?: (files: File[] | null, event: DragEvent) => void
@@ -68,11 +67,11 @@ export interface UseDropZoneOptions {
   onLeave?: (files: File[] | null, event: DragEvent) => void
   onOver?: (files: File[] | null, event: DragEvent) => void
   /**
-   * Allow multiple files to be dropped. Defaults to true.
+   * 允许拖放多个文件。默认为 true。
    */
   multiple?: boolean
   /**
-   * Prevent default behavior for unhandled events. Defaults to false.
+   * 阻止未处理事件的默认行为。默认为 false。
    */
   preventDefaultForUnhandled?: boolean
 }

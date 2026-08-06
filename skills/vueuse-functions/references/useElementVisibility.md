@@ -1,5 +1,5 @@
 ---
-category: Elements
+category: 元素
 ---
 
 # useElementVisibility
@@ -22,11 +22,11 @@ const targetVisibilityController = useElementVisibility(target2, { controls: tru
 
 <template>
   <div ref="target">
-    <h1>Hello world</h1>
+    <h1>你好，世界</h1>
   </div>
 
   <div ref="target2">
-    <h1>Hi there</h1>
+    <h1>你好</h1>
   </div>
 </template>
 ```
@@ -50,6 +50,38 @@ const targetIsVisible = useElementVisibility(target, {
 ```ts
 const targetIsVisible = useElementVisibility(target, {
   threshold: 1.0, // 100% 可见
+})
+```
+
+### controls
+
+默认情况下，`useElementVisibility` 返回一个 `ShallowRef<boolean>`。设置 `controls: true` 后，可以同时获取可见性 ref 以及底层 `useIntersectionObserver` 提供的控制方法：
+
+```ts
+import { useElementVisibility } from '@vueuse/core'
+// ---cut---
+const { isVisible, isActive, pause, resume, stop, isSupported } = useElementVisibility(target, {
+  controls: true,
+})
+```
+
+| 状态          | 类型                   | 描述                                                                                                                     |
+| ------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `isVisible`   | `ShallowRef<boolean>`  | 目标当前是否在视口中可见。                                                                                               |
+| `isActive`    | `ShallowRef<boolean>`  | 观察器当前是否正在运行。观察器停止后会变为 `false`，例如 `once: true` 触发后。                                             |
+| `isSupported` | `ComputedRef<boolean>` | 是否支持 `IntersectionObserver` API。                                                                                    |
+| `pause`       | `() => void`           | 暂停观察，并将 `isActive` 设置为 `false`。                                                                               |
+| `resume`      | `() => void`           | 恢复观察。                                                                                                               |
+| `stop`        | `() => void`           | 永久停止观察。                                                                                                           |
+
+使用 `once: true` 时，可以读取 `isActive` 来判断元素首次变为可见后跟踪是否已经停止：
+
+```ts
+import { useElementVisibility } from '@vueuse/core'
+// ---cut---
+const { isVisible, isActive } = useElementVisibility(target, {
+  controls: true,
+  once: true,
 })
 ```
 

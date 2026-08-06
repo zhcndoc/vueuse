@@ -1,8 +1,8 @@
 # 附加组件
 
-核心包旨在轻量且无依赖，而附加组件则将流行的包封装成一致的 API 风格。
+核心软件包旨在保持轻量且无依赖。附加组件则将流行的软件包封装成风格一致的 API。
 
-## Head - [`@vueuse/head`](https://github.com/vueuse/head) <carbon-link class="external-link"/>
+## 头部 - [`@vueuse/head`](https://github.com/vueuse/head) <carbon-link class="external-link"/>
 
 用于 Vue 3 的文档头管理器。支持 SSR。由 [@egoist](https://github.com/egoist) 创建和维护。
 
@@ -17,9 +17,9 @@
 - ✨ 使用 **TypeScript** 编写
 - 🏋️‍♀️ 轻量级，**<20kb** 大小
 
-> 由 [@Tahul](https://github.com/Tahul) 创建和维护
+> 由 [@Tahul](https://github.com/Tahul) 创建和维护。
 
-## Gesture - [`@vueuse/gesture`](https://github.com/vueuse/gesture) <carbon-link class="external-link"/>
+## 手势 - [`@vueuse/gesture`](https://github.com/vueuse/gesture) <carbon-link class="external-link"/>
 
 **Vue 组合式工具库**使你的应用程序具有**交互性**
 
@@ -29,9 +29,9 @@
 - ✨ 使用 **TypeScript** 编写
 - 🤹 与 [**vueuse/motion**](https://github.com/vueuse/motion) 或**任何其他**动画解决方案兼容
 
-> 由 [@Tahul](https://github.com/Tahul) 创建和维护
+> 由 [@Tahul](https://github.com/Tahul) 创建和维护。
 
-## Sound - [`@vueuse/sound`](https://github.com/vueuse/sound) <carbon-link class="external-link"/>
+## 声音 - [`@vueuse/sound`](https://github.com/vueuse/sound) <carbon-link class="external-link"/>
 
 用于播放声音效果的 Vue 组合式工具库。
 
@@ -42,7 +42,7 @@
 - ✨ 使用 **TypeScript** 编写
 - 🗣 使用经过充分测试的强大音频实用工具：[**Howler.js**](https://howlerjs.com/)
 
-> 由 [@Tahul](https://github.com/Tahul) 创建和维护
+> 由 [@Tahul](https://github.com/Tahul) 创建和维护。
 
 ## SchemaOrg - [`@vueuse/schema-org`](https://github.com/vueuse/schema-org) <carbon-link class="external-link"/>
 
@@ -60,7 +60,7 @@
 <!--GENERATED LIST, DO NOT MODIFY MANUALLY-->
 <!--ADDONS_LIST_STARTS-->
 
-## Router - [`@vueuse/router`](https://vueuse.org/router/README.html)
+## 路由器 - [`@vueuse/router`](https://vueuse.org/router/README.html)
 
 vue-router 的工具集
 
@@ -68,7 +68,7 @@ vue-router 的工具集
 - [`useRouteParams`](https://vueuse.org/router/useRouteParams/) — 响应式 `route.params` 的简写。
 - [`useRouteQuery`](https://vueuse.org/router/useRouteQuery/) — 响应式 `route.query` 的简写。
 
-## Integrations - [`@vueuse/integrations`](https://vueuse.org/integrations/README.html)
+## 集成 - [`@vueuse/integrations`](https://vueuse.org/integrations/README.html)
 
 流行工具库的集成包装器
 

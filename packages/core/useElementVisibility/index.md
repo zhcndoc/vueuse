@@ -1,5 +1,5 @@
 ---
-category: Elements
+category: 元素
 ---
 
 # useElementVisibility
@@ -53,6 +53,38 @@ const targetIsVisible = useElementVisibility(target, {
 })
 ```
 
+### controls
+
+默认情况下，`useElementVisibility` 返回一个 `ShallowRef<boolean>`。设置 `controls: true` 可同时获取可见性 ref 以及底层 `useIntersectionObserver` 的控制项：
+
+```ts
+import { useElementVisibility } from '@vueuse/core'
+// ---cut---
+const { isVisible, isActive, pause, resume, stop, isSupported } = useElementVisibility(target, {
+  controls: true,
+})
+```
+
+| 状态          | 类型                    | 描述                                                                                                                     |
+| ------------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `isVisible`   | `ShallowRef<boolean>`   | 目标当前是否在视口中可见。                                                                                               |
+| `isActive`    | `ShallowRef<boolean>`   | 观察器当前是否正在运行。例如，在 `once: true` 触发后观察器停止时，该值会变为 `false`。                                    |
+| `isSupported` | `ComputedRef<boolean>`  | 是否支持 `IntersectionObserver` API。                                                                                    |
+| `pause`       | `() => void`            | 暂停观察，并将 `isActive` 设置为 `false`。                                                                               |
+| `resume`      | `() => void`            | 恢复观察。                                                                                                               |
+| `stop`        | `() => void`            | 永久停止观察。                                                                                                           |
+
+设置 `once: true` 后，可以读取 `isActive`，以判断元素首次变为可见后跟踪是否已经停止：
+
+```ts
+import { useElementVisibility } from '@vueuse/core'
+// ---cut---
+const { isVisible, isActive } = useElementVisibility(target, {
+  controls: true,
+  once: true,
+})
+```
+
 ## 组件用法
 
 ```vue
@@ -103,7 +135,7 @@ function onElementVisibilityWithControls(state) {
   <!-- 带控制 -->
   <div ref="target2">
     <div v-element-visibility="[onElementVisibilityWithControls, { controls: true }]">
-      {{ isVisible2 ? 'inside' : 'outside' }}
+      {{ isVisible2 ? '在内部' : '在外部' }}
     </div>
   </div>
 </template>

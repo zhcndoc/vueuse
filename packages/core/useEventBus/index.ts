@@ -1,5 +1,5 @@
 import type { Fn } from '@vueuse/shared'
-import { getCurrentScope } from 'vue'
+import { tryOnScopeDispose } from '@vueuse/shared'
 import { events } from './internal'
 
 export type EventBusListener<T = unknown, P = any> = (event: T, payload?: P) => void
@@ -42,7 +42,6 @@ export interface UseEventBusReturn<T, P> {
 
 /* @__NO_SIDE_EFFECTS__ */
 export function useEventBus<T = unknown, P = any>(key: EventBusIdentifier<T>): UseEventBusReturn<T, P> {
-  const scope = getCurrentScope()
   function on(listener: EventBusListener<T, P>) {
     const listeners = (events.get(key) || new Set())
     listeners.add(listener)
@@ -50,8 +49,7 @@ export function useEventBus<T = unknown, P = any>(key: EventBusIdentifier<T>): U
 
     const _off = () => off(listener)
     // auto unsubscribe when scope get disposed
-    // @ts-expect-error vue3 and vue2 mis-align
-    scope?.cleanups?.push(_off)
+    tryOnScopeDispose(_off)
     return _off
   }
 

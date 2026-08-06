@@ -4,7 +4,7 @@ category: 元素
 
 # useResizeObserver
 
-报告元素内容或边框盒尺寸的变化
+报告元素内容或边框盒尺寸的变化。
 
 ## 用法
 
@@ -98,10 +98,7 @@ export interface UseResizeObserverReturn extends Supportable {
  * @param options
  */
 export declare function useResizeObserver(
-  target:
-    | MaybeComputedElementRef
-    | MaybeComputedElementRef[]
-    | MaybeRefOrGetter<MaybeElement[]>,
+  target: MaybeComputedElementRefOrArray,
   callback: globalThis.ResizeObserverCallback,
   options?: UseResizeObserverOptions,
 ): UseResizeObserverReturn

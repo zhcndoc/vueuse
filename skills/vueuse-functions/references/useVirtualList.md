@@ -1,5 +1,5 @@
 ---
-category: Component
+category: 组件
 ---
 
 # useVirtualList
@@ -20,7 +20,7 @@ import { useVirtualList } from '@vueuse/core'
 const { list, containerProps, wrapperProps } = useVirtualList(
   Array.from(Array.from({ length: 99999 }).keys()),
   {
-    // Keep `itemHeight` in sync with the item's row.
+    // 使 `itemHeight` 与项目行高保持同步。
     itemHeight: 22,
   },
 )
@@ -56,14 +56,14 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 
 ```vue
 <template>
-  <p>Showing {{ isEven ? 'even' : 'odd' }} items</p>
+  <p>显示{{ isEven ? '偶数' : '奇数' }}项目</p>
   <button @click="toggle">
-    Toggle Even/Odd
+    切换偶数/奇数
   </button>
   <div v-bind="containerProps" style="height: 300px">
     <div v-bind="wrapperProps">
       <div v-for="item in list" :key="item.index" style="height: 22px">
-        Row: {{ item.data }}
+        行：{{ item.data }}
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
   <div v-bind="containerProps" style="height: 300px">
     <div v-bind="wrapperProps">
       <div v-for="item in list" :key="item.index" style="width: 200px">
-        Row: {{ item.data }}
+        行：{{ item.data }}
       </div>
     </div>
   </div>
@@ -103,9 +103,9 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 <template>
   <UseVirtualList :list="list" :options="options" height="300px">
     <template #default="props">
-      <!-- you can get current item of list here -->
+      <!-- 你可以在这里获取列表中的当前项 -->
       <div style="height: 22px">
-        Row {{ props.index }} {{ props.data }}
+        行 {{ props.index }} {{ props.data }}
       </div>
     </template>
   </UseVirtualList>
@@ -120,7 +120,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 type UseVirtualListItemSize = number | ((index: number) => number)
 export interface UseHorizontalVirtualListOptions extends UseVirtualListOptionsBase {
   /**
-   * item width, accept a pixel value or a function that returns the width
+   * 项目宽度，接受像素值或返回宽度的函数
    *
    * @default 0
    */
@@ -128,7 +128,7 @@ export interface UseHorizontalVirtualListOptions extends UseVirtualListOptionsBa
 }
 export interface UseVerticalVirtualListOptions extends UseVirtualListOptionsBase {
   /**
-   * item height, accept a pixel value or a function that returns the height
+   * 项目高度，接受像素值或返回高度的函数
    *
    * @default 0
    */
@@ -136,15 +136,14 @@ export interface UseVerticalVirtualListOptions extends UseVirtualListOptionsBase
 }
 export interface UseVirtualListOptionsBase {
   /**
-   * the extra buffer items outside of the view area
+   * 视图区域外的额外缓冲项目数
    *
    * @default 5
    */
   overscan?: number
 }
 export type UseVirtualListOptions =
-  | UseHorizontalVirtualListOptions
-  | UseVerticalVirtualListOptions
+  UseHorizontalVirtualListOptions | UseVerticalVirtualListOptions
 export interface UseVirtualListItem<T> {
   data: T
   index: number
@@ -178,7 +177,7 @@ export interface UseVirtualListReturn<T> {
   }>
 }
 /**
- * Please consider using [`vue-virtual-scroller`](https://github.com/Akryum/vue-virtual-scroller) if you are looking for more features.
+ * 如果您需要更多功能，请考虑使用 [`vue-virtual-scroller`](https://github.com/Akryum/vue-virtual-scroller)。
  */
 export declare function useVirtualList<T = any>(
   list: MaybeRef<readonly T[]>,

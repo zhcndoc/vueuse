@@ -1,5 +1,5 @@
 ---
-category: Browser
+category: 浏览器
 ---
 
 # usePermission
@@ -65,14 +65,12 @@ export interface UsePermissionReturnWithControls extends Supportable {
  */
 export declare function usePermission(
   permissionDesc:
-    | GeneralPermissionDescriptor
-    | GeneralPermissionDescriptor["name"],
+    GeneralPermissionDescriptor | GeneralPermissionDescriptor["name"],
   options?: UsePermissionOptions<false>,
 ): UsePermissionReturn
 export declare function usePermission(
   permissionDesc:
-    | GeneralPermissionDescriptor
-    | GeneralPermissionDescriptor["name"],
+    GeneralPermissionDescriptor | GeneralPermissionDescriptor["name"],
   options: UsePermissionOptions<true>,
 ): UsePermissionReturnWithControls
 ```

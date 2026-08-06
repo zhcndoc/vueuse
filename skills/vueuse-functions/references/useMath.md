@@ -4,9 +4,9 @@ category: '@Math'
 
 # useMath
 
-Reactive `Math` methods.
+响应式的 `Math` 方法。
 
-## Usage
+## 用法
 
 ```ts
 import { useMath } from '@vueuse/math'
@@ -22,19 +22,19 @@ num.value = 4
 console.log(root.value) // 2
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export type UseMathKeys = keyof {
-  [K in keyof Math as Math[K] extends (...args: any) => any
-    ? K
-    : never]: unknown
+  [
+    K in keyof Math as Math[K] extends (...args: any) => any ? K : never
+  ]: unknown
 }
 export type UseMathReturn<K extends keyof Math> = ReturnType<
   Reactified<Math[K], true>
 >
 /**
- * Reactive `Math` methods.
+ * 响应式的 `Math` 方法。
  *
  * @see https://vueuse.org/useMath
  *

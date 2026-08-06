@@ -62,11 +62,7 @@ const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn(
 
 ```ts
 export type WebWorkerStatus =
-  | "PENDING"
-  | "SUCCESS"
-  | "RUNNING"
-  | "ERROR"
-  | "TIMEOUT_EXPIRED"
+  "PENDING" | "SUCCESS" | "RUNNING" | "ERROR" | "TIMEOUT_EXPIRED"
 export interface UseWebWorkerOptions extends ConfigurableWindow {
   /**
    * 终止 worker 前的毫秒数

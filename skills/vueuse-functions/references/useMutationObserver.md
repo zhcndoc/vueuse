@@ -1,10 +1,10 @@
 ---
-category: Elements
+category: 元素
 ---
 
 # useMutationObserver
 
-观察 DOM 树中的更改。[MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+观察 DOM 树中的更改。[MutationObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)。
 
 ## 用法
 
@@ -26,7 +26,7 @@ useMutationObserver(el, (mutations) => {
 
 <template>
   <div ref="el">
-    Hello VueUse
+    你好 VueUse
   </div>
 </template>
 ```
@@ -50,10 +50,7 @@ export interface UseMutationObserverReturn extends Supportable {
  * @param options
  */
 export declare function useMutationObserver(
-  target:
-    | MaybeComputedElementRef
-    | MaybeComputedElementRef[]
-    | MaybeRefOrGetter<MaybeElement[]>,
+  target: MaybeComputedElementRefOrArray,
   callback: MutationCallback,
   options?: UseMutationObserverOptions,
 ): UseMutationObserverReturn

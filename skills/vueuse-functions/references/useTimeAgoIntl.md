@@ -1,12 +1,13 @@
 ---
-category: Time
+category: 时间
+utils: formatTimeAgoIntl
 ---
 
 # useTimeAgoIntl
 
-Reactive time ago with i18n supported. Automatically update the time ago string when the time changes. Powered by `Intl.RelativeTimeFormat`.
+支持国际化的响应式相对时间。时间发生变化时自动更新相对时间字符串。由 `Intl.RelativeTimeFormat` 提供支持。
 
-## Usage
+## 用法
 
 ```js
 import { useTimeAgoIntl } from '@vueuse/core'
@@ -14,23 +15,23 @@ import { useTimeAgoIntl } from '@vueuse/core'
 const timeAgoIntl = useTimeAgoIntl(new Date(2021, 0, 1))
 ```
 
-## Non-Reactivity Usage
+## 非响应式用法
 
-In case you don't need the reactivity, you can use the `formatTimeAgo` function to get the formatted string instead of a Ref.
+如果不需要响应式，可以使用 `formatTimeAgo` 函数获取格式化后的字符串，而不是使用 Ref。
 
 ```js
 import { formatTimeAgoIntl } from '@vueuse/core'
 
-const timeAgoIntl = formatTimeAgoIntl(new Date(2021, 0, 1)) // string
+const timeAgoIntl = formatTimeAgoIntl(new Date(2021, 0, 1)) // 字符串
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 type Locale = Intl.UnicodeBCP47LocaleIdentifier | Intl.Locale
 export interface FormatTimeAgoIntlOptions {
   /**
-   * The locale to format with
+   * 用于格式化的区域设置
    *
    * @default undefined
    * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/RelativeTimeFormat/RelativeTimeFormat#locales
@@ -41,39 +42,39 @@ export interface FormatTimeAgoIntlOptions {
    */
   relativeTimeFormatOptions?: Intl.RelativeTimeFormatOptions
   /**
-   * Whether to insert spaces between parts.
+   * 是否在各部分之间插入空格。
    *
-   * Ignored if `joinParts` is provided.
+   * 如果提供了 `joinParts`，则会忽略此选项。
    *
    * @default true
    */
   insertSpace?: boolean
   /**
-   * Custom function to join the parts returned by `Intl.RelativeTimeFormat.formatToParts`.
+   * 自定义函数，用于连接由 `Intl.RelativeTimeFormat.formatToParts` 返回的各部分。
    *
-   * If provided, it will be used instead of the default join logic.
+   * 如果提供，则会使用此函数，而不是默认的连接逻辑。
    */
   joinParts?: (
     parts: Intl.RelativeTimeFormatPart[],
     locale?: Intl.UnicodeBCP47LocaleIdentifier | Intl.Locale,
   ) => string
   /**
-   * Custom units
+   * 自定义单位
    */
   units?: TimeAgoUnit[]
 }
 export interface UseTimeAgoIntlOptions<Controls extends boolean>
   extends FormatTimeAgoIntlOptions, ConfigurableScheduler {
   /**
-   * Expose more controls and the raw `parts` result.
+   * 暴露更多控制项和原始的 `parts` 结果。
    *
    * @default false
    */
   controls?: Controls
   /**
-   * Update interval in milliseconds, set 0 to disable auto update
+   * 更新间隔（以毫秒为单位），设置为 0 可禁用自动更新
    *
-   * @deprecated Please use `scheduler` option instead
+   * @deprecated 请改用 `scheduler` 选项
    * @default 30_000
    */
   updateInterval?: number
@@ -89,7 +90,7 @@ export interface TimeAgoUnit {
   ms: number
 }
 /**
- * A reactive wrapper for `Intl.RelativeTimeFormat`.
+ * `Intl.RelativeTimeFormat` 的响应式封装。
  */
 export declare function useTimeAgoIntl(
   time: MaybeRefOrGetter<Date | number | string>,
@@ -100,7 +101,7 @@ export declare function useTimeAgoIntl(
   options: UseTimeAgoIntlOptions<true>,
 ): UseTimeAgoReturn<true>
 /**
- * Non-reactive version of useTimeAgoIntl
+ * useTimeAgoIntl 的非响应式版本
  */
 export declare function formatTimeAgoIntl(
   from: Date,
@@ -108,7 +109,7 @@ export declare function formatTimeAgoIntl(
   now?: Date | number,
 ): string
 /**
- * Format parts into a string
+ * 将各部分格式化为字符串
  */
 export declare function formatTimeAgoIntlParts(
   parts: Intl.RelativeTimeFormatPart[],

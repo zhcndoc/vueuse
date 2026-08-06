@@ -1,13 +1,13 @@
 ---
-category: Reactivity
+category: 响应式
 alias: controlledComputed
 ---
 
 # computedWithControl
 
-Explicitly define the dependencies of computed.
+显式定义计算属性的依赖项。
 
-## Usage
+## 用法
 
 ```ts twoslash include main
 import { computedWithControl } from '@vueuse/core'
@@ -16,12 +16,12 @@ const source = ref('foo')
 const counter = ref(0)
 
 const computedRef = computedWithControl(
-  () => source.value, // watch source, same as `watch`
-  () => counter.value, // computed getter, same as `computed`
+  () => source.value, // 监听源，与 `watch` 相同
+  () => counter.value, // 计算 getter，与 `computed` 相同
 )
 ```
 
-With this, the changes of `counter` won't trigger `computedRef` to update but the `source` ref does.
+这样，`counter` 的变化不会触发 `computedRef` 更新，但 `source` ref 会触发更新。
 
 ```ts
 // @include: main
@@ -37,9 +37,9 @@ source.value = 'bar'
 console.log(computedRef.value) // 1
 ```
 
-### Manual Triggering
+### 手动触发
 
-You can also manually trigger the update of the computed by:
+你也可以手动触发计算值的更新：
 
 ```ts
 // @include: main
@@ -52,10 +52,10 @@ const computedRef = computedWithControl(
 computedRef.trigger()
 ```
 
-### Deep Watch
+### 深度监听
 
-Unlike `computed`, `computedWithControl` is shallow by default.
-You can specify the same options as `watch` to control the behavior:
+与 `computed` 不同，`computedWithControl` 默认是浅层的。  
+你可以指定与 `watch` 相同的选项来控制行为：
 
 ```ts
 const source = ref({ name: 'foo' })
@@ -67,12 +67,12 @@ const computedRef = computedWithControl(
 )
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface ComputedWithControlRefExtra {
   /**
-   * Force update the computed value.
+   * 强制更新计算值。
    */
   trigger: () => void
 }
@@ -81,8 +81,7 @@ export interface ComputedRefWithControl<T>
 export interface WritableComputedRefWithControl<T>
   extends WritableComputedRef<T>, ComputedWithControlRefExtra {}
 export type ComputedWithControlRef<T = any> =
-  | ComputedRefWithControl<T>
-  | WritableComputedRefWithControl<T>
+  ComputedRefWithControl<T> | WritableComputedRefWithControl<T>
 export declare function computedWithControl<T>(
   source: WatchSource | MultiWatchSources,
   fn: ComputedGetter<T>,
@@ -93,6 +92,6 @@ export declare function computedWithControl<T>(
   fn: WritableComputedOptions<T>,
   options?: WatchOptions,
 ): WritableComputedRefWithControl<T>
-/** @deprecated use `computedWithControl` instead */
+/** @deprecated 请改用 `computedWithControl` */
 export declare const controlledComputed: typeof computedWithControl
 ```

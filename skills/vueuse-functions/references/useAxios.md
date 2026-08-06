@@ -4,15 +4,15 @@ category: '@Integrations'
 
 # useAxios
 
-Wrapper for [`axios`](https://github.com/axios/axios).
+[`axios`](https://github.com/axios/axios) 的封装。
 
-## Install
+## 安装
 
 ```bash
 npm i axios@^1
 ```
 
-## Usage
+## 用法
 
 ```ts
 import { useAxios } from '@vueuse/integrations/useAxios'
@@ -20,20 +20,20 @@ import { useAxios } from '@vueuse/integrations/useAxios'
 const { data, isFinished } = useAxios('/api/posts')
 ```
 
-### Return Values
+### 返回值
 
-| Property           | Type                         | Description                              |
-| ------------------ | ---------------------------- | ---------------------------------------- |
-| `data`             | `Ref<T>`                     | Response data                            |
-| `response`         | `Ref<AxiosResponse>`         | Full axios response                      |
-| `error`            | `Ref<unknown>`               | Error if request failed                  |
-| `isFinished`       | `Ref<boolean>`               | Request has completed (success or error) |
-| `isLoading`        | `Ref<boolean>`               | Request is in progress                   |
-| `isAborted`        | `Ref<boolean>`               | Request was aborted                      |
-| `abort` / `cancel` | `() => void`                 | Abort the current request                |
-| `execute`          | `(url?, config?) => Promise` | Execute/re-execute the request           |
+| 属性               | 类型                         | 描述                                  |
+| ------------------ | ---------------------------- | ------------------------------------- |
+| `data`             | `Ref<T>`                     | 响应数据                              |
+| `response`         | `Ref<AxiosResponse>`         | 完整的 axios 响应                     |
+| `error`            | `Ref<unknown>`               | 请求失败时的错误                      |
+| `isFinished`       | `Ref<boolean>`               | 请求已完成（成功或错误）              |
+| `isLoading`        | `Ref<boolean>`               | 请求正在进行中                        |
+| `isAborted`        | `Ref<boolean>`               | 请求已中止                            |
+| `abort` / `cancel` | `() => void`                 | 中止当前请求                          |
+| `execute`          | `(url?, config?) => Promise` | 执行/重新执行请求                     |
 
-### With Axios Instance
+### 使用 Axios 实例
 
 ```ts
 import { useAxios } from '@vueuse/integrations/useAxios'
@@ -46,7 +46,7 @@ const instance = axios.create({
 const { data, isFinished } = useAxios('/posts', instance)
 ```
 
-### With Config Options
+### 使用配置选项
 
 ```ts
 import { useAxios } from '@vueuse/integrations/useAxios'
@@ -59,9 +59,9 @@ const instance = axios.create({
 const { data, isFinished } = useAxios('/posts', { method: 'POST' }, instance)
 ```
 
-### Manual Execution
+### 手动执行
 
-When you don't pass a `url`, the request won't fire immediately:
+当你不传入 `url` 时，请求不会立即发出：
 
 ```ts
 import { useAxios } from '@vueuse/integrations/useAxios'
@@ -70,7 +70,7 @@ const { execute } = useAxios()
 execute(url)
 ```
 
-The `execute` function `url` is optional - `url2` will replace `url1`:
+`execute` 函数的 `url` 是可选的——`url2` 会替换 `url1`：
 
 ```ts
 import { useAxios } from '@vueuse/integrations/useAxios'
@@ -79,7 +79,7 @@ const { execute } = useAxios(url1, {}, { immediate: false })
 execute(url2)
 ```
 
-The `execute` function can accept config only:
+`execute` 函数可以只接收配置：
 
 ```ts
 import { useAxios } from '@vueuse/integrations/useAxios'
@@ -89,18 +89,18 @@ execute({ params: { key: 1 } })
 execute({ params: { key: 2 } })
 ```
 
-### Awaiting Results
+### 等待结果
 
-The return value is thenable, so you can await it:
+返回值支持 thenable，因此你可以使用 `await`：
 
 ```ts
 import { useAxios } from '@vueuse/integrations/useAxios'
 
 const { data, isFinished, error } = await useAxios('/api/posts')
-// data is now populated
+// data 现在已填充
 ```
 
-Or await the execute function:
+或者等待 execute 函数：
 
 ```ts
 import { useAxios } from '@vueuse/integrations/useAxios'
@@ -109,28 +109,28 @@ const { execute } = useAxios()
 const result = await execute(url)
 ```
 
-### Options
+### 选项
 
 ```ts
 const { data } = useAxios('/api/posts', config, instance, {
-  // Execute immediately (default: true if url provided)
+  // 立即执行（默认：提供 url 时为 true）
   immediate: true,
-  // Use shallowRef for data (default: true)
+  // 对 data 使用 shallowRef（默认：true）
   shallow: true,
-  // Abort previous request on new execute (default: true)
+  // 新执行时中止之前的请求（默认：true）
   abortPrevious: true,
-  // Reset data before executing (default: false)
+  // 执行前重置 data（默认：false）
   resetOnExecute: false,
-  // Initial data value
+  // 初始数据值
   initialData: [],
-  // Callbacks
-  onSuccess: data => console.log('Success:', data),
-  onError: error => console.error('Error:', error),
-  onFinish: () => console.log('Finished'),
+  // 回调
+  onSuccess: data => console.log('成功：', data),
+  onError: error => console.error('错误：', error),
+  onFinish: () => console.log('已完成'),
 })
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export interface UseAxiosReturn<
@@ -140,41 +140,41 @@ export interface UseAxiosReturn<
   O extends UseAxiosOptions = UseAxiosOptions<T>,
 > {
   /**
-   * Axios Response
+   * Axios 响应
    */
   response: ShallowRef<R | undefined>
   /**
-   * Axios response data
+   * Axios 响应数据
    */
   data: O extends UseAxiosOptionsWithInitialData<T>
     ? Ref<T>
     : Ref<T | undefined>
   /**
-   * Indicates if the request has finished
+   * 指示请求是否已完成
    */
   isFinished: Ref<boolean>
   /**
-   * Indicates if the request is currently loading
+   * 指示请求当前是否正在加载
    */
   isLoading: Ref<boolean>
   /**
-   * Indicates if the request was canceled
+   * 指示请求是否已取消
    */
   isAborted: Ref<boolean>
   /**
-   * Any errors that may have occurred
+   * 可能发生的任何错误
    */
   error: ShallowRef<unknown | undefined>
   /**
-   * Aborts the current request
+   * 中止当前请求
    */
   abort: (message?: string | undefined) => void
   /**
-   * Alias to `abort`
+   * `abort` 的别名
    */
   cancel: (message?: string | undefined) => void
   /**
-   * Alias to `isAborted`
+   * `isAborted` 的别名
    */
   isCanceled: Ref<boolean>
 }
@@ -185,7 +185,7 @@ export interface StrictUseAxiosReturn<
   O extends UseAxiosOptions = UseAxiosOptions<T>,
 > extends UseAxiosReturn<T, R, D, O> {
   /**
-   * Manually call the axios request
+   * 手动调用 axios 请求
    */
   execute: (
     url?: string | AxiosRequestConfig<D>,
@@ -194,7 +194,7 @@ export interface StrictUseAxiosReturn<
 }
 export interface EasyUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R, D> {
   /**
-   * Manually call the axios request
+   * 手动调用 axios 请求
    */
   execute: (
     url: string,
@@ -203,36 +203,36 @@ export interface EasyUseAxiosReturn<T, R, D> extends UseAxiosReturn<T, R, D> {
 }
 export interface UseAxiosOptionsBase<T = any> {
   /**
-   * Will automatically run axios request when `useAxios` is used
+   * 使用 `useAxios` 时自动执行 axios 请求
    *
    */
   immediate?: boolean
   /**
-   * Use shallowRef.
+   * 使用 shallowRef。
    *
    * @default true
    */
   shallow?: boolean
   /**
-   * Abort previous request when a new request is made.
+   * 发起新请求时中止之前的请求。
    *
    * @default true
    */
   abortPrevious?: boolean
   /**
-   * Callback when error is caught.
+   * 捕获错误时的回调。
    */
   onError?: (e: unknown) => void
   /**
-   * Callback when success is caught.
+   * 捕获成功时的回调。
    */
   onSuccess?: (data: T) => void
   /**
-   * Sets the state to initialState before executing the promise.
+   * 执行 promise 前将状态设置为 initialState。
    */
   resetOnExecute?: boolean
   /**
-   * Callback when request is finished.
+   * 请求完成时的回调。
    */
   onFinish?: () => void
 }
@@ -240,13 +240,12 @@ export interface UseAxiosOptionsWithInitialData<
   T,
 > extends UseAxiosOptionsBase<T> {
   /**
-   * Initial data
+   * 初始数据
    */
   initialData: T
 }
 export type UseAxiosOptions<T = any> =
-  | UseAxiosOptionsBase<T>
-  | UseAxiosOptionsWithInitialData<T>
+  UseAxiosOptionsBase<T> | UseAxiosOptionsWithInitialData<T>
 export declare function useAxios<
   T = any,
   R = AxiosResponse<T>,

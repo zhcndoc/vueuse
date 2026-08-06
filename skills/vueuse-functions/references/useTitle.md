@@ -1,5 +1,5 @@
 ---
-category: Browser
+category: 浏览器
 ---
 
 # useTitle
@@ -94,8 +94,7 @@ export type UseTitleOptionsBase = {
 )
 export type UseTitleOptions = ConfigurableDocument & UseTitleOptionsBase
 export type UseTitleReturn =
-  | ComputedRef<string | null | undefined>
-  | Ref<string | null | undefined>
+  ComputedRef<string | null | undefined> | Ref<string | null | undefined>
 /**
  * 响应式文档标题。
  *

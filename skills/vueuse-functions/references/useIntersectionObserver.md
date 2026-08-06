@@ -1,5 +1,5 @@
 ---
-category: Elements
+category: 元素
 ---
 
 # useIntersectionObserver
@@ -26,7 +26,7 @@ const { stop } = useIntersectionObserver(
 
 <template>
   <div ref="target">
-    <h1>Hello world</h1>
+    <h1>你好，世界</h1>
   </div>
 </template>
 ```
@@ -53,7 +53,7 @@ function onIntersectionObserver([entry]: IntersectionObserverEntry[]) {
       向下滚动！
     </p>
     <div v-intersection-observer="onIntersectionObserver">
-      <p>Hello world!</p>
+      <p>你好，世界！</p>
     </div>
   </div>
 
@@ -63,13 +63,13 @@ function onIntersectionObserver([entry]: IntersectionObserverEntry[]) {
       向下滚动！
     </p>
     <div v-intersection-observer="[onIntersectionObserver, { root }]">
-      <p>Hello world!</p>
+      <p>你好，世界！</p>
     </div>
   </div>
 </template>
 ```
 
-[IntersectionObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver)
+[IntersectionObserver MDN](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver)。
 
 ## 类型声明
 
@@ -107,10 +107,7 @@ export interface UseIntersectionObserverReturn extends Supportable, Pausable {
  * @param options
  */
 export declare function useIntersectionObserver(
-  target:
-    | MaybeComputedElementRef
-    | MaybeRefOrGetter<MaybeElement[]>
-    | MaybeComputedElementRef[],
+  target: MaybeComputedElementRefOrArray,
   callback: IntersectionObserverCallback,
   options?: UseIntersectionObserverOptions,
 ): UseIntersectionObserverReturn

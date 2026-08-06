@@ -100,7 +100,7 @@ const breakpoints = useBreakpoints(breakpointsTailwind, {
 })
 ```
 
-或者，你也可以使用 [`provideSSRWidth`](../useSSRWidth/index.md) 为你的应用全局设置此项。
+或者，你也可以使用 [`provideSSRWidth`](./useSSRWidth.md) 在全局为你的应用进行配置。
 
 ## 预设
 

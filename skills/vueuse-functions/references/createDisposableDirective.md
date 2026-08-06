@@ -1,5 +1,5 @@
 ---
-category: Utilities
+category: 实用工具
 ---
 
 # createDisposableDirective
@@ -18,7 +18,7 @@ export const VDirective = createDisposableDirective({
   mounted(el, binding) {
     const value = binding.value
     if (typeof value === 'function') {
-      // `useMouse` event listener will be removed automatically when directive is unmounted
+      // `useMouse` 的事件监听器会在指令卸载时自动移除
       const { x, y } = useMouse()
       watch(x, val => value(val))
     }
@@ -30,10 +30,9 @@ export const VDirective = createDisposableDirective({
 
 ```ts
 type originDirective<H, V, A> =
-  | FunctionDirective<H, V, string, A>
-  | ObjectDirective<H, V, string, A>
+  FunctionDirective<H, V, string, A> | ObjectDirective<H, V, string, A>
 /**
- * Utility for authoring disposable directives. Reactive effects created within `mounted` directive hook will be tracked and automatically disposed when directive is unmounted.
+ * 用于编写可释放的指令。在指令的 `mounted` 钩子中创建的响应式副作用将被跟踪，并在指令卸载时自动释放。
  *
  * @see https://vueuse.org/createDisposableDirective
  *

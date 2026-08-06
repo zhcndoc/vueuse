@@ -1,12 +1,13 @@
 ---
-category: Time
+category: 时间
+utils: formatTimeAgo
 ---
 
 # useTimeAgo
 
-Reactive time ago. Automatically update the time ago string when the time changes.
+响应式时间 ago。时间发生变化时，自动更新时间 ago 字符串。
 
-## Usage
+## 用法
 
 ```ts
 import { useTimeAgo } from '@vueuse/core'
@@ -14,27 +15,27 @@ import { useTimeAgo } from '@vueuse/core'
 const timeAgo = useTimeAgo(new Date(2021, 0, 1))
 ```
 
-## Component Usage
+## 组件用法
 
 ```vue
 <template>
   <UseTimeAgo v-slot="{ timeAgo }" :time="new Date(2021, 0, 1)">
-    Time Ago: {{ timeAgo }}
+    时间距今：{{ timeAgo }}
   </UseTimeAgo>
 </template>
 ```
 
-## Non-Reactivity Usage
+## 非响应式用法
 
-In case you don't need the reactivity, you can use the `formatTimeAgo` function to get the formatted string instead of a Ref.
+如果不需要响应式，可以使用 `formatTimeAgo` 函数获取格式化后的字符串，而不是使用 Ref。
 
 ```ts
 import { formatTimeAgo } from '@vueuse/core'
 
-const timeAgo = formatTimeAgo(new Date(2021, 0, 1)) // string
+const timeAgo = formatTimeAgo(new Date(2021, 0, 1)) // 字符串
 ```
 
-## Type Declarations
+## 类型声明
 
 ```ts
 export type UseTimeAgoFormatter<T = number> = (
@@ -42,13 +43,7 @@ export type UseTimeAgoFormatter<T = number> = (
   isPast: boolean,
 ) => string
 export type UseTimeAgoUnitNamesDefault =
-  | "second"
-  | "minute"
-  | "hour"
-  | "day"
-  | "week"
-  | "month"
-  | "year"
+  "second" | "minute" | "hour" | "day" | "week" | "month" | "year"
 export interface UseTimeAgoMessagesBuiltIn {
   justNow: string
   past: string | UseTimeAgoFormatter<string>
@@ -63,33 +58,33 @@ export interface FormatTimeAgoOptions<
   UnitNames extends string = UseTimeAgoUnitNamesDefault,
 > {
   /**
-   * Maximum unit (of diff in milliseconds) to display the full date instead of relative
+   * 要显示完整日期而不是相对时间的最大单位（以毫秒差值为单位）
    *
    * @default undefined
    */
   max?: UnitNames | number
   /**
-   * Formatter for full date
+   * 完整日期的格式化函数
    */
   fullDateFormatter?: (date: Date) => string
   /**
-   * Messages for formatting the string
+   * 用于格式化字符串的消息
    */
   messages?: UseTimeAgoMessages<UnitNames>
   /**
-   * Minimum display time unit (default is minute)
+   * 最小显示时间单位（默认为分钟）
    *
    * @default false
    */
   showSecond?: boolean
   /**
-   * Rounding method to apply.
+   * 要应用的舍入方法。
    *
    * @default 'round'
    */
   rounding?: "round" | "ceil" | "floor" | number
   /**
-   * Custom units
+   * 自定义单位
    */
   units?: UseTimeAgoUnit<UnitNames>[]
 }
@@ -99,15 +94,15 @@ export interface UseTimeAgoOptions<
 >
   extends FormatTimeAgoOptions<UnitNames>, ConfigurableScheduler {
   /**
-   * Expose more controls
+   * 暴露更多控制项
    *
    * @default false
    */
   controls?: Controls
   /**
-   * Intervals to update, set 0 to disable auto update
+   * 更新间隔，设置为 0 可禁用自动更新
    *
-   * @deprecated Please use `scheduler` option instead
+   * @deprecated 请改用 `scheduler` 选项
    * @default 30_000
    */
   updateInterval?: number
@@ -126,7 +121,7 @@ export type UseTimeAgoReturn<Controls extends boolean = false> =
       } & Pausable
     : ComputedRef<string>
 /**
- * Reactive time ago formatter.
+ * 响应式的相对时间格式化函数。
  *
  * @see https://vueuse.org/useTimeAgo
  *

@@ -1,10 +1,10 @@
 ---
-category: Browser
+category: 浏览器
 ---
 
 # useFavicon
 
-响应式 favicon
+响应式网站图标
 
 ## 用法
 
@@ -49,8 +49,7 @@ export interface UseFaviconOptions extends ConfigurableDocument {
   rel?: string
 }
 export type UseFaviconReturn =
-  | ComputedRef<string | null | undefined>
-  | Ref<string | null | undefined>
+  ComputedRef<string | null | undefined> | Ref<string | null | undefined>
 /**
  * 响应式 favicon。
  *
