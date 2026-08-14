@@ -36,3 +36,12 @@ console.log('IDB 事务完成！')
 // 从 IDB 存储中删除数据
 storedObject.value = null
 ```
+
+## 跨标签页同步
+
+Changes are automatically synced across browser tabs using the [`BroadcastChannel` API](https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel). This is enabled by default and can be disabled via the `listenToStorageChanges` option.
+
+```ts
+// disable cross-tab syncing
+const { data } = useIDBKeyval('my-key', 'default', { listenToStorageChanges: false })
+```

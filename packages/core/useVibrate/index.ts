@@ -1,24 +1,10 @@
-import type { AnyFn, Arrayable, Pausable } from '@vueuse/shared'
+import type { Arrayable, Pausable } from '@vueuse/shared'
 import type { MaybeRefOrGetter } from 'vue'
 import type { ConfigurableNavigator, ConfigurableScheduler } from '../_configurable'
 import type { Supportable } from '../types'
-import { toRef, useIntervalFn } from '@vueuse/shared'
+import { toRef } from '@vueuse/shared'
 import { defaultNavigator } from '../_configurable'
 import { useSupported } from '../useSupported'
-
-function getDefaultScheduler(options: UseVibrateOptions = {}) {
-  const {
-    interval = 0,
-  } = options
-
-  if (interval === 0)
-    return
-
-  return (fn: AnyFn) => useIntervalFn(fn, interval, {
-    immediate: false,
-    immediateCallback: false,
-  })
-}
 
 export interface UseVibrateOptions extends ConfigurableNavigator, ConfigurableScheduler {
   /**
@@ -30,16 +16,6 @@ export interface UseVibrateOptions extends ConfigurableNavigator, ConfigurableSc
    *
    */
   pattern?: MaybeRefOrGetter<Arrayable<number>>
-  /**
-   * 持续震动的间隔，以毫秒为单位
-   *
-   * 设置为 `0` 表示禁用
-   *
-   * @deprecated Please use `scheduler` option instead
-   * @default 0
-   *
-   */
-  interval?: number
 }
 
 export interface UseVibrateReturn extends Supportable {
@@ -61,7 +37,7 @@ export interface UseVibrateReturn extends Supportable {
 export function useVibrate(options?: UseVibrateOptions): UseVibrateReturn {
   const {
     pattern = [],
-    scheduler = getDefaultScheduler(options),
+    scheduler,
     navigator = defaultNavigator,
   } = options || {}
 
