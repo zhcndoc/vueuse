@@ -1,7 +1,0 @@
-services:
-  vueuse:
-    build:
-      context: .
-      dockerfile: zbuilder
-    ports:
-      - "80:80"
