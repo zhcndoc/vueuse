@@ -71,13 +71,6 @@ export interface UseTimeAgoIntlOptions<Controls extends boolean>
    * @default false
    */
   controls?: Controls
-  /**
-   * 更新间隔（以毫秒为单位），设置为 0 可禁用自动更新
-   *
-   * @deprecated 请改用 `scheduler` 选项
-   * @default 30_000
-   */
-  updateInterval?: number
 }
 type UseTimeAgoReturn<Controls extends boolean = false> = Controls extends true
   ? {

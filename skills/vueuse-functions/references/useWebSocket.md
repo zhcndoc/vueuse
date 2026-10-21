@@ -187,13 +187,6 @@ export interface UseWebSocketOptions {
          */
         responseMessage?: MaybeRefOrGetter<WebSocketHeartbeatMessage>
         /**
-         * 间隔（毫秒）
-         *
-         * @deprecated 请改用 `scheduler` 选项
-         * @default 1000
-         */
-        interval?: number
-        /**
          * 心跳响应超时时间（毫秒）
          *
          * @default 1000

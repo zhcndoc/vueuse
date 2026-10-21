@@ -31,6 +31,34 @@ const { stop } = useIntersectionObserver(
 </template>
 ```
 
+## 控制与清理
+
+`useIntersectionObserver` 会返回底层 observer 的控制项：
+
+| 状态           | 类型                   | 说明                                                      |
+| -------------- | ---------------------- | --------------------------------------------------------- |
+| `isSupported` | `ComputedRef<boolean>` | 浏览器是否支持 `IntersectionObserver` API。              |
+| `isActive`    | `ShallowRef<boolean>`  | observer 当前是否运行；调用 `pause()` 或 `stop()` 后为 `false`。 |
+| `pause`       | `() => void`           | 暂停观察，并将 `isActive` 设为 `false`。                 |
+| `resume`      | `() => void`           | 恢复观察。                                                |
+| `stop`        | `() => void`           | 永久停止观察。                                            |
+
+创建它的组件或 effect scope 销毁时，会通过 [`tryOnScopeDispose`](https://vueuse.org/shared/tryOnScopeDispose/) 自动断开 observer，因此大多数情况下无需自行调用 `stop`。如果需要提前断开，例如元素变为可见后，可以调用 `stop()`：
+
+```ts
+import { useIntersectionObserver } from '@vueuse/core'
+// ---cut---
+const { stop } = useIntersectionObserver(
+  target,
+  ([entry]) => {
+    if (entry?.isIntersecting) {
+      // react to the element becoming visible once, then stop observing
+      stop()
+    }
+  },
+)
+```
+
 ## 指令用法
 
 ```vue

@@ -1,8 +1,0 @@
-{
-  "app_dir": "/",
-  "build_command": "pnpm run install-fonts && pnpm run docs:build",
-  "ignore_dockerfile": true,
-  "install_command": "git fetch --unshallow && npm install -g pnpm && pnpm install",
-  "output_dir": "packages/.vitepress/dist",
-  "start_command": ""
-}

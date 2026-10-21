@@ -49,11 +49,11 @@ export interface UseVModelOptions<T, Passive extends boolean = false> {
 }
 
 /**
- * Shorthand for v-model binding, props + emit -> ref
+ * v-model 绑定的简写，props + emit -> ref
  *
  * @see https://vueuse.org/useVModel
  * @param props
- * @param key (default 'modelValue')
+ * @param key （默认 'modelValue'）
  * @param emit
  * @param options
  *
@@ -71,18 +71,7 @@ export function useVModel<P extends object, K extends keyof P, Name extends stri
   emit?: (name: Name, ...args: any[]) => void,
   options?: UseVModelOptions<P[K], true>,
 ): Ref<UnwrapRef<P[K]>>
-
-/**
- * v-model 绑定的简写，props + emit -> ref
- *
- * @see https://vueuse.org/useVModel
- * @param props
- * @param key （默认 'modelValue'）
- * @param emit
- * @param options
- *
- * @__NO_SIDE_EFFECTS__
- */
+/* @__NO_SIDE_EFFECTS__ */
 export function useVModel<P extends object, K extends keyof P, Name extends string, Passive extends boolean>(
   props: P,
   key?: K,

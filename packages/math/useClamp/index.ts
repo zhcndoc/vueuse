@@ -4,7 +4,7 @@ import { clamp } from '@vueuse/shared'
 import { computed, ref as deepRef, isReadonly, toValue } from 'vue'
 
 /**
- * Reactively clamp a value between two other values.
+ * 在两个其他值之间响应式地夹取一个值。
  *
  * @see https://vueuse.org/useClamp
  * @param value number
@@ -23,17 +23,7 @@ export function useClamp(
   min: MaybeRefOrGetter<number>,
   max: MaybeRefOrGetter<number>,
 ): Ref<number>
-
-/**
- * 在两个其他值之间响应式的夹取一个值。
- *
- * @see https://vueuse.org/useClamp
- * @param value number
- * @param min
- * @param max
- *
- * @__NO_SIDE_EFFECTS__
- */
+/* @__NO_SIDE_EFFECTS__ */
 export function useClamp(value: MaybeRefOrGetter<number>, min: MaybeRefOrGetter<number>, max: MaybeRefOrGetter<number>) {
   if (typeof value === 'function' || isReadonly(value))
     return computed(() => clamp(toValue(value), toValue(min), toValue(max)))

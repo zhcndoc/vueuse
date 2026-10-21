@@ -38,19 +38,7 @@ export function useArrayReduce<T, U>(
   reducer: UseArrayReducer<U, T, U>,
   initialValue: MaybeRefOrGetter<U>,
 ): UseArrayReduceReturn<U>
-
-/**
- * 响应式 `Array.reduce`
- *
- * @see https://vueuse.org/useArrayReduce
- * @param list - 被调用的数组。
- * @param reducer - 一个“reducer”函数。
- * @param args
- *
- * @returns 在整个数组上运行“reducer”回调函数完成后的值。
- *
- * @__NO_SIDE_EFFECTS__
- */
+/* @__NO_SIDE_EFFECTS__ */
 export function useArrayReduce<T>(
   list: MaybeRefOrGetter<MaybeRefOrGetter<T>[]>,
   reducer: ((...p: any[]) => any),

@@ -99,13 +99,6 @@ export interface UseTimeAgoOptions<
    * @default false
    */
   controls?: Controls
-  /**
-   * 更新间隔，设置为 0 可禁用自动更新
-   *
-   * @deprecated 请改用 `scheduler` 选项
-   * @default 30_000
-   */
-  updateInterval?: number
 }
 export interface UseTimeAgoUnit<
   Unit extends string = UseTimeAgoUnitNamesDefault,

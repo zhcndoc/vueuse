@@ -44,9 +44,9 @@ const laptop = breakpoints.between('laptop', 'desktop')
 </template>
 ```
 
-### Shortcut Methods
+### 快捷方法
 
-You can access breakpoints directly as properties on the returned object. These return reactive refs.
+可以直接将断点作为返回对象的属性访问，这些属性会返回响应式引用。
 
 ```ts
 const breakpoints = useBreakpoints({
@@ -58,12 +58,12 @@ const breakpoints = useBreakpoints({
 const isTablet = breakpoints.tablet
 ```
 
-### Strategy
+### 策略
 
-The `strategy` option controls how the shortcut properties behave:
+`strategy` 选项控制快捷属性的行为：
 
-- `min-width` (default, mobile-first): `breakpoints.lg` is `true` when viewport is `>= lg`
-- `max-width` (desktop-first): `breakpoints.lg` is `true` when viewport is `< xl`
+- `min-width`（默认，移动优先）：当视口宽度 >= lg 时，`breakpoints.lg` 为 `true`
+- `max-width`（桌面优先）：当视口宽度 < xl 时，`breakpoints.lg` 为 `true`
 
 ```ts
 const breakpoints = useBreakpoints(breakpointsTailwind, {
@@ -71,26 +71,26 @@ const breakpoints = useBreakpoints(breakpointsTailwind, {
 })
 ```
 
-### Available Methods
+### 可用方法
 
-| Method                | Description                                              |
+| 方法                  | 描述                                                   |
 | --------------------- | -------------------------------------------------------- |
-| `greaterOrEqual(k)`   | Reactive: viewport width >= breakpoint                   |
-| `greater(k)`          | Reactive: viewport width > breakpoint                    |
-| `smallerOrEqual(k)`   | Reactive: viewport width <= breakpoint                   |
-| `smaller(k)`          | Reactive: viewport width < breakpoint                    |
-| `between(a, b)`       | Reactive: viewport width between a and b                 |
-| `isGreaterOrEqual(k)` | Non-reactive: returns boolean immediately                |
-| `isGreater(k)`        | Non-reactive: returns boolean immediately                |
-| `isSmallerOrEqual(k)` | Non-reactive: returns boolean immediately                |
-| `isSmaller(k)`        | Non-reactive: returns boolean immediately                |
-| `isInBetween(a, b)`   | Non-reactive: returns boolean immediately                |
-| `current()`           | Returns computed array of all matching breakpoints       |
-| `active()`            | Returns computed string of the current active breakpoint |
+| `greaterOrEqual(k)`   | 响应式：视口宽度 >= 断点                                  |
+| `greater(k)`          | 响应式：视口宽度 > 断点                                   |
+| `smallerOrEqual(k)`   | 响应式：视口宽度 <= 断点                                  |
+| `smaller(k)`          | 响应式：视口宽度 < 断点                                   |
+| `between(a, b)`       | 响应式：视口宽度介于 a 和 b 之间                          |
+| `isGreaterOrEqual(k)` | 非响应式：立即返回布尔值                                  |
+| `isGreater(k)`        | 非响应式：立即返回布尔值                                  |
+| `isSmallerOrEqual(k)` | 非响应式：立即返回布尔值                                  |
+| `isSmaller(k)`        | 非响应式：立即返回布尔值                                  |
+| `isInBetween(a, b)`   | 非响应式：立即返回布尔值                                  |
+| `current()`           | 返回所有匹配断点组成的计算数组                            |
+| `active()`            | 返回当前活动断点的计算字符串                              |
 
-#### Server Side Rendering and Nuxt
+#### 服务端渲染与 Nuxt
 
-If you are using `useBreakpoints` with SSR enabled, then you need to specify which screen size you would like to render on the server and before hydration to avoid an hydration mismatch
+如果在启用 SSR 时使用 `useBreakpoints`，需要指定服务端及水合前要渲染的屏幕尺寸，以避免水合不匹配。
 
 ```ts
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
@@ -100,9 +100,9 @@ const breakpoints = useBreakpoints(breakpointsTailwind, {
 })
 ```
 
-Alternatively you can set this up globally for your app using [`provideSSRWidth`](../useSSRWidth/index.md)
+或者，你也可以使用 [`provideSSRWidth`](../useSSRWidth/index.md) 在全局为应用配置。
 
-## Presets
+## 预设
 
 - Tailwind: `breakpointsTailwind`
 - Bootstrap v5: `breakpointsBootstrapV5`
@@ -115,7 +115,7 @@ Alternatively you can set this up globally for your app using [`provideSSRWidth`
 - Prime Flex: `breakpointsPrimeFlex`
 - ElementUI / ElementPlus: `breakpointsElement`
 
-_Breakpoint presets are deliberately not auto-imported, as they do not start with `use` to have the scope of VueUse. They have to be explicitly imported:_
+_断点预设不会自动导入，因为它们的名称不以 `use` 开头，不在 VueUse 的自动导入范围内。必须显式导入：_
 
 ```js
 import { breakpointsTailwind } from '@vueuse/core'

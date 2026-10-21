@@ -50,16 +50,6 @@ export interface UseVibrateOptions
    *
    */
   pattern?: MaybeRefOrGetter<Arrayable<number>>
-  /**
-   * 以毫秒为单位，运行持续振动的间隔
-   *
-   * 传入 `0` 可禁用
-   *
-   * @deprecated 请改用 `scheduler` 选项
-   * @default 0
-   *
-   */
-  interval?: number
 }
 export interface UseVibrateReturn extends Supportable {
   pattern: MaybeRefOrGetter<Arrayable<number>>

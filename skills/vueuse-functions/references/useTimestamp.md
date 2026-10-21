@@ -55,21 +55,7 @@ export interface UseTimestampOptions<
    */
   offset?: number
   /**
-   * 立即更新时间戳
-   *
-   * @deprecated 请改用 `scheduler` 选项
-   * @default true
-   */
-  immediate?: boolean
-  /**
-   * 更新间隔，或使用 requestAnimationFrame
-   *
-   * @deprecated 请改用 `scheduler` 选项
-   * @default requestAnimationFrame
-   */
-  interval?: "requestAnimationFrame" | number
-  /**
-   * 每次更新时的回调
+   * 每次更新时调用的回调
    */
   callback?: (timestamp: number) => void
 }

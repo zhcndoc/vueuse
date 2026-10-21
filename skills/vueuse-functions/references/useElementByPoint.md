@@ -23,10 +23,6 @@ export interface UseElementByPointOptions<Multiple extends boolean = false>
   x: MaybeRefOrGetter<number>
   y: MaybeRefOrGetter<number>
   multiple?: MaybeRefOrGetter<Multiple>
-  /** @deprecated 请改用 `scheduler` 选项 */
-  immediate?: boolean
-  /** @deprecated 请改用 `scheduler` 选项 */
-  interval?: "requestAnimationFrame" | number
 }
 export interface UseElementByPointReturn<Multiple extends boolean = false>
   extends Supportable, Pausable {

@@ -48,20 +48,6 @@ export interface UseNowOptions<
    * @default false
    */
   controls?: Controls
-  /**
-   * 立即启动时钟
-   *
-   * @deprecated 请改用 `scheduler` 选项
-   * @default true
-   */
-  immediate?: boolean
-  /**
-   * 以毫秒为单位的更新间隔，或使用 requestAnimationFrame
-   *
-   * @deprecated 请改用 `scheduler` 选项
-   * @default requestAnimationFrame
-   */
-  interval?: "requestAnimationFrame" | number
 }
 export type UseNowReturn<Controls extends boolean> = Controls extends true
   ? {

@@ -37,24 +37,7 @@ export interface MemoryInfo {
   readonly usedJSHeapSize: number
   [Symbol.toStringTag]: "MemoryInfo"
 }
-export interface UseMemoryOptions extends ConfigurableScheduler {
-  /**
-   * 立即启动定时器
-   *
-   * @deprecated 请改用 `scheduler` 选项
-   * @default true
-   */
-  immediate?: boolean
-  /**
-   * 在调用 `resume` 后立即执行回调
-   *
-   * @deprecated 请改用 `scheduler` 选项
-   * @default false
-   */
-  immediateCallback?: boolean
-  /** @deprecated 请改用 `scheduler` 选项 */
-  interval?: number
-}
+export interface UseMemoryOptions extends ConfigurableScheduler {}
 export interface UseMemoryReturn extends Supportable {
   memory: ShallowRef<MemoryInfo | undefined>
 }

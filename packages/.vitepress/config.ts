@@ -7,7 +7,7 @@ import { currentVersion, versions } from '../../meta/versions'
 import { addonCategoryNames, categoryNames, coreCategoryNames, metadata } from '../metadata/metadata'
 import { PWAVirtual } from './plugins/pwa-virtual'
 import { transformHead } from './transformHead'
-import { FILE_IMPORTS } from './twoslash'
+import { FILE_IMPORTS, hideDocsNoiseTags } from './twoslash'
 import viteConfig from './vite.config'
 
 const Guide = [
@@ -57,7 +57,7 @@ const DefaultSideBar = [
   { text: '指南', items: Guide },
   { text: '核心功能', items: CoreCategories },
   { text: '附加组件', items: AddonCategories },
-  // { text: '学习', items: Learn },
+  { text: '学习', items: Learn },
   { text: '链接', items: Links },
 ]
 
@@ -84,6 +84,7 @@ export default withPwa(defineConfig({
           handbookOptions: {
             noErrors: true,
           },
+          filterNode: hideDocsNoiseTags,
         },
         includesMap: new Map([['imports', `// ---cut-start---\n${FILE_IMPORTS}\n// ---cut-end---`]]),
         typesCache: createFileSystemTypesCache({

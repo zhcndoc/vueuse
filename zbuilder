@@ -1,0 +1,39 @@
+FROM --platform=$BUILDPLATFORM node:24-bookworm AS build
+
+WORKDIR /app
+
+RUN npm install --global pnpm@11.25.0
+
+COPY --exclude=.git \
+    --exclude=node_modules \
+    --exclude=packages/.vitepress/cache \
+    --exclude=packages/.vitepress/dist \
+    --exclude=packages/.vitepress/.temp \
+    --exclude=.turbo \
+    --exclude=coverage \
+    . .
+
+RUN pnpm install --frozen-lockfile
+COPY .git ./.git
+RUN pnpm run install-fonts && pnpm run docs:build
+
+FROM caddy:2-alpine
+
+COPY --from=build /app/packages/.vitepress/dist /srv
+
+COPY <<'EOF' /etc/caddy/Caddyfile
+:80 {
+    root * /srv
+    encode zstd gzip
+
+    try_files {path} {path}.html {path}/index.html
+    file_server
+
+    handle_errors 404 {
+        rewrite * /404.html
+        file_server
+    }
+}
+EOF
+
+EXPOSE 80
